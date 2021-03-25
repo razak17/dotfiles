@@ -1,0 +1,17 @@
+#!/bin/bash
+
+YAY="yay -S"
+PAC="sudo pacman -S"
+
+yay_packages=(
+  # 'autokey-gtk'
+  # 'vscodium-bin'
+  # 'packettracer'
+  'ttf-ancient-fonts'
+  # 'wps-office'
+)
+
+for i in ${yay_packages[@]}; do
+  echo item: $i
+  $YAY $i
+done

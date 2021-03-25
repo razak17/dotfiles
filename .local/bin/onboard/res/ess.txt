@@ -1,0 +1,24 @@
+.bash_history
+.bash_profile
+.bashrc
+.gitconfig
+.gitconfig.user
+.gitignore
+.Xresources
+.zsh_history
+.zshrc
+
+Desktop
+# docs
+# dots
+Documents
+Downloads
+Music
+Pictures
+Public
+Videos
+
+# .mozilla
+# .ssh
+# .thunderbird
+

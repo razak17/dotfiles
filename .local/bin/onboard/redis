@@ -1,0 +1,38 @@
+#!/bin/bash
+
+wget http://download.redis.io/redis-stable.tar.gz
+tar xvzf redis-stable.tar.gz
+cd redis-stable
+make
+
+sudo cp src/redis-server /usr/local/bin/
+sudo cp src/redis-cli /usr/local/bin/
+
+sudo mkdir /etc/redis
+sudo mkdir /var/redis
+
+sudo mkdir /etc/init.d
+sudo cp utils/redis_init_script /etc/init.d/redis_6379
+
+sudo vim /etc/init.d/redis_6379
+
+sudo cp redis.conf /etc/redis/6379.conf
+
+# Working dir
+sudo mkdir /var/redis/6379
+
+# Edit the configuration file
+sudo nvim /etc/redis/6379.conf
+# Set daemonize to yes (by default it is set to no).
+# Set the pidfile to /var/run/redis_6379.pid (modify the port if needed).
+# Change the port accordingly. In our example it is not needed as the default port is already 6379.
+# Set your preferred loglevel.
+# Set the logfile to /var/log/redis_6379.log
+# Set the dir to /var/redis/6379 (very important step!)
+
+sudo update-rc.d redis_6379 defaults
+sudo /etc/init.d/redis_6379 start
+
+# Try pinging your instance with redis-cli.
+# Do a test save with redis-cli save and check that the dump file is correctly stored into /var/redis/6379/ (you should find a file called dump.rdb).
+# Check that your Redis instance is correctly logging in the log file.

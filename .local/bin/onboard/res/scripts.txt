@@ -1,0 +1,10 @@
+docker-install-parrot.sh
+make_swap.sh
+mysetup
+setup.sh
+tmux.sh
+install.sh
+MEGA-RECOVERYKEY.txt
+rescache
+ssh2john.py
+vscodium.sh

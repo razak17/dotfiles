@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# scratch
+mkdir -p $HOME/.dots
+git init --bare $HOME/.dots/dotfiles
+alias conf='/usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME'
+conf config --local status.showUntrackedFiles no
+
+#import
+alias conf='/usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME'
+echo ".dots/dotfiles" >> .gitignore
+git clone --bare https://github.com/razak17/dotfiles $HOME/.dots/dotfiles
+conf checkout
+mkdir -p .config-backup && \
+conf checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
+xargs -I{} mv {} .config-backup/{}
+conf checkout
+conf config --local status.showUntrackedFiles no

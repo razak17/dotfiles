@@ -1,0 +1,12 @@
+alacritty
+autokey
+caja
+keepassxc
+mpv
+ranger
+redshift
+sh
+tmux
+Thunar
+xfce4
+zsh

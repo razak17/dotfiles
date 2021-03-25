@@ -1,0 +1,92 @@
+#!/bin/bash
+
+# echo Enter full destination path:
+# read des
+
+echo Enter tag:
+read -r tag
+
+home="/home/razak"
+config="${home}/.config"
+nvim="${config}/nvim"
+dev="${home}/Dev"
+code="${home}/Dev/Code"
+scripts="${home}/Dev/Scripts"
+vscode="${config}/VSCodium"
+
+dirs=(
+	".config"
+	".config/nvim"
+	".config/VSCodium"
+	"Dev"
+	"Dev/Code"
+	# "Dev/Scripts"
+)
+
+des_home=/run/media/razak/55CD-9C80/backup
+des="${des_home}${tag}"
+
+# Check if directory exists
+if [[ -e $des ]]; then
+	echo directory exists
+	echo exiting...
+	exit
+else
+	mkdir "$des"
+	echo "$des" has been created successfully.
+	for i in "${dirs[@]}"; do
+		mkdir "${des}/${i}"
+		echo "${des}/${i}" has been created successfully.
+	done
+fi
+
+copy() {
+	declare file="$1"
+	declare from="$2"
+	declare to="$3"
+	echo begin copying files to $3...
+	cat $file | while read line; do
+		if [[ ${line:0:1} == "#" ]]; then
+			echo ${line:0:1}
+			echo skipping comment...
+		elif [[ -z ${line} ]]; then
+			echo skipping empty line...
+		elif [[ -d "${from}/${line}" ]]; then
+			echo copying folder $line to $to
+			cp -r "${from}/${line}" $to
+		elif [[ -e "${from}/${line}" ]]; then
+			echo copying file $line to $to
+			cp "${from}/${line}" $to
+		else
+			# echo something went wrong
+			echo could not copy $line
+			exit
+		fi
+	done
+	echo DONE.
+	echo $'\n'
+}
+
+copy "ess.txt" $home "$des"
+copy "nvim.txt" $nvim "${des}/.config/nvim"
+copy "dev.txt" $dev "${des}/Dev"
+copy "code.txt" $code "${des}/Dev/Code"
+copy "conf.txt" $config "${des}/.config"
+copy "vscode.txt" $vscode "${des}/.config/VSCodium"
+
+# copy_file() {
+#   declare dir="$1"
+#   shift 1 # removes $1 from the parameter list
+#   echo home: $dir
+#   for i in "$@"; do
+#     if [[ -e "${dir}/${i}" ]]; then
+#       echo copying $i to $des
+#       cp "${dir}/${i}" $des
+#     else
+#       echo file does not exist
+#     fi
+#   done
+#   echo done
+# }
+
+# copy_file $home "${dot_files[@]}"

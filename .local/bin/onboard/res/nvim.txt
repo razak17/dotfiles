@@ -1,0 +1,9 @@
+general
+keys
+# lua
+# plug-config
+plugin
+# snippets
+# snips
+vscode
+init.vim
