@@ -1,0 +1,134 @@
+# Colors (Spacemacs)
+schemes:
+  spacemacs_light: &light
+    primary:
+      foreground: "#7ec0ee"
+      # background: '#1e2127'
+    normal:
+      black: "#d2ceda"
+      red: "#d2241f"
+      green: "#67b11d"
+      yellow: "#b1951d"
+      blue: "#3a81c3"
+      magenta: "#a31db1"
+      cyan: "#21b8c7"
+      white: "#655370"
+    bright:
+      black: "#6e6e6e"
+      red: "#DF201C"
+      green: "#00ccaa"
+      yellow: "#DB743E"
+      blue: "#7ec0ee"
+      magenta: "#2C9473"
+      cyan: "#00d0d0"
+      # cyan:       '#6B3062'
+      white: "#dedede"
+
+  spacemacs_dark: &dark
+    primary:
+      foreground: "#7ec0ee"
+      # background: '#292b2e'
+    normal:
+      black: "#0a0814"
+      red: "#f2241f"
+      green: "#67b11d"
+      yellow: "#b1951d"
+      blue: "#3a81c3"
+      magenta: "#a31db1"
+      cyan: "#21b8c7"
+      white: "#b2b2b2"
+    bright:
+      black: "#42444a"
+      red: "#DF201C"
+      green: "#29A0AD"
+      yellow: "#DB742E"
+      blue: "#3980C2"
+      magenta: "#2C9473"
+      cyan: "#6B3062"
+      white: "#686868"
+
+colors: *light
+
+font:
+  size: 8
+  normal:
+    family: "FiraCode Nerd Font Mono"
+    style: Retina
+  bold:
+    family: "FiraCode Nerd Font Mono"
+    style: Bold
+  italic:
+    family: "FiraCode Nerd Font Mono"
+    style: Italic
+  bold_italic:
+    family: "FiraCode Nerd Font Mono"
+    style: Bold Italic
+  offset:
+    x: 0
+    y: 3
+  glyph_offset:
+    x: 0
+    y: 0
+
+draw_bold_text_with_bright_colors: true
+
+background_opacity: 0.90
+# background_opacity: 1.00
+
+selection:
+  semantic_escape_chars: ',│`|:"'' ()[]{}<>'
+  save_to_clipboard: false
+
+window:
+  padding:
+    x: 3
+    y: 2
+
+cursor:
+  style:
+    shape: Block
+    blinking: Off
+  vi_mode_style: None
+  unfocused_hollow: false
+  thickness: 0.50
+
+scrolling:
+  history: 10000
+  multiplier: 10
+
+mouse:
+  double_click: { threshold: 300 }
+  triple_click: { threshold: 300 }
+  hide_when_typing: true
+  url:
+    launcher:
+      program: xdg-open
+      args: []
+    modifiers: Shift
+
+key_bindings:
+  - { key: Y, mode: Vi|~Search, action: Copy }
+  - { key: N, mode: Vi|~Search, action: Down }
+  - { key: Space, mods: Shift|Control, mode: ~Search, action: ToggleViMode }
+  - { key: C, mods: Control, mode: Vi|~Search, action: ToggleViMode }
+  - { key: Return, mode: Vi|~Search, action: ToggleViMode }
+  - { key: V, mods: Control|Shift, mode: ~Vi, action: Paste }
+  - { key: C, mods: Control|Shift, mode: Vi|~Search, action: ClearSelection }
+  - { key: F, mods: Control|Shift, mode: ~Search, action: SearchForward }
+  - { key: B, mods: Control|Shift, mode: ~Search, action: SearchBackward }
+  - { key: C, mods: Control|Shift, action: Copy }
+  - { key: Insert, mods: Shift, action: PasteSelection }
+  - { key: Key0, mods: Control, action: ResetFontSize }
+  - { key: Key9, mods: Control, action: IncreaseFontSize }
+  - { key: Equals, mods: Control, action: IncreaseFontSize }
+  - { key: Plus, mods: Control, action: IncreaseFontSize }
+  - { key: NumpadAdd, mods: Control, action: IncreaseFontSize }
+  - { key: Key8, mods: Control, action: DecreaseFontSize }
+  - { key: Minus, mods: Control, action: DecreaseFontSize }
+  - { key: NumpadSubtract, mods: Control, action: DecreaseFontSize }
+  - { key: Up, mods: Shift, chars: "shift+up pressed" }
+  - { key: Down, mods: Shift, chars: "shift+down pressed" }
+  - { key: Left, mods: Alt|Shift, chars: "alt+shift+left pressed" }
+  - { key: Right, mods: Alt|Shift, chars: "alt+shift+right pressed" }
+
+live_config_reload: true
