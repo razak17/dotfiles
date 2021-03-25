@@ -1,0 +1,84 @@
+{
+  "Import Destructed": {
+    "prefix": "imd",
+    "body": ["import { $2 } from '$1'"],
+    "description": "Import Destructed"
+  },
+
+  "Regular Destructed": {
+    "prefix": "imm",
+    "body": ["import $2 from '$1'"],
+    "description": "Regular Import"
+  },
+
+  "Typescript React PureComponent": {
+    "prefix": "rpc",
+    "body": [
+      "import * as React from 'react'",
+      "",
+      "export class $1 extends React.PureComponent {",
+      "\trender() {",
+      "\t\treturn ($2);",
+      "}}"
+    ],
+    "description": "Typescript React PureComponent"
+  },
+
+  "Typescript React Function Component": {
+    "prefix": "rh",
+    "body": [
+      "import * as React from 'react'",
+      "",
+      "interface ${TM_FILENAME_BASE}Props {",
+      "$1",
+      "}",
+      "",
+      "export const $TM_FILENAME_BASE: React.FC<${TM_FILENAME_BASE}Props> = ({$2}) => {",
+      "\t\treturn ($3);",
+      "}"
+    ],
+    "description": "Typescript React Function Component"
+  },
+  "React Native StyleSheet": {
+    "prefix": "rnss",
+    "body": [
+      "import {StyleSheet} from 'react-native'",
+      "const styles = StyleSheet.create({",
+      "",
+      "});"
+    ],
+    "description": "React Native StyleSheet"
+  },
+  "Toggle State": {
+    "prefix": "tog",
+    "body": ["this.setState(state => ({", "\topen: !state.open", "}));"],
+    "description": "toggle state"
+  },
+  "console.log": {
+    "prefix": "cl",
+    "body": ["console.log($1)"],
+    "description": "console.log"
+  },
+  "className={classnames()}": {
+    "prefix": "cc",
+    "body": ["className={classnames('$1')}"],
+    "description": "tailwind react stuff"
+  },
+  "Apollo Query Component": {
+    "prefix": "apq",
+    "body": [
+      "interface Props {",
+      "  children: (data: QueryResult<$1, OperationVariables>) => JSX.Element;",
+      "}",
+      "",
+      "export class $2 extends React.PureComponent<Props> {",
+      "  render() {",
+      "    return (",
+      "     <Query<$1> query={$3}>{x => this.props.children(x)}</Query>",
+      "    );",
+      "  }",
+      "}"
+    ],
+    "description": "Apollo Query Component"
+  }
+}
