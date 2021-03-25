@@ -1,0 +1,26 @@
+{
+    "type": "folder",
+    "title": "Missing keys",
+    "modes": [],
+    "usageCount": 945,
+    "showInTrayMenu": false,
+    "abbreviation": {
+        "abbreviations": [],
+        "backspace": true,
+        "ignoreCase": false,
+        "immediate": false,
+        "triggerInside": false,
+        "wordChars": "[\\w]"
+    },
+    "hotkey": {
+        "modifiers": [
+            "<shift>",
+            "<super>"
+        ],
+        "hotKey": "m"
+    },
+    "filter": {
+        "regex": null,
+        "isRecursive": false
+    }
+}
