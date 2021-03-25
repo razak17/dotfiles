@@ -1,0 +1,109 @@
+#!/bin/sh
+
+xterm*font:           7x13
+xterm*saveLines:      2000
+xterm*boldMode:       false
+xterm*loginShell:     true
+xterm*termName:       xterm-color
+xterm*eightBitInput:  false
+xterm*vt100*geometry: 90x34
+Xft.dpi:              96
+Xft.antialias:        true
+Xft.rgba:             rgb
+Xft.hinting:          true
+Xft.hintstyle:        hintslight
+xterm*charClass:      33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
+
+! general settings
+URxvt*termName:        rxvt-unicode
+URxvt*urlLauncher:     firefox
+URxvt*underlineURLs:   true
+URxvt*urlButton:       1
+URxvt*geometry:        100x30
+URxvt*intensityStyles: true
+URxvt*linespace:       0
+URxvt*saveline:        15000
+URxvt*urgentOnBell:    false
+URxvt*visualBell:      false
+URxvt*iso14755:        false
+URxvt*iso14755_52:     false
+URxvt*meta8:           false
+URxvt*metaSendsEscape: true
+URxvt*iconFile:        /usr/share/icons/Sardi-Mono/scalable/apps/terminal.svg
+
+! appearance
+URxvt*depth:          0
+URxvt*transparent:    true
+URxvt*shading:        30
+URxvt*background:     [85]#181815
+URxvt*foreground:     #F8F8FF
+URxvt*underlineColor: #4682B4
+URxvt*highlightColor: #4682B4
+URxvt*throughColor:   #7ec0ee
+URxvt*cursorColor:    #c5c8c6
+URxvt*colorIT:        #87af5f
+URxvt*colorBD:        #c5c8c6
+URxvt*colorUL:        #87afd7
+
+! colors
+URxvt*color0:  #3f3f3f
+URxvt*color1:  #ac3c3c
+URxvt*color2:  #60b48a
+URxvt*color3:  #dfaf8f
+URxvt*color4:  #506070
+URxvt*color5:  #dc8cc3
+URxvt*color6:  #8cd0d3
+URxvt*color7:  #dcdccc
+URxvt*color8:  #79A9FF
+URxvt*color9:  #da6e6e
+URxvt*color10: #c3bf9f
+URxvt*color11: #f0dfaf
+URxvt*color12: #94bff3
+URxvt*color13: #ec93d3
+URxvt*color14: #93e0e3
+URxvt*color15: #ffffff
+
+! fonts
+URxvt*letterSpace:    -1
+URxvt*allow_bold:     true
+URxvt*font:           xft:FiraCode Nerd Font Mono:medium:pixelsize=12
+URxvt*imFont:         xft:FiraCode Nerd Font Mono:regular:pixelsize=12
+URxvt*boldFont:       xft:FiraCode Nerd Font Mono:bold:pixelsize=12
+URxvt*italicFont:     xft:FiraCode Nerd Font Mono:italic:pixelsize=12
+URxvt*boldItalicFont: xft:FiraCode Nerd Font Mono:regular:pixelsize=12
+
+! cursor
+! URxvt*cursorColor: #ffffff
+! URxvt*cursorColor2: #000000
+! URxvt*cursorBlink: false
+! URxvt*reverseVideo: false
+
+! scroll
+URxvt*jumpScroll: true
+URxvt*skipScroll: true
+URxvt*scrollBar:         false
+URxvt*scrollTtyOutput:   false
+URxvt*scrollWithBuffer:  true
+URxvt*scrollTtyKeypress: true
+
+! border
+URxvt*borderLess:     false
+URxvt*internalBorder: 0
+URxvt*externalBorder: 0
+
+! perl extensions
+URxvt*perl-ext-common:    default,clipboard,url-select,keyboard-select,resize-font
+
+! macros for clipboard and selection
+URxvt.keysym.C-8:        resize-font:smaller
+URxvt.keysym.C-9:        resize-font:bigger
+URxvt.keysym.C-0:        resize-font:reset
+URxvt.keysym.C-question: resize-font:show
+URxvt*copyCommand:       xclip -i -selection clipboard
+URxvt*pasteCommand:      xclip -o -selection clipboard
+URxvt*keysym.M-c:        perl:clipboard:copy
+URxvt*keysym.m-v:        perl:clipboard:paste
+URxvt*keysym.M-C-v:      perl:clipboard:paste_escaped
+URxvt*keysym.M-Escape:   perl:keyboard-select:activate
+URxvt*keysym.M-s:        perl:keyboard-select:search
+URxvt*keysym.M-u:        perl:url-select:select_next

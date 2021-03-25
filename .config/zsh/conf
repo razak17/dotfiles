@@ -1,0 +1,25 @@
+#!/bin/zsh
+
+CASE_SENSITIVE="true"
+HIST_STAMPS="mm/dd/yyyy"
+HISTFILE=~/.zsh_history
+HISTSIZE=1000000
+SAVEHIST=1000000
+
+autoload -U colors && colors	# Load colors
+
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+zle_highlight=('paste:none')
+zshcache_time="$(date +%s%N)"
+
+# Which plugins would you like to load?
+plugins=(
+  git
+  docker
+  docker-compose
+  zsh-z
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)

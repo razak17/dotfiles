@@ -1,0 +1,22 @@
+#!/bin/zsh
+
+autoload -U compinit
+
+# forces zsh to realize new commands
+zstyle ':completion:*' completer _oldlist _expand _complete _match _ignored _approximate
+# select completions with arrow keys
+zstyle ':completion:*' menu select
+# group results by category
+zstyle ':completion:*' group-name ''
+# matches case insensitive for lowercase
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.cache/zsh
+# enabling autocompletion of privileged environments in privileged commands
+zstyle ':completion::complete:*' gain-privileges 1
+zstyle ':urlglobber' url-other-schema
+zmodload -i zsh/complist
+
+compinit
+_comp_options+=(globdots)

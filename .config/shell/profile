@@ -1,0 +1,62 @@
+#!/bin/zsh
+
+LOCAL="$HOME/.local/bin"
+ASDF_INSTALLS="$HOME/.asdf/installs"
+
+# XDG directories
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export SUDO_ASKPASS="$LOCAL/dmenu/dmenupass"
+
+if [ -d "$HOME/Dev/Code" ]; then
+  DEV_HOME="$HOME/Dev/Code"
+fi
+
+if [ -x "$HOME/lib/azure-cli/bin/az" ]; then
+  AZ_BIN=$HOME/lib/azure-cli/bin
+fi
+
+if [ -x "$HOME/.fnm/fnm" ]; then
+  FNM_PREFIX="$HOME/.fnm/node-versions/v15.5.1/installation"
+  FNM_PACKAGES="$FNM_PREFIX/lib/node_modules/bin"
+fi
+
+if [ -d "$HOME/.asdf" ]; then
+  ASDF_PACKAGES="$ASDF_INSTALLS/nodejs/15.5.1/.npm/bin"
+fi
+
+if [ -x "~/.fzf.zsh" ]; then
+  source ~/.fzf.zsh
+  # Enable a better reverse search experience.
+  export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+  export FZF_DEFAULT_OPTS="--layout=reverse --inline-info --height=80% --color=dark"
+fi
+
+path=(
+  "$LOCAL"
+  "$LOCAL/dmenu"
+  "$LOCAL/dwm"
+  "$LOCAL/sb"
+  "$LOCAL/statusbar"
+  "$CONDA"
+  "$AZ_BIN"
+  "$ASDF_PACKAGES"
+  "$path[@]"
+)
+
+export PATH
+
+__conda_setup="$('/home/razak/.miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/razak/.miniconda/etc/profile.d/conda.sh" ]; then
+        . "/home/razak/.miniconda/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/razak/.miniconda/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+
+source $HOME/.oh-my-zsh/oh-my-zsh.sh

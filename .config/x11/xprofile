@@ -1,0 +1,18 @@
+#!/bin/sh
+
+/usr/bin/xmodmap -e "clear mod5"
+/usr/bin/xmodmap -e "keycode 108 = Alt_L"
+
+fehbg &
+picom &
+xset r rate 300 50 &
+redshift -O3500 &
+dwmblocks &
+autokey-gtk &
+
+# This line autostarts an instance of Pulseaudio that does not exit on idle.
+# This is "necessary" on Artix due to a current bug between PA and
+# Chromium-based browsers where they fail to start PA and use dummy output.
+pidof -s runit &&
+	! pidof -s pulseaudio >/dev/null 2>&1 &&
+	setsid -f pulseaudio --start --exit-idle-time=-1 >/dev/null 2>&1

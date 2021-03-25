@@ -1,0 +1,58 @@
+#!/bin/zsh
+
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]]
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+
+  elif [[ ${KEYMAP} == main ]]
+       [[ ${KEYMAP} == viins ]]
+       [[ ${KEYMAP} = '' ]]
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+
+rehash_precmd() {
+  if [[ -a /var/cache/zsh/pacman ]]; then
+    local paccache_time="$(date -r /var/cache/zsh/pacman +%s%N)"
+    if (( zshcache_time < paccache_time )); then
+      rehash
+      zshcache_time="$paccache_time"
+    fi
+  fi
+}
+
+reset_broken_terminal () {
+	printf '%b' '\e[0m\e(B\e)0\017\e[?5l\e7\e[0;0r\e8'
+}
+
+command_not_found_handler() {
+	local pkgs cmd="$1" files=()
+	printf 'zsh: command not found: %s\n' "$cmd" # print command not found asap, then search for packages
+	files=(${(f)"$(pacman -F --machinereadable -- "/usr/bin/${cmd}")"})
+	if (( ${#files[@]} )); then
+		printf '\r%s may be found in the following packages:\n' "$cmd"
+		local res=() repo package version file
+		for file in "$files[@]"; do
+			res=("${(0)file}")
+			repo="$res[1]"
+			package="$res[2]"
+			version="$res[3]"
+			file="$res[4]"
+			printf '  %s/%s %s: /%s\n' "$repo" "$package" "$version" "$file"
+		done
+	else
+		printf '\n'
+	fi
+	return 127
+}
+
+add-zsh-hook -Uz precmd rehash_precmd
+add-zsh-hook -Uz precmd reset_broken_terminal
+
+for dump in ~/.zcompdump(N.mh+24); do
+	compinit
+done
+compinit -C
