@@ -1,0 +1,10 @@
+#!/bin/bash -e
+
+dull="$HOME/.config/tmux/dull.conf"
+
+if [[ -e $dull ]]; then
+  exec /usr/bin/tmux -f "$dull" "$@"
+else
+  exec /usr/bin/tmux -f/dev/null new -d
+fi
+

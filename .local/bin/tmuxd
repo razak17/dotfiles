@@ -1,0 +1,10 @@
+#!/bin/bash -e
+
+config_file="$HOME/.config/tmux/tmux.conf"
+
+if [[ -e $config_file ]]; then
+  exec /usr/bin/tmux -L Main -f "$config_file" new -s first -n main
+else
+  echo config file does not exist
+  exit
+fi
