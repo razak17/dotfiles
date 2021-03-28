@@ -1,0 +1,87 @@
+#!/bin/bash
+
+CONF='/usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME'
+NCONF='/usr/bin/git --git-dir=$HOME/.dots/$EDITOR/ --work-tree=$HOME/.config/$EDITOR'
+
+confStatus() {
+  eval "$CONF status"
+}
+
+confCommit() {
+  if [[ -z "$*" ]]; then
+    echo "-n should have the next argument contain actual session"
+    exit 1
+  else
+    message="$*"
+    echo message: $message
+    eval "$CONF commit -m $message"
+    exit 1
+  fi
+}
+
+confCommitAll() {
+  if [[ -z "$*" ]]; then
+    echo "-n should have the next argument contain actual session"
+    exit 1
+  else
+    message="$*"
+    echo message: $message
+    eval "$CONF commit -a -m $message"
+    exit 1
+  fi
+}
+
+nconfStatus() {
+  eval "$NCONF status"
+}
+
+nconfCommit() {
+  if [[ -z "$*" ]]; then
+    echo "-n should have the next argument contain actual session"
+    exit 1
+  else
+    message="$*"
+    echo message: $message
+    eval "$NCONF commit -m $message"
+    exit 1
+  fi
+}
+
+nconfCommitAll() {
+  if [[ -z "$*" ]]; then
+    echo "-n should have the next argument contain actual session"
+    exit 1
+  else
+    message="$*"
+    echo message: $message
+    eval "$NCONF commit -a -m $message"
+    exit 1
+  fi
+}
+
+while [[ "$#" -gt 0 ]]; do
+  curr=$1
+  shift
+
+  case "$curr" in
+  "-cs")
+    confStatus
+    ;;
+  "-ccom")
+    confCommit "$*"
+    ;;
+  "-ccomall")
+    confCommitAll "$*"
+    ;;
+  "-ncs")
+    nconfStatus
+    ;;
+  "-nccom")
+    nconfCommit "$*"
+    ;;
+  "-nccomall")
+    nconfCommitAll "$*"
+  ;;
+  *) echo "Unavailable command... $curr"
+  esac
+done

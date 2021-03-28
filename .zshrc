@@ -67,7 +67,7 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m'   # begin underline
 # IMPORTANT: shell/profile should come before binds (avoid weird behavior)
 [ -f $HOME/.config/shell/profile ] && source $HOME/.config/shell/profile
 [ -f $HOME/.config/zsh/aliases ]   && source $HOME/.config/zsh/aliases
-[ -f $HOME/.config/zsh/binds ]     && source $HOME/.config/zsh/binds
+# [ -f $HOME/.config/zsh/binds ]     && source $HOME/.config/zsh/binds
 [ -f $HOME/.config/zsh/func ]      && source $HOME/.config/zsh/func
 [ -f $HOME/.config/zsh/prompt ]    && source $HOME/.config/zsh/prompt
 [ -f $HOME/.config/zsh/compe ]     && source $HOME/.config/zsh/compe
