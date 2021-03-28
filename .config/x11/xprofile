@@ -3,7 +3,15 @@
 /usr/bin/xmodmap -e "clear mod5"
 /usr/bin/xmodmap -e "keycode 108 = Alt_L"
 
-fehbg &
+# Executed by startx (run your window manager from here)
+if [ -d /etc/X11/xinit/xinitrc.d ]; then
+  for f in /etc/X11/xinit/xinitrc.d/*; do
+    [ -x "$f" ] && . "$f"
+  done
+  unset f
+fi
+
+~/.local/bin/dwm/fehbg &
 picom &
 xset r rate 300 50 &
 redshift -O3500 &
