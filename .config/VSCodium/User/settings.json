@@ -71,7 +71,7 @@
   "terminal.integrated.shell.linux": "/bin/zsh",
   "terminal.integrated.rendererType": "dom",
   "vscode-neovim.neovimExecutablePaths.linux": "/home/razak/.local/bin/nvim",
-  "vscode-neovim.neovimInitVimPaths.linux": "$HOME/.config/nvim/init.vim",
+  "vscode-neovim.neovimInitVimPaths.linux": "$HOME/.config/nvim/vscode/init.vim",
   "window.menuBarVisibility": "toggle",
   "window.zoomLevel": 0,
   "workbench.sideBar.location": "left",
@@ -1209,5 +1209,5 @@
       "type": "command",
       "command": "workbench.action.toggleZenMode"
     }
-  ],
+  ]
 }
