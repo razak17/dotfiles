@@ -14,7 +14,7 @@ sudo mkdir /var/redis
 sudo mkdir /etc/init.d
 sudo cp utils/redis_init_script /etc/init.d/redis_6379
 
-sudo vim /etc/init.d/redis_6379
+sudo nvim /etc/init.d/redis_6379
 
 sudo cp redis.conf /etc/redis/6379.conf
 

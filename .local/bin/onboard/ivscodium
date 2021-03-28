@@ -1,4 +1,3 @@
-# {{ if (and (eq .chezmoi.os "darwin" "linux") (not .headless)) -}}
 #!/bin/bash
 
 set -eufo pipefail
@@ -21,12 +20,12 @@ extensions=(
 )
 
 for extension in ${extensions[@]}; do
-	codium --force --install-extension $extension
+	vscodium --force --install-extension $extension
 done
 
-{{ if (eq .chezmoi.os "darwin") }}
-defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
-defaults delete -g ApplePressAndHoldEnabled || true
-{{ end }}
+# {{ if (eq .chezmoi.os "darwin") }}
+# defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+# defaults delete -g ApplePressAndHoldEnabled || true
+# {{ end }}
 
-{{ end }}
+# {{ end }}

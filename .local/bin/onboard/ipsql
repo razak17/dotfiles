@@ -8,7 +8,7 @@ initdb --locale=en_US.UTF-8 -E UTF8 -D /var/lib/postgres/data
 sudo systemctl enable postgresql.service
 sudo systemctl start postgresql.service
 
-touch /var/lib/postgres/.psql_history
+sudo touch /var/lib/postgres/.psql_history
 
 createuser --interactive
 createdb myDatabaseName

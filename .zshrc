@@ -72,6 +72,6 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m'   # begin underline
 [ -f $HOME/.config/zsh/prompt ]    && source $HOME/.config/zsh/prompt
 [ -f $HOME/.config/zsh/compe ]     && source $HOME/.config/zsh/compe
 
-source $HOME/lib/azure-cli/az.completion
 source $HOME/.asdf/asdf.sh
 source $HOME/.asdf/completions/asdf.bash
+# source $HOME/lib/azure-cli/az.completion

@@ -1,38 +1,21 @@
 #!/bin/zsh
 
-alias ali='alias | bat --style=numbers,grid -l cpp'
-alias alive="ping google.com"
-# Zsh
-alias ohmyzsh='nvim ~/.oh-my-zsh'
-alias a="nvim ~/.config/zsh/aliases"
-alias cx="nvim ~/docs/x/x.txt"
-alias xh="nvim ~/Dev/Scripts/tmux.sh"
-alias cdd="cd -"
-alias cdlo="cd ~/.local"
-alias cdbin="cd ~/.local/bin"
-alias vc="nvim ~/.config/nvim/init.vim"
-# alias vc="nvim ~/.config/nvim/init.lua"
-alias loc="locate"
-alias lc="nvim ~/env/nvim/lua/core/init.lua"
-alias zs='source ~/.zshrc'
-alias zc="nvim ~/.zshrc"
-alias nvc="nvim config.h"
-alias nvz="nvim ~/.zsh_history"
-alias nvi="nvim init.lua"
-alias nvr="nvim --noplugin"
-alias imi="sudo make install"
-alias imci="sudo make clean install"
 alias b="bash"
+alias i='sudo'
+alias e="touch"
+alias m="mkdir"
+alias v="$EDITOR ."
 alias so="source"
+alias cl='clear'
+alias c='clear'
+alias wd="pwd"
 alias sx="startx"
 alias kx="killall xinit"
-alias m="mkdir"
-alias e="touch"
-alias wd="pwd"
-alias swap="cat /proc/sys/vm/swappiness"
-alias sw="i swapon"
-alias sf="sudo swapoff -v"
-alias cdnm="/home/razak/.asdf/installs/nodejs/15.5.1/.npm/lib/node_modules"
+alias is='sudo su'
+alias nv="$EDITOR"
+alias lh="ls -a"
+alias loc="locate"
+alias cdd="cd -"
 alias rmf="rm -r"
 alias cpf="cp -r"
 alias irm="sudo rm"
@@ -41,98 +24,75 @@ alias imv="sudo mv"
 alias irmf="sudo rm -r"
 alias icpf="sudo cp -r"
 alias imvf="sudo mv"
-alias lh="ls -a"
 alias lsl="ls -l"
-alias xsh="~/dots/.bin/tmux"
-alias kxc="~/dots/.bin/kx"
-alias nxsh="nvim ~/dots/.bin/tmux"
-alias dsm="~/dots/install"
-alias ndsm="nvim ~/dots/install"
+alias crole='sudo -iu'
+alias a="$EDITOR ~/.config/zsh/aliases"
+alias xn="$EDITOR ~/.config/x11/xprofile"
+alias xr="$EDITOR ~/.config/x11/xresources"
+alias cdbin="cd ~/.local/bin"
+alias zs='source ~/.zshrc'
+alias zc="$EDITOR ~/.zshrc"
+alias nvc="$EDITOR config.h"
+alias nvz="$EDITOR ~/.zsh_history"
+alias nvi="$EDITOR init.lua"
+alias nvr="$EDITOR --noplugin"
+alias imi="sudo make install"
+alias imci="sudo make clean install"
+alias swap="cat /proc/sys/vm/swappiness"
 alias rnscd="systemctl restart nscd"
-alias dls="cat ~/Documents/L400-1/assignments/deadlines.txt"
-alias br='sudo brightnessctl set'
-# alias brx='echo -e "enter brightness:\n"; read val; xrandr --output eDP-1 --brightness "${val}"'
 alias brx='xrandr --output eDP-1 --brightness'
 alias uadd='sudo usermod -aG'
-alias crole='sudo -iu'
-alias conf='/usr/bin/git --git-dir=$HOME/.dots/dots/ --work-tree=$HOME'
-alias nconf='/usr/bin/git --git-dir=$HOME/.dots/nvim/ --work-tree=$HOME/.config/nvim'
-
-# xrandr --output eDP-1 --brightness 2
-
-# General
-alias i='sudo'
-alias is='sudo su'
-alias v="nvim ."
-alias nv="nvim"
-alias cl='clear'
-alias c='clear'
-# alias cat="ccat"
 alias clocale="dpkg-reconfigure locales"
-alias al="nvim ~/.config/alacritty/alacritty.yml"
+alias imodem="systemctl start ModemManager.service"
+
+# Programs
+alias vc="$EDITOR ~/.config/nvim/init.lua"
+alias lc="$EDITOR ~/.config/nvim/lua/core/init.lua"
+alias al="$EDITOR ~/.config/alacritty/alacritty.yml"
+alias fm="firefox -ProfileManager"
 alias ipsql="systemctl start postgresql"
 alias iredis="sudo /etc/init.d/redis_6379 start"
-alias idocker="systemctl start docker.service"
-alias inord="systemctl start nordvpnd.service"
-alias imodem="systemctl start ModemManager.service"
-alias xrdbc="xrdb ~/.Xdefaults"
-alias slss="sudo /opt/lampp/lampp start"
-alias sls="sudo /opt/lampp/lampp stop"
-alias fm="firefox -ProfileManager"
-
-# Keepassxc
-db=/home/razak/Dev/Scripts/rescache/system32.kdbx
-keyfile=/home/razak/Dev/Scripts/rescache/scanerr
-alias kxloc="keepassxc-cli locate -q -k ${keyfile} ${db}"
-alias kxshow="keepassxc-cli show -q -k ${keyfile} ${db}"
-alias kxclip="keepassxc-cli clip -q -k ${keyfile} ${db} 30"
-alias kxclipuser="keepassxc-cli clip -q -k ${keyfile} -a username ${db} 30"
+alias cdnm="/home/razak/.asdf/installs/nodejs/15.5.1/.npm/lib/node_modules"
+alias codium="sudo nvim /usr/share/vscodium-bin/resources/app/product.json"
 
 # Docker and Docker Compose
-alias di="docker"
-alias dirm="docker rmi"
-alias dil="docker login"
-alias ds="docker ps"
-alias dii="docker images"
+alias idocker="systemctl start docker.service"
 alias dc="docker-compose"
 alias dce="docker-compose exec"
 alias dci="docker-compose up"
 alias dcd="docker-compose down -v"
+alias juiceshop='docker run --rm -p 3000:3000 bkimminich/juice-shop'
 
 # Git
-alias gis="git status"
-alias gii="git init"
+alias gp='git add . && git commit -m "auto push" && git push'
+alias conf='/usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME'
+alias nconf='/usr/bin/git --git-dir=$HOME/.dots/$EDITOR/ --work-tree=$HOME/.config/$EDITOR'
 
 # Nord VPN
+alias inord="systemctl start nordvpnd.service"
 alias vn="nordvpn"
-alias nord="nordvpn"
 alias cvn="nordvpn connect"
 alias dvn="nordvpn disconnect"
 alias svn="nordvpn status"
 alias me="curl icanhazip.com/"
+alias alive="ping google.com"
 
 # Ranger
 alias f="ranger"
 alias rc='ranger ~/.config'
-alias repos='ranger ~/Repos'
+alias rnv='ranger ~/.config/nvim'
 
 # Pacman
 alias Qi="pacman -Qi"
-alias Si="pacman -Si"
 alias Ql="pacman -Ql"
-alias Fl="pacman -Fl"
-alias p='sudo pacman -S'
-alias emerge='sudo pacman -S'
-alias r='sudo pacman -Rs'
 alias wp='pacman -Qs'
-alias wpl='pacman -Ql'
+alias p='sudo pacman -S'
+alias r='sudo pacman -Rs'
 alias y='yay -S'
 alias upd='sudo pacman -Syu'
-alias am="sudo pacman -Rs -"
 alias rcache="sudo pacman -Sc"
 
 # Tmux
-alias x="tmux"
 alias xm="tmux -L Main"
 alias xd="tmuxd"
 alias xb="tmuxb"
@@ -141,39 +101,14 @@ alias xls="tmux ls"
 alias nx='tmux n -s'
 alias ax='tmux a -t'
 alias axd='tmux -L Main a -t'
-alias xc="nvim ~/.config/tmux/tmux.conf"
-
-# Youtube DL
-alias dydl='youtube_dl'
-alias ydlformat='youtube_dl -F'
-alias ydldf='youtube_dl -f'
-
-# Others
-alias plague='curl https://corona-stats.online/states/us'
-alias condapython='/root/anaconda3/bin/python'
-alias juiceshop='docker run --rm -p 3000:3000 bkimminich/juice-shop'
-alias incwatchers='echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p'
-
-# Refresh fonts directory
-alias rfonts='fc-cache -vf ~/.local/share/fonts/'
-alias remfonts='fc-cache -f -v'
+alias xc="$EDITOR ~/.config/tmux/tmux.conf"
 
 # Misc
+alias rfonts='fc-cache -vf ~/.local/share/fonts/'
+alias remfonts='fc-cache -f -v'
+alias plague='curl https://corona-stats.online/states/us'
 alias lg='lazygit'
-alias gpu_watch="watch -n -1 nvidia-smi"
-alias gp='git add . && git commit -m "auto push" && git push'
-# alias ls='exa --color=always --group-directories-first'
-alias kill_vbox="kill $(ps -e | grep VirtualBox | awk '{ print $1 }')"
 alias list_systemctl="systemctl list-unit-files --state=enabled"
-alias set_python_path="source set_python_path"
-alias greeter="dm-tool switch-to-greeter"
-alias small_text="sed -i 's/size: 22.0/size: 15.0/g' ~/.config/alacritty/alacritty.yml"
-alias big_text="sed -i 's/size: 15.0/size: 22.0/g' ~/.config/alacritty/alacritty.yml"
-alias logout="dm-tool switch-to-greeter"
-alias i3-logout="i3-msg exit"
-alias monitors="xrandr -q | grep " connected" | cut -d ' ' -f1"
-alias sk="screenkey -s small --scr 1"
-alias skk="killall screenkey"
 
 # Bookmarks
 # Ex: wr evaluates to the absolute path to your user's home directory.
@@ -184,48 +119,28 @@ export mo=~/.mozilla/firefox/profiles
 export nca=~/.cache/nvim
 export nsh=~/.local/share/nvim
 export pack=~/.local/share/nvim/site/pack/packer
-export pr=~/Dev/Code/projects
 export ut=~/Dev/Code/m_
-export cmp=~/Dev/Code/cp
-export ds=~/Dev/Code/learn/ds
-export sc=~/Dev/Scripts
 export doc=~/Documents
-export dots=~/dots
-export skl=~/skless
 export docs=~/docs
+export dots=~/.dots
+export skl=~/.dots/suckless
 export dw=~/Downloads
 export nv=~/.config/nvim
-export env=~/env
-export sn=~/.config/nvim/snips
-export vs=~/VSCode-linux-x64/bin/code
-export pa=/run/media/razak/55CD-9C80
 export za=/run/media/razak/3E83258C04A90A32
-export ce=/run/media/razak/55CD-9C80/Portable/Documents/Programming
 
 alias cdwr='cd "$wr"'
-alias cdcg='cd "$cg"'
 alias cdcc='cd "$cc"'
 alias cdco='cd "$co"'
 alias cdmo='cd "$mo"'
 alias cdnca='cd "$nca"'
 alias cdnsh='cd "$nsh"'
 alias cdpack='cd "$pack"'
-alias cdpr='cd "$pr"'
 alias cdut='cd "$ut"'
-alias cdcp='cd "$cmp"'
-alias cdds='cd "$ds"'
-alias cdsc='cd "$sc"'
 alias cdoc='cd "$doc"'
 alias cdocs='cd "$docs"'
 alias cdots='cd "$dots"'
-alias cskl='cd "$skl"'
+alias cdskl='cd "$skl"'
 alias cddw='cd "$dw"'
-alias cdcc='cd "$cc"'
 alias cdnv='cd "$nv"'
-alias cdenv='cd "$env"'
-alias cdsn='cd "$sn"'
-alias cdpa='cd "$pa"'
 alias cdza='cd "$za"'
-alias cdce='cd "$ce"'
-alias code="$vs"
 alias cdasdf='cd "$ASDF_INSTALLS"'

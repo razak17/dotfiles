@@ -2,7 +2,7 @@
 
 mkdir -p ~/Screenshots
 
-file=$HOME/Screenshots/$(date +%F_%H%M%S_%N).png
+file=$HOME/Pictures/screenshots/$(date +%F_%H%M%S_%N).png
 
 case $1 in
     --select) maim -u -s "$file" ;;

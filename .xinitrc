@@ -1,2 +1,3 @@
-.config/x11/xinitrc
+#!/bin/sh
 
+.config/x11/xinitrc
