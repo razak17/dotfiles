@@ -20,7 +20,6 @@
   "editor.linkedEditing": true,
   "editor.tabCompletion": "on",
   "editor.minimap.maxColumn": 90,
-  "editor.minimap.enabled": false,
   "editor.matchBrackets": "always",
   "editor.cursorBlinking": "solid",
   "editor.lineNumbers": "relative",
@@ -73,17 +72,13 @@
   "vscode-neovim.neovimExecutablePaths.linux": "/home/razak/.local/bin/nvim",
   "vscode-neovim.neovimInitVimPaths.linux": "$HOME/.config/nvim/vscode/init.vim",
   "window.menuBarVisibility": "toggle",
-  "window.zoomLevel": 0,
-  "workbench.sideBar.location": "left",
   "workbench.editor.showTabs": true,
   "workbench.activityBar.iconClickBehavior": "toggle",
   "workbench.panel.defaultLocation": "left",
-  "workbench.activityBar.visible": true,
   "workbench.startupEditor": "newUntitledFile",
   "workbench.colorTheme": "One Dark Pro",
   "workbench.commandPalette.preserveInput": true,
   "workbench.iconTheme": "vs-seti",
-  "workbench.statusBar.visible": false,
   "zenMode.hideActivityBar": true,
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
@@ -1209,5 +1204,6 @@
       "type": "command",
       "command": "workbench.action.toggleZenMode"
     }
-  ]
+  ],
+  "editor.minimap.enabled": false
 }
