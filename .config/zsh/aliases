@@ -29,7 +29,6 @@ alias crole='sudo -iu'
 alias a="$EDITOR ~/.config/zsh/aliases"
 alias xn="$EDITOR ~/.config/x11/xprofile"
 alias xr="$EDITOR ~/.config/x11/xresources"
-alias cdbin="cd ~/.local/bin"
 alias zs='source ~/.zshrc'
 alias zc="$EDITOR ~/.zshrc"
 alias nvc="$EDITOR config.h"
@@ -116,37 +115,28 @@ alias plague='curl https://corona-stats.online/states/us'
 alias lg='lazygit'
 alias list_systemctl="systemctl list-unit-files --state=enabled"
 
-# Bookmarks
-# Ex: wr evaluates to the absolute path to your user's home directory.
-export wr=~/Dev/
-export cc=~/Dev/Code
-export co=~/.config
 export mo=~/.mozilla/firefox/profiles
 export nca=~/.cache/nvim
-export nsh=~/.local/share/nvim
-export pack=~/.local/share/nvim/site/pack/packer
-export ut=~/Dev/Code/m_
 export doc=~/Documents
 export docs=~/docs
 export dots=~/.dots
 export skl=~/.dots/suckless
 export dw=~/Downloads
-export nv=~/.config/nvim
 export za=/run/media/razak/3E83258C04A90A32
 
-alias cdwr='cd "$wr"'
-alias cdcc='cd "$cc"'
-alias cdco='cd "$co"'
+alias cdbin="cd ~/.local/bin"
 alias cdmo='cd "$mo"'
 alias cdnca='cd "$nca"'
-alias cdnsh='cd "$nsh"'
-alias cdpack='cd "$pack"'
-alias cdut='cd "$ut"'
 alias cdoc='cd "$doc"'
 alias cdocs='cd "$docs"'
 alias cdots='cd "$dots"'
 alias cdskl='cd "$skl"'
 alias cddw='cd "$dw"'
-alias cdnv='cd "$nv"'
 alias cdza='cd "$za"'
+alias cdwr='cd "$DEV_HOME"'
+alias cdcc='cd "$DEV_HOME/Code"'
+alias cdco='cd "$XDG_CONFIG_HOME"'
+alias cdnv='cd "$XDG_CONFIG_HOME/nvim"'
+alias cdnsh='cd "$XDG_DATA_HOME/nvim"'
+alias cdpack='cd "$XDG_DATA_HOME/nvim/site/pack/packer"'
 alias cdasdf='cd "$ASDF_INSTALLS"'

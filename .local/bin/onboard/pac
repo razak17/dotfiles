@@ -25,6 +25,7 @@ pac_packages=(
   'maim'
   'lazygit'
   'slock'
+  'lolcat'
   # 'docker'
   # 'postgresql'
   # 'clang'

@@ -14,7 +14,7 @@ confCommit() {
   else
     message="$*"
     echo message: $message
-    eval "$CONF commit -m $message"
+    eval "$CONF commit -m '${message}'"
     exit 1
   fi
 }
@@ -26,7 +26,7 @@ confCommitAll() {
   else
     message="$*"
     echo message: $message
-    eval "$CONF commit -a -m $message"
+    eval "$CONF commit -a -m '${message}'"
     exit 1
   fi
 }
@@ -42,7 +42,7 @@ nconfCommit() {
   else
     message="$*"
     echo message: $message
-    eval "$NCONF commit -m $message"
+    eval "$NCONF commit -m '${message}'"
     exit 1
   fi
 }
@@ -54,7 +54,7 @@ nconfCommitAll() {
   else
     message="$*"
     echo message: $message
-    eval "$NCONF commit -a -m $message"
+    eval "$NCONF commit -a -m '${message}'"
     exit 1
   fi
 }
