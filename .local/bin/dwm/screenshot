@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-mkdir -p ~/Screenshots
+mkdir -p ~/Pictures/screenshots
 
 file=$HOME/Pictures/screenshots/$(date +%F_%H%M%S_%N).png
 

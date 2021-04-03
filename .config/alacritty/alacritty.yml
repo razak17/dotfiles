@@ -6,13 +6,15 @@ schemes:
       # background: '#1e2127'
     normal:
       # black: "#d2ceda"
+      black: "#1d1f21"
       red: "#d2241f"
       green: "#67b11d"
       yellow: "#b1951d"
       blue: "#3a81c3"
       magenta: "#a31db1"
       cyan: "#21b8c7"
-      white: "#655370"
+      # white: "#655370"
+      white: "#c5c8c6"
     bright:
       black: "#6e6e6e"
       red: "#DF201C"
@@ -21,8 +23,30 @@ schemes:
       blue: "#7ec0ee"
       magenta: "#2C9473"
       cyan: "#00d0d0"
-      # cyan:       '#6B3062'
+      # cyan:    "#6B3062"
       white: "#dedede"
+    dim:
+      black: "#131415"
+      red: "#864343"
+      green: "#777c44"
+      yellow: "#9e824c"
+      blue: "#556a7d"
+      magenta: "#75617b"
+      cyan: "#5b7d78"
+      white: "#828482"
+    search:
+      matches:
+        foreground: "#030303"
+        background: "#51afef"
+      focused_match:
+        foreground: "#030303"
+        background: "#7ec0ee"
+      bar:
+        background: "#c678dd"
+        foreground: "#030303"
+      line_indicator:
+        foreground: "#202328"
+        background: "#7ec0ee"
 
   spacemacs_dark: &dark
     primary:
@@ -81,8 +105,8 @@ selection:
 
 window:
   padding:
-    x: 3
-    y: 2
+    x: 0
+    y: 0
 
 cursor:
   style:
@@ -90,7 +114,7 @@ cursor:
     blinking: Off
   vi_mode_style: None
   unfocused_hollow: false
-  thickness: 0.50
+  thickness: 0.15
 
 scrolling:
   history: 10000

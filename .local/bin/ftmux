@@ -228,22 +228,25 @@ while [[ "$#" -gt 0 ]]; do
     echo pwd: "${OUTPUT}"
     ;;
   "-s")
-    session=$1
-    if [[ -z $session ]]; then
+    if [[ -z "$*" ]]; then
       echo "-n should have the next argument contain actual session"
       exit 1
-    fi
-    shift
-    createSession $session "main"
-    ;;
-  "-z")
-    arg=$1
-    if [[ -z $arg ]]; then
-      echo "-a should have the next argument contain actual command"
+    else
+      session="$*"
+      echo session: $session
+      createSession ${session} "main"
       exit 1
     fi
-    shift
-    echo YAY $arg
+    ;;
+  "-z")
+    if [[ -z "$*" ]]; then
+      echo "-n should have the next argument contain actual session"
+      exit 1
+    else
+      arg="$*"
+      echo YAY $arg
+      exit 1
+    fi
     ;;
   "-env")
     session="env"
@@ -256,6 +259,10 @@ while [[ "$#" -gt 0 ]]; do
     splitPane -v -c $HOME/dots -t $first
     tw=$(getTarget $session -1 -w)
     splitPane -v -c $HOME/env -t $(getTarget $tw 0 -p)
+    ;;
+  "-final")
+    session="project-work"
+    createSession $session "main" $DEV/project-work
     ;;
   "-m")
     session="money-portal"
