@@ -1,0 +1,37 @@
+#!/bin/sh
+
+changeShell() {
+  cat /etc/shells
+  chsh --shell /bin/zsh razak
+}
+
+setupSsh() {
+  if [[ -d "$HOME/.ssh" ]]; then
+    chmod 600 ~/.ssh/id_rsa
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/id_rsa
+  fi
+}
+
+installOhmyzsh() {
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  git clone https://github.com/agkozak/zsh-z $ZSH_CUSTOM/plugins/zsh-z
+  git clone https://github.com/agkozak/zsh-z ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-z
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
+}
+
+installTmuxPlugins() {
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  git clone https://github.com/tmux-plugins/tpm ~/.config/tmux     /plugins/tpm
+}
+
+installAsdf() {
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.0-rc1
+}
+
+changeShell
+setupSsh
+installOhmyzsh
+installTmuxPlugins

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
@@ -13,6 +13,7 @@ asdf global golang 1.16.2
 asdf plugin-add erlang
 asdf install erlang 23.2.7
 asdf global erlang 23.2.7
+
 
 asdf plugin-add elixir
 asdf install elixir 1.11.3-otp-23

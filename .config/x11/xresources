@@ -40,7 +40,7 @@ URxvt*foreground:     #F8F8FF
 URxvt*underlineColor: #4682B4
 URxvt*highlightColor: #4682B4
 URxvt*throughColor:   #7ec0ee
-URxvt*cursorColor:    #c5c8c6
+! URxvt*cursorColor: #ffff00
 URxvt*colorIT:        #87af5f
 URxvt*colorBD:        #c5c8c6
 URxvt*colorUL:        #87afd7
@@ -107,3 +107,4 @@ URxvt*keysym.M-C-v:      perl:clipboard:paste_escaped
 URxvt*keysym.M-Escape:   perl:keyboard-select:activate
 URxvt*keysym.M-s:        perl:keyboard-select:search
 URxvt*keysym.M-u:        perl:url-select:select_next
+

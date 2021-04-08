@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 SERVER="Main"
 HOME="/home/razak"
@@ -262,7 +262,14 @@ while [[ "$#" -gt 0 ]]; do
     ;;
   "-final")
     session="project-work"
-    createSession $session "main" $DEV/project-work
+    createSession $session "main" $DEV/Code/py/ml
+    createWindow $session "run" -c $DEV/Code/project-work
+    tw=$(getTarget $session 0 -w)
+    tw2=$(getTarget $session 1 -w)
+    second=$(getTarget $tw2 0 -p)
+    $X send-keys -t $(getTarget $tw 0 -p) "conda activate project-work" "C-m"
+    $X send-keys -t $second "conda activate project-work" "C-m"
+    $X send-keys -t $second "jupyter lab" "C-m"
     ;;
   "-m")
     session="money-portal"

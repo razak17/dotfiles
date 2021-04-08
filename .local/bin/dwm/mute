@@ -1,4 +1,0 @@
-
-#!/bin/sh
-
-amixer -q -D pulse sset Master 100%-

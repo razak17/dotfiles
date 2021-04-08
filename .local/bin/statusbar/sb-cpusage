@@ -10,12 +10,12 @@ cpu() {
             if [[ "$cpu" -gt 99 ]]; then
               echo -e "$cpu%"
             elif [[ "$cpu" -gt 9 ]]; then
-              echo -e " $cpu%"
+              echo -e "$cpu%"
             else
-              echo -e "  $cpu%"
+              echo -e " $cpu%"
             fi
           }
-echo " $(cpu)"
+echo "🧠 $(cpu)"
 
 case $BLOCK_BUTTON in
 	1) notify-send "CPU hogs" "$(ps axch -o cmd:15,%cpu --sort=-%cpu | sed 11q)" ;;

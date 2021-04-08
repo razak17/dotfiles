@@ -4,10 +4,11 @@ schemes:
     primary:
       foreground: "#7ec0ee"
       # background: '#1e2127'
+      background: "#000000"
     normal:
       # black: "#d2ceda"
       black: "#1d1f21"
-      red: "#d2241f"
+      red:   "#d2241f"
       green: "#67b11d"
       yellow: "#b1951d"
       blue: "#3a81c3"
@@ -71,8 +72,6 @@ schemes:
       cyan: "#6B3062"
       white: "#686868"
 
-colors: *light
-
 font:
   size: 8
   normal:
@@ -89,24 +88,21 @@ font:
     style: Bold Italic
   offset:
     x: 0
-    y: 3
+    y: 1
   glyph_offset:
     x: 0
     y: 0
 
-draw_bold_text_with_bright_colors: true
-
-background_opacity: 0.90
-# background_opacity: 1.00
-
-selection:
-  semantic_escape_chars: ',│`|:"'' ()[]{}<>'
-  save_to_clipboard: false
-
 window:
+  decorations: none
   padding:
     x: 0
-    y: 0
+    y: 1
+  dimensions:
+    columns: 80
+    lines: 24
+  startup_mode: Maximized
+  dynamic_title: true
 
 cursor:
   style:
@@ -114,11 +110,22 @@ cursor:
     blinking: Off
   vi_mode_style: None
   unfocused_hollow: false
-  thickness: 0.15
 
 scrolling:
   history: 10000
   multiplier: 10
+
+selection:
+  semantic_escape_chars: ',│`|:"'' ()[]{}<>'
+  save_to_clipboard: false
+colors: *light
+
+draw_bold_text_with_bright_colors: true
+
+live_config_reload: true
+
+background_opacity: 0.72
+# background_opacity: 1.00
 
 mouse:
   double_click: { threshold: 300 }
@@ -154,5 +161,3 @@ key_bindings:
   - { key: Down, mods: Shift, chars: "shift+down pressed" }
   - { key: Left, mods: Alt|Shift, chars: "alt+shift+left pressed" }
   - { key: Right, mods: Alt|Shift, chars: "alt+shift+right pressed" }
-
-live_config_reload: true

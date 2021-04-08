@@ -8,7 +8,7 @@
   "code-runner.executorMap": {
     "python": "python"
   },
-  "editor.fontSize": 13,
+  "editor.fontSize": 12,
   "editor.lineHeight": 22,
   "editor.tabSize": 2,
   "editor.wordWrap": "off",
@@ -63,6 +63,9 @@
   "js/ts.implicitProjectConfig.checkJs": true,
   "telemetry.enableCrashReporter": false,
   "telemetry.enableTelemetry": false,
+  "terminal.integrated.inheritEnv": false,
+  "workbench.activityBar.visible": false,
+  "python.dataScience.alwaysTrustNotebooks": true,
   "terminal.integrated.fontSize": 13,
   "editor.cursorStyle": "block",
   "terminal.integrated.cursorBlinking": false,
@@ -72,7 +75,6 @@
   "vscode-neovim.neovimExecutablePaths.linux": "/home/razak/.local/bin/nvim",
   "vscode-neovim.neovimInitVimPaths.linux": "$HOME/.config/nvim/vscode/init.vim",
   "window.menuBarVisibility": "toggle",
-  "workbench.editor.showTabs": true,
   "workbench.activityBar.iconClickBehavior": "toggle",
   "workbench.panel.defaultLocation": "left",
   "workbench.startupEditor": "newUntitledFile",
@@ -367,7 +369,7 @@
           "command": "workbench.action.nextEditor"
         },
         {
-          "key": "p",
+          "key": "e",
           "name": "Previous editor",
           "type": "command",
           "command": "workbench.action.previousEditor"
@@ -405,6 +407,19 @@
             "editor.action.clipboardCopyAction",
             "cancelSelection"
           ]
+        }
+      ]
+    },
+    {
+      "key": "c",
+      "name": "Controls...",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "v",
+          "name": "Toggle side bar visibility",
+          "type": "command",
+          "command": "workbench.action.toggleSidebarVisibility"
         }
       ]
     },
@@ -518,9 +533,9 @@
         },
         {
           "key": "e",
-          "name": "Toggle side bar visibility",
+          "name": "Explorer",
           "type": "command",
-          "command": "workbench.action.toggleSidebarVisibility"
+          "command": "workbench.view.explorer"
         },
         {
           "key": "F",
@@ -563,6 +578,12 @@
           "name": "Toggle tab visibility",
           "type": "command",
           "command": "workbench.action.toggleTabsVisibility"
+        },
+        {
+          "key": "x",
+          "name": "Extensions",
+          "type": "command",
+          "command": "workbench.view.extensions"
         }
       ]
     },
@@ -892,6 +913,13 @@
       ]
     },
     {
+      "key": "n",
+      "name": "No Highlight",
+      "type": "command",
+      "command": "vscode-neovim.send",
+      "args": ":noh<CR>"
+    },
+    {
       "key": "o",
       "name": "Open...",
       "type": "bindings",
@@ -1205,5 +1233,11 @@
       "command": "workbench.action.toggleZenMode"
     }
   ],
-  "editor.minimap.enabled": false
+  "editor.minimap.enabled": false,
+  "workbench.editorAssociations": [
+    {
+      "viewType": "jupyter.notebook.ipynb",
+      "filenamePattern": "*.ipynb"
+    }
+  ]
 }

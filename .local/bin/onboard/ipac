@@ -9,7 +9,6 @@ pac_packages=(
   'ranger'
   'qbittorrent'
   'ttf-joypixels'
-  'ttf-font-awesome'
   'powerline-fonts'
   'ninja'
   'cmake'
@@ -26,10 +25,10 @@ pac_packages=(
   'lazygit'
   'slock'
   'lolcat'
-  # 'docker'
-  # 'postgresql'
-  # 'clang'
-  # 'firefox'
+  'docker'
+  'postgresql'
+  'clang'
+  'firefox'
   # 'keepassxc'
   # 'thunderbird'
   # 'whatsapp-nativefier'
@@ -38,7 +37,22 @@ pac_packages=(
   # 'brave'
 )
 
+yay_packages=(
+  'autokey-gtk'
+  'vscodium-bin'
+  # 'packettracer'
+  # 'ttf-ancient-fonts'
+  # 'wps-office'
+)
+
 for i in ${pac_packages[@]}; do
-  echo item: $i
+  echo Installing: $i
   $PAC $i
+done
+
+echo 'Aur stuff'
+echo '\n'
+for i in ${yay_packages[@]}; do
+  echo Installing: $i
+  $YAY $i
 done
