@@ -35,6 +35,7 @@ alias brx='xrandr --output eDP-1 --brightness'
 alias uadd='sudo usermod -aG'
 alias clocale="dpkg-reconfigure locales"
 alias imodem="systemctl start ModemManager.service"
+alias wifi="nmtui"
 
 # edit
 alias a="$EDITOR ~/.config/zsh/aliases"
