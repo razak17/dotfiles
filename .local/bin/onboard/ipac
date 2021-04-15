@@ -29,6 +29,7 @@ pac_packages=(
   'postgresql'
   'clang'
   'firefox'
+  'ctags'
   # 'keepassxc'
   # 'thunderbird'
   # 'whatsapp-nativefier'
