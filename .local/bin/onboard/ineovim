@@ -2,6 +2,8 @@
 scversion="stable" # or "v0.4.7", or "latest"
 lsp_path='.cache/nvim/nvim_lsp'
 neovim_py='.cache/nvim/venv/neovim'
+dap_py='.cache/nvim/venv/dap'
+dap_dir='.cache/nvim/dap'
 
 dirs=(
   '.cache/backup'
@@ -10,6 +12,7 @@ dirs=(
   '.cache/tags'
   '.cache/undodir'
   '.cache/nvim_lsp'
+  '.cache/dap'
 )
 
 simple_lsp=(
@@ -38,10 +41,16 @@ createDirs() {
   mkdir -p ~/$lsp_path
 }
 
-pythonvenvInit() {
+pythonVenvInit() {
   mkdir -p ~/$neovim_py
   python3 -m venv ~/$neovim_py
   ~/$neovim_py/bin/pip3 install -U setuptools pynvim jedi isort flake8 black neovim-remote
+}
+
+dapVenvInit() {
+  mkdir -p ~/$dap_py
+  python3 -m venv ~/$dap_py
+  ~/$dap_py/bin/python -m pip install debugpy
 }
 
 nodeHostInit() {
@@ -108,14 +117,25 @@ installShellcheck() {
   shellcheck --version
 }
 
+installNodeDebug2() {
+  cd ~/$dap_dir
+  if [ ! -d ~/$dap_dir/vscode-node-debug2 ]; then
+    git clone https://github.com/microsoft/vscode-node-debug2.git
+  fi
+  cd vscode-node-debug2
+  npm install
+  gulp build
+}
 
-createDirs
-pythonvenvInit
-nodeHostInit
-golangInit
-installLua
-installLuarocks
-installSumneko
-installElixirLs
-installLuaformat
-installShellcheck
+# createDirs
+# pythonVenvInit
+# dapVenvInit
+# nodeHostInit
+# golangInit
+# installLua
+# installLuarocks
+# installSumneko
+# installElixirLs
+# installLuaformat
+# installShellcheck
+installNodeDebug2

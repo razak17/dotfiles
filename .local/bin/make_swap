@@ -1,0 +1,19 @@
+#!/bin/sh
+
+echo Enter swapfile name:
+read NAME
+echo Enter swap size:
+read SIZE
+
+size="${SIZE}GB"
+
+sudo fallocate -l $size /$NAME
+sudo chmod 600 /$NAME
+sudo mkswap /$NAME
+sudo swapon /$NAME
+
+echo
+echo Append the following line /etc/fstab to make change permanent:
+echo /$NAME swap swap defaults 0 0
+echo
+echo To verify that the swap is active, run swapon --show

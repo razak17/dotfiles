@@ -70,11 +70,13 @@ alias dcd="docker-compose down -v"
 alias juiceshop='docker run --rm -p 3000:3000 bkimminich/juice-shop'
 
 # Git
-alias gp='git add . && git commit -m "auto push" && git push'
+alias gp='git add . && git commit -m "updates" && git push'
 alias conf='/usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME'
 alias nconf='/usr/bin/git --git-dir=$HOME/.dots/$EDITOR/ --work-tree=$HOME/.config/$EDITOR'
 alias confs="iconf -cs"
+alias confa="iconf -csa"
 alias nconfs="iconf -ncs"
+alias nconfa="iconf -ncsa"
 alias ccom="iconf -ccom"
 alias nccom="iconf -nccom"
 alias ccomall="iconf -ccomall"

@@ -14,6 +14,7 @@ SCRIPTS=$DEV/Scripts
 NVIM=$HOME/.config/nvim
 C_NVIM=$HOME/.cache/nvim
 DOCS=/run/media/razak/55CD-9C80/Portable/Documents/Docs
+SKLESS=$HOME/.dots/suckless
 
 getPaneId() {
   tag=$1
@@ -170,17 +171,27 @@ checkEmpty() {
   fi
 }
 
+simpleCommands() {
+  case "$arg" in
+    "-p")
+      $($X run-shell -b 'echo pane id is #{pane_id}')
+      ;;
+    "-pt")
+      $($X run-shell -b 'echo pane title is #{pane_title}')
+      ;;
+    "-w")
+      $($X run-shell -b 'echo window name is #{window_name}')
+      ;;
+    *) echo "Unavailables ... $cmd"
+  esac
+}
+
 envSession() {
   session="env"
-  createSession $session "dots" $HOME/dots
-  createWindow $session "dwm" -c $HOME/skless/dwm
-  createWindow $session "dwmblocks" -c $HOME/skless/dwmblocks
-  createWindow $session "nvim" -c $HOME/.config/nvim
-  tw=$(getTarget $session 0 -w)
-  first=$(getTarget $tw 0 -p)
-  splitPane -v -c $HOME/dots -t $first
-  tw=$(getTarget $session -1 -w)
-  splitPane -v -c $HOME/env -t $(getTarget $tw 0 -p)
+  createSession $session "dots" $HOME/.dots
+  createWindow $session "dwm" -c $SKLESS/dwm
+  createWindow $session "dwmblocks" -c $SKLESS/dwmblocks
+  createWindow $session "st" -c $SKLESS/st
 }
 
 finalSession() {
@@ -313,10 +324,7 @@ while [[ "$#" -gt 0 ]]; do
       ;;
     "-c")
       arg=$1
-      if [[ -z $arg ]]; then
-        echo "-c should have the next argument contain -target"
-        exit 1
-      fi
+      checkEmpty $arg
       shift
       case "$arg" in
         "-a")
@@ -328,7 +336,7 @@ while [[ "$#" -gt 0 ]]; do
         "-s")
           echo session: $1
           if [[ $# -lt 2 ]]; then
-            echo "provide session name or command"
+            echo "missing session name or command"
             exit 1
           else
             panes=$(panesList -s $1)
@@ -341,34 +349,20 @@ while [[ "$#" -gt 0 ]]; do
       fi
       echo panes: $panes
       cmd=$1
-      if [[ -z $arg ]]; then
-        echo "next argument must contain the actual command"
-        exit 1
-      fi
       echo cmd: $cmd
+      checkEmpty $cmd
+      shift
       IFS=' ' read -ra ids <<< "$panes"
       for i in ${panes[@]}; do
         echo sending cmd: $cmd to $i
         $X send-keys -t $i $cmd "C-m"
       done
-      shift
     ;;
   "-k")
     arg=$1
-    checkEmpty $args
+    checkEmpty $arg
     shift
-    case "$arg" in
-      "-p")
-        $($X run-shell -b 'echo pane id is #{pane_id}')
-        ;;
-      "-pt")
-        $($X run-shell -b 'echo pane title is #{pane_title}')
-        ;;
-      "-w")
-        $($X run-shell -b 'echo window name is #{window_name}')
-        ;;
-      *) echo "Unavailables ... $cmd"
-    esac
+    simpleCommands $arg
     ;;
   "-r")
     resizePane
@@ -381,7 +375,7 @@ while [[ "$#" -gt 0 ]]; do
     checkEmpty $arg
     shift
     session="$arg"
-    createSession ${session} "main"
+    createSession $session "main"
     echo session: $session
     ;;
   "-z")

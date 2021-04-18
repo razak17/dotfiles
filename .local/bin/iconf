@@ -7,6 +7,10 @@ confStatus() {
   eval "$CONF status"
 }
 
+confAdd() {
+  eval "$CONF add ./**/*"
+}
+
 confCommit() {
   if [[ -z "$*" ]]; then
     echo "-n should have the next argument contain actual session"
@@ -33,6 +37,10 @@ confCommitAll() {
 
 nconfStatus() {
   eval "$NCONF status"
+}
+
+nconfAdd() {
+  eval "$NCONF add ./**/*"
 }
 
 nconfCommit() {
@@ -67,6 +75,9 @@ while [[ "$#" -gt 0 ]]; do
   "-cs")
     confStatus
     ;;
+  "-csa")
+    confAdd
+    ;;
   "-ccom")
     confCommit "$*"
     ;;
@@ -75,6 +86,9 @@ while [[ "$#" -gt 0 ]]; do
     ;;
   "-ncs")
     nconfStatus
+    ;;
+  "-ncsa")
+    nconfAdd
     ;;
   "-nccom")
     nconfCommit "$*"
