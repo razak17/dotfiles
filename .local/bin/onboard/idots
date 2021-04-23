@@ -8,10 +8,22 @@ newRawGit() {
   conf config --local status.showUntrackedFiles no
 }
 
-importRawGit() {
+importRawGitDotfiles() {
   git clone --bare https://github.com/razak17/dotfiles $HOME/.dots/dotfiles
-  alias conf='/usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME'
+  alias conf='/usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME/.config/nvim'
   echo ".dots/dotfiles" >> .gitignore
+  conf checkout
+  mkdir -p .config-backup && \
+    conf checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
+    xargs -I{} mv {} .config-backup/{}
+  conf checkout
+  conf config --local status.showUntrackedFiles no
+}
+
+importRawGitNvim() {
+  git clone --bare https://github.com/razak17/nvim $HOME/.dots/nvim
+  alias conf='/usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME'
+  echo ".dots/nvim" >> .gitignore
   conf checkout
   mkdir -p .config-backup && \
     conf checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \

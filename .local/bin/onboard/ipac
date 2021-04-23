@@ -30,6 +30,8 @@ pac_packages=(
   'clang'
   'firefox'
   'ctags'
+  'rust-analyzer'
+  'fzf'
   # 'keepassxc'
   # 'thunderbird'
   # 'whatsapp-nativefier'
@@ -41,6 +43,7 @@ pac_packages=(
 yay_packages=(
   'autokey-gtk'
   'vscodium-bin'
+  'skippy-xd'
   # 'packettracer'
   # 'ttf-ancient-fonts'
   # 'wps-office'

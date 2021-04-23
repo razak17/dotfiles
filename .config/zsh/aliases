@@ -4,6 +4,7 @@ alias b="bash"
 alias i='sudo'
 alias e="touch"
 alias m="mkdir"
+alias obd="objdump -d"
 alias v="$EDITOR ."
 alias so="source"
 alias cl='clear'
@@ -107,7 +108,8 @@ alias upd='sudo pacman -Syu'
 alias rcache="sudo pacman -Sc"
 
 # Tmux
-alias xm="tmux -L Main"
+alias xds="tmux -L Main"
+alias xbs="tmux -L Dull"
 alias xd="tmuxd"
 alias xb="tmuxb"
 alias xsp="tmux display -p '#{socket_path}'"
@@ -115,6 +117,7 @@ alias xls="tmux ls"
 alias nx='tmux n -s'
 alias ax='tmux a -t'
 alias axd='tmux -L Main a -t'
+alias axb='tmux -L Dull a -t'
 
 # Misc
 alias rfonts='fc-cache -vf ~/.local/share/fonts/'

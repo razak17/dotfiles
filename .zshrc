@@ -16,3 +16,5 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 source $HOME/.asdf/asdf.sh
 source $HOME/.asdf/completions/asdf.bash
 # source $HOME/lib/azure-cli/az.completion
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

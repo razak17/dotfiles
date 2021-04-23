@@ -28,8 +28,8 @@ simple_lsp=(
   "sql-language-server",
   'typescript-language-server',
   'typescript',
-   'pyright'
-   'neovim'
+  'pyright'
+  'neovim'
 
 )
 

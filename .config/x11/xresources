@@ -66,11 +66,11 @@ URxvt*color15: #ffffff
 ! fonts
 URxvt*letterSpace:    -1
 URxvt*allow_bold:     true
-URxvt*font:           xft:FiraCode Nerd Font Mono:medium:pixelsize=12
-URxvt*imFont:         xft:FiraCode Nerd Font Mono:regular:pixelsize=12
-URxvt*boldFont:       xft:FiraCode Nerd Font Mono:bold:pixelsize=12
-URxvt*italicFont:     xft:FiraCode Nerd Font Mono:italic:pixelsize=12
-URxvt*boldItalicFont: xft:FiraCode Nerd Font Mono:regular:pixelsize=12
+URxvt*font:           xft:FiraCode Nerd Font Mono:medium:pixelsize=10
+URxvt*imFont:         xft:FiraCode Nerd Font Mono:regular:pixelsize=10
+URxvt*boldFont:       xft:FiraCode Nerd Font Mono:bold:pixelsize=10
+URxvt*italicFont:     xft:FiraCode Nerd Font Mono:italic:pixelsize=10
+URxvt*boldItalicFont: xft:FiraCode Nerd Font Mono:regular:pixelsize=10
 
 ! cursor
 ! URxvt*cursorColor: #ffffff

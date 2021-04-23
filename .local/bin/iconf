@@ -40,7 +40,7 @@ nconfStatus() {
 }
 
 nconfAdd() {
-  eval "$NCONF add ./**/*"
+  eval "$NCONF add ./*/**"
 }
 
 nconfCommit() {

@@ -195,9 +195,9 @@ envSession() {
 }
 
 finalSession() {
-  session="project-work"
+  session="ml"
   createSession $session "main" $DEV/Code/py/ml
-  createWindow $session "run" -c $DEV/Code/project-work
+  createWindow $session "run" -c $DEV/Code/py/ml/getting-started
   tw=$(getTarget $session 0 -w)
   tw2=$(getTarget $session 1 -w)
   second=$(getTarget $tw2 0 -p)

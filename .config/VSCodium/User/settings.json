@@ -64,7 +64,6 @@
   "telemetry.enableCrashReporter": false,
   "telemetry.enableTelemetry": false,
   "terminal.integrated.inheritEnv": false,
-  "workbench.activityBar.visible": false,
   "python.dataScience.alwaysTrustNotebooks": true,
   "terminal.integrated.fontSize": 13,
   "editor.cursorStyle": "block",
@@ -81,7 +80,7 @@
   "workbench.colorTheme": "One Dark Pro",
   "workbench.commandPalette.preserveInput": true,
   "workbench.iconTheme": "vs-seti",
-  "zenMode.hideActivityBar": true,
+  "zenMode.hideActivityBar": truekk,
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
@@ -1239,5 +1238,7 @@
       "viewType": "jupyter.notebook.ipynb",
       "filenamePattern": "*.ipynb"
     }
-  ]
+  ],
+  "workbench.activityBar.visible": false,
+  "workbench.statusBar.visible": false
 }
