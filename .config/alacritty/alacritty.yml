@@ -8,7 +8,7 @@ schemes:
     normal:
       # black: "#d2ceda"
       black: "#1d1f21"
-      red:   "#d2241f"
+      red: "#d2241f"
       green: "#67b11d"
       yellow: "#b1951d"
       blue: "#3a81c3"
@@ -73,7 +73,7 @@ schemes:
       white: "#686868"
 
 font:
-  size: 8
+  size: 7
   normal:
     family: "FiraCode Nerd Font Mono"
     style: Retina
@@ -88,7 +88,7 @@ font:
     style: Bold Italic
   offset:
     x: 0
-    y: 1
+    y: 2
   glyph_offset:
     x: 0
     y: 0

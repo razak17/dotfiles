@@ -37,6 +37,7 @@ alias uadd='sudo usermod -aG'
 alias clocale="dpkg-reconfigure locales"
 alias imodem="systemctl start ModemManager.service"
 alias wifi="nmtui"
+alias py="python"
 
 # edit
 alias a="$EDITOR ~/.config/zsh/aliases"
@@ -50,10 +51,10 @@ alias xn="$EDITOR ~/.config/x11/xinitrc"
 alias vc="$EDITOR ~/.config/nvim/init.lua"
 alias lc="$EDITOR ~/.config/nvim/lua/core/init.lua"
 alias al="$EDITOR ~/.config/alacritty/alacritty.yml"
-alias nvc="$EDITOR config.h"
-alias nvz="$EDITOR ~/.zsh_history"
+alias nvc="nvr config.h"
+alias nvz="nvr ~/.zsh_history"
 alias nvi="$EDITOR init.lua"
-alias nvr="$EDITOR --noplugin"
+alias nvr="$EDITOR -u ~/docs/init.lua"
 
 # Programs
 alias fm="firefox -ProfileManager"

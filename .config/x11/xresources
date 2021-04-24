@@ -7,7 +7,7 @@ xterm*loginShell:     true
 xterm*termName:       xterm-color
 xterm*eightBitInput:  false
 xterm*vt100*geometry: 90x34
-Xft.dpi:              96
+Xft.dpi:              99
 Xft.antialias:        true
 Xft.rgba:             rgb
 Xft.hinting:          true
