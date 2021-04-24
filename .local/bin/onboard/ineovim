@@ -44,7 +44,8 @@ createDirs() {
 pythonVenvInit() {
   mkdir -p ~/$neovim_py
   python3 -m venv ~/$neovim_py
-  ~/$neovim_py/bin/pip3 install -U setuptools pynvim jedi isort flake8 black neovim-remote
+  ~/$neovim_py/bin/pip3 install -U setuptools pynvim jedi isort flake8 black neovim-remote ueberzug
+  pip3 install ueberzug pynvim neovim-remote
 }
 
 dapVenvInit() {
@@ -124,6 +125,7 @@ installNodeDebug2() {
   fi
   cd vscode-node-debug2
   npm install
+  npm i -g gulp-cli
   gulp build
 }
 
