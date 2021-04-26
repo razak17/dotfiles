@@ -35,6 +35,10 @@ confCommitAll() {
   fi
 }
 
+confPush() {
+ eval "$CONF push"
+}
+
 nconfStatus() {
   eval "$NCONF status"
 }
@@ -67,6 +71,11 @@ nconfCommitAll() {
   fi
 }
 
+nconfPush() {
+ eval "$NCONF push"
+}
+
+
 while [[ "$#" -gt 0 ]]; do
   curr=$1
   shift
@@ -84,6 +93,9 @@ while [[ "$#" -gt 0 ]]; do
   "-ccomall")
     confCommitAll "$*"
     ;;
+  "-cp")
+    confPush
+    ;;
   "-ncs")
     nconfStatus
     ;;
@@ -95,6 +107,9 @@ while [[ "$#" -gt 0 ]]; do
     ;;
   "-nccomall")
     nconfCommitAll "$*"
+    ;;
+  "-ncp")
+    nconfPush
   ;;
   *) echo "Unavailable command... $curr"
   esac

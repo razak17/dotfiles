@@ -1,0 +1,22 @@
+#!/bin/sh
+
+MOZ_DIR="~/.mozilla/firefox/profiles"
+
+runMain="$MOZ_DIR/main/updater.sh"
+runCoding="$MOZ_DIR/coding/updater.sh"
+
+if  [ -e "$HOME/.mozilla/firefox/profiles/coding/updater.sh" ]; then
+  eval $runCoding
+else
+  echo "updater.sh not found for coding!!!"
+  exit 1
+fi
+
+if [ -e "$HOME/.mozilla/firefox/profiles/main/updater.sh" ]; then
+  eval $runMain
+else
+  echo "updater.sh not found for main!!!"
+  exit 1
+fi
+
+echo DONE

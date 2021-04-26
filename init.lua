@@ -14,7 +14,7 @@ opt('o', 'encoding', 'utf-8') -- The encoding displayed
 opt('o', 'syntax', 'enable') -- Enables syntax highlighing
 opt('o', 't_Co', '256') -- Support 256 colors
 opt('o', 'mouse', 'a') -- Enable mouse in all previous modes
-opt('o', 'report', 2) -- 2 for telescope --0 Automatically setting options from modelines
+-- opt('o', 'report', 2) -- 2 for telescope --0 Automatically setting options from modelines
 opt('o', 'hidden', true) -- hide buffers when abandoned instead of unload
 opt('o', 'pumheight', 15) -- Pop-up menu's line height
 opt('o', 'helpheight', 12) -- Minimum help window height
@@ -55,7 +55,7 @@ opt('o', 'scrolloff', 3) -- Keep at least 3 lines above/below
 opt('o', 'sidescrolloff', 5) -- Keep at least 5 lines left/right
 opt('o', 'numberwidth', 4) -- The width of the number column
 opt('o', 'ruler', true) -- Disable default status ruler
-opt('o', 'cursorcolumn', true) -- Highlight the current column
+opt('o', 'cursorcolumn', false) -- Highlight the current column
 
 -- Behavior
 opt('o', 'diffopt', 'filler,iwhite,internal,algorithm:patience')
@@ -84,7 +84,7 @@ opt('o', 'jumpoptions', 'stack') -- list of words that change the behavior of th
 
 -- Tabs and Indents
 opt('o', 'breakindentopt', 'shift:2,min:20')
-opt('o', 'showtabline', 2) -- Always show tabs
+opt('o', 'showtabline', 0) -- Always show tabs
 opt('b', 'tabstop', 2) -- The number of spaces a tab is
 opt('b', 'softtabstop', -1) -- Number of spaces to use in auto(indent)
 opt('b', 'expandtab', true) -- Expand tabs to spaces.

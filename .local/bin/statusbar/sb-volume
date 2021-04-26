@@ -27,7 +27,7 @@ fi
 
 # echo "$icon $vol%"
 if [[ "$vol" -gt 99 ]]; then
-  echo "$icon$vol%"
+  echo "$icon $vol%"
 elif [[ "$vol" -gt 9 ]]; then
   echo "$icon $vol%"
 else

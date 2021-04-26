@@ -92,6 +92,7 @@ path=(
   "$LOCAL/dwm"
   "$LOCAL/sb"
   "$LOCAL/statusbar"
+  "$LOCAL/utils"
   "$CONDA"
   "$AZ_BIN"
   "$ASDF_PACKAGES"
