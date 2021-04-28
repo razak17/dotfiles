@@ -1,15 +1,15 @@
 #!/bin/sh
 
-SERVER="Main"
+SERVER="Dev"
 HOME="/home/razak"
-DEV=$HOME/Dev
+DEV=$HOME/personal/workspace
 X="tmux -L ${SERVER}"
-MONEYPORTAL=$DEV/Code/projects/money-portal
-WEBSITE="$DEV/Code/website"
-V1="$DEV/Code/web/v1"
-CC=$DEV/Code/coding_challenges
-DEMOS=$DEV/Code/demos
-DS=$DEV/Code/ds_and_algos
+MONEYPORTAL=$DEV/coding/projects/money-portal
+WEBSITE="$DEV/coding/website"
+V1="$DEV/coding/web/v1"
+CC=$DEV/coding/coding_challenges
+DEMOS=$DEV/coding/demos
+DS=$DEV/coding/ds_and_algos
 SCRIPTS=$DEV/Scripts
 NVIM=$HOME/.config/nvim
 C_NVIM=$HOME/.cache/nvim

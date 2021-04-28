@@ -8,8 +8,8 @@
   "code-runner.executorMap": {
     "python": "python"
   },
-  "editor.fontSize": 12,
-  "editor.lineHeight": 22,
+  "editor.fontSize": 11,
+  "editor.lineHeight": 18,
   "editor.tabSize": 2,
   "editor.wordWrap": "off",
   "editor.fontWeight": "400",
@@ -72,15 +72,18 @@
   "terminal.integrated.shell.linux": "/bin/zsh",
   "terminal.integrated.rendererType": "dom",
   "vscode-neovim.neovimExecutablePaths.linux": "/home/razak/.local/bin/nvim",
+  "vscode-neovim.neovimExecutablePaths.darwin": "/home/razak/.local/bin/nvim",
   "vscode-neovim.neovimInitVimPaths.linux": "$HOME/.config/nvim/vscode/init.vim",
+  "vscode-neovim.neovimInitVimPaths.darwin": "$HOME/.config/nvim/vscode/init.vim",
   "window.menuBarVisibility": "toggle",
   "workbench.activityBar.iconClickBehavior": "toggle",
   "workbench.panel.defaultLocation": "left",
+  "workbench.sideBar.location": "right",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.colorTheme": "One Dark Pro",
   "workbench.commandPalette.preserveInput": true,
   "workbench.iconTheme": "vs-seti",
-  "zenMode.hideActivityBar": truekk,
+  "zenMode.hideActivityBar": true,
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
@@ -317,6 +320,12 @@
           "name": "Select theme",
           "type": "command",
           "command": "workbench.action.selectTheme"
+        },
+        {
+          "key": "x",
+          "name": "Exit",
+          "type": "command",
+          "command": "workbench.action.quit"
         }
       ]
     },
@@ -1239,6 +1248,6 @@
       "filenamePattern": "*.ipynb"
     }
   ],
+  "update.mode": "none",
   "workbench.activityBar.visible": false,
-  "workbench.statusBar.visible": false
 }

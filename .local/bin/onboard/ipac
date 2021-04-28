@@ -32,6 +32,8 @@ pac_packages=(
   'ctags'
   'rust-analyzer'
   'fzf'
+  'fd'
+  'timeshift'
   # 'keepassxc'
   # 'thunderbird'
   # 'whatsapp-nativefier'
