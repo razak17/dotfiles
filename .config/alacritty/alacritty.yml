@@ -1,11 +1,9 @@
-# Colors (Spacemacs)
 schemes:
   spacemacs_light: &light
     primary:
       foreground: "#7ec0ee"
       background: "#000000"
     normal:
-      # black: "#d2ceda"
       black: "#1d1f21"
       red: "#d2241f"
       green: "#67b11d"
@@ -72,22 +70,23 @@ schemes:
       white: "#686868"
 
 font:
-  size: 7
+  size: 8
   normal:
-    family: "FiraCode Nerd Font Mono"
+    # family: "FiraCode Nerd Font Mono"
+    family: "Operator Mono Lig Book"
     style: Retina
   bold:
-    family: "FiraCode Nerd Font Mono"
+    family: "Operator Mono"
     style: Bold
   italic:
-    family: "FiraCode Nerd Font Mono"
+    family: "Operator Mono Lig Book"
     style: Italic
   bold_italic:
-    family: "FiraCode Nerd Font Mono"
+    family: "Operator Mono Lig Book"
     style: Bold Italic
   offset:
     x: 0
-    y: 2
+    y: 0
   glyph_offset:
     x: 0
     y: 0

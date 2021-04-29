@@ -131,14 +131,14 @@ alias plague='curl https://corona-stats.online/states/us'
 alias lg='lazygit'
 alias list_systemctl="systemctl list-unit-files --state=enabled"
 
-export mo=~/.mozilla/firefox/profiles
-export nca=~/.cache/nvim
-export doc=~/Documents
-export docs=~/docs
-export dots=~/.dots
-export skl=~/.dots/suckless
-export dw=~/Downloads
-export za=/run/media/razak/3E83258C04A90A32
+mo=~/.mozilla/firefox/profiles
+nca=~/.cache/nvim
+doc=~/Documents
+docs=~/docs
+dots=~/.dots
+skl=~/.dots/suckless
+dw=~/Downloads
+za=/run/media/razak/3E83258C04A90A32
 
 alias cdbin="cd ~/.local/bin"
 alias cdmo='cd "$mo"'

@@ -7,6 +7,8 @@ plugins=(
   zsh-syntax-highlighting
 )
 
+ZSH_THEME="awesomepanda"
+
 source $HOME/.oh-my-zsh/oh-my-zsh.sh
 
 [ -f $HOME/.config/zsh/func ]    && source $HOME/.config/zsh/func

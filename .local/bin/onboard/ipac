@@ -34,6 +34,7 @@ pac_packages=(
   'fzf'
   'fd'
   'timeshift'
+  'kitty'
   # 'keepassxc'
   # 'thunderbird'
   # 'whatsapp-nativefier'
