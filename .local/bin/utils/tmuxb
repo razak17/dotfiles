@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-dull="$HOME/.config/tmux/xb.conf"
+dull="$HOME/.config/tmux/xb.tmux.conf"
 
 if [[ -e $dull ]]; then
   exec /usr/bin/tmux -L Dull -f "$dull" new -s first -n main

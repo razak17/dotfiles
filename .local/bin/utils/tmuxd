@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-config_file="$HOME/.config/tmux/xd.conf"
+config_file="$HOME/.config/tmux/xd.tmux.conf"
 
 if [[ -e $config_file ]]; then
   exec /usr/bin/tmux -L Dev -f "$config_file" new -s first -c$HOME/.config/nvim -n main
