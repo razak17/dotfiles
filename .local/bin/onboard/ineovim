@@ -6,13 +6,14 @@ dap_py='.cache/nvim/venv/dap'
 dap_dir='.cache/nvim/dap'
 
 dirs=(
-  '.cache/backup'
-  '.cache/session'
+  '.cache/dap'
   '.cache/swap'
   '.cache/tags'
+  '.cache/view'
+  '.cache/backup'
+  '.cache/session'
   '.cache/undodir'
   '.cache/nvim_lsp'
-  '.cache/dap'
 )
 
 simple_lsp=(
