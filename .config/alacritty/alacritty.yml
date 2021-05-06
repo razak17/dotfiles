@@ -2,7 +2,7 @@ schemes:
   spacemacs_light: &light
     primary:
       foreground: "#7ec0ee"
-      background: "#000000"
+      background: "#131323"
     normal:
       black: "#1d1f21"
       red: "#d2241f"
