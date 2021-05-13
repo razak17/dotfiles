@@ -39,6 +39,7 @@ alias clocale="dpkg-reconfigure locales"
 alias imodem="systemctl start ModemManager.service"
 alias wifi="nmtui"
 alias py="python"
+alias vim="nvim"
 
 # edit
 alias a="$EDITOR ~/.config/zsh/aliases"

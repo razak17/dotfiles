@@ -49,8 +49,7 @@
   "emmet.showSuggestionsAsSnippets": true,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
-  "files.autoSave": "afterDelay",
-  "files.autoSaveDelay": 100,
+  "files.autoSave": "onFocusChange",
   "files.watcherExclude": {
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
@@ -65,6 +64,9 @@
   "telemetry.enableTelemetry": false,
   "terminal.integrated.inheritEnv": false,
   "python.dataScience.alwaysTrustNotebooks": true,
+  "update.mode": "none",
+  "workbench.activityBar.visible": false,
+  "workbench.sideBar.location": "right",
   "terminal.integrated.fontSize": 13,
   "editor.cursorStyle": "block",
   "terminal.integrated.cursorBlinking": false,
@@ -78,7 +80,6 @@
   "window.menuBarVisibility": "toggle",
   "workbench.activityBar.iconClickBehavior": "toggle",
   "workbench.panel.defaultLocation": "left",
-  "workbench.sideBar.location": "right",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.colorTheme": "One Dark Pro",
   "workbench.commandPalette.preserveInput": true,
@@ -221,6 +222,8 @@
   },
   "workbench.colorCustomizations": {
     "[Default Dark+]": {
+      "editorCursor.foreground": "#7ec0ee",
+      "terminalCursor.foreground": "#ffff00",
       "statusBar.background": "#2E2E2E",
       "statusBar.foreground": "#8C8C8C",
       "statusBarItem.remoteBackground": "#2E2E2E",
@@ -229,6 +232,8 @@
       "tab.inactiveBackground": "#2E2E2E"
     },
     "[One Dark Pro]": {
+      "editorCursor.foreground": "#7ec0ee",
+      "terminalCursor.foreground": "#ffff00",
       "editor.background": "#1e2127",
       "terminal.background": "#1e2127",
       "terminal.foreground": "#abb2bf",
@@ -291,6 +296,12 @@
           "command": "workbench.action.selectIconTheme"
         },
         {
+          "key": "h",
+          "name": "Split Horizontal",
+          "type": "command",
+          "command": "workbench.action.splitEditorDown"
+        },
+        {
           "key": "n",
           "name": "No Highlight",
           "type": "command",
@@ -320,6 +331,12 @@
           "name": "Select theme",
           "type": "command",
           "command": "workbench.action.selectTheme"
+        },
+        {
+          "key": "v",
+          "name": "Split Vertical",
+          "type": "command",
+          "command": "workbench.action.splitEditor"
         },
         {
           "key": "x",
@@ -387,12 +404,6 @@
           "name": "Recently open",
           "type": "command",
           "command": "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"
-        },
-        {
-          "key": "s",
-          "name": "files",
-          "type": "command",
-          "command": "workbench.action.quickOpen"
         },
         {
           "key": "N",
@@ -597,6 +608,25 @@
     },
     {
       "key": "f",
+      "name": "Find...",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "e",
+          "name": "Quick Open",
+          "type": "command",
+          "command": "workbench.action.quickOpen"
+        },
+        {
+          "key": "f",
+          "name": "hahahah",
+          "type": "command",
+          "command": "workbench.action.splitEditorDown"
+        }
+      ]
+    },
+    {
+      "key": "F",
       "name": "Find & Replace...",
       "type": "bindings",
       "bindings": [
@@ -779,12 +809,6 @@
           "command": "git.unstage"
         }
       ]
-    },
-    {
-      "key": "h",
-      "name": "Split Horizontal",
-      "type": "command",
-      "command": "workbench.action.splitEditorDown"
     },
     {
       "key": "l",
@@ -1126,9 +1150,17 @@
     },
     {
       "key": "v",
-      "name": "Split Vertical",
-      "type": "command",
-      "command": "workbench.action.splitEditor"
+      "name": "Code",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "a",
+          "name": "Quick Fix",
+          "type": "command",
+          "command": "editor.action.quickFix",
+          "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+        }
+      ]
     },
     {
       "key": "w",
@@ -1247,7 +1279,5 @@
       "viewType": "jupyter.notebook.ipynb",
       "filenamePattern": "*.ipynb"
     }
-  ],
-  "update.mode": "none",
-  "workbench.activityBar.visible": false,
+  ]
 }

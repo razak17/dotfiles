@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Add "fullscreen" to the "urxvt*perl-ext-common" field in ~/.Xdefaults and
+# a keysym to the function "switch", like: urxvt*keysym.F11: perl:fullscreen:switch
+
 xterm*font:           7x13
 xterm*saveLines:      2000
 xterm*boldMode:       false
@@ -92,7 +95,7 @@ URxvt*internalBorder: 0
 URxvt*externalBorder: 0
 
 ! perl extensions
-URxvt*perl-ext-common:    default,clipboard,url-select,keyboard-select,resize-font
+URxvt*perl-ext-common:    default,clipboard,url-select,keyboard-select,resize-font,fullscreen
 
 ! macros for clipboard and selection
 URxvt.keysym.C-8:        resize-font:smaller
@@ -107,4 +110,6 @@ URxvt*keysym.M-C-v:      perl:clipboard:paste_escaped
 URxvt*keysym.M-Escape:   perl:keyboard-select:activate
 URxvt*keysym.M-s:        perl:keyboard-select:search
 URxvt*keysym.M-u:        perl:url-select:select_next
+urxvt*keysym.F11:        perl:fullscreen:switch
+
 
