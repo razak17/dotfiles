@@ -80,8 +80,10 @@ alias conf='/usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME'
 alias nconf='/usr/bin/git --git-dir=$HOME/.dots/$EDITOR/ --work-tree=$HOME/.config/$EDITOR'
 alias confs="iconf -cs"
 alias confa="iconf -csa"
+alias confc="iconf -ccoms"
 alias nconfs="iconf -ncs"
 alias nconfa="iconf -ncsa"
+alias nconfc="iconf -nccoms"
 alias ccom="iconf -ccom"
 alias nccom="iconf -nccom"
 alias ccomall="iconf -ccomall"

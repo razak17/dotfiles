@@ -23,6 +23,10 @@ confCommit() {
   fi
 }
 
+confCommits() {
+  eval "$CONF log --pretty=oneline --abbrev-commit -- ."
+}
+
 confCommitAll() {
   if [[ -z "$*" ]]; then
     echo "-n should have the next argument contain actual session"
@@ -59,6 +63,10 @@ nconfCommit() {
   fi
 }
 
+nconfCommits() {
+  eval "$NCONF log --pretty=oneline --abbrev-commit -- ."
+}
+
 nconfCommitAll() {
   if [[ -z "$*" ]]; then
     echo "-n should have the next argument contain actual session"
@@ -90,6 +98,9 @@ while [[ "$#" -gt 0 ]]; do
   "-ccom")
     confCommit "$*"
     ;;
+  "-ccoms")
+    confCommits
+    ;;
   "-ccomall")
     confCommitAll "$*"
     ;;
@@ -104,6 +115,9 @@ while [[ "$#" -gt 0 ]]; do
     ;;
   "-nccom")
     nconfCommit "$*"
+    ;;
+  "-nccoms")
+    nconfCommits
     ;;
   "-nccomall")
     nconfCommitAll "$*"
