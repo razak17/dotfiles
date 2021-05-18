@@ -16,7 +16,7 @@ __DOTS[ITALIC_OFF]=$'\e[23m'
 LOCAL="$HOME/.local/bin"
 ASDF_INSTALLS="$HOME/.asdf/installs"
 DEV_HOME="$HOME/Dev"
-PLUGIN_DIR=$ZDOTDIR/zsh/plugins
+PLUGIN_DIR=$HOME/.config/zsh/plugins
 
 CASE_SENSITIVE="true"
 HIST_STAMPS="mm/dd/yyyy"
