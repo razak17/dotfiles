@@ -11,10 +11,13 @@ CC=$DEV/coding/coding_challenges
 DEMOS=$DEV/coding/demos
 DS=$DEV/coding/ds_and_algos
 SCRIPTS=$DEV/Scripts
+DOC=$HOME/docs
 NVIM=$HOME/.config/nvim
 C_NVIM=$HOME/.cache/nvim
+SH_NVIM=$HOME/.local/share/nvim
 DOCS=/run/media/razak/55CD-9C80/Portable/Documents/Docs
 SKLESS=$HOME/.dots/suckless
+config_file="$HOME/.config/tmux/xd.tmux.conf"
 
 getPaneId() {
   tag=$1
@@ -184,6 +187,26 @@ simpleCommands() {
       ;;
     *) echo "Unavailables ... $cmd"
   esac
+}
+
+firstSession() {
+  session="first"
+
+  # cmd="$X -f "$config_file" new -s first2 -c$HOME/.config/nvim -n main"
+  # eval $cmd
+
+  createSession $session "main" $NVIM
+  createWindow $session "config" -c $SH_NVIM
+
+  tw=$(getTarget $session 0 -w)
+  first=$(getTarget $tw 0 -p)
+  splitPane -v -c $DOC -t $first
+
+  tw=$(getTarget $session 1 -w)
+  first=$(getTarget $tw 0 -p)
+  splitPane -v -c $C_NVIM -t $first
+
+  eval "$X a -t first"
 }
 
 envSession() {
@@ -383,6 +406,9 @@ while [[ "$#" -gt 0 ]]; do
     ;;
   "-env")
     envSession
+    ;;
+  "-first")
+    firstSession
     ;;
   "-final")
     finalSession

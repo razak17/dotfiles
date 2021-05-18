@@ -3,7 +3,8 @@
 config_file="$HOME/.config/tmux/xd.tmux.conf"
 
 if [[ -e $config_file ]]; then
-  exec /usr/bin/tmux -L Dev -f "$config_file" new -s first -c$HOME/.config/nvim -n main
+  # exec /usr/bin/tmux -L Dev -f "$config_file" new -s first2 -c$HOME/.config/nvim -n main
+  exec ~/.local/bin/utils/ftmux -first
 else
   echo config file does not exist
   exit 1
