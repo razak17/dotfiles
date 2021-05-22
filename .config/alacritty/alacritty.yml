@@ -2,7 +2,8 @@ schemes:
   spacemacs_light: &light
     primary:
       foreground: "#7ec0ee"
-      background: "#131323"
+      background: "#282c34"
+      # background: "#131323"
     normal:
       black: "#1d1f21"
       red: "#d2241f"
@@ -20,7 +21,7 @@ schemes:
       yellow: "#DB743E"
       blue: "#7ec0ee"
       magenta: "#2C9473"
-      cyan: "#00d0d0"
+      cyan: "#0ff0f0"
       # cyan:    "#6B3062"
       white: "#dedede"
     dim:
@@ -79,8 +80,8 @@ font:
     family: "Operator Mono Lig"
     style: Medium
   italic:
-    family: "Operator Mono Lig"
-    style: Light Italic
+    family: "Operator Mono Lig Book"
+    style: Italic
   bold_italic:
     family: "Operator Mono Lig"
     style: Medium Italic
@@ -107,7 +108,7 @@ cursor:
     shape: Block
     blinking: Off
   vi_mode_style: None
-  unfocused_hollow: false
+  unfocused_hollow: true
 
 scrolling:
   history: 10000

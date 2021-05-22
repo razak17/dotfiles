@@ -195,7 +195,7 @@ firstSession() {
   # cmd="$X -f "$config_file" new -s first2 -c$HOME/.config/nvim -n main"
   # eval $cmd
 
-  createSession $session "main" $NVIM
+  # createSession $session "main" $NVIM
   createWindow $session "config" -c $SH_NVIM
 
   tw=$(getTarget $session 0 -w)
