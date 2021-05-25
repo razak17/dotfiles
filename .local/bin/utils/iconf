@@ -96,7 +96,8 @@ while [[ "$#" -gt 0 ]]; do
     confAdd
     ;;
   "-ccom")
-    confCommit "$*"
+    read -p "Enter commit message: " arg
+    confCommit "$arg"
     ;;
   "-ccoms")
     confCommits
@@ -115,13 +116,15 @@ while [[ "$#" -gt 0 ]]; do
     nconfAdd
     ;;
   "-nccom")
-    nconfCommit "$*"
+    read -p "Enter commit message: " arg
+    nconfCommit "$arg"
     ;;
   "-nccoms")
     nconfCommits
     ;;
   "-nccomall")
-    nconfCommitAll "$*"
+    read -p "Enter commit message: " arg
+    nconfCommitAll "$arg"
     ;;
   "-ncp")
     nconfPush
