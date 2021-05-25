@@ -3,36 +3,24 @@ schemes:
     primary:
       foreground: "#7ec0ee"
       background: "#282c34"
-      # background: "#131323"
     normal:
-      black: "#1d1f21"
-      red: "#d2241f"
-      green: "#67b11d"
-      yellow: "#b1951d"
-      blue: "#3a81c3"
-      magenta: "#a31db1"
-      cyan: "#21b8c7"
-      # white: "#655370"
-      white: "#c5c8c6"
+      black: "#282c34"
+      red: "#e95678"
+      green: "#19cb00"
+      yellow: "#cecb00"
+      blue: "#51afef"
+      magenta: "#cb1ed1"
+      cyan: "#0dcdcd"
+      white: "#b3deef"
     bright:
-      black: "#6e6e6e"
-      red: "#DF201C"
-      green: "#00ccaa"
-      yellow: "#DB743E"
-      blue: "#7ec0ee"
-      magenta: "#2C9473"
-      cyan: "#0ff0f0"
-      # cyan:    "#6B3062"
-      white: "#dedede"
-    dim:
-      black: "#131415"
-      red: "#864343"
-      green: "#777c44"
-      yellow: "#9e824c"
-      blue: "#556a7d"
-      magenta: "#75617b"
-      cyan: "#5b7d78"
-      white: "#828482"
+      black: "#888c94"
+      red: "#f92648"
+      green: "#23fd00"
+      yellow: "#f4f719"
+      blue: "#6cb0ff"
+      magenta: "#fd28ff"
+      cyan: "#14ffff"
+      white: "#c3eeff"
     search:
       matches:
         foreground: "#030303"
@@ -41,7 +29,7 @@ schemes:
         foreground: "#030303"
         background: "#7ec0ee"
       bar:
-        background: "#c678dd"
+        background: "#7ec0ee"
         foreground: "#030303"
       line_indicator:
         foreground: "#202328"
@@ -50,7 +38,7 @@ schemes:
   spacemacs_dark: &dark
     primary:
       foreground: "#7ec0ee"
-      # background: '#292b2e'
+      background: "#292b2e"
     normal:
       black: "#0a0814"
       red: "#f2241f"
@@ -95,8 +83,8 @@ font:
 window:
   decorations: none
   padding:
-    x: 0
-    y: 0
+    x: 2
+    y: 2
   dimensions:
     columns: 80
     lines: 24

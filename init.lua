@@ -20,7 +20,7 @@ opt('o', 'pumheight', 15) -- Pop-up menu's line height
 opt('o', 'helpheight', 12) -- Minimum help window height
 opt('o', 'previewheight', 12) -- Completion preview height
 opt('o', 'synmaxcol', 2500) -- Don't syntax highlight long lines
-opt("b", "formatoptions", "1jcroql") -- Don't break lines after a one-letter word & Don't auto-wrap text
+opt("b", "formatoptions", "1jql") -- Don't break lines after a one-letter word & Don't auto-wrap text
 
 -- Neovim Directories
 opt('o', 'udir', '~/.cache/nvim/undodir' .. 'undodir')

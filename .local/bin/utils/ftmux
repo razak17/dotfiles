@@ -113,10 +113,32 @@ createSession() {
       cmd="$X new -s $session -d -n $window > /dev/null 2>&1"
     fi
     eval $cmd
+    echo "session: '${session}' has been created."
   else
     echo duplicate session: "$session"
+    exit 1
+  fi
+}
+
+killSession() {
+  session=$1
+  current=$($X display -p '#S')
+  target=$($X list-sessions -F \#S | grep "$session")
+  shift
+
+  if [[ "$current" == "${session}" ]]; then
+    echo "cannot delete active session '${current}'"
+    exit 1
   fi
 
+  if [[ "$target" == "$session" ]]; then
+    cmd="$X kill-session -t $session"
+    echo "session: '${session}' has been deleted."
+    eval $cmd
+  else
+    echo "session: '${session}' does not exist."
+    exit 1
+  fi
 }
 
 createWindow() {
@@ -381,25 +403,29 @@ while [[ "$#" -gt 0 ]]; do
         $X send-keys -t $i $cmd "C-m"
       done
     ;;
-  "-k")
-    arg=$1
-    checkEmpty $arg
-    shift
-    simpleCommands $arg
-    ;;
+  # "-k")
+  #   arg=$1
+  #   checkEmpty $arg
+  #   shift
+  #   simpleCommands $arg
+  #   ;;
   "-r")
     resizePane
     ;;
   "-b")
     breakPane
     ;;
-  "-s")
-    arg=$1
+  "-k")
+    read -p "Enter session name: " arg
     checkEmpty $arg
-    shift
+    session="$arg"
+    killSession $session
+    ;;
+  "-s")
+    read -p "Enter session name: " arg
+    checkEmpty $arg
     session="$arg"
     createSession $session "main"
-    echo session: $session
     ;;
   "-z")
     zTest

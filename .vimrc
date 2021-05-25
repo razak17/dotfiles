@@ -60,7 +60,7 @@ set cursorline
 set directory=/tmp//,.
 set encoding=utf-8
 set expandtab smarttab
-set formatoptions=tcqrn1
+set formatoptions=jql
 set hidden
 set hlsearch
 set ignorecase

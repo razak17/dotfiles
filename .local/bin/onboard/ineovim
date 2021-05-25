@@ -11,7 +11,7 @@ dirs=(
   '.cache/tags'
   '.cache/view'
   '.cache/backup'
-  '.cache/session'
+  '.cache/sessions'
   '.cache/undodir'
   '.cache/nvim_lsp'
 )

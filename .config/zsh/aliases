@@ -126,6 +126,9 @@ alias nx='tmux n -s'
 alias ax='tmux a -t'
 alias axd='tmux -L Dev a -t'
 alias axb='tmux -L Dull a -t'
+alias aff='ftmux -first'
+alias fs='ftmux -s'
+alias fk='ftmux -k'
 
 # Misc
 alias rfonts='fc-cache -vf ~/.local/share/fonts/'
