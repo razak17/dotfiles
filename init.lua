@@ -14,7 +14,7 @@ opt('o', 'encoding', 'utf-8') -- The encoding displayed
 opt('o', 'syntax', 'enable') -- Enables syntax highlighing
 opt('o', 't_Co', '256') -- Support 256 colors
 opt('o', 'mouse', 'a') -- Enable mouse in all previous modes
--- opt('o', 'report', 2) -- 2 for telescope --0 Automatically setting options from modelines
+opt('o', 'report', 2) -- 2 for telescope --0 Automatically setting options from modelines
 opt('o', 'hidden', true) -- hide buffers when abandoned instead of unload
 opt('o', 'pumheight', 15) -- Pop-up menu's line height
 opt('o', 'helpheight', 12) -- Minimum help window height
@@ -23,7 +23,8 @@ opt('o', 'synmaxcol', 2500) -- Don't syntax highlight long lines
 opt("b", "formatoptions", "1jql") -- Don't break lines after a one-letter word & Don't auto-wrap text
 
 -- Neovim Directories
-opt('o', 'udir', '~/.cache/nvim/undodir' .. 'undodir')
+local udir = vim.fn.stdpath('cache') .. '/nvim/undodir'
+opt('o', 'udir', udir)
 opt('o', 'writebackup', false)
 opt('b', 'swapfile', false)
 opt('b', 'undofile', true)
@@ -33,18 +34,18 @@ opt('o', 'history', 2000) -- History saving
 
 -- Editor UI Appearance
 opt('o', 'guicursor', 'n-v-c-sm:block,i-ci-ve:block,r-cr-o:block')
--- opt('w', 'listchars', 'tab:»·,nbsp:+,trail:·,precedes:,extends:')
--- opt('o', 'display', 'lastline')
+opt('w', 'listchars', 'tab:»·,nbsp:+,trail:·,precedes:,extends:')
+opt('o', 'display', 'lastline')
 opt('o', 'termguicolors', true)
 opt('o', 'showbreak', '↳  ')
 opt('o', 'pumblend', 10) -- transparency for the popup-menu
 opt('o', 'lazyredraw', true) -- Don't redraw screen while running macros
--- opt('w', 'signcolumn', 'yes') -- Always show the signcolumn, otherwise it would shift the text each time
--- opt('w', 'colorcolumn', '+1') -- Highlight the 80th character limit
+opt('w', 'signcolumn', 'yes') -- Always show the signcolumn, otherwise it would shift the text each time
+opt('w', 'colorcolumn', '+1') -- Highlight the 80th character limit
 opt('w', 'number', true) -- Print line number
 opt('w', 'relativenumber', true) -- Show line number relative to current line
 opt('w', 'list', true) -- Show hidden characters
-opt('w', 'cursorline', false) -- Highlight the current line
+-- opt('w', 'cursorline', false) -- Highlight the current line
 opt('o', 'laststatus', 0) -- Always display the status line
 opt('o', 'background', 'dark') -- Tell vim what the background color looks like
 opt('o', 'cmdheight', 2) -- More space for displaying messages
@@ -60,7 +61,7 @@ opt('o', 'cursorcolumn', false) -- Highlight the current column
 -- Behavior
 opt('o', 'diffopt', 'filler,iwhite,internal,algorithm:patience')
 opt('o', 'completeopt', 'menu,menuone,noselect,noinsert')
--- opt('o', 'completeopt', 'menuone,noselect')
+opt('o', 'completeopt', 'menuone,noselect')
 opt('o', 'switchbuf', 'useopen,usetab,vsplit')
 opt('o', 'inccommand', 'nosplit')
 opt('w', 'concealcursor', 'niv')
@@ -68,8 +69,8 @@ opt('w', 'conceallevel', 0) -- So that I can see `` in markdown files
 opt('w', 'wrap', false) -- No wrap by default
 opt('o', 'maxmempattern', 1300) -- Limit memory used for pattern matching
 opt('o', 'errorbells', false) -- Disable error bells
--- opt('o', 'linebreak', true) -- Break long lines at 'breakat'
--- opt('o', 'breakat', [[\ \	;:,!?]]) -- Long lines break chars
+opt('o', 'linebreak', true) -- Break long lines at 'breakat'
+opt('o', 'breakat', [[\ \	;:,!?]]) -- Long lines break chars
 opt('o', 'startofline', false) -- Cursor in same column for few commands
 opt('o', 'equalalways', false) -- Don't resize windows on split or close
 opt('o', 'whichwrap', 'h,l,<,>,[,],~') -- Move to following line on certain keys
@@ -97,17 +98,17 @@ opt('o', 'shiftround', true) -- Round indent to multiple of 'shiftwidth'
 opt('o', 'cindent', true) -- Increase indent on line after opening brace
 
 -- Folds
--- opt('w', 'foldmethod', 'expr')
--- opt('w', 'foldcolumn', '0')
--- opt('o', 'foldopen', 'hor,mark,percent,quickfix,search,tag,undo')
+opt('w', 'foldmethod', 'expr')
+opt('w', 'foldcolumn', '0')
+opt('o', 'foldopen', 'hor,mark,percent,quickfix,search,tag,undo')
 
 -- Timing
--- opt('o', 'ttimeout', true)
--- opt('o', 'timeout', true)
--- opt('o', 'updatetime', 100) -- Idle time to write swap and trigger CursorHold
--- opt('o', 'timeoutlen', 500) -- Time out on mappings
--- opt('o', 'ttimeoutlen', 10) -- Time out on key codes
--- opt('o', 'redrawtime', 1500) -- Time in milliseconds for stopping display redraw
+opt('o', 'ttimeout', true)
+opt('o', 'timeout', true)
+opt('o', 'updatetime', 100) -- Idle time to write swap and trigger CursorHold
+opt('o', 'timeoutlen', 500) -- Time out on mappings
+opt('o', 'ttimeoutlen', 10) -- Time out on key codes
+opt('o', 'redrawtime', 1500) -- Time in milliseconds for stopping display redraw
 
 -- Searching
 opt('o', 'grepprg', 'rg --hidden --vimgrep --smart-case --')
@@ -139,12 +140,44 @@ opt('o', 'clipboard', 'unnamedplus')
 opt('o', 'shada', "!,'300,<50,@100,s10,h")
 
 -- Binds
+local function nmap(lhs, rhs, opts)
+  local options = {noremap = false}
+  if opts then
+    options = vim.tbl_extend('force', options, opts)
+  end
+  vim.api.nvim_set_keymap('n', lhs, rhs, options)
+end
+
+local function vmap(lhs, rhs, opts)
+  local options = {noremap = false}
+  if opts then
+    options = vim.tbl_extend('force', options, opts)
+  end
+  vim.api.nvim_set_keymap('v', lhs, rhs, options)
+end
+
 local function nnoremap(lhs, rhs, opts)
   local options = {noremap = true, silent = true}
   if opts then
     options = vim.tbl_extend('force', options, opts)
   end
   vim.api.nvim_set_keymap('n', lhs, rhs, options)
+end
+
+local function tnoremap(lhs, rhs, opts)
+  local options = {noremap = true, silent = true}
+  if opts then
+    options = vim.tbl_extend('force', options, opts)
+  end
+  vim.api.nvim_set_keymap('t', lhs, rhs, options)
+end
+
+local function vnoremap(lhs, rhs, opts)
+  local options = {noremap = true, silent = true}
+  if opts then
+    options = vim.tbl_extend('force', options, opts)
+  end
+  vim.api.nvim_set_keymap('v', lhs, rhs, options)
 end
 
 local function xnoremap(lhs, rhs, opts)
@@ -160,11 +193,131 @@ g["mapleader"] = " "
 g["maplocalleader"] = " "
 g["completion_confirm_key"] = ""
 
-nnoremap('z', 'u')
-nnoremap('n', 'j')
+-- nnoremap('n', 'j')
 nnoremap("<Leader>ax", ":wq!<CR>")
 nnoremap("<Leader>az", ":q!<CR>")
 nnoremap('<Leader>x', ':q<CR>')
 nnoremap('<C-z>', ':undo<CR>')
 xnoremap('K', ":m '<-2<CR>gv=gv")
 xnoremap('N', ":m '>+1<CR>gv=gv")
+nnoremap("<Leader>aO", ":set fo-=cro<CR>") -- Close all folds
+nnoremap('<C-c>', '<Esc>')
+tnoremap('<Esc>', '<C-\\><C-N>')
+
+-- Move selected line / block of text in visual mode
+xnoremap('K', ":m '<-2<CR>gv=gv")
+xnoremap('N', ":m '>+1<CR>gv=gv")
+
+-- actions
+nnoremap("<Leader>=", "<C-W>=")
+nnoremap("<Leader>ah", "<C-W>s")
+nnoremap("<Leader>av", "<C-W>v")
+nnoremap("<Leader>an", ":let @/ = ''<CR>")
+nnoremap("<Leader>aN", ":set nonumber!<CR>")
+nnoremap("<Leader>aR", ":set norelativenumber!<CR>")
+nnoremap("<Leader>ad", ":bdelete!<CR>")
+
+-- Next greatest remap ever : asbjornHaland
+nnoremap('<Leader>y', '"+y')
+vnoremap('<Leader>y', '"+y')
+nnoremap('<Leader>aY', 'gg"+yG')
+nnoremap('<Leader>aV', 'gg"+VG')
+nnoremap('<Leader>aD', 'gg"+VGd')
+
+-- Use alt + hjkl to resize windows
+nnoremap('<M-n>', ':resize -2<CR>')
+nnoremap('<M-k>', ':resize +2<CR>')
+nnoremap('<M-h>', ':vertical resize -2<CR>')
+nnoremap('<M-l>', ':vertical resize +2<CR>')
+
+-- Search Files
+nnoremap('<Leader>chw', ':h <C-R>=expand("<cword>")<CR><CR>')
+nnoremap('<Leader>bs', '/<C-R>=escape(expand("<cWORD>"), "/")<CR><CR>')
+
+-- TAB in general mode will move to text buffer, SHIFT-TAB will go back
+nnoremap('<TAB>', ':bnext<CR>')
+nnoremap('<S-TAB>', ':bprevious<CR>')
+
+local t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+_G.enhance_jk_move = function(key)
+  vim.cmd [[packadd accelerated-jk]]
+  local map = key == 'n' and '<Plug>(accelerated_jk_j)' or
+                  '<Plug>(accelerated_jk_gk)'
+  return t(map)
+end
+
+-- Keymaps
+-- acceleratedjk
+nmap("n", 'v:lua.enhance_jk_move("n")', {silent = true, expr = true})
+nmap("k", 'v:lua.enhance_jk_move("k")', {silent = true, expr = true})
+
+-- Kommentary
+nmap("<leader>/", "<Plug>kommentary_line_default")
+nmap("<leader>a/", "<Plug>kommentary_motion_default")
+vmap("<leader>/", "<Plug>kommentary_visual_default")
+
+-- Plugins
+local execute = vim.api.nvim_command
+local fn = vim.fn
+
+local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
+
+if fn.empty(fn.glob(install_path)) > 0 then
+  execute("!git clone https://github.com/wbthomason/packer.nvim " ..
+              install_path)
+end
+
+execute "packadd packer.nvim"
+
+--- Check if a file or directory exists in this path
+local function require_plugin(plugin)
+  local plugin_prefix = fn.stdpath("data") .. "/site/pack/packer/opt/"
+
+  local plugin_path = plugin_prefix .. plugin .. "/"
+  --  print('test '..plugin_path)
+  local ok, err, code = os.rename(plugin_path, plugin_path)
+  if not ok then
+    if code == 13 then
+      -- Permission denied, but it exists
+      return true
+    end
+  end
+  --  print(ok, err, code)
+  if ok then
+    vim.cmd("packadd " .. plugin)
+  end
+  return ok, err, code
+end
+
+return require('packer').startup(function(use)
+  use {'wbthomason/packer.nvim', opt = true}
+  -- use {'franbach/miramare', config = vim.cmd [[colo miramare]]}
+  use {'razak17/zephyr-nvim', config = vim.cmd [[colo zephyr]]}
+  use {'tpope/vim-surround', event = {'BufReadPre', 'BufNewFile'}}
+  use {
+    'b3nj5m1n/kommentary',
+    event = {'BufReadPre', 'BufNewFile'},
+    config = function()
+      require('kommentary.config').configure_language("default", {
+        prefer_single_line_comments = true
+      })
+    end
+  }
+  use {
+    'romainl/vim-cool',
+    event = {'BufRead', 'BufNewFile'},
+    config = function()
+      vim.g.CoolTotalMatches = 1
+    end
+  }
+
+  use {'rhysd/accelerated-jk', opt = true, event = "VimEnter"}
+
+  require_plugin('kommentary')
+  require_plugin('vim-surround')
+  require_plugin('vim-cool')
+end)
+
