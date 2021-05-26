@@ -104,8 +104,10 @@ while [[ "$#" -gt 0 ]]; do
     ;;
   "-ccomall")
     if [[ "$#" -gt 0 ]] ; then
-      shift
-      confCommitAll "$#"
+      echo message: "$@"
+      arg="$@"
+      confCommitAll "$arg"
+      exit 1
     else
       read -p "Enter commit message: " arg
       confCommitAll "$arg"
