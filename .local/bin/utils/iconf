@@ -103,8 +103,14 @@ while [[ "$#" -gt 0 ]]; do
     confCommits
     ;;
   "-ccomall")
-    read -p "Enter commit message: " arg
-    confCommitAll "$arg"
+    if [[ "$#" -gt 0 ]] ; then
+      shift
+      confCommitAll "$#"
+    else
+      read -p "Enter commit message: " arg
+      confCommitAll "$arg"
+    fi
+    exit 1
     ;;
   "-cp")
     confPush
