@@ -215,6 +215,7 @@ nnoremap("<Leader>av", "<C-W>v")
 nnoremap("<Leader>an", ":let @/ = ''<CR>")
 nnoremap("<Leader>aN", ":set nonumber!<CR>")
 nnoremap("<Leader>aR", ":set norelativenumber!<CR>")
+nnoremap("<Leader><Leader>", ":bdelete<CR>")
 nnoremap("<Leader>ad", ":bdelete!<CR>")
 
 -- Next greatest remap ever : asbjornHaland
@@ -263,13 +264,6 @@ vmap("<leader>/", "<Plug>kommentary_visual_default")
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
-local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
-
-if fn.empty(fn.glob(install_path)) > 0 then
-  execute("!git clone https://github.com/wbthomason/packer.nvim " ..
-              install_path)
-end
-
 execute "packadd packer.nvim"
 
 --- Check if a file or directory exists in this path
@@ -292,7 +286,7 @@ local function require_plugin(plugin)
   return ok, err, code
 end
 
-return require('packer').startup(function(use)
+require('packer').startup(function(use)
   use {'wbthomason/packer.nvim', opt = true}
   -- use {'franbach/miramare', config = vim.cmd [[colo miramare]]}
   use {'razak17/zephyr-nvim', config = vim.cmd [[colo zephyr]]}

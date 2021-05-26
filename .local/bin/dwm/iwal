@@ -8,6 +8,7 @@ DIR="/home/razak/Pictures/wallpapers/distro"
 # Command to Select wallpapers at random from the $DIR directory
 
 WAL=$(ls $DIR/*.png | shuf -n1)
+wall=$(find $HOME/Pictures/wallpapers/distro -type f | shuf -n 1)
 
 # Set lockscreen wallpaper
 
@@ -15,5 +16,5 @@ cat $WAL > $DIR/current-wallpaper.png
 
 # Set Desktop Wallpaper
 
-feh --bg-scale $DIR/current-wallpaper.png
+xwallpaper --zoom $DIR/current-wallpaper.png
 

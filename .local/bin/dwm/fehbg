@@ -1,6 +1,14 @@
 #!/bin/sh
 DIR="/home/razak/Pictures/wallpapers/sea-whale.jpg"
 DIR2="/home/razak/Pictures/wallpapers/153.png"
-DIR3="/home/razak/Pictures/wallpapers/distro/133.png"
+img="/home/razak/Pictures/wallpapers/distro/133.png"
 
-feh --bg-scale $DIR3
+feh --bg-scale $img
+
+wal -i $img >/dev/null
+sed -i 'N;$!P;D' $HOME/.cache/wal/colors-wal-dwm.h
+
+# echo "Recompiling dwm with new colors."
+(cd $HOME/.dots/suckless/dwm && sudo make clean install>/dev/null)
+
+echo "^_^ Restart dwm for new look."

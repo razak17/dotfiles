@@ -1,0 +1,17 @@
+#!/bin/bash
+
+DIR="/home/razak/Pictures/wallpapers/distro"
+
+# wall=$(find $DIR -type f | shuf -n 1)
+wall="/home/razak/pics/distro/108.png"
+xwallpaper --zoom $wall
+
+wal -i $wall >/dev/null
+sed -i 'N;$!P;D' $HOME/.cache/wal/colors-wal-dwm.h
+
+# echo "Recompiling dwm with new colors."
+(cd $HOME/.dots/suckless/dwm && sudo make clean install>/dev/null)
+
+echo "^_^ Restart dwm for new look."
+
+# echo "^_^ Recompile and Restart dwm for new look."
