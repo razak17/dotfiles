@@ -104,7 +104,7 @@ while [[ "$#" -gt 0 ]]; do
     ;;
   "-ccomall")
     if [[ "$#" -gt 0 ]] ; then
-      echo message: "$@"
+      # echo message: "$@"
       arg="$@"
       confCommitAll "$arg"
       exit 1
@@ -130,8 +130,15 @@ while [[ "$#" -gt 0 ]]; do
     nconfCommits
     ;;
   "-nccomall")
-    read -p "Enter commit message: " arg
-    nconfCommitAll "$arg"
+    if [[ "$#" -gt 0 ]] ; then
+      # echo message: "$@"
+      arg="$@"
+      nconfCommitAll "$arg"
+      exit 1
+    else
+      read -p "Enter commit message: " arg
+      nconfCommitAll "$arg"
+    fi
     ;;
   "-ncp")
     nconfPush
