@@ -116,8 +116,8 @@ createSession() {
     echo "session: '${session}' has been created."
   else
     echo duplicate session: "$session"
-    exit 1
   fi
+  exit 1
 }
 
 killSession() {
@@ -422,7 +422,12 @@ while [[ "$#" -gt 0 ]]; do
     killSession $session
     ;;
   "-s")
-    read -p "Enter session name: " arg
+    if [[ "$#" -gt 0 ]] ; then
+      # echo message: "$@"
+      arg="$@"
+    else
+      read -p "Enter session name: " arg
+    fi
     checkEmpty $arg
     session="$arg"
     createSession $session "main"

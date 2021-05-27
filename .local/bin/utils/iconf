@@ -14,13 +14,12 @@ confAdd() {
 confCommit() {
   if [[ -z "$*" ]]; then
     echo "-n should have the next argument contain actual session"
-    exit 1
   else
     message="$*"
     echo message: $message
     eval "$CONF commit -m '${message}'"
-    exit 1
   fi
+  exit 1
 }
 
 confCommits() {
@@ -30,13 +29,12 @@ confCommits() {
 confCommitAll() {
   if [[ -z "$*" ]]; then
     echo "-n should have the next argument contain actual session"
-    exit 1
   else
     message="$*"
     echo message: $message
     eval "$CONF commit -a -m '${message}'"
-    exit 1
   fi
+  exit 1
 }
 
 confPush() {
@@ -54,13 +52,12 @@ nconfAdd() {
 nconfCommit() {
   if [[ -z "$*" ]]; then
     echo "-n should have the next argument contain actual session"
-    exit 1
   else
     message="$*"
     echo message: $message
     eval "$NCONF commit -m '${message}'"
-    exit 1
   fi
+  exit 1
 }
 
 nconfCommits() {
@@ -70,13 +67,12 @@ nconfCommits() {
 nconfCommitAll() {
   if [[ -z "$*" ]]; then
     echo "-n should have the next argument contain actual session"
-    exit 1
   else
     message="$*"
     echo message: $message
     eval "$NCONF commit -a -m '${message}'"
-    exit 1
   fi
+  exit 1
 }
 
 nconfPush() {
@@ -104,14 +100,11 @@ while [[ "$#" -gt 0 ]]; do
     ;;
   "-ccomall")
     if [[ "$#" -gt 0 ]] ; then
-      # echo message: "$@"
       arg="$@"
-      confCommitAll "$arg"
-      exit 1
     else
       read -p "Enter commit message: " arg
-      confCommitAll "$arg"
     fi
+    confCommitAll "$arg"
     ;;
   "-cp")
     confPush
@@ -131,14 +124,11 @@ while [[ "$#" -gt 0 ]]; do
     ;;
   "-nccomall")
     if [[ "$#" -gt 0 ]] ; then
-      # echo message: "$@"
       arg="$@"
-      nconfCommitAll "$arg"
-      exit 1
     else
       read -p "Enter commit message: " arg
-      nconfCommitAll "$arg"
     fi
+    nconfCommitAll "$arg"
     ;;
   "-ncp")
     nconfPush
