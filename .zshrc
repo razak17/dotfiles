@@ -5,9 +5,8 @@ plugins=(
   zsh-z
   zsh-autosuggestions
   zsh-syntax-highlighting
+  copybuffer
 )
-
-ZSH_THEME="awesomepanda"
 
 source $HOME/.oh-my-zsh/oh-my-zsh.sh
 
@@ -20,3 +19,4 @@ source $HOME/.asdf/asdf.sh
 source $HOME/.asdf/completions/asdf.bash
 # source $HOME/lib/azure-cli/az.completion
 
+if [ -e /home/razak/.nix-profile/etc/profile.d/nix.sh ]; then . /home/razak/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

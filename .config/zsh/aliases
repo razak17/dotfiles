@@ -69,6 +69,7 @@ alias ipsql="systemctl start postgresql"
 alias iredis="sudo /etc/init.d/redis_6379 start"
 alias cdnm="/home/razak/.asdf/installs/nodejs/15.5.1/.npm/lib/node_modules"
 alias codium="sudo nvim /usr/share/vscodium-bin/resources/app/product.json"
+alias xi="tuxi"
 
 # Docker and Docker Compose
 alias idocker="systemctl start docker.service"
@@ -94,6 +95,11 @@ alias ccomall="iconf -ccomall"
 alias nccomall="iconf -nccomall"
 alias confe="iconf -cp"
 alias nconfe="iconf -ncp"
+alias nckm="nconf checkout main"
+alias nckp="nconf checkout presentation"
+alias nckg="nconf checkout glep"
+alias nckt="nconf checkout test"
+alias nckd="nconf checkout debug"
 
 # Nord VPN
 alias inord="systemctl start nordvpnd.service"
@@ -126,7 +132,7 @@ alias xd="tmuxd"
 alias xb="tmuxb"
 alias xsp="tmux display -p '#{socket_path}'"
 alias xls="tmux ls"
-alias nx='tmux n -s'
+alias nx='tmux -L Dev new -s'
 alias ax='tmux a -t'
 alias axd='tmux -L Dev a -t'
 alias axb='tmux -L Dull a -t'

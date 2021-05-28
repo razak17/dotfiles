@@ -1,0 +1,7 @@
+#!/bin/sh
+# img="/home/razak/Pictures/wallpapers/distro/133.png"
+img="/home/razak/pics/distro/133.png"
+
+# feh --bg-scale $img
+xwallpaper --zoom $img
+

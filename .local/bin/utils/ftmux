@@ -92,53 +92,56 @@ getTarget() {
 }
 
 resizePane() {
-  eval "$X resizep -x 50% -y 50%"
+  ($X resizep -x 50% -y 50%)
 }
 
 breakPane() {
-  eval "$X break-pane -dP -F '#{session_name}:#{window_index}.#{pane_index}' -n 'break'"
+  ($X break-pane -dP -F '#{session_name}:#{window_index}.#{pane_index}' -n 'break')
 }
 
 createSession() {
   session=$1
   window=$2
-  hasSession=$($X list-sessions | grep "$session")
+  hasSession=$($X list-sessions -F \#S | grep "$session")
   shift
   shift
 
-  if [[ -z "$hasSession" ]]; then
+  # ($X list-sessions -F \#S | awk '{print $1}')
+  # printf "hasSession: %s.\n" "$hasSession"
+  printf "session: %s, window: %s.\n" "$session" "$window"
+  if [[ "$session" == "$hasSession" ]]; then
+    printf "duplicate session '%s'. Available sessions:\n" "$session"
+    ($X list-sessions)
+  else
     if [[ "$#" -gt 0 ]]; then
       cmd="$X new -s $session -d -c$@ -n $window > /dev/null 2>&1"
     else
       cmd="$X new -s $session -d -n $window > /dev/null 2>&1"
     fi
+    printf "session '%s' has been created.\n" "$session"
     eval $cmd
-    echo "session: '${session}' has been created."
-  else
-    echo duplicate session: "$session"
   fi
-  exit 1
 }
 
 killSession() {
   session=$1
   current=$($X display -p '#S')
   target=$($X list-sessions -F \#S | grep "$session")
+
+  printf "session: %s, target: %s.\n" "$session" "$target"
   shift
-
-  if [[ "$current" == "${session}" ]]; then
-    echo "cannot delete active session '${current}'"
+  if [[ "$current" == "$session" ]]; then
+    printf "cannot delete attached session '%s'.\n" "$session"
     exit 1
   fi
-
   if [[ "$target" == "$session" ]]; then
-    cmd="$X kill-session -t $session"
-    echo "session: '${session}' has been deleted."
-    eval $cmd
+    printf "session '%s' has been deleted.\n" "$session"
+    ($X kill-session -t $session)
   else
-    echo "session: '${session}' does not exist."
-    exit 1
+    printf "session '%s' does not exist. Available sessions:\n" "$session"
+    ($X list-sessions)
   fi
+  exit 1
 }
 
 createWindow() {
@@ -148,8 +151,7 @@ createWindow() {
   shift
   hasWindow=$($X list-windows -t $session | grep "$window")
   if [[ -z "$hasWindow" ]]; then
-    cmd="$X neww -t $session: -n $window -d $@"
-    eval $cmd
+    ($X neww -t $session: -n $window -d $@)
   else
     echo duplicate window: $window
   fi
@@ -198,15 +200,9 @@ checkEmpty() {
 
 simpleCommands() {
   case "$arg" in
-    "-p")
-      $($X run-shell -b 'echo pane id is #{pane_id}')
-      ;;
-    "-pt")
-      $($X run-shell -b 'echo pane title is #{pane_title}')
-      ;;
-    "-w")
-      $($X run-shell -b 'echo window name is #{window_name}')
-      ;;
+    "-p") ($X run-shell -b 'echo pane id is #{pane_id}') ;;
+    "-pt") ($X run-shell -b 'echo pane title is #{pane_title}') ;;
+    "-w") $($X run-shell -b 'echo window name is #{window_name}') ;;
     *) echo "Unavailables ... $cmd"
   esac
 }
@@ -228,7 +224,7 @@ firstSession() {
   first=$(getTarget $tw 0 -p)
   splitPane -v -c $C_NVIM -t $first
 
-  eval "$X a -t first"
+  ($X a -t first)
 }
 
 envSession() {
@@ -364,20 +360,14 @@ while [[ "$#" -gt 0 ]]; do
   shift
 
   case "$curr" in
-    "-h")
-      helpMenu
-      ;;
+    "-h") helpMenu ;;
     "-c")
       arg=$1
       checkEmpty $arg
       shift
       case "$arg" in
-        "-a")
-          panes=$(panesList -a)
-          ;;
-        "-w")
-          panes=$(panesList -w)
-          ;;
+        "-a") panes=$(panesList -a) ;;
+        "-w") panes=$(panesList -w) ;;
         "-s")
           echo session: $1
           if [[ $# -lt 2 ]]; then
@@ -409,67 +399,43 @@ while [[ "$#" -gt 0 ]]; do
   #   shift
   #   simpleCommands $arg
   #   ;;
-  "-r")
-    resizePane
-    ;;
-  "-b")
-    breakPane
-    ;;
+  "-r") resizePane ;;
+  "-b") breakPane ;;
   "-k")
-    read -p "Enter session name: " arg
-    checkEmpty $arg
-    session="$arg"
-    killSession $session
-    ;;
-  "-s")
     if [[ "$#" -gt 0 ]] ; then
-      # echo message: "$@"
       arg="$@"
     else
       read -p "Enter session name: " arg
     fi
     checkEmpty $arg
-    session="$arg"
-    createSession $session "main"
+    killSession $arg
     ;;
-  "-z")
-    zTest
+  "-s")
+    if [[ "$#" -gt 0 ]] ; then
+      arg="$@"
+    else
+      read -p "Enter session name: " arg
+    fi
+    checkEmpty $arg
+    createSession $arg "main"
+    exit 1
     ;;
-  "-env")
-    envSession
-    ;;
-  "-first")
-    firstSession
-    ;;
-  "-final")
-    finalSession
-    ;;
-  "-m")
-    moneyportalSession
-    ;;
-  "-w")
-    websiteSession
-    ;;
+  "-z") zTest ;;
+  "-env") envSession ;;
+  "-first") firstSession ;;
+  "-final") finalSession ;;
+  "-m") moneyportalSession ;;
+  "-w") websiteSession ;;
   "-n")
     arg=$1
     checkEmpty $arg
     shift
     case "$arg" in
-    "-c")
-      ccSession
-      ;;
-    "-d")
-      demosSession
-      ;;
-    "-ds")
-      dsSession
-      ;;
-    "-m")
-      mSession
-      ;;
-    "-s")
-      scriptsSession
-      ;;
+    "-c") ccSession ;;
+    "-d") demosSession ;;
+    "-ds") dsSession ;;
+    "-m") mSession ;;
+    "-s") scriptsSession ;;
     *) echo "Unavailable command... $arg"
     esac
     ;;

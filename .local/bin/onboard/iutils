@@ -1,0 +1,37 @@
+#!/bin/sh
+
+installTuxi() {
+  echo "Installing dependencies for tuxi..."
+  sudo pacman -S jq recode
+  go get github.com/ericchiang/pup
+  sudo curl -sL "https://raw.githubusercontent.com/Bugswriter/tuxi/main/tuxi" -o ~/.local/bin/tuxi
+  sudo chmod +x $HOME/.local/bin/tuxi
+  tuxi "Is Linux better than Windows?"
+}
+
+installYtfzf() {
+  echo "Installing dependencies for ytfzf..."
+  sudo pacman -S jq mpv youtube-dl fzf ueberzug
+  curl -sL "https://raw.githubusercontent.com/pystardust/ytfzf/master/ytfzf" | sudo tee $HOME/.local/bin/ytfzf >/dev/null && sudo chmod 755 $HoME/.local/bin/ytfzf
+}
+
+installGetNf() {
+  mkdir -p $HOME/.dots
+  cd $HOME/.dots
+  git clone https://github.com/ronniedroid/getnf.git
+  cd getnf
+  ./install.sh
+}
+
+installNeuron() {
+  curl -L https://nixos.org/nix/install | sh
+  . /home/razak/.nix-profile/etc/profile.d/nix.sh
+  nix-env -iA cachix -f https://cachix.org/api/v1/install
+  cachix use srid
+  nix-env -if https://github.com/srid/neuron/archive/master.tar.gz
+  neuron --version
+}
+
+installTuxi
+installYtfzf
+installGetNf
