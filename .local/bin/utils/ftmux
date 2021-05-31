@@ -91,6 +91,11 @@ getTarget() {
   echo "${ids[$id]}"
 }
 
+sessionNumber() {
+  res=$($X display -p '#{session_id}' | cut -b 2-)
+  echo $res
+}
+
 resizePane() {
   ($X resizep -x 50% -y 50%)
 }
@@ -400,6 +405,7 @@ while [[ "$#" -gt 0 ]]; do
   #   simpleCommands $arg
   #   ;;
   "-r") resizePane ;;
+  "-N") sessionNumber ;;
   "-b") breakPane ;;
   "-k")
     if [[ "$#" -gt 0 ]] ; then

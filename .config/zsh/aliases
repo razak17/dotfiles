@@ -5,8 +5,6 @@ alias i='sudo'
 alias e="touch"
 alias m="mkdir"
 alias obd="objdump -d"
-alias v="$EDITOR ."
-alias vsc="vscodium ."
 alias so="source"
 alias cl='clear'
 alias c='clear'
@@ -14,7 +12,6 @@ alias wd="pwd"
 alias sx="startx"
 alias kx="killall xinit"
 alias is='sudo su'
-alias nv="$EDITOR"
 # alias nve="nvim-packer"
 alias lh="ls -a"
 alias loc="locate"
@@ -39,8 +36,6 @@ alias uadd='sudo usermod -aG'
 alias clocale="dpkg-reconfigure locales"
 alias imodem="systemctl start ModemManager.service"
 alias wifi="nmtui"
-alias py="python"
-alias vim="nvim"
 
 # edit
 alias a="$EDITOR ~/.config/zsh/aliases"
@@ -69,7 +64,15 @@ alias ipsql="systemctl start postgresql"
 alias iredis="sudo /etc/init.d/redis_6379 start"
 alias cdnm="/home/razak/.asdf/installs/nodejs/15.5.1/.npm/lib/node_modules"
 alias codium="sudo nvim /usr/share/vscodium-bin/resources/app/product.json"
+alias py="python"
 alias xi="tuxi"
+alias aw="toilet"
+alias igp="sudo gparted"
+alias nv="$EDITOR"
+alias vim="nvim"
+alias n="nvim"
+alias v="$EDITOR ."
+alias vsc="vscodium ."
 
 # Docker and Docker Compose
 alias idocker="systemctl start docker.service"
@@ -98,6 +101,7 @@ alias nconfe="iconf -ncp"
 alias nckm="nconf checkout main"
 alias nckp="nconf checkout presentation"
 alias nckg="nconf checkout glep"
+alias ncks="nconf checkout slides"
 alias nckt="nconf checkout test"
 alias nckd="nconf checkout debug"
 
