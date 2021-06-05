@@ -14,9 +14,9 @@ fi
 ~/.local/bin/dwm/setbg &
 picom &
 xset r rate 300 50 &
+redshift -O 3500K &
 autokey-gtk &
 dwmblocks &
-redshift -O 3500K &
 
 # This line autostarts an instance of Pulseaudio that does not exit on idle.
 # This is "necessary" on Artix due to a current bug between PA and

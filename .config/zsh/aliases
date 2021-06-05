@@ -54,8 +54,8 @@ alias nvc="nvr config.h"
 alias nvz="nvr ~/.zsh_history"
 alias nvi="$EDITOR init.lua"
 alias nvli="$EDITOR lua/core/init.lua"
-alias nvr="$EDITOR -u ~/init.lua"
-alias inv="sudo $EDITOR -u ~/init.lua"
+# alias nvr="$EDITOR --noplugin -u ~/init.lua"
+alias nvr="$EDITOR --noplugin -u ~/init.lua"
 alias invr="sudo $EDITOR --noplugin -u ~/init.lua"
 
 # Programs
@@ -99,11 +99,8 @@ alias nccomall="iconf -nccomall"
 alias confe="iconf -cp"
 alias nconfe="iconf -ncp"
 alias nckm="nconf checkout main"
-alias nckp="nconf checkout presentation"
-alias nckg="nconf checkout glep"
 alias ncks="nconf checkout slides"
 alias nckt="nconf checkout test"
-alias nckd="nconf checkout debug"
 
 # Nord VPN
 alias inord="systemctl start nordvpnd.service"
