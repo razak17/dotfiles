@@ -113,6 +113,15 @@ installLuaformat() {
   luarocks install --server=https://luarocks.org/dev luaformatter
 }
 
+installStyLua() {
+  version="0.8.1"
+  curl -L https://github.com/johnnymorganz/stylua/releases/latest/download/stylua-${version}-linux.zip -o ~/.dots/stylua-${version}.zip
+  cd ~/.dots && ext stylua-${version}.zip
+  cd ~/.dots/stylua-${version} && chmod +x ./stylua
+  cp --force ./stylua ~/.local/bin
+  cd .. && rm stylua-${version}.zip
+}
+
 installShellcheck() {
   cd ~/$lsp_path
   wget -qO- "https://github.com/koalaman/shellcheck/releases/download/${scversion?}/shellcheck-${scversion?}.linux.x86_64.tar.xz" | tar -xJv
@@ -148,3 +157,4 @@ installElixirLs
 installLuaformat
 installShellcheck
 installNodeDebug2
+# installStyLua
