@@ -7,12 +7,12 @@ local function set(key, value)
 end
 
 -- Disable to improve startup time
--- vim.cmd [[
---   syntax off
---   filetype plugin indent off
---   filetype off
---   set nospell
--- ]]
+vim.cmd [[
+  syntax off
+  filetype plugin indent off
+  filetype off
+  set nospell
+]]
 
 vim.cmd('set iskeyword+=-')
 vim.o.formatoptions = "cro"
@@ -164,6 +164,12 @@ set('shada', "!,'300,<50,@100,s10,h")
 set('viewoptions', 'cursor,folds')
 set('sessionoptions', 'curdir,help,tabpages,winsize')
 
+vim.defer_fn(vim.schedule_wrap(function()
+  vim.cmd [[syntax on]]
+  vim.cmd [[filetype plugin indent  on]]
+  vim.cmd [[verbose set formatoptions-=cro]]
+end), 0)
+
 -- Binds
 local function nmap(lhs, rhs, opts)
   local options = {noremap = false}
@@ -314,7 +320,7 @@ end
 require('packer').startup(function(use)
   use {'wbthomason/packer.nvim', opt = true}
   -- use {'franbach/miramare', config = vim.cmd [[colo miramare]]}
-  use {'razak17/zephyr-nvim', config = vim.cmd [[colo zephyr]]}
+  use {'razak17/zephyr-nvim', event = {'BufRead', 'BufNewFile'}}
   use {'tpope/vim-surround', event = {'BufReadPre', 'BufNewFile'}}
   use {
     'b3nj5m1n/kommentary',
@@ -327,21 +333,16 @@ require('packer').startup(function(use)
   }
   use {
     'norcalli/nvim-colorizer.lua',
-    ft = {'html', 'css', 'sass', 'vim', 'typescript', 'typescriptreact'},
+    event = {'BufReadPre', 'BufNewFile'},
     config = function()
-      require'colorizer'.setup {
-        css = {rgb_fn = true},
-        scss = {rgb_fn = true},
-        sass = {rgb_fn = true},
-        stylus = {rgb_fn = true},
+      require'colorizer'.setup({
+        '*',
+        css = {rgb_fn = true, hsl_fn = true, names = true},
+        scss = {rgb_fn = true, hsl_fn = true, names = true},
+        sass = {rgb_fn = true, names = true},
         vim = {names = true},
-        tmux = {names = false},
-        'javascript',
-        'javascriptreact',
-        'typescript',
-        'typescriptreact',
         html = {mode = 'foreground'}
-      }
+      }, {names = false, mode = 'background'})
     end
   }
   use {
@@ -354,9 +355,11 @@ require('packer').startup(function(use)
 
   use {'rhysd/accelerated-jk', opt = true, event = "VimEnter"}
 
+  require_plugin('zephyr-nvim')
   require_plugin('kommentary')
   require_plugin('vim-surround')
   require_plugin('vim-cool')
-  require_plugin('nvim-colorizer')
+  require_plugin('nvim-colorizer.lua')
 end)
 
+vim.cmd('colo zephyr')

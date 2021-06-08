@@ -47,7 +47,12 @@
   },
   {
     "key": "ctrl+h",
-    "command": "workbench.action.focusActivityBar",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "listFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "workbench.action.focusActiveEditorGroup",
     "when": "sideBarFocus"
   },
   {
@@ -64,11 +69,6 @@
     "key": "ctrl+l",
     "command": "workbench.action.focusRightGroup",
     "when": "editor.textFocus && !inputFocus"
-  },
-  {
-    "key": "ctrl+h",
-    "command": "workbench.action.focusActivityBar",
-    "when": "listFocus && !inputFocus"
   },
   {
     "key": "ctrl+'",

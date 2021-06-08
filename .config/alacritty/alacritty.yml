@@ -83,8 +83,8 @@ font:
 window:
   decorations: none
   padding:
-    x: 6
-    y: 2
+    x: 5
+    y: 0
   dimensions:
     columns: 80
     lines: 24

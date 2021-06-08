@@ -14,7 +14,8 @@ fi
 ~/.local/bin/dwm/setbg &
 picom &
 xset r rate 300 50 &
-redshift -O 3500K &
+redshift -O 5500K &
+brightnessctl set 800 &
 autokey-gtk &
 dwmblocks &
 

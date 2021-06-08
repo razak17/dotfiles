@@ -9,7 +9,7 @@
     "python": "python"
   },
   "editor.fontSize": 11,
-  "editor.lineHeight": 18,
+  "editor.lineHeight": 17,
   "editor.tabSize": 2,
   "editor.wordWrap": "off",
   "editor.fontWeight": "400",
@@ -59,13 +59,20 @@
   "gitlens.currentLine.enabled": false,
   "gitlens.hovers.currentLine.over": "line",
   "gitlens.advanced.fileHistoryShowAllBranches": true,
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "/dist/css"
+    }
+  ],
+  "liveSassCompile.settings.generateMap": false,
   "js/ts.implicitProjectConfig.checkJs": true,
   "telemetry.enableCrashReporter": false,
   "telemetry.enableTelemetry": false,
   "terminal.integrated.inheritEnv": false,
   "python.dataScience.alwaysTrustNotebooks": true,
   "update.mode": "none",
-  "workbench.activityBar.visible": false,
   "workbench.sideBar.location": "right",
   "terminal.integrated.fontSize": 13,
   "editor.cursorStyle": "block",
@@ -612,17 +619,11 @@
       "type": "bindings",
       "bindings": [
         {
-          "key": "e",
+          "key": "f",
           "name": "Quick Open",
           "type": "command",
           "command": "workbench.action.quickOpen"
         },
-        {
-          "key": "f",
-          "name": "hahahah",
-          "type": "command",
-          "command": "workbench.action.splitEditorDown"
-        }
       ]
     },
     {
@@ -1279,5 +1280,7 @@
       "viewType": "jupyter.notebook.ipynb",
       "filenamePattern": "*.ipynb"
     }
-  ]
+  ],
+  "liveSassCompile.settings.autoprefix": [],
+  "workbench.activityBar.visible": false
 }
