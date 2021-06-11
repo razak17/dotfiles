@@ -7,14 +7,14 @@ dap_py='.cache/nvim/venv/dap'
 dap_dir='.cache/nvim/dap'
 
 dirs=(
-  '.cache/dap'
-  '.cache/swap'
-  '.cache/tags'
-  '.cache/view'
-  '.cache/backup'
-  '.cache/sessions'
-  '.cache/undodir'
-  '.cache/nvim_lsp'
+  '.cache/nvim/dap'
+  '.cache/nvim/swap'
+  '.cache/nvim/tags'
+  '.cache/nvim/view'
+  '.cache/nvim/backup'
+  '.cache/nvim/sessions'
+  '.cache/nvim/undodir'
+  '.cache/nvim/nvim_lsp'
 )
 
 simple_lsp=(
@@ -109,10 +109,6 @@ installElixirLs() {
   mix elixir_ls.release -o ./.bin
 }
 
-installLuaformat() {
-  luarocks install --server=https://luarocks.org/dev luaformatter
-}
-
 installStyLua() {
   version="0.8.1"
   curl -L https://github.com/johnnymorganz/stylua/releases/latest/download/stylua-${version}-linux.zip -o ~/.dots/stylua-${version}.zip
@@ -143,6 +139,7 @@ installNodeDebug2() {
 installRocks() {
   luarocks install openssl
   luarocks install lua-http-parser
+  luarocks install --server=https://luarocks.org/dev luaformatter
 }
 
 createDirs
@@ -154,7 +151,7 @@ installLua
 installLuarocks
 installSumneko
 installElixirLs
-installLuaformat
-installShellcheck
-installNodeDebug2
 # installStyLua
+# installShellcheck
+installNodeDebug2
+installRocks

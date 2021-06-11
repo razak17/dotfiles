@@ -1,0 +1,2 @@
+# . ~/.config/shell/profile
+

@@ -179,20 +179,50 @@
     "command": "workbench.action.saveWorkspaceAs",
     "when": "editor.textFocus"
   },
+  // {
+  //   "key": "ctrl+8",
+  //   "command": "workbench.action.zoomOut"
+  // },
+  // {
+  //   "key": "ctrl+9",
+  //   "command": "workbench.action.zoomIn"
+  // },
+  // {
+  //   "key": "ctrl+0",
+  //   "command": "workbench.action.zoomReset"
+  // },
   {
-    "key": "ctrl+8",
-    "command": "workbench.action.zoomOut"
+    "key": "Ctrl+8",
+    "command": "editor.action.fontZoomOut"
   },
   {
-    "key": "ctrl+9",
-    "command": "workbench.action.zoomIn"
+    "key": "Ctrl+9",
+    "command": "editor.action.fontZoomIn"
+  },
+  {
+    "key": "Ctrl+0",
+    "command": "editor.action.fontZoomReset"
+  },
+  {
+    "key": "ctrl+8",
+    "command": "-workbench.action.focusEighthEditorGroup"
   },
   {
     "key": "ctrl+9",
     "command": "-workbench.action.lastEditorInGroup"
   },
   {
-    "key": "ctrl+8",
-    "command": "-workbench.action.focusEighthEditorGroup"
-  }
+    "key": "ctrl+0",
+    "command": "-workbench.action.focusSideBar"
+  },
+  {
+    "key": "ctrl+c",
+    "command": "workbench.action.closeQuickOpen",
+    "when": "inQuickOpen"
+  },
+  {
+    "key": "shift+escape",
+    "command": "-workbench.action.closeQuickOpen",
+    "when": "inQuickOpen"
+  },
 ]

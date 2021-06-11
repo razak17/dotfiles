@@ -53,6 +53,7 @@ alias al="$EDITOR ~/.config/alacritty/alacritty.yml"
 alias nvc="nvr config.h"
 alias nvz="nvr ~/.zsh_history"
 alias nvi="$EDITOR init.lua --startuptime $HOME/docs/vim.log"
+alias nvv="$EDITOR ~/docs/vim.log"
 alias nvli="$EDITOR lua/core/init.lua"
 # alias nvr="$EDITOR --noplugin -u ~/init.lua"
 alias nvr="$EDITOR --noplugin -u ~/init.lua"
@@ -150,6 +151,24 @@ alias plague='curl https://corona-stats.online/states/us'
 alias lg='lazygit'
 alias list_systemctl="systemctl list-unit-files --state=enabled"
 
+# c@m
+# get fastest mirrors
+alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
+alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
+alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
+alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
+# confirm before overwriting something
+alias cp="cp -i"
+alias mv='mv -i'
+alias rm='rm -i'
+# easier to read disk
+alias df='df -h'                          # human-readable sizes
+alias free='free -m'                      # show sizes in MB
+# get top process eating memory
+alias psmem='ps auxf | sort -nr -k 4 | head -5'
+# get top process eating cpu ##
+alias pscpu='ps auxf | sort -nr -k 3 | head -5'
+
 mo=~/.mozilla/firefox/profiles
 nca=~/.cache/nvim
 doc=~/Documents
@@ -176,3 +195,4 @@ alias cdnv='cd "$XDG_CONFIG_HOME/nvim"'
 alias cdnsh='cd "$XDG_DATA_HOME/nvim"'
 alias cdpack='cd "$XDG_DATA_HOME/nvim/site/pack/packer"'
 alias cdasdf='cd "$ASDF_INSTALLS"'
+alias cdusb1=' cd /run/media/razak/22B6-E52C/'

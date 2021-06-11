@@ -8,8 +8,8 @@
   "code-runner.executorMap": {
     "python": "python"
   },
-  "editor.fontSize": 11,
-  "editor.lineHeight": 17,
+  "editor.fontSize": 12,
+  "editor.lineHeight": 19,
   "editor.tabSize": 2,
   "editor.wordWrap": "off",
   "editor.fontWeight": "400",
@@ -20,6 +20,7 @@
   "editor.linkedEditing": true,
   "editor.tabCompletion": "on",
   "editor.minimap.maxColumn": 90,
+  "editor.minimap.enabled": false,
   "editor.matchBrackets": "always",
   "editor.cursorBlinking": "solid",
   "editor.lineNumbers": "relative",
@@ -45,11 +46,12 @@
       "color": "#3D3D49"
     }
   ],
-  "editor.fontFamily": "'FiraCode Nerd Font Mono', 'Hack Nerd Font', 'consolas'",
+  "editor.fontFamily": "'Operator Mono Lig Book', 'FiraCode Nerd Font Mono', 'Hack Nerd Font', 'consolas'",
   "emmet.showSuggestionsAsSnippets": true,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
-  "files.autoSave": "onFocusChange",
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1500,
   "files.watcherExclude": {
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
@@ -67,6 +69,18 @@
     }
   ],
   "liveSassCompile.settings.generateMap": false,
+  "workbench.editorAssociations": [
+    {
+      "viewType": "jupyter.notebook.ipynb",
+      "filenamePattern": "*.ipynb"
+    }
+  ],
+  "liveSassCompile.settings.autoprefix": [],
+  "workbench.activityBar.visible": false,
+  "breadcrumbs.enabled": false,
+  "editor.smoothScrolling": true,
+  "workbench.list.smoothScrolling": true,
+  "editor.cursorSmoothCaretAnimation": true,
   "js/ts.implicitProjectConfig.checkJs": true,
   "telemetry.enableCrashReporter": false,
   "telemetry.enableTelemetry": false,
@@ -558,6 +572,18 @@
           "command": "workbench.action.togglePanel"
         },
         {
+          "key": "b",
+          "name": "Toggle Breadcrumbs",
+          "type": "command",
+          "command": "breadcrumbs.toggle"
+        },
+        {
+          "key": "C",
+          "name": "Toggle centered layout",
+          "type": "command",
+          "command": "workbench.action.toggleCenteredLayout"
+        },
+        {
           "key": "e",
           "name": "Explorer",
           "type": "command",
@@ -619,8 +645,14 @@
       "type": "bindings",
       "bindings": [
         {
-          "key": "f",
+          "key": "b",
           "name": "Quick Open",
+          "type": "command",
+          "command": "workbench.action.quickOpen"
+        },
+        {
+          "key": "f",
+          "name": "Find files",
           "type": "command",
           "command": "workbench.action.quickOpen"
         },
@@ -958,6 +990,12 @@
       "type": "bindings",
       "bindings": [
         {
+          "key": "C",
+          "name": "Open snippets",
+          "type": "command",
+          "command": "workbench.action.openSnippets"
+        },
+        {
           "key": "d",
           "name": "Directory",
           "type": "command",
@@ -968,12 +1006,6 @@
           "name": "File",
           "type": "command",
           "command": "workbench.action.files.openFile"
-        },
-        {
-          "key": "r",
-          "name": "Recent",
-          "type": "command",
-          "command": "workbench.action.openRecent"
         },
         {
           "key": "k",
@@ -994,6 +1026,12 @@
           "command": "workbench.action.openSettings"
         },
         {
+          "key": "r",
+          "name": "Recent",
+          "type": "command",
+          "command": "workbench.action.openRecent"
+        },
+        {
           "key": "s",
           "name": "Open Settings file",
           "type": "command",
@@ -1001,9 +1039,9 @@
         },
         {
           "key": "S",
-          "name": "Open snippets",
+          "name": "Open settings ui",
           "type": "command",
-          "command": "workbench.action.openSnippets"
+          "command": "workbench.action.openSettings2"
         }
       ]
     },
@@ -1274,13 +1312,5 @@
       "command": "workbench.action.toggleZenMode"
     }
   ],
-  "editor.minimap.enabled": false,
-  "workbench.editorAssociations": [
-    {
-      "viewType": "jupyter.notebook.ipynb",
-      "filenamePattern": "*.ipynb"
-    }
-  ],
-  "liveSassCompile.settings.autoprefix": [],
-  "workbench.activityBar.visible": false
+  "workbench.statusBar.visible": false,
 }

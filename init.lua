@@ -2,9 +2,7 @@ local vim = vim
 
 -- require('internal.folds')
 
-local function set(key, value)
-  vim.opt[key] = value
-end
+local function set(key, value) vim.opt[key] = value end
 
 -- Disable to improve startup time
 vim.cmd [[
@@ -25,8 +23,7 @@ set('udir', cache_dir .. 'undodir')
 set('directory', cache_dir .. 'swap')
 set('backupdir', cache_dir .. 'backup')
 set('viewdir', cache_dir .. 'view')
-set('backupskip',
-    '/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim')
+set('backupskip', '/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim')
 
 -- Timing
 set('timeout', true)
@@ -138,8 +135,7 @@ set('virtualedit', 'block') -- list of words that change the behavior of the jum
 set('magic', true) -- list of words that change the behavior of the jumplist
 
 -- Searching
-set('grepprg',
-    [[rg --hidden --glob "!.git" --no-heading --smart-case --vimgrep --follow $*]])
+set('grepprg', [[rg --hidden --glob "!.git" --no-heading --smart-case --vimgrep --follow $*]])
 set('grepformat', '%f:%l:%c:%m')
 set('smartcase', true)
 set('ignorecase', true)
@@ -235,6 +231,12 @@ nnoremap("<Leader>aO", ":set fo-=cro<CR>") -- Close all folds
 nnoremap('<C-c>', '<Esc>')
 tnoremap('<Esc>', '<C-\\><C-N>')
 
+-- Better Navigation
+nnoremap('<C-h>', '<C-w>h')
+nnoremap('<C-n>', '<C-w>j')
+nnoremap('<C-k>', '<C-w>k')
+nnoremap('<C-l>', '<C-w>l')
+
 -- Move selected line / block of text in visual mode
 xnoremap('K', ":m '<-2<CR>gv=gv")
 xnoremap('N', ":m '>+1<CR>gv=gv")
@@ -270,14 +272,11 @@ nnoremap('<Leader>bs', '/<C-R>=escape(expand("<cWORD>"), "/")<CR><CR>')
 nnoremap('<TAB>', ':bnext<CR>')
 nnoremap('<S-TAB>', ':bprevious<CR>')
 
-local t = function(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
+local t = function(str) return vim.api.nvim_replace_termcodes(str, true, true, true) end
 
 _G.enhance_jk_move = function(key)
   vim.cmd [[packadd accelerated-jk]]
-  local map = key == 'n' and '<Plug>(accelerated_jk_j)' or
-                  '<Plug>(accelerated_jk_gk)'
+  local map = key == 'n' and '<Plug>(accelerated_jk_j)' or '<Plug>(accelerated_jk_gk)'
   return t(map)
 end
 
@@ -326,31 +325,14 @@ require('packer').startup(function(use)
     'b3nj5m1n/kommentary',
     event = {'BufReadPre', 'BufNewFile'},
     config = function()
-      require('kommentary.config').configure_language("default", {
-        prefer_single_line_comments = true
-      })
-    end
-  }
-  use {
-    'norcalli/nvim-colorizer.lua',
-    event = {'BufReadPre', 'BufNewFile'},
-    config = function()
-      require'colorizer'.setup({
-        '*',
-        css = {rgb_fn = true, hsl_fn = true, names = true},
-        scss = {rgb_fn = true, hsl_fn = true, names = true},
-        sass = {rgb_fn = true, names = true},
-        vim = {names = true},
-        html = {mode = 'foreground'}
-      }, {names = false, mode = 'background'})
+      require('kommentary.config').configure_language("default",
+                                                      {prefer_single_line_comments = true})
     end
   }
   use {
     'romainl/vim-cool',
     event = {'BufRead', 'BufNewFile'},
-    config = function()
-      vim.g.CoolTotalMatches = 1
-    end
+    config = function() vim.g.CoolTotalMatches = 1 end
   }
 
   use {'rhysd/accelerated-jk', opt = true, event = "VimEnter"}
@@ -359,7 +341,6 @@ require('packer').startup(function(use)
   require_plugin('kommentary')
   require_plugin('vim-surround')
   require_plugin('vim-cool')
-  require_plugin('nvim-colorizer.lua')
 end)
 
 vim.cmd('colo zephyr')

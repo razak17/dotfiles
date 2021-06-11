@@ -56,7 +56,7 @@ pac_packages=(
 yay_packages=(
   'autokey-gtk'
   'vscodium-bin'
-  'skippy-xd'
+  # 'skippy-xd'
   # 'packettracer'
   # 'ttf-ancient-fonts'
   # 'wps-office'

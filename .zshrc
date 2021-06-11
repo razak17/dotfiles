@@ -8,6 +8,8 @@ plugins=(
   copybuffer
 )
 
+PLUGIN_DIR=$HOME/.config/zsh/plugins
+
 source $HOME/.oh-my-zsh/oh-my-zsh.sh
 
 [ -f $HOME/.config/zsh/func ]    && source $HOME/.config/zsh/func
@@ -18,5 +20,4 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 source $HOME/.asdf/asdf.sh
 source $HOME/.asdf/completions/asdf.bash
 # source $HOME/lib/azure-cli/az.completion
-
-if [ -e /home/razak/.nix-profile/etc/profile.d/nix.sh ]; then . /home/razak/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+# eval "`pip completion --zsh`"

@@ -1,0 +1,18 @@
+[submodule "alias-tips"]
+  path = .config/zsh/plugins/alias-tips
+  url = https://github.com/djui/alias-tips
+[submodule "copybuffer"]
+  path = .config/zsh/plugins/copybuffer
+  url = https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/copybuffer
+[submodule "zsh-autosuggestions"]
+  path = .config/zsh/plugins/zsh-autosuggestions
+  url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "zsh-completions"]
+  path = .config/zsh/plugins/zsh-completions
+  url = https://github.com/zsh-users/zsh-completions
+[submodule "zsh-syntax-highlighting"]
+	path = .config/zsh/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "zsh-z"]
+	path = .config/zsh/plugins/zsh-z
+  url = https://github.com/agkozak/zsh-z

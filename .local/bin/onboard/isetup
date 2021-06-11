@@ -22,6 +22,27 @@ installOhmyzsh() {
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
 }
 
+installPlugins() {
+  plugins=(
+    'djui/alias-tips'
+    'ohmyzsh/ohmyzsh/tree/master/plugins/copybuffer'
+    'docker/cli/blob/master/contrib/completion/zsh'
+    'ohmyzsh/ohmyzsh/tree/master/plugins/docker-compose'
+    'ohmyzsh/ohmyzsh/tree/master/plugins/git'
+    'zsh-users/zsh-autosuggestions'
+    'zsh-users/zsh-completions'
+    'zsh-users/zsh-syntax-highlighting'
+    'agkozak/zsh-z'
+  )
+  curl -sLo "https://github.com/$download_path" "$url"
+  for i in ${plugins[@]}; do
+    name=$(echo ${i} | sed 's|.*/||')
+    # echo $name
+    conf submodule add https://github.com/$i ~/.config/zsh/plugins/$name
+  done
+  conf submodule update --init
+}
+
 installTmuxPlugins() {
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
   git clone https://github.com/tmux-plugins/tpm ~/.config/tmux     /plugins/tpm
@@ -31,7 +52,8 @@ installAsdf() {
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.0-rc1
 }
 
-changeShell
-setupSsh
-installOhmyzsh
-installTmuxPlugins
+# changeShell
+# setupSsh
+# installOhmyzsh
+# installTmuxPlugins
+installPlugins
