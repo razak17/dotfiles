@@ -24,23 +24,22 @@ installOhmyzsh() {
 
 installPlugins() {
   plugins=(
+    # 'ohmyzsh/ohmyzsh/tree/master/plugins/copybuffer'
+    # 'docker/cli/blob/master/contrib/completion/zsh'
+    # 'ohmyzsh/ohmyzsh/tree/master/plugins/docker-compose'
+    # 'ohmyzsh/ohmyzsh/tree/master/plugins/git'
     'djui/alias-tips'
-    'ohmyzsh/ohmyzsh/tree/master/plugins/copybuffer'
-    'docker/cli/blob/master/contrib/completion/zsh'
-    'ohmyzsh/ohmyzsh/tree/master/plugins/docker-compose'
-    'ohmyzsh/ohmyzsh/tree/master/plugins/git'
     'zsh-users/zsh-autosuggestions'
     'zsh-users/zsh-completions'
     'zsh-users/zsh-syntax-highlighting'
     'agkozak/zsh-z'
   )
-  curl -sLo "https://github.com/$download_path" "$url"
+  # curl -sLo "https://github.com/$download_path" "$url"
   for i in ${plugins[@]}; do
     name=$(echo ${i} | sed 's|.*/||')
-    # echo $name
-    conf submodule add https://github.com/$i ~/.config/zsh/plugins/$name
+    $(/usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME submodule add https://github.com/$i ~/.config/zsh/plugins/$name)
   done
-  conf submodule update --init
+  /usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME submodule update --init
 }
 
 installTmuxPlugins() {
