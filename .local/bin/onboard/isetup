@@ -23,6 +23,7 @@ installOhmyzsh() {
 }
 
 installPlugins() {
+  mkdir -p ~/.config/zsh/plugins
   plugins=(
     # 'ohmyzsh/ohmyzsh/tree/master/plugins/copybuffer'
     # 'docker/cli/blob/master/contrib/completion/zsh'
@@ -37,9 +38,12 @@ installPlugins() {
   # curl -sLo "https://github.com/$download_path" "$url"
   for i in ${plugins[@]}; do
     name=$(echo ${i} | sed 's|.*/||')
-    $(/usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME submodule add https://github.com/$i ~/.config/zsh/plugins/$name)
+    if [[ -d "~/.config/zsh/plugins/${name}" ]]; then
+      echo "dir ${name} already exists."
+    else
+      $(git clone https://github.com/$i ~/.config/zsh/plugins/$name)
+    fi
   done
-  /usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME submodule update --init
 }
 
 installTmuxPlugins() {

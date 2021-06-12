@@ -1,23 +1,189 @@
 #!/bin/zsh
 
-typeset -g -A key
+##-------------------------------------------------------------------------------
+# References:
+#-------------------------------------------------------------------------------
+# https://github.com/akinsho/dotfiles/blob/main/zsh/.zshrc
+
+zmodload zsh/datetime
+
 typeset -U PATH path
+typeset -A __DOTS
+
+__DOTS[ITALIC_ON]=$'\e[3m'
+__DOTS[ITALIC_OFF]=$'\e[23m'
 
 LOCAL="$HOME/.local/bin"
 ASDF_INSTALLS="$HOME/.asdf/installs"
 DEV_HOME="$HOME/Dev"
+PLUGIN_DIR=$ZDOTDIR/zsh/plugins
 
-# Default programs:
-export EDITOR="nvim"
-export TERMINAL="alacritty"
-export BROWSER="firefox"
+CASE_SENSITIVE="true"
+HIST_STAMPS="mm/dd/yyyy"
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
 
-export MANPAGER='nvim +Man!'
+# Init completions
+autoload -Uz compinit
+zmodload -i zsh/complist
+compinit
+_comp_options+=(globdots)   # Include hidden files.
+
+#-------------------------------------------------------------------------------
+#           Plugins
+#-------------------------------------------------------------------------------
+# These should be source *BEFORE* setting up hooks
+source $PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $PLUGIN_DIR/zsh-completions/zsh-completions.plugin.zsh
+source $PLUGIN_DIR/alias-tips/alias-tips.plugin.zsh
+source $PLUGIN_DIR/zsh-z/zsh-z.plugin.zsh
+autoload zmv # builtin zsh rename command
+
+#-------------------------------------------------------------------------------
+#               Completion
+#-------------------------------------------------------------------------------
+# Completion for kitty
+if [[ "$TERM" == "xterm-kitty" ]]; then
+  kitty + complete setup zsh | source /dev/stdin
+fi
+
+# Colorize completions using default `ls` colors.
+zstyle ':completion:*' list-colors ''
+
+# Enable keyboard navigation of completions in menu
+# (not just tab/shift-tab but cursor keys as well):
+zstyle ':completion:*' menu select
+
+# persistent reshahing i.e puts new executables in the $path
+# if no command is set typing in a line will cd by default
+zstyle ':completion:*' rehash true
+
+# Allow completion of ..<Tab> to ../ and beyond.
+zstyle -e ':completion:*' special-dirs '[[ $PREFIX = (../)#(..) ]] && reply=(..)'
+
+# Categorize completion suggestions with headings:
+zstyle ':completion:*' group-name ''
+
+# Style the group names
+# zstyle ':completion:*' format %F{yellow}%B%U%{$__DOTS[ITALIC_ON]%}%d%{$__DOTS[ITALIC_OFF]%}%b%u%f
+
+# enabling autocompletion of privileged environments in privileged commands
+zstyle ':completion::complete:*' gain-privileges 1
+
+# forces zsh to realize new commands
+zstyle ':completion:*' completer _oldlist _expand _complete _match _ignored _approximate
+
+# matches case insensitive for lowercase
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.cache/zsh
+zstyle ':urlglobber' url-other-schema
+
+# Added by running `compinstall`
+zstyle ':completion:*' expand suffix
+zstyle ':completion:*' file-sort modification
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' list-suffixes true
+# End of lines added by compinstall
+
+# Make completion:
+# (stolen from Wincent)
+# - Try exact (case-sensitive) match first.
+# - Then fall back to case-insensitive.
+# - Accept abbreviations after . or _ or - (ie. f.b -> foo.bar).
+# - Substring complete (ie. bar -> foobar).
+zstyle ':completion:*' matcher-list '' '+m:{[:lower:]}={[:upper:]}' '+m:{[:upper:]}={[:lower:]}' '+m:{_-}={-_}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+# This enables Zsh to understand commands like docker run -it ubuntu.
+# However, by enabling this, this also makes Zsh complete docker run
+# -u<tab> with docker run -uapprox which is not valid. The users have
+# to put the space or the equal sign themselves before trying to complete.
+# Therefore, this behavior is disabled by default. To enable it:
+
+# zstyle ':completion:*:*:docker:*' option-stacking yes
+# zstyle ':completion:*:*:docker-*:*' option-stacking yes
+
+#-------------------------------------------------------------------------------
+#               Options
+#-------------------------------------------------------------------------------
+setopt RM_STAR_WAIT
+setopt AUTOPARAMSLASH       # tab completing directory appends a slash
+setopt ALWAYS_TO_END        # move cursor to end if word had one match
+setopt AUTO_CD              # cd by typing directory name if it's not a command
+setopt AUTO_LIST            # automatically list choices on ambiguous completion
+setopt AUTO_MENU            # automatically use menu completion
+setopt CORRECT_ALL          # autocorrect commands
+setopt INTERACTIVE_COMMENTS # allow comments in interactive shells
+setopt COMPLETE_ALIASES     # autocomplete for aliases
+setopt APPEND_HISTORY
+setopt EXTENDED_HISTORY
+setopt HIST_IGNORE_ALL_DUPS # remove older duplicate entries from history
+setopt HIST_REDUCE_BLANKS   # remove superfluous blanks from history items
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_VERIFY
+setopt SHARE_HISTORY        # share history between different instances
+setopt INC_APPEND_HISTORY   # save history entries as soon as they are entered
+setopt No_BEEP              # beeping is annoying
+unsetopt NOMATCH
+unsetopt PROMPT_SP
+setopt CD_ABLE_VARS
+setopt EXTENDED_GLOB
+stty stop undef             # Disable ctrl-s to freeze terminal.
+
+# config
+autoload -U colors && colors  # Load colors
+
+#autoload -U colors && colors
+export CLICOLOR=1
+
+# Init completions
+# autoload -Uz compinit
+# compinit
+
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+zle_highlight=('paste:none')
+zshcache_time="$(date +%s%N)"
+
+#-------------------------------------------------------------------------------
+#               Mappings
+#-------------------------------------------------------------------------------
+# vi mode
+export KEYTIMEOUT=1
+bindkey -v '^?' backward-delete-char
+bindkey '^ ' autosuggest-accept
+bindkey ‘^R’ history-incremental-search-backward
+bindkey -s '^s' 'ncdu^M'
+bindkey -s '^z' 'zi^M'
+bindkey "^n" down-line-or-beginning-search # Down
+bindkey "^k" up-line-or-beginning-search # Up
+
+#-------------------------------------------------------------------------------
+#               Exports
+#-------------------------------------------------------------------------------
+export GPG_TTY=$(tty)
+
+# hColorful Man Pages
+export PAGER=less
+export BAT_PAGER="less -RFXi"
 export MANWIDTH=999
 
 # Enable a better reverse search experience.
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
 export FZF_DEFAULT_OPTS="--layout=reverse --inline-info --height=80% --color=dark"
+# Don't open FZF in a separate split in tmux
+export FZF_TMUX=0
 
 # Colorful Man Pages
 export PAGER=less
@@ -30,10 +196,6 @@ export LESS_TERMCAP_so=$'\E[38;5;246m'      # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'             # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m'   # begin underline
 
-# XDG directories
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_DATA_HOME="$HOME/.local/share"
 export SUDO_ASKPASS="$LOCAL/dmenu/dmenupass"
 
 if [ -x "$HOME/lib/azure-cli/bin/az" ]; then
@@ -68,84 +230,3 @@ path=(
 )
 
 export PATH
-
-CASE_SENSITIVE="true"
-HIST_STAMPS="mm/dd/yyyy"
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-
-# config
-autoload -U colors && colors  # Load colors
-
-#autoload -U colors && colors
-export CLICOLOR=1
-
-# Init completions
-autoload -Uz compinit
-compinit
-
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-
-zle_highlight=('paste:none')
-zshcache_time="$(date +%s%N)"
-
-# opts
-setopt always_to_end        # move cursor to end if word had one match
-setopt auto_cd              # cd by typing directory name if it's not a command
-setopt auto_list            # automatically list choices on ambiguous completion
-setopt auto_menu            # automatically use menu completion
-setopt correct_all          # autocorrect commands
-setopt hist_ignore_all_dups # remove older duplicate entries from history
-setopt hist_reduce_blanks   # remove superfluous blanks from history items
-setopt inc_append_history   # save history entries as soon as they are entered
-setopt share_history        # share history between different instances
-setopt interactive_comments # allow comments in interactive shells
-setopt complete_aliases     # autocomplete for aliases
-unsetopt nomatch
-unsetopt PROMPT_SP
-setopt append_history
-
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/razak/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/razak/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/razak/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/razak/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-# zsh-autosuggestions accept
-bindkey '^ ' autosuggest-accept
-
-# forces zsh to realize new commands
-zstyle ':completion:*' completer _oldlist _expand _complete _match _ignored _approximate
-# select completions with arrow keys
-zstyle ':completion:*' menu select
-# group results by category
-zstyle ':completion:*' group-name ''
-# matches case insensitive for lowercase
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-zstyle ':completion:*' accept-exact '*(N)'
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.cache/zsh
-# enabling autocompletion of privileged environments in privileged commands
-zstyle ':completion::complete:*' gain-privileges 1
-zstyle ':urlglobber' url-other-schema
-zmodload -i zsh/complist
-
-# This enables Zsh to understand commands like docker run -it ubuntu.
-# However, by enabling this, this also makes Zsh complete docker run
-# -u<tab> with docker run -uapprox which is not valid. The users have
-# to put the space or the equal sign themselves before trying to complete.
-# Therefore, this behavior is disabled by default. To enable it:
-zstyle ':completion:*:*:docker:*' option-stacking yes
-zstyle ':completion:*:*:docker-*:*' option-stacking yes

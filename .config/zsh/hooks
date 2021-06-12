@@ -1,19 +1,3 @@
-#!/bin/zsh
-
-# Change cursor shape for different vi modes.
-function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]]
-     [[ $1 = 'block' ]]; then
-    echo -ne '\e[1 q'
-
-  elif [[ ${KEYMAP} == main ]]
-       [[ ${KEYMAP} == viins ]]
-       [[ ${KEYMAP} = '' ]]
-       [[ $1 = 'beam' ]]; then
-    echo -ne '\e[5 q'
-  fi
-}
-
 rehash_precmd() {
   if [[ -a /var/cache/zsh/pacman ]]; then
     local paccache_time="$(date -r /var/cache/zsh/pacman +%s%N)"
@@ -27,6 +11,9 @@ rehash_precmd() {
 reset_broken_terminal () {
 	printf '%b' '\e[0m\e(B\e)0\017\e[?5l\e7\e[0;0r\e8'
 }
+
+add-zsh-hook -Uz precmd rehash_precmd
+add-zsh-hook -Uz precmd reset_broken_terminal
 
 command_not_found_handler() {
 	local pkgs cmd="$1" files=()
@@ -48,9 +35,6 @@ command_not_found_handler() {
 	fi
 	return 127
 }
-
-add-zsh-hook -Uz precmd rehash_precmd
-add-zsh-hook -Uz precmd reset_broken_terminal
 
 for dump in ~/.zcompdump(N.mh+24); do
 	compinit

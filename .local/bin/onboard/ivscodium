@@ -3,20 +3,37 @@
 set -eufo pipefail
 
 extensions=(
-  asvetliakov.vscode-neovim
-  atishay-jain.all-autocomplete
-  dbaeumer.vscode-eslint
+  # global
   dkundel.vscode-new-file
-  eamodio.gitlens
-  esbenp.prettier-vscode
+  atishay-jain.all-autocomplete
+  aaron-bond.better-comments
+  alefragnani.bookmarks
   formulahendry.code-runner
-  ms-azuretools.vscode-azureappservice
-  ms-azuretools.vscode-docker
-  ms-vscode.azure-account
-  ms-vscode.azurecli
-  vspacecode.whichkey
-  wallabyjs.quokka-vscode
+  naumovs.color-highlight
+  asvetliakov.vscode-neovim
   zhuangtongfa.material-theme
+  pnp.polacode
+  vspacecode.whichkey
+  # workspace specific
+  ms-vscode.azure-account
+  ms-azuretools.vscode-azureappservice
+  ms-vscode.azurecli
+  ms-azuretools.vscode-azureresourcegroups
+  pranaygp.vscode-css-peek
+  ms-azuretools.vscode-docker
+  dbaeumer.vscode-eslint
+  lamartire.git-indicators
+  felipecaputo.git-project-manager
+  eamodio.gitlens
+  qezhu.gitlink
+  ecmel.vscode-html-css
+  ms-toolsai.jupyter
+  ritwickdey.live-sass
+  ritwickdey.liveserver
+  esbenp.prettier-vscode
+  wallabyjs.quokka-vscode
+  humao.rest-client
+  dkundel.vscode-npm-source
 )
 
 for extension in ${extensions[@]}; do

@@ -27,6 +27,7 @@
     dmenu = /usr/bin/dmenu -p dunst:
     # browser = /usr/bin/firefox -new-tab
     icon_position = off
+    timeout = 10
 
 [shortcuts]
     close = ctrl+space
