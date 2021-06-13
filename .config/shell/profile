@@ -31,17 +31,6 @@ compinit
 _comp_options+=(globdots)   # Include hidden files.
 
 #-------------------------------------------------------------------------------
-#           Plugins
-#-------------------------------------------------------------------------------
-# These should be source *BEFORE* setting up hooks
-source $PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $PLUGIN_DIR/zsh-completions/zsh-completions.plugin.zsh
-source $PLUGIN_DIR/alias-tips/alias-tips.plugin.zsh
-source $PLUGIN_DIR/zsh-z/zsh-z.plugin.zsh
-autoload zmv # builtin zsh rename command
-
-#-------------------------------------------------------------------------------
 #               Completion
 #-------------------------------------------------------------------------------
 # Completion for kitty
@@ -136,9 +125,6 @@ unsetopt PROMPT_SP
 setopt CD_ABLE_VARS
 setopt EXTENDED_GLOB
 stty stop undef             # Disable ctrl-s to freeze terminal.
-
-# config
-autoload -U colors && colors  # Load colors
 
 #autoload -U colors && colors
 export CLICOLOR=1

@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+EDITOR="nvim"
+
 alias b="bash"
 alias i='sudo'
 alias e="touch"
@@ -39,7 +41,7 @@ alias wifi="nmtui"
 
 # edit
 alias a="$EDITOR ~/.config/zsh/aliases"
-alias zc="$EDITOR ~/.zshrc"
+alias zc="$EDITOR ~/.config/zsh/.zshrc"
 alias ze="nvr ~/.config/shell/profile"
 alias xe="$EDITOR ~/.config/x11/xprofile"
 alias xr="$EDITOR ~/.config/x11/xresources"
