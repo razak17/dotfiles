@@ -143,7 +143,7 @@ alias ax='tmux a -t'
 alias axd='tmux -L Dev a -t'
 alias axb='tmux -L Dull a -t'
 alias aff='ftmux -first'
-alias fs='ftmux -s'
+alias fn='ftmux -s'
 alias fk='ftmux -k'
 
 # Misc

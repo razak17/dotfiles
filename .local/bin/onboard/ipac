@@ -45,6 +45,7 @@ pac_packages=(
   'axel'
   'elinks'
   'youtube-dl'
+  'bat'
   # 'keepassxc'
   # 'thunderbird'
   # 'whatsapp-nativefier'

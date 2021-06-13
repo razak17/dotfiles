@@ -1,17 +1,20 @@
-#!/bin/sh
+#!/bin/zsh
 
-# autoload vcs and colors
+autoload -Uz add-zsh-hook
+
+# vcs_info is a zsh native module for getting git info into your
+# prompt. It's not as fast as using git directly in some cases
+# but easy and well documented.
+# http://zsh.sourceforge.net/Doc/Release/User-Contributions.html
+# %c - git staged
+# %u - git untracked
+# %b - git branch
+# %r - git repo
 autoload -Uz vcs_info
 autoload -U colors && colors
 
-# show up to 3 parent dirs, except ~, resolve all other dir aliases
-function collapse_pwd {
-    curr_pwd=$(pwd | sed -e "s,^$HOME,~,")
-    relevant_slashes=$(expr $(echo $curr_pwd| tr -d -c /|wc -c) - 1)
-    echo $curr_pwd| cut -d / -f$(($relevant_slashes>0?$relevant_slashes:1))-
-}
-
-# enable only git
+# Using named colors means that the prompt automatically adapts to how these
+# are set by the current terminal theme
 zstyle ':vcs_info:*' enable git
 
 # setup a hook that runs before every ptompt.
@@ -19,30 +22,15 @@ precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 
-# add a function to check for untracked files in the directory.
-# from https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
-zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
-#
-+vi-git-untracked(){
-    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-        git status --porcelain | grep '??' &> /dev/null ; then
-        # This will show the marker if there are any untracked files in repo.
-        # If instead you want to show the marker only if there are untracked
-        # files in $PWD, use:
-        #[[ -n $(git ls-files --others --exclude-standard) ]] ; then
-        hook_com[staged]+='!' # signify new files with a bang
-    fi
-}
-
 zstyle ':vcs_info:*' check-for-changes true
-# zstyle ':vcs_info:git:*' formats " %r/%S %b %m%u%c "
-zstyle ':vcs_info:git:*' formats " %{$fg[blue]%}(%{$fg[red]%}%m%u%c%{$fg[yellow]%}%{$fg[magenta]%} %b%{$fg[blue]%})"
+# zstyle ':vcs_info:git:*' formats " %{$fg[blue]%}(%{$fg[red]%}%m%u%c%{$fg[yellow]%}%{$fg[magenta]%} %b%{$fg[blue]%})"
+zstyle ':vcs_info:git:*' formats " (%{$fg[yellow]%}%b%{$fg[blue]%})"
 
-# format our main prompt for hostname current folder, and permissions.
-# PROMPT="%B%{$fg[blue]%}[%{$fg[white]%}%n%{$fg[red]%}@%{$fg[white]%}%m%{$fg[blue]%}] %(?:%{$fg_bold[green]%}➜  :%{$fg_bold[red]%}➜  )%{$fg[cyan]%}%c%{$reset_color%}"
-PROMPT='%{${fg[green]}%}$(collapse_pwd) %{${fg_bold[blue]}%}»%{${reset_color}%}' #${PWD/#$HOME/~}
-# PROMPT="%{$fg[green]%}%n@%m %~ %{$reset_color%}%#> "
-PROMPT+="\$vcs_info_msg_0_ "
-# TODO look into this for more colors
-# https://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/
-# also ascii escape codes ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$reset_color%}"
+# PROMPT="%B%{$fg[cyan]%}%c"
+# PROMPT="%{$fg[cyan]%}%c%{$fg[green]} »{${reset_color}}"
+# PROMPT="%B%{$fg[blue]%}%(?:%{$fg_bold[green]%}➜  :%{$fg_bold[red]%}➜  )%{$fg[cyan]%}%c%{$reset_color%}"
+# PROMPT+="\$vcs_info_msg_0_ "
+PROMPT="%{$fg[cyan]%}%c\$vcs_info_msg_0_ %(?:%{$fg_bold[green]%}» :%{$fg_bold[red]%}» )%{$reset_color%}"
+
+
+

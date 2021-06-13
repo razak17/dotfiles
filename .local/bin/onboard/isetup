@@ -13,22 +13,15 @@ setupSsh() {
   fi
 }
 
-installOhmyzsh() {
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-  git clone https://github.com/agkozak/zsh-z $ZSH_CUSTOM/plugins/zsh-z
-  git clone https://github.com/agkozak/zsh-z ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-z
-  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
-}
+# ZSH only and most performant way to check existence of an executable
+# https://www.topbug.net/blog/2016/10/11/speed-test-check-the-existence-of-a-command-in-bash-and-zsh/
+exists() { (( $+commands[$1] )); }
 
 installPlugins() {
   mkdir -p ~/.config/zsh/plugins
+  mkdir -p ~/.config/zsh/completion
   plugins=(
-    # 'ohmyzsh/ohmyzsh/tree/master/plugins/copybuffer'
-    # 'docker/cli/blob/master/contrib/completion/zsh'
-    # 'ohmyzsh/ohmyzsh/tree/master/plugins/docker-compose'
-    # 'ohmyzsh/ohmyzsh/tree/master/plugins/git'
+    'esc/conda-zsh-completion'
     'djui/alias-tips'
     'zsh-users/zsh-autosuggestions'
     'zsh-users/zsh-completions'
@@ -38,17 +31,28 @@ installPlugins() {
   # curl -sLo "https://github.com/$download_path" "$url"
   for i in ${plugins[@]}; do
     name=$(echo ${i} | sed 's|.*/||')
-    if [[ -d "~/.config/zsh/plugins/${name}" ]]; then
+    if [[ -d "$HOME/.config/zsh/plugins/${name}" ]]; then
       echo "dir ${name} already exists."
     else
       $(git clone https://github.com/$i ~/.config/zsh/plugins/$name)
+      echo "clone"
     fi
   done
+  # Others
+  raw="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins"
+  cd ~/.config/zsh/completion
+  if exists wget; then
+    wget "$raw/docker-compose/_docker-compoes"
+    wget "$raw/docker/_docker"
+  fi
 }
 
+installFzf() {
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
+}
 installTmuxPlugins() {
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-  git clone https://github.com/tmux-plugins/tpm ~/.config/tmux     /plugins/tpm
+  git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 }
 
 installAsdf() {
@@ -57,6 +61,5 @@ installAsdf() {
 
 # changeShell
 # setupSsh
-# installOhmyzsh
 # installTmuxPlugins
 installPlugins
