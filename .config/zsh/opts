@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 
 setopt RM_STAR_WAIT
 setopt AUTOPARAMSLASH       # tab completing directory appends a slash
@@ -21,11 +21,11 @@ setopt HIST_VERIFY
 setopt SHARE_HISTORY        # share history between different instances
 setopt INC_APPEND_HISTORY   # save history entries as soon as they are entered
 setopt No_BEEP              # beeping is annoying
+setopt MENU_COMPLETE   # DO NOT AUTOSELECT THE FIRST COMPLETION ENTRY
 setopt CD_ABLE_VARS
 setopt EXTENDED_GLOB
 unsetopt NOMATCH
 unsetopt PROMPT_SP
-unsetopt MENU_COMPLETE   # DO NOT AUTOSELECT THE FIRST COMPLETION ENTRY
 unsetopt FLOWCONTROL
 setopt COMPLETE_IN_WORD
 
