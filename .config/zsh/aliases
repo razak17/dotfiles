@@ -41,7 +41,7 @@ alias wifi="nmtui"
 
 # edit
 alias a="$EDITOR ~/.config/zsh/aliases"
-alias zc="$EDITOR ~/.config/zsh/zshrc"
+alias zc="$EDITOR ~/.config/zsh/.zshrc"
 alias ze="nvr ~/.config/shell/profile"
 alias xe="$EDITOR ~/.config/x11/xprofile"
 alias xr="$EDITOR ~/.config/x11/xresources"
@@ -60,6 +60,7 @@ alias nvli="$EDITOR lua/core/init.lua"
 # alias nvr="$EDITOR --noplugin -u ~/init.lua"
 alias nvr="$EDITOR --noplugin -u ~/init.lua"
 alias invr="sudo $EDITOR --noplugin -u ~/init.lua"
+alias gnv="wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage"
 
 # Programs
 alias fm="firefox -ProfileManager"

@@ -1,8 +1,7 @@
 #!/bin/sh
 
 mkdir -p ~/.dots
-cd $HOME/.dots
-git clone https://github.com/neovim/neovim
-cd ~/.dots/neovim
+git clone https://github.com/neovim/neovim $HOME/.dots
+cd $HOME/.dots/neovim
 CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install

@@ -17,7 +17,7 @@ setupSsh() {
 # https://www.topbug.net/blog/2016/10/11/speed-test-check-the-existence-of-a-command-in-bash-and-zsh/
 exists() { (( $+commands[$1] )); }
 
-installPlugins() {
+installZshPlugins() {
   mkdir -p ~/.config/zsh/plugins
   mkdir -p ~/.config/zsh/completion
   plugins=(
@@ -59,7 +59,41 @@ installAsdf() {
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.0-rc1
 }
 
-# changeShell
-# setupSsh
-# installTmuxPlugins
-installPlugins
+installFnm() {
+  curl -fsSL https://fnm.vercel.app/install | bash
+}
+
+while [[ "$#" -gt 0 ]]; do
+  curr=$1
+  shift
+
+  case "$curr" in
+  "-fnm")
+    installFnm
+    ;;
+  "-asdf")
+  installAsdf
+    ;;
+  "-fzf")
+    installFzf
+    ;;
+  "-zsh")
+    installZshPlugins
+    ;;
+  "-ssh")
+    setupSsh
+    ;;
+  "-shell")
+    changeShell
+    ;;
+  "-all")
+    setupSsh
+    changeShell
+    installZshPlugins
+    installFnm
+    installAsdf
+    installFzf
+  ;;
+  *) echo "Unavailable command... $curr"
+  esac
+done

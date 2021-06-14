@@ -36,8 +36,3 @@ command_not_found_handler() {
 	fi
 	return 127
 }
-
-for dump in ~/.zcompdump(N.mh+24); do
-	compinit
-done
-compinit -C

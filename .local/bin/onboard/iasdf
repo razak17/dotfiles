@@ -1,21 +1,54 @@
 #!/bin/sh
 
-asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
-asdf install nodejs 15.5.1
-asdf global nodejs 15.5.1
+installNode() {
+  asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+  bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+  asdf install nodejs 15.5.1
+  asdf global nodejs 15.5.1
+}
 
-asdf plugin-add golang https://github.com/kennyp/asdf-golang.git
-asdf install golang 1.16.2
-asdf global golang 1.16.2
+installGolang() {
+  asdf plugin-add golang https://github.com/kennyp/asdf-golang.git
+  asdf install golang 1.16.2
+  asdf global golang 1.16.2
+}
+
+installErlang() {
+  asdf plugin-add erlang
+  asdf install erlang 23.2.7
+  asdf global erlang 23.2.7
+}
 
 
-asdf plugin-add erlang
-asdf install erlang 23.2.7
-asdf global erlang 23.2.7
+installElixir() {
+  asdf plugin-add elixir
+  asdf install elixir 1.11.3-otp-23
+  asdf global elixir 1.11.3-otp-23
+}
 
+while [[ "$#" -gt 0 ]]; do
+  curr=$1
+  shift
 
-asdf plugin-add elixir
-asdf install elixir 1.11.3-otp-23
-asdf global elixir 1.11.3-otp-23
-
+  case "$curr" in
+  "-node")
+  installNode
+    ;;
+  "-go")
+  installGolang
+    ;;
+  "-erl")
+    installErlang
+    ;;
+  "-ex")
+    installElixir
+    ;;
+  "-all")
+    installNode
+    installGolang
+    installErlang
+    installElixir
+  ;;
+  *) echo "Unavailable command... $curr"
+  esac
+done

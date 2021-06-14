@@ -64,14 +64,37 @@ yay_packages=(
   # 'wps-office'
 )
 
-for i in ${pac_packages[@]}; do
-  echo Installing: $i
-  $PAC $i
-done
+installAurPackage() {
+  echo 'Aur stuff'
+  echo '\n'
+  for i in ${yay_packages[@]}; do
+    echo Installing: $i
+    $YAY $i
+  done
+}
 
-echo 'Aur stuff'
-echo '\n'
-for i in ${yay_packages[@]}; do
-  echo Installing: $i
-  $YAY $i
+installPacmanPackages() {
+  for i in ${pac_packages[@]}; do
+    echo Installing: $i
+    $PAC $i
+  done
+}
+
+while [[ "$#" -gt 0 ]]; do
+  curr=$1
+  shift
+
+  case "$curr" in
+  "-yay")
+    installAurPackage
+    ;;
+  "-pac")
+    installPacmanPackages
+    ;;
+  "-all")
+    installAurPackage
+    installPacmanPackages
+  ;;
+  *) echo "Unavailable command... $curr"
+  esac
 done

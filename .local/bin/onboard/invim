@@ -18,18 +18,18 @@ dirs=(
 )
 
 simple_lsp=(
-  "vscode-json-languageserver",
-  "vscode-css-languageserver-bin",
-  "dockerfile-language-server-nodejs",
-  "graphql-language-service-cli",
-  "vscode-html-languageserver-bin",
-  "svelte-language-server",
-  "vim-language-server",
-  "yaml-language-server",
-  "bash-language-server",
-  "sql-language-server",
-  'typescript-language-server',
-  'typescript',
+  "vscode-json-languageserver"
+  "vscode-css-languageserver-bin"
+  "dockerfile-language-server-nodejs"
+  "graphql-language-service-cli"
+  "vscode-html-languageserver-bin"
+  "svelte-language-server"
+  "vim-language-server"
+  "yaml-language-server"
+  "bash-language-server"
+  'sql-language-server'
+  'typescript-language-server'
+  'typescript'
   'pyright'
   'neovim'
 
@@ -143,15 +143,50 @@ installRocks() {
 }
 
 createDirs
-pythonVenvInit
-dapVenvInit
-nodeHostInit
-golangInit
-installLua
-installLuarocks
-installSumneko
-installElixirLs
-# installStyLua
-# installShellcheck
-installNodeDebug2
-installRocks
+
+while [[ "$#" -gt 0 ]]; do
+  curr=$1
+  shift
+
+  case "$curr" in
+  "-py")
+    pythonVenvInit
+    ;;
+  "-dap")
+    dapVenvInit
+    ;;
+  "-node")
+    nodeHostInit
+    ;;
+  "-go")
+    golangInit
+    ;;
+  "-dap")
+    installNodeDebug2
+    ;;
+  "-lua")
+    installLua
+    installLuarocks
+    ;;
+  "-lsp")
+    installSumneko
+    installElixirLs
+    ;;
+  "-rocks")
+    installRocks
+    ;;
+  "-all")
+    pythonVenvInit
+    dapVenvInit
+    nodeHostInit
+    golangInit
+    installLua
+    installLuarocks
+    installSumneko
+    installElixirLs
+    installNodeDebug2
+    installRocks
+  ;;
+  *) echo "Unavailable command... $curr"
+  esac
+done

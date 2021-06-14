@@ -28,12 +28,8 @@ if [ -x "$HOME/lib/azure-cli/bin/az" ]; then
 fi
 
 if [ -x "$HOME/.fnm/fnm" ]; then
-  FNM_PREFIX="$HOME/.fnm/node-versions/v15.5.1/installation"
+  FNM_PREFIX="$HOME/.fnm/node-versions/v16.3.0/installation"
   FNM_PACKAGES="$FNM_PREFIX/lib/node_modules/bin"
-fi
-
-if [ -d "$HOME/.asdf" ]; then
-  ASDF_PACKAGES="$ASDF_INSTALLS/nodejs/15.5.1/.npm/bin"
 fi
 
 path=(
@@ -44,7 +40,7 @@ path=(
   "$LOCAL/statusbar"
   "$LOCAL/utils"
   "$AZ_BIN"
-  "$ASDF_PACKAGES"
+  "$FNM_PACKAGES"
   "$path[@]"
 )
 
@@ -62,9 +58,5 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-#
-
-# Disable slow pip
-eval "`pip completion --zsh`"
 
 export PATH

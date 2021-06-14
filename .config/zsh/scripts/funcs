@@ -35,13 +35,6 @@ cat() {
   fi
 }
 
-# Another function which is not based on grep or locate
-cdf() {
-  local file
-  local dir
-  file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir" || exit
-}
-
 # fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
 fbr() {
   local branches branch

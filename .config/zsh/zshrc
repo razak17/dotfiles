@@ -3,15 +3,12 @@
 zmodload zsh/datetime
 zmodload zsh/zprof
 
-typeset -U PATH path
-
 # Init completions
 autoload -Uz compinit
 zmodload -i zsh/complist
-# compinit
 _comp_options+=(globdots)   # Include hidden files.
 
-CASE_SENSITIVE="true"
+# History
 HIST_STAMPS="mm/dd/yyyy"
 HISTFILE=~/.zsh_history
 HISTSIZE=50000
@@ -26,6 +23,44 @@ source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZDOTDIR/plugins/conda-zsh-completion/conda-zsh-completion.plugin.zsh
 autoload zmv # builtin zsh rename command
 
+#autoload -U colors && colors
+export CLICOLOR=1
+
+# Enable a better reverse search experience.
+export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+export FZF_DEFAULT_OPTS="--layout=reverse --inline-info --height=80% --color=dark"
+
+# Don't open FZF in a separate split in tmux
+export FZF_TMUX=0
+
+# asdf
+if [ -d "$HOME/.asdf" ]; then
+  source $HOME/.asdf/asdf.sh
+  fpath+="$ASDF_DIR/completions/"
+fi
+
+# fnm
+if [ -d "$HOME/.fnm" ]; then
+  export PATH=/home/razak/.fnm:$PATH
+  eval "`fnm env`"
+fi
+
+# Load completions
+fpath+="$ZDOTDIR/completion/"
+
+# Local scripts
+for script in $ZDOTDIR/scripts/*; do
+  source $script
+done
+
+# Azure cli
+if [ -d "$HOME/lib/azure-cli" ]; then
+  source $HOME/lib/azure-cli/az.completion
+fi
+
+# pip
+# eval "`pip completion --zsh`"
+
 [ -f $ZDOTDIR/opts ]     && source $ZDOTDIR/opts
 [ -f $ZDOTDIR/compe ]    && source $ZDOTDIR/compe
 [ -f $ZDOTDIR/hooks ]    && source $ZDOTDIR/hooks
@@ -39,31 +74,6 @@ ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_MANUAL_REBIND=""
 
-#autoload -U colors && colors
-export CLICOLOR=1
-
-# Enable a better reverse search experience.
-export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
-export FZF_DEFAULT_OPTS="--layout=reverse --inline-info --height=80% --color=dark"
-# Don't open FZF in a separate split in tmux
-export FZF_TMUX=0
-
-fpath+="$ZDOTDIR/completion/"
-
-for script in $ZDOTDIR/scripts/*; do
-  source $script
-done
-
-if [ -e  "$HOME/lib/azure-cli/az.completion" ]; then
-  source $HOME/lib/azure-cli/az.completion
-fi
-
-source $HOME/.asdf/asdf.sh
-source $HOME/.asdf/completions/_asdf
-
-# Disable slow pip
-# eval "`pip completion --zsh`"
-
 export KEYTIMEOUT=1
 bindkey '^ ' autosuggest-accept
 bindkey ‘^R’ history-incremental-search-backward
@@ -71,3 +81,8 @@ bindkey -s '^s' 'ncdu^M'
 bindkey -s '^z' 'zi^M'
 bindkey "^n" down-line-or-beginning-search # Down
 bindkey "^k" up-line-or-beginning-search # Up
+
+for dump in ~/.zcompdump(N.mh+24); do
+	compinit
+done
+compinit -C
