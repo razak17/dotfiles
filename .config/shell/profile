@@ -1,7 +1,6 @@
 #!/bin/zsh
 
 LOCAL="$HOME/.local/bin"
-ASDF_INSTALLS="$HOME/.asdf/installs"
 
 # hColorful Man Pages
 export PAGER=less
@@ -31,6 +30,10 @@ if [ -x "$HOME/.fnm/fnm" ]; then
   FNM_PREFIX="$HOME/.fnm/node-versions/v16.3.0/installation"
   FNM_PACKAGES="$FNM_PREFIX/lib/node_modules/bin"
 fi
+# asdf
+if [ -d "$HOME/.asdf" ]; then
+  export GOPATH="$ASDF_DIR/installs/golang/1.16.2"
+fi
 
 path=(
   "$LOCAL"
@@ -40,6 +43,8 @@ path=(
   "$LOCAL/statusbar"
   "$LOCAL/utils"
   "$AZ_BIN"
+  "$GOPATH/go/bin"
+  "$GOPATH/packages/bin"
   "$FNM_PACKAGES"
   "$path[@]"
 )

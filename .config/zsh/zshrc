@@ -70,7 +70,7 @@ fi
 [ -f $HOME/.fzf.zsh ]    && source $HOME/.fzf.zsh
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=241'
-ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
+# ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_MANUAL_REBIND=""
 
