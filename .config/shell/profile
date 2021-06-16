@@ -39,19 +39,20 @@ export SAVEHIST=50000
 if [ -x "$HOME/.fnm/fnm" ]; then
   export FNMPATH="/home/razak/.fnm"
   FNM_PREFIX="$HOME/.fnm/node-versions/v16.3.0/installation"
-  export FNM_PACKAGES="$FNM_PREFIX/lib/node_modules/bin"
+  export FNM_PACKAGES="$FNM_PREFIX/lib/node_modules"
 fi
 
 # asdf
 if [ -d "$HOME/.asdf/installs/golang" ]; then
-  export GOPATH="$ASDF_DIR/installs/golang/1.16.2/go/bin"
-  export GOPACKAGES="$ASDF_DIR/installs/golang/1.16.2/packages/bin"
-  export GOPACKAGES2="$HOME/go/bin"
+  export GOPATH="$ASDF_DIR/installs/golang/1.16.2/go"
+  export GOPACKAGES="$ASDF_DIR/installs/golang/1.16.2/packages"
+elif [ -d "$HOME/go" ]; then
+  export GOPACKAGES2="$HOME/go"
 fi
 
 # Azure cli
 if [ -d "$HOME/lib/azure-cli" ]; then
-  export AZ_BIN="$HOME/lib/azure-cli/bin"
+  export AZ_CLI="$HOME/lib/azure-cli"
   source $HOME/lib/azure-cli/az.completion
 fi
 
@@ -63,11 +64,11 @@ path=(
   "$LOCAL/statusbar"
   "$LOCAL/utils"
   "$FNMPATH"
-  "$AZ_BIN"
-  "$GOPACKAGES2"
-  "$GOPATH"
-  "$GOPACKAGES"
-  "$FNM_PACKAGES"
+  "$AZ_CLI/bin"
+  "$GOPATH/bin"
+  "$GOPACKAGES/bin"
+  "$GOPACKAGES2/bin"
+  "$FNM_PACKAGES/bin"
   "$path[@]"
 )
 

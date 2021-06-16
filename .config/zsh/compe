@@ -6,6 +6,14 @@ __DOTS[ITALIC_ON]=$'\e[3m'
 __DOTS[ITALIC_OFF]=$'\e[23m'
 __DOTS[LS_COLORS]=${LS_COLORS:-'di=34:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:'}
 
+# Init completions
+autoload -Uz compinit
+zmodload -i zsh/complist
+_comp_options+=(globdots)   # Include hidden files.
+
+# Override colors
+eval "$(dircolors -b $ZDOTDIR/dircolors)"
+
 # Enable keyboard navigation of completions in menu
 # (not just tab/shift-tab but cursor keys as well):
 zstyle ':completion:*:*:*:*:*' menu select
@@ -33,28 +41,16 @@ zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-d
 # Use caching to make completion for commands such as dpkg and apt usable.
 zstyle ':completion::complete:*' use-cache on
 zstyle ':completion::complete:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompcache"
-zstyle ':urlglobber' url-other-schema
-
-# Don't complete uninteresting users
-zstyle ':completion:*:*:*:users' ignored-patterns \
-        adm amanda apache at avahi avahi-autoipd beaglidx bin cacti canna \
-        clamav daemon dbus distcache dnsmasq dovecot fax ftp games gdm \
-        gkrellmd gopher hacluster haldaemon halt hsqldb ident junkbust kdm \
-        ldap lp mail mailman mailnull man messagebus  mldonkey mysql nagios \
-        named netdump news nfsnobody nobody nscd ntp nut nx obsrun openvpn \
-        operator pcap polkitd postfix postgres privoxy pulse pvm quagga radvd \
-        rpc rpcuser rpm rtkit scard shutdown squid sshd statd svn sync tftp \
-        usbmux uucp vcsa wwwrun xfs '_*'
-
-# automatically load bash completion functions
-autoload -U +X bashcompinit && bashcompinit
-
-# persistent reshahing i.e puts new executables in the $path
-# if no command is set typing in a line will cd by default
-zstyle ':completion:*' rehash true
 
 # Style the group names
-# zstyle ':completion:*' format %F{yellow}%B%U%{$__DOTS[ITALIC_ON]%}%d%{$__DOTS[ITALIC_OFF]%}%b%u%f
+zstyle ':completion:*' format %F{yellow}%B%U%{$__DOTS[ITALIC_ON]%}%d%{$__DOTS[ITALIC_OFF]%}%b%u%f
+
+# Group matches and descriptions.
+zstyle ':completion:*:*:*:*:corrections' format '%F{teal}!- %d (errors: %e) -!%f'
+zstyle ':completion:*:*:*:*:descriptions' format '%F{cyan}-- %D %d --%f'
+zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
+zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
+zstyle ':completion:*' format ' %F{blue}-- %d --%f'
 
 # enabling autocompletion of privileged environments in privileged commands
 zstyle ':completion::complete:*' gain-privileges 1
@@ -83,13 +79,6 @@ zstyle ':completion:*:default' list-prompt '%S%M matches%s'
 zstyle ':completion:*' list-suffixes true
 # End of lines added by compinstall
 
-# Group matches and descriptions.
-zstyle ':completion:*:*:*:*:corrections' format '%F{teal}!- %d (errors: %e) -!%f'
-zstyle ':completion:*:*:*:*:descriptions' format '%F{cyan}-- %D %d --%f'
-zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
-zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
-zstyle ':completion:*' format ' %F{blue}-- %d --%f'
-
 # Detaled list of files and folders
 # zstyle ':completion:*' file-list all
 
@@ -113,12 +102,5 @@ expand-or-complete-with-dots() {
 }
 zle -N expand-or-complete-with-dots
 # Set the function as the default tab completion widget
-bindkey -M emacs "^I" expand-or-complete-with-dots
 bindkey -M viins "^I" expand-or-complete-with-dots
 bindkey -M vicmd "^I" expand-or-complete-with-dots
-
-bindkey -M menuselect '^xg' clear-screen
-bindkey -M menuselect '^xi' vi-insert                      # Insert
-bindkey -M menuselect '^xh' accept-and-hold                # Hold
-bindkey -M menuselect '^xn' accept-and-infer-next-history  # Next
-bindkey -M menuselect '^xu' undo                           # Undo

@@ -1,24 +1,13 @@
 #!/bin/zsh
 
-# date
-zmodload zsh/datetime
-
 # profiling
 zmodload zsh/zprof
 
-# editor
-EDITOR="nvim"
-
-# Init completions
-autoload -Uz compinit
-zmodload -i zsh/complist
-_comp_options+=(globdots)   # Include hidden files.
+# DO not highligh& pasted text
+zle_highlight=('paste:none')
 
 # colors
 autoload -U colors && colors
-
-# Override colors
-eval "$(dircolors -b $ZDOTDIR/dircolors)"
 
 # These should be source *BEFORE* setting up hooks
 source $ZDOTDIR/plugins/zsh-completions/zsh-completions.plugin.zsh
@@ -36,14 +25,10 @@ for script in $ZDOTDIR/scripts/*; do
   source $script
 done
 
-add_file opts
-add_file compe
-add_file binds
-add_file hooks
-add_file prompt
-add_file aliases
-add_file vim-mode
+# load config files
+add_files opts compe vim-mode hooks binds prompt aliases
 
+# fzf
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
 # Load completions
@@ -73,9 +58,6 @@ eval "`fnm env`"
 if exists zoxide; then
   eval "$(zoxide init zsh)"
 fi
-
-zle_highlight=('paste:none')
-zshcache_time="$(date +%s%N)"
 
 # Load and initialize the completion system ignoring insecure directories with a
 # cache time of 20 hours, so it should almost always regenerate the first time a

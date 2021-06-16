@@ -8,15 +8,16 @@ function _t() {
   tree -I '.git|node_modules|bower_components|.DS_Store' --dirsfirst -L $levels -aC $@
 }
 
-function compress() {
+# compress
+function comp() {
   local DATE="$(date +%Y%m%d-%H%M%S)"
-  tar cvzf "$DATE.tar.gz" "$@"
+  tar cvzf "$DATE-$@.tar.gz" "$@"
 }
 
 function back() {
-    for file in "$@"; do
-        cp "$file" "$file".bak
-    done
+  for file in "$@"; do
+    cp "$file" "$file".bak
+  done
 }
 
 function lsg() {

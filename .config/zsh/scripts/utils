@@ -1,11 +1,12 @@
 #!/bin/zsh
 
-clear-tree-1() {
+# Only top level
+list_tree() {
     clear
     tree -L 1
 }
-zle -N clear-tree-1
-bindkey '^H' clear-tree-1
+zle -N list_tree
+bindkey '^H' list_tree
 
 # Default to using `bat` https://github.com/sharkdp/bat#installation if it has been installed
 cat() {
@@ -37,41 +38,43 @@ cx() {
 }
 
 mnt() {
-    local FILE="/mnt/external"
-    if [ ! -z $2 ]; then
-        FILE=$2
-    fi
+  local FILE="/mnt/external"
+  if [ ! -z $2 ]; then
+    FILE=$2
+  fi
 
-    if [ ! -z $1 ]; then
-        sudo mount "$1" "$FILE" -o rw
-        echo "Device in read/write mounted in $FILE"
-    fi
+  if [ ! -z $1 ]; then
+    sudo mount "$1" "$FILE" -o rw
+    echo "Device in read/write mounted in $FILE"
+  fi
 
-    if [ $# = 0 ]; then
-        echo "You need to provide the device (/dev/sd*) - use lsblk"
-    fi
+  if [ $# = 0 ]; then
+    echo "You need to provide the device (/dev/sd*) - use lsblk"
+  fi
 }
 
 umnt() {
-    local DIRECTORY="/mnt"
-    if [ ! -z $1 ]; then
-        DIRECTORY=$1
-    fi
-    MOUNTED=$(grep $DIRECTORY /proc/mounts | cut -f2 -d" " | sort -r)
-    cd "/mnt"
-    sudo umount $MOUNTED
-    echo "$MOUNTED unmounted"
+  local DIRECTORY="/mnt"
+  if [ ! -z $1 ]; then
+    DIRECTORY=$1
+  fi
+  MOUNTED=$(grep $DIRECTORY /proc/mounts | cut -f2 -d" " | sort -r)
+  cd "/mnt"
+  sudo umount $MOUNTED
+  echo "$MOUNTED unmounted"
 }
 
 zshcomp() {
-    for command completion in ${(kv)_comps:#-*(-|-,*)}
-    do
-        printf "%-32s %s\n" $command $completion
-    done | sort
+  for command completion in ${(kv)_comps:#-*(-|-,*)}
+  do
+    printf "%-32s %s\n" $command $completion
+  done | sort
 }
 
-add_file() {
-    [ -f $ZDOTDIR/$1 ] && source $ZDOTDIR/$1
+add_files() {
+  for i in "$@"; do
+    [ -f $ZDOTDIR/$i ] && source $ZDOTDIR/$i
+  done
 }
 
 nvimProfiling() {
@@ -89,3 +92,15 @@ nvimRawProfiling() {
     nvim --noplugin -u ~/init.lua "$@" --startuptime $HOME/docs/vim.log
   fi
 }
+
+# copy the active line from the command line buffer
+# onto the system clipboard
+copybuffer () {
+  if which clipcopy &>/dev/null; then
+    printf "%s" "$BUFFER" | clipcopy
+  else
+    echo "clipcopy function not found."
+  fi
+}
+zle -N copybuffer
+bindkey "^O" copybuffer

@@ -1,0 +1,34 @@
+#!/bin/zsh
+
+# Ref: Oh-my-zsh (clipboard)
+function detect-clipboard() {
+  emulate -L zsh
+
+  if [ -n "${DISPLAY:-}" ] && (( ${+commands[xclip]} )); then
+    function clipcopy() { xclip -in -selection clipboard < "${1:-/dev/stdin}"; }
+    function clippaste() { xclip -out -selection clipboard; }
+  elif [ -n "${DISPLAY:-}" ] && (( ${+commands[xsel]} )); then
+    function clipcopy() { xsel --clipboard --input < "${1:-/dev/stdin}"; }
+    function clippaste() { xsel --clipboard --output; }
+  else
+    function _retry_clipboard_detection_or_fail() {
+      local clipcmd="${1}"; shift
+      if detect-clipboard; then
+        "${clipcmd}" "$@"
+      else
+        print "${clipcmd}: Platform $OSTYPE not supported or xclip/xsel not installed" >&2
+        return 1
+      fi
+    }
+    function clipcopy() { _retry_clipboard_detection_or_fail clipcopy "$@"; }
+    function clippaste() { _retry_clipboard_detection_or_fail clippaste "$@"; }
+    return 1
+  fi
+}
+
+# Detect at startup. A non-zero exit here indicates that the dummy clipboards were set,
+# which is not really an error. If the user calls them, they will attempt to redetect
+# (for example, perhaps the user has now installed xclip) and then either print an error
+# or proceed successfully.
+detect-clipboard || true
+
