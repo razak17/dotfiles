@@ -1,0 +1,91 @@
+#!/bin/zsh
+
+clear-tree-1() {
+    clear
+    tree -L 1
+}
+zle -N clear-tree-1
+bindkey '^H' clear-tree-1
+
+# Default to using `bat` https://github.com/sharkdp/bat#installation if it has been installed
+cat() {
+  if hash bat 2>/dev/null; then
+    bat "$@"
+  else
+    cat "$@"
+  fi
+}
+
+# chmod a directory
+ch() {
+  sudo chmod -R 777 "$@"
+}
+
+# fix permissions
+chf() {
+  sudo compaudit | xargs chmod g-w,o-w "$@"
+}
+
+# chown a directory
+cho() {
+  sudo chown -R www:www "$@"
+}
+
+# chmod executable
+cx() {
+  sudo chmod +x "$@"
+}
+
+mnt() {
+    local FILE="/mnt/external"
+    if [ ! -z $2 ]; then
+        FILE=$2
+    fi
+
+    if [ ! -z $1 ]; then
+        sudo mount "$1" "$FILE" -o rw
+        echo "Device in read/write mounted in $FILE"
+    fi
+
+    if [ $# = 0 ]; then
+        echo "You need to provide the device (/dev/sd*) - use lsblk"
+    fi
+}
+
+umnt() {
+    local DIRECTORY="/mnt"
+    if [ ! -z $1 ]; then
+        DIRECTORY=$1
+    fi
+    MOUNTED=$(grep $DIRECTORY /proc/mounts | cut -f2 -d" " | sort -r)
+    cd "/mnt"
+    sudo umount $MOUNTED
+    echo "$MOUNTED unmounted"
+}
+
+zshcomp() {
+    for command completion in ${(kv)_comps:#-*(-|-,*)}
+    do
+        printf "%-32s %s\n" $command $completion
+    done | sort
+}
+
+add_file() {
+    [ -f $ZDOTDIR/$1 ] && source $ZDOTDIR/$1
+}
+
+nvimProfiling() {
+  if [ -z "$@" ]; then
+    nvim --startuptime $HOME/docs/vim.log
+  else
+    nvim "$@" --startuptime $HOME/docs/vim.log
+  fi
+}
+
+nvimRawProfiling() {
+  if [ -z "$@" ]; then
+    nvim --noplugin -u ~/init.lua --startuptime $HOME/docs/vim.log
+  else
+    nvim --noplugin -u ~/init.lua "$@" --startuptime $HOME/docs/vim.log
+  fi
+}

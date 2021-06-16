@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 autoload -Uz add-zsh-hook
 
@@ -11,7 +11,6 @@ autoload -Uz add-zsh-hook
 # %b - git branch
 # %r - git repo
 autoload -Uz vcs_info
-autoload -U colors && colors
 
 # Using named colors means that the prompt automatically adapts to how these
 # are set by the current terminal theme

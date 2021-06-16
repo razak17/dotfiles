@@ -19,3 +19,7 @@ shopt -s autocd
 # set -o vi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# fnm
+export PATH=/home/razak/.fnm:$PATH
+eval "`fnm env`"

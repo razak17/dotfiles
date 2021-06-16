@@ -1,8 +1,8 @@
-#!/bin/sh
-
-EDITOR="nvim"
+#!/bin/zsh
 
 alias b="bash"
+alias d="dirs -v"
+for index ({1..17}) alias "$index"="cd +${index}"; unset index
 alias i='sudo'
 alias e="touch"
 alias m="mkdir"
@@ -14,7 +14,6 @@ alias wd="pwd"
 alias sx="startx"
 alias kx="killall xinit"
 alias is='sudo su'
-# alias nve="nvim-packer"
 alias lh="ls -a"
 alias loc="locate"
 alias cdd="cd -"
@@ -28,7 +27,7 @@ alias icpf="sudo cp -r"
 alias imvf="sudo mv"
 alias lsl="ls -l"
 alias crole='sudo -iu'
-alias zs='source ~/.zshrc'
+alias zs='source ~/.config/zsh/.zshrc'
 alias imi="sudo make install"
 alias imci="sudo make clean install"
 alias swap="cat /proc/sys/vm/swappiness"
@@ -37,30 +36,31 @@ alias brx='xrandr --output eDP-1 --brightness'
 alias uadd='sudo usermod -aG'
 alias clocale="dpkg-reconfigure locales"
 alias imodem="systemctl start ModemManager.service"
-alias wifi="nmtui"
+# alias wifi="nmtui"
+alias nscan="iwlist scanning"
 
-# edit
-alias a="$EDITOR ~/.config/zsh/aliases"
-alias zc="$EDITOR ~/.config/zsh/.zshrc"
+# editor
+alias v="$EDITOR ./"
+alias nv=nvimProfiling
+alias vim="nvim"
+alias nvr=nvimRawProfiling
+
+alias a="nvr ~/.config/zsh/aliases"
+alias lc="nv ~/.config/nvim/lua/core/init.lua"
+alias vc="nv ~/.config/nvim/init.lua"
+alias al="nv ~/.config/alacritty/alacritty.yml"
+alias zc="nvr ~/.config/zsh/.zshrc"
 alias ze="nvr ~/.config/shell/profile"
-alias xe="$EDITOR ~/.config/x11/xprofile"
-alias xr="$EDITOR ~/.config/x11/xresources"
-alias xR="$EDITOR ~/.Xresources"
-alias xc="$EDITOR ~/.config/tmux/xd.tmux.conf"
-alias xn="$EDITOR ~/.config/x11/xinitrc"
-alias vc="$EDITOR ~/.config/nvim/init.lua"
-alias lc="$EDITOR ~/.config/nvim/lua/core/init.lua --startuptime $HOME/docs/vim.log"
-# alias lce="nvim-packer ~/.config/nvim/lua/core/init.lua"
-alias al="$EDITOR ~/.config/alacritty/alacritty.yml"
+alias xe="nvr ~/.config/x11/xprofile"
+alias xr="nvr ~/.config/x11/xresources"
+alias xR="nvr ~/.Xresources"
+alias xc="nvr ~/.config/tmux/xd.tmux.conf"
+alias xn="nvr ~/.config/x11/xinitrc"
+alias nvi="nv init.lua"
 alias nvc="nvr config.h"
 alias nvz="nvr ~/.zsh_history"
-alias nvi="$EDITOR init.lua --startuptime $HOME/docs/vim.log"
-alias nvv="$EDITOR ~/docs/vim.log"
-alias nvli="$EDITOR lua/core/init.lua"
-# alias nvr="$EDITOR --noplugin -u ~/init.lua"
-alias nvr="$EDITOR --noplugin -u ~/init.lua"
-alias invr="sudo $EDITOR --noplugin -u ~/init.lua"
-alias gnv="wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage"
+alias nvv="nvr ~/docs/vim.log"
+alias nvli="nv lua/core/init.lua"
 
 # Programs
 alias fm="firefox -ProfileManager"
@@ -71,10 +71,6 @@ alias py="python"
 alias xi="tuxi"
 alias aw="toilet"
 alias igp="sudo gparted"
-alias nv="$EDITOR --startuptime $HOME/docs/vim.log"
-alias vim="nvim"
-alias n="nvim"
-alias v="$EDITOR ."
 alias vsc="vscodium ."
 
 # Docker and Docker Compose

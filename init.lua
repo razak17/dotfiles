@@ -338,8 +338,8 @@ require('packer').startup(function(use)
   use {'rhysd/accelerated-jk', opt = true, event = "VimEnter"}
 
   require_plugin('zephyr-nvim')
-  require_plugin('kommentary')
   require_plugin('vim-surround')
+  require_plugin('kommentary')
   require_plugin('vim-cool')
 end)
 

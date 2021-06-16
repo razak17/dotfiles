@@ -4,6 +4,7 @@ DIR="/home/razak/Pictures/wallpapers/distro"
 
 # wall=$(find $DIR -type f | shuf -n 1)
 wall="/home/razak/pics/distro/108.png"
+# wall="/home/razak/.dots/wallpapers/landscape/wallhaven-q6mlm7.jpg"
 xwallpaper --zoom $wall
 
 wal -i $wall >/dev/null

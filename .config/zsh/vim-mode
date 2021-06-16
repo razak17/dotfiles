@@ -1,6 +1,7 @@
-#!/bin/sh
+#!/bin/zsh
 
 bindkey -v   # bindkey -e will be emacs mode
+export KEYTIMEOUT=1
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select () {
@@ -18,3 +19,8 @@ zle-line-init() {
 zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'n' vi-down-line-or-history

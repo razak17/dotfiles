@@ -94,7 +94,7 @@ window:
 cursor:
   style:
     shape: Block
-    blinking: Off
+    blinking: Never
   vi_mode_style: None
   unfocused_hollow: true
 

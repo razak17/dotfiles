@@ -90,8 +90,7 @@ installLuarocks() {
 }
 
 installSumneko() {
-  cd ~/$lsp_path
-  git clone https://github.com/sumneko/lua-language-server
+  git clone https://github.com/sumneko/lua-language-server ~/$lsp_path
   cd lua-language-server
   git submodule update --init --recursive
   cd 3rd/luamake
@@ -171,6 +170,9 @@ while [[ "$#" -gt 0 ]]; do
   "-lsp")
     installSumneko
     installElixirLs
+    ;;
+  "-lua-ls")
+    installSumneko
     ;;
   "-rocks")
     installRocks

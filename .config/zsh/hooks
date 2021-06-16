@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 rehash_precmd() {
   if [[ -a /var/cache/zsh/pacman ]]; then
