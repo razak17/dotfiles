@@ -38,13 +38,6 @@ installZshPlugins() {
       echo "clone"
     fi
   done
-  # Others
-  raw="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins"
-  cd ~/.config/zsh/completion
-  if exists wget; then
-    wget "$raw/docker-compose/_docker-compoes"
-    wget "$raw/docker/_docker"
-  fi
 }
 
 installFzf() {

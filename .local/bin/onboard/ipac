@@ -23,7 +23,7 @@ pac_packages=(
   'ripgrep'
   'maim'
   'lazygit'
-# 'slock'
+# 'sloc'
 # 'lolcat'
 # 'docker'
 # 'postgresql'
@@ -57,10 +57,10 @@ pac_packages=(
 
 yay_packages=(
   'autokey-gtk'
-# 'vscodium-bin'
   'libxft-bgra'
   'zoxide'
   'notion-app'
+# 'vscodium-bin'
   # 'skippy-xd'
   # 'packettracer'
   # 'ttf-ancient-fonts'

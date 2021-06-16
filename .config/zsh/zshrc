@@ -1,8 +1,12 @@
 #!/bin/zsh
 
+# date
 zmodload zsh/datetime
+
+# profiling
 zmodload zsh/zprof
 
+# editor
 EDITOR="nvim"
 
 # Init completions
@@ -34,12 +38,13 @@ done
 
 add_file opts
 add_file compe
+add_file binds
 add_file hooks
 add_file prompt
 add_file aliases
 add_file vim-mode
 
-[ -f $HOME/.fzf.zsh ]    && source $HOME/.fzf.zsh
+[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
 # Load completions
 fpath+="$ZDOTDIR/completion/"
@@ -69,19 +74,8 @@ if exists zoxide; then
   eval "$(zoxide init zsh)"
 fi
 
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-
 zle_highlight=('paste:none')
 zshcache_time="$(date +%s%N)"
-
-bindkey '^ ' autosuggest-accept
-bindkey ‘^R’ history-incremental-search-backward
-bindkey -s '^z' 'zi^M'
-bindkey "^n" down-line-or-beginning-search # Down
-bindkey "^k" up-line-or-beginning-search # Up
 
 # Load and initialize the completion system ignoring insecure directories with a
 # cache time of 20 hours, so it should almost always regenerate the first time a

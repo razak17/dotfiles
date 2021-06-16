@@ -8,31 +8,56 @@ __DOTS[LS_COLORS]=${LS_COLORS:-'di=34:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:
 
 # Enable keyboard navigation of completions in menu
 # (not just tab/shift-tab but cursor keys as well):
-zstyle ':completion:*' menu select
+zstyle ':completion:*:*:*:*:*' menu select
 
-# persistent reshahing i.e puts new executables in the $path
-# if no command is set typing in a line will cd by default
-zstyle ':completion:*' rehash true
+# Make completion:
+# (stolen from Wincent)
+# - Try exact (case-sensitive) match first.
+# - Then fall back to case-insensitive.
+# - Accept abbreviations after . or _ or - (ie. f.b -> foo.bar).
+# - Substring complete (ie. bar -> foobar).
+zstyle ':completion:*' matcher-list '' '+m:{[:lower:]}={[:upper:]}' '+m:{[:upper:]}={[:lower:]}' '+m:{_-}={-_}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+# Allow completion of ..<Tab> to ../ and beyond.
+zstyle -e ':completion:*' special-dirs '[[ $PREFIX = (../)#(..) ]] && reply=(..)'
+
+# Colorize completions using  `ls` colors.
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-colors ${(s.:.)__DOTS[LS_COLORS]}
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+zstyle ':completion:*:*:*:*:processes' command "ps -u $USERNAME -o pid,user,comm -w -w"
+
+# Only display some tags for the command cd
+zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
 
 # Use caching to make completion for commands such as dpkg and apt usable.
 zstyle ':completion::complete:*' use-cache on
 zstyle ':completion::complete:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompcache"
 zstyle ':urlglobber' url-other-schema
 
-# Allow completion of ..<Tab> to ../ and beyond.
-zstyle -e ':completion:*' special-dirs '[[ $PREFIX = (../)#(..) ]] && reply=(..)'
+# Don't complete uninteresting users
+zstyle ':completion:*:*:*:users' ignored-patterns \
+        adm amanda apache at avahi avahi-autoipd beaglidx bin cacti canna \
+        clamav daemon dbus distcache dnsmasq dovecot fax ftp games gdm \
+        gkrellmd gopher hacluster haldaemon halt hsqldb ident junkbust kdm \
+        ldap lp mail mailman mailnull man messagebus  mldonkey mysql nagios \
+        named netdump news nfsnobody nobody nscd ntp nut nx obsrun openvpn \
+        operator pcap polkitd postfix postgres privoxy pulse pvm quagga radvd \
+        rpc rpcuser rpm rtkit scard shutdown squid sshd statd svn sync tftp \
+        usbmux uucp vcsa wwwrun xfs '_*'
+
+# automatically load bash completion functions
+autoload -U +X bashcompinit && bashcompinit
+
+# persistent reshahing i.e puts new executables in the $path
+# if no command is set typing in a line will cd by default
+zstyle ':completion:*' rehash true
 
 # Style the group names
 # zstyle ':completion:*' format %F{yellow}%B%U%{$__DOTS[ITALIC_ON]%}%d%{$__DOTS[ITALIC_OFF]%}%b%u%f
 
 # enabling autocompletion of privileged environments in privileged commands
 zstyle ':completion::complete:*' gain-privileges 1
-
-# Colorize completions using  `ls` colors.
-zstyle ':completion:*' list-colors ${(s.:.)__DOTS[LS_COLORS]}
-
-# Only display some tags for the command cd
-zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
 
 # Required for completion to be in groups (named after the tags)
 zstyle ':completion:*' group-name ''
@@ -42,16 +67,6 @@ zstyle ':completion:*:*:-command-:*:*' group-order commands alias functions buil
 zstyle ':completion:*' completer _oldlist _expand _complete _match _prefix _ignored _approximate
 zstyle ':completion:*:match:*' original only
 zstyle ':completion:*:approximate:*' max-errors 1 numeric
-
-# Make completion:
-# (stolen from Wincent)
-# - Try exact (case-sensitive) match first.
-# - Then fall back to case-insensitive.
-# - Accept abbreviations after . or _ or - (ie. f.b -> foo.bar).
-# - Substring complete (ie. bar -> foobar).
-zstyle ':completion:*' matcher-list '' '+m:{[:lower:]}={[:upper:]}' '+m:{[:upper:]}={[:lower:]}' '+m:{_-}={-_}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*' keep-prefix true
-zstyle ':completion:*' accept-exact '*(N)'
 
 # This enables Zsh to understand commands like docker run -it ubuntu.
 # However, by enabling this, this also makes Zsh complete docker run
@@ -69,11 +84,11 @@ zstyle ':completion:*' list-suffixes true
 # End of lines added by compinstall
 
 # Group matches and descriptions.
-zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
+zstyle ':completion:*:*:*:*:corrections' format '%F{teal}!- %d (errors: %e) -!%f'
 zstyle ':completion:*:*:*:*:descriptions' format '%F{cyan}-- %D %d --%f'
 zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
 zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
-# zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*' format ' %F{blue}-- %d --%f'
 
 # Detaled list of files and folders
 # zstyle ':completion:*' file-list all
@@ -90,6 +105,17 @@ zstyle ':completion:*' complete-options true
 zle -C alias-expension complete-word _generic
 bindkey '^A' alias-expension
 zstyle ':completion:alias-expension:*' completer _expand_alias
+
+expand-or-complete-with-dots() {
+  print -Pn "%F{red}…%f"
+  zle expand-or-complete
+  zle redisplay
+}
+zle -N expand-or-complete-with-dots
+# Set the function as the default tab completion widget
+bindkey -M emacs "^I" expand-or-complete-with-dots
+bindkey -M viins "^I" expand-or-complete-with-dots
+bindkey -M vicmd "^I" expand-or-complete-with-dots
 
 bindkey -M menuselect '^xg' clear-screen
 bindkey -M menuselect '^xi' vi-insert                      # Insert

@@ -37,7 +37,7 @@ alias uadd='sudo usermod -aG'
 alias clocale="dpkg-reconfigure locales"
 alias imodem="systemctl start ModemManager.service"
 # alias wifi="nmtui"
-alias nscan="iwlist scanning"
+alias wscan="iwlist scanning"
 
 # editor
 alias v="$EDITOR ./"
