@@ -3,6 +3,8 @@
 zmodload zsh/datetime
 zmodload zsh/zprof
 
+EDITOR="nvim"
+
 # Init completions
 autoload -Uz compinit
 zmodload -i zsh/complist
