@@ -20,6 +20,8 @@ ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_MANUAL_REBIND=""
 
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+
 # Local scripts
 for script in $ZDOTDIR/scripts/*; do
   source $script

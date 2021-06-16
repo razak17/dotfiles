@@ -95,12 +95,16 @@ nvimRawProfiling() {
 
 # copy the active line from the command line buffer
 # onto the system clipboard
-copybuffer () {
-  if which clipcopy &>/dev/null; then
-    printf "%s" "$BUFFER" | clipcopy
-  else
-    echo "clipcopy function not found."
-  fi
+copybuffer() {
+  printf "%s" "$BUFFER" | clipcopy
 }
 zle -N copybuffer
-bindkey "^O" copybuffer
+bindkey "^o" copybuffer
+
+# Copies the pathname of the current directory to the system or X Windows clipboard
+copydir() {
+  emulate -L zsh
+  print -n $PWD | clipcopy
+}
+zle -N copydir
+bindkey "^w" copydir
