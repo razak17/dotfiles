@@ -39,3 +39,6 @@ setopt CDABLE_VARS               # expand a cd argument when it is not a dir or 
 unsetopt NOMATCH                 # Do not print an error when a pattern has no match
 unsetopt PROMPT_SP               # Attempt to preserve a partial line
 unsetopt FLOW_CONTROL            # Disable start/stop characters in shell editor.
+
+CORRECT_IGNORE='.*'
+CORRECT_IGNORE_FILE='.*'

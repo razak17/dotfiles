@@ -5,9 +5,8 @@ typeset -U PATH path
 LOCAL="$HOME/.local/bin"
 
 # Colorful Man Pages
-export EDITOR="nvim"
-export BAT_PAGER="less -RFXi"
 export MANWIDTH=999
+export BAT_PAGER="less -RFXi"
 export PAGER=less
 export LESS=-R
 export LESS_TERMCAP_mb=$'\E[01;31m'         # begin blinking
@@ -44,6 +43,7 @@ fi
 
 # asdf
 if [ -d "$HOME/.asdf/installs/golang" ]; then
+  source $HOME/.asdf/asdf.sh
   export GOPATH="$ASDF_DIR/installs/golang/1.16.2/go"
   export GOPACKAGES="$ASDF_DIR/installs/golang/1.16.2/packages"
 elif [ -d "$HOME/go" ]; then
@@ -53,7 +53,6 @@ fi
 # Azure cli
 if [ -d "$HOME/lib/azure-cli" ]; then
   export AZ_CLI="$HOME/lib/azure-cli"
-  source $HOME/lib/azure-cli/az.completion
 fi
 
 path=(

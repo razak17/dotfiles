@@ -1,5 +1,9 @@
 #!/bin/zsh
 
+# ZSH only and most performant way to check existence of an executable
+# https://www.topbug.net/blog/2016/10/11/speed-test-check-the-existence-of-a-command-in-bash-and-zsh/
+exists() { (( $+commands[$1] )); }
+
 # Only top level
 list_tree() {
     clear
@@ -69,6 +73,12 @@ zshcomp() {
   do
     printf "%-32s %s\n" $command $completion
   done | sort
+}
+
+add_plugin() {
+  for i in "$@"; do
+    [ -f $ZDOTDIR/plugins/$i ] && source $ZDOTDIR/plugins/$i
+  done
 }
 
 add_files() {

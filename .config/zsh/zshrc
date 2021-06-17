@@ -9,57 +9,57 @@ zle_highlight=('paste:none')
 # colors
 autoload -U colors && colors
 
-# These should be source *BEFORE* setting up hooks
-source $ZDOTDIR/plugins/zsh-completions/zsh-completions.plugin.zsh
-source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $ZDOTDIR/plugins/conda-zsh-completion/conda-zsh-completion.plugin.zsh
-autoload zmv # builtin zsh rename command
-
-ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-ZSH_AUTOSUGGEST_MANUAL_REBIND=""
-
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-
 # Local scripts
 for script in $ZDOTDIR/scripts/*; do
   source $script
 done
 
-# load config files
+# These should be source *BEFORE* setting up hooks
+add_plugin zsh-completions/zsh-completions.plugin.zsh
+add_plugin zsh-autosuggestions/zsh-autosuggestions.zsh
+add_plugin zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+add_plugin conda-zsh-completion/conda-zsh-completion.plugin.zsh
+autoload zmv # builtin zsh rename command
+
+# Load config files
 add_files opts compe vim-mode hooks binds prompt aliases
 
-# fzf
-[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
-
-# Load completions
-fpath+="$ZDOTDIR/completion/"
+# Plugins options
+ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+ZSH_AUTOSUGGEST_MANUAL_REBIND=""
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
 # asdf
-if [ -d "$HOME/.asdf" ]; then
-  source $HOME/.asdf/asdf.sh
+if exists asdf; then
   fpath+="$ASDF_DIR/completions/"
 fi
-# Azure cli
-if [ -d "$HOME/lib/azure-cli" ]; then
-  source $HOME/lib/azure-cli/az.completion
-fi
-
-# ZSH only and most performant way to check existence of an executable
-# https://www.topbug.net/blog/2016/10/11/speed-test-check-the-existence-of-a-command-in-bash-and-zsh/
-exists() { (( $+commands[$1] )); }
 
 # fnm
-eval "`fnm env`"
+if exists fnm; then
+  eval "`fnm env`"
+fi
 
-# pip
-# eval "`pip completion --zsh`"
+# Azure cli
+if exists az; then
+  source $HOME/lib/azure-cli/az.completion
+fi
 
 # zoxide
 if exists zoxide; then
   eval "$(zoxide init zsh)"
 fi
+
+# Load other completions
+if [ -d "$ZDOTDIR/plugins" ]; then
+  fpath+="$ZDOTDIR/completion/"
+fi
+
+# pip
+# eval "`pip completion --zsh`"
+
+# fzf
+[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
 # Load and initialize the completion system ignoring insecure directories with a
 # cache time of 20 hours, so it should almost always regenerate the first time a
