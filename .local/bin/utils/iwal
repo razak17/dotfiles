@@ -3,7 +3,7 @@
 # Script to automatically change the wallpaper and lock screen in spectrwm
 
 # Directory Containing the Pictures
-DIR="/home/razak/pics/distro"
+DIR="/home/razak/pics/distro/main"
 
 # Command to Select wallpapers at random from the $DIR directory
 
