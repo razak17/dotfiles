@@ -70,3 +70,19 @@ bindkey "^k" up-line-or-beginning-search # Up
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '\C-e' edit-command-line
+
+expand-or-complete-with-dots() {
+  print -Pn "%F{red}…%f"
+  zle expand-or-complete
+  zle redisplay
+}
+zle -N expand-or-complete-with-dots
+# Set the function as the default tab completion widget
+bindkey -M viins "^I" expand-or-complete-with-dots
+bindkey -M vicmd "^I" expand-or-complete-with-dots
+
+bindkey -M menuselect '^xg' clear-screen
+bindkey -M menuselect '^xi' vi-insert                      # Insert
+bindkey -M menuselect '^xh' accept-and-hold                # Hold
+bindkey -M menuselect '^xn' accept-and-infer-next-history  # Next
+bindkey -M menuselect '^xu' undo                           # Undo

@@ -12,6 +12,7 @@ autoload -Uz add-zsh-hook
 # %r - git repo
 autoload -Uz vcs_info
 
+# c@m
 # Using named colors means that the prompt automatically adapts to how these
 # are set by the current terminal theme
 zstyle ':vcs_info:*' enable git
@@ -25,8 +26,4 @@ zstyle ':vcs_info:*' check-for-changes true
 # zstyle ':vcs_info:git:*' formats " %{$fg[blue]%}(%{$fg[red]%}%m%u%c%{$fg[yellow]%}%{$fg[magenta]%} %b%{$fg[blue]%})"
 zstyle ':vcs_info:git:*' formats " (%{$fg[yellow]%}%b%{$fg[blue]%})"
 
-# PROMPT="%B%{$fg[cyan]%}%c"
-# PROMPT="%{$fg[cyan]%}%c%{$fg[green]} »{${reset_color}}"
-# PROMPT="%B%{$fg[blue]%}%(?:%{$fg_bold[green]%}➜  :%{$fg_bold[red]%}➜  )%{$fg[cyan]%}%c%{$reset_color%}"
-# PROMPT+="\$vcs_info_msg_0_ "
 PROMPT="%{$fg[cyan]%}%c\$vcs_info_msg_0_ %(?:%{$fg_bold[green]%}» :%{$fg_bold[red]%}» )%{$reset_color%}"

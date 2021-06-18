@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-# bindkey -v   # bindkey -e will be emacs mode
+bindkey -v   # bindkey -e will be emacs mode
 export KEYTIMEOUT=1
 
 # Change cursor shape for different vi modes.
