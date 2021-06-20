@@ -23,7 +23,7 @@ setopt INC_APPEND_HISTORY        # save history entries as soon as they are ente
 setopt LIST_PACKED               # Make completio take less space
 setopt AUTO_LIST                 # automatically list choices on ambiguous completion
 setopt AUTO_MENU                 # automatically use menu completion
-setopt MENU_COMPLETE             # Autoselect the first completion entry
+setopt NO_MENU_COMPLETE          # Do not autoselect the first completion entry
 setopt COMPLETE_ALIASES          # autocomplete for aliases
 setopt CORRECT_ALL               # autocorrect commands
 setopt ALWAYS_TO_END             # move cursor to end if word had one match

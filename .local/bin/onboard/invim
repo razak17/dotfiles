@@ -18,11 +18,9 @@ dirs=(
 )
 
 simple_lsp=(
-  "vscode-json-languageserver"
-  "vscode-css-languageserver-bin"
+  "vscode-langservers-extracted"
   "dockerfile-language-server-nodejs"
   "graphql-language-service-cli"
-  "vscode-html-languageserver-bin"
   "svelte-language-server"
   "vim-language-server"
   "yaml-language-server"

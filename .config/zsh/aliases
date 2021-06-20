@@ -38,6 +38,8 @@ alias clocale="dpkg-reconfigure locales"
 alias imodem="systemctl start ModemManager.service"
 # alias wifi="nmtui"
 alias wscan="iwlist scanning"
+alias rcs="sudo rc-service"
+alias rcu="sudo rc-update"
 
 # sysact
 alias sx="startx"
@@ -198,3 +200,4 @@ alias cdnv='cd "$XDG_CONFIG_HOME/nvim"'
 alias cdnsh='cd "$XDG_DATA_HOME/nvim"'
 alias cdpack='cd "$XDG_DATA_HOME/nvim/site/pack/packer"'
 alias cdusb1=' cd /run/media/razak/22B6-E52C/'
+alias cdusb2=' cd /run/media/razak/Ventoy/'
