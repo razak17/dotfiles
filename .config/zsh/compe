@@ -40,15 +40,12 @@ zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-d
 zstyle ':completion::complete:*' use-cache on
 zstyle ':completion::complete:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompcache"
 
-# Style the group names
-zstyle ':completion:*' format %F{yellow}%B%U%{$__DOTS[ITALIC_ON]%}%d%{$__DOTS[ITALIC_OFF]%}%b%u%f
-
 # Group matches and descriptions.
 zstyle ':completion:*:*:*:*:corrections' format '%F{teal}!- %d (errors: %e) -!%f'
-zstyle ':completion:*:*:*:*:descriptions' format '%F{cyan}-- %D %d --%f'
 zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
 zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
-zstyle ':completion:*' format ' %F{blue}-- %d --%f'
+# zstyle ':completion:*:*:*:*:descriptions' format %F{#7685b1}%B%U%{$__DOTS[ITALIC_ON]%}%d%{$__DOTS[ITALIC_OFF]%}%b%u%f
+# zstyle ':completion:*:*:*:*:descriptions' format ' %F{blue}-- %d --%f'
 
 # enabling autocompletion in privileged environments.
 zstyle ':completion::complete:*' gain-privileges 1

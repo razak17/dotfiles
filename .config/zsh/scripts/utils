@@ -5,12 +5,12 @@
 exists() { (( $+commands[$1] )); }
 
 # Only top level
-list_tree() {
-    clear
-    tree -L 1
-}
-zle -N list_tree
-bindkey '^H' list_tree
+# list_tree() {
+#     clear
+#     tree -L 1
+# }
+# zle -N list_tree
+# bindkey '^H' list_tree
 
 # Default to using `bat` https://github.com/sharkdp/bat#installation if it has been installed
 cat() {
@@ -87,19 +87,21 @@ add_files() {
   done
 }
 
+prof="${XDG_CACHE_HOME:-$HOME/.cache}/nvim/prof.log"
+prof_raw="${XDG_CACHE_HOME:-$HOME/.cache}/nvim/prof_raw.log"
 nvimProfiling() {
   if [ -z "$@" ]; then
-    nvim --startuptime $HOME/docs/vim.log
+    nvim --startuptime $prof
   else
-    nvim "$@" --startuptime $HOME/docs/vim.log
+    nvim "$@" --startuptime $prof
   fi
 }
 
 nvimRawProfiling() {
   if [ -z "$@" ]; then
-    nvim --noplugin -u ~/init.lua --startuptime $HOME/docs/vim.log
+    nvim --noplugin -u ~/init.lua --startuptime $prof_raw
   else
-    nvim --noplugin -u ~/init.lua "$@" --startuptime $HOME/docs/vim.log
+    nvim --noplugin -u ~/init.lua "$@" --startuptime $prof_raw
   fi
 }
 

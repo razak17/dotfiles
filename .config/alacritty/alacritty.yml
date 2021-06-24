@@ -24,16 +24,16 @@ schemes:
     search:
       matches:
         foreground: "#030303"
-        background: "#51afef"
+        background: "#7685b1"
       focused_match:
         foreground: "#030303"
-        background: "#7ec0ee"
+        background: "#7685b1"
       bar:
-        background: "#7ec0ee"
+        background: "#7685b1"
         foreground: "#030303"
       line_indicator:
         foreground: "#202328"
-        background: "#7ec0ee"
+        background: "#7685b1"
 
   spacemacs_dark: &dark
     primary:

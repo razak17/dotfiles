@@ -113,7 +113,7 @@ createSession() {
 
   # ($X list-sessions -F \#S | awk '{print $1}')
   # printf "hasSession: %s.\n" "$hasSession"
-  printf "session: %s, window: %s.\n" "$session" "$window"
+  # printf "session: %s, window: %s.\n" "$session" "$window"
   if [[ "$session" == "$hasSession" ]]; then
     printf "duplicate session '%s'. Available sessions:\n" "$session"
     ($X list-sessions)

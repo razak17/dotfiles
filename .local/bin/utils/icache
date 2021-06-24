@@ -5,6 +5,7 @@ conda=~/miniconda3/pkgs/cache
 moz=~/.cache/mozilla/firefox/profiles/default/cache2
 pip=~/.cache/pip
 yarn=~/.cache/yarn
+yay=~/.cache/yay
 
 
 deleteDir() {
@@ -31,6 +32,7 @@ while [[ "$#" -gt 0 ]]; do
       deleteDir $moz
       deleteDir $pip
       deleteDir $yarn
+      deleteDir $yay
       ;;
     "-b")
       deleteDir $brave

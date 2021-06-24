@@ -8,13 +8,13 @@ dap_dir='.cache/nvim/dap'
 
 dirs=(
   '.cache/nvim/dap'
-  '.cache/nvim/swap'
-  '.cache/nvim/tags'
-  '.cache/nvim/view'
-  '.cache/nvim/backup'
   '.cache/nvim/sessions'
   '.cache/nvim/undodir'
   '.cache/nvim/nvim_lsp'
+  # '.cache/nvim/swap'
+  # '.cache/nvim/tags'
+  # '.cache/nvim/view'
+  # '.cache/nvim/backup'
 )
 
 simple_lsp=(
@@ -30,7 +30,8 @@ simple_lsp=(
   'typescript'
   'pyright'
   'neovim'
-
+  'prettier'
+  'eslint'
 )
 
 createDirs() {
@@ -44,8 +45,8 @@ createDirs() {
 pythonVenvInit() {
   mkdir -p ~/$neovim_py
   python3 -m venv ~/$neovim_py
-  ~/$neovim_py/bin/pip3 install -U setuptools pynvim jedi isort flake8 black neovim-remote ueberzug
-  pip3 install ueberzug pynvim neovim-remote
+  ~/$neovim_py/bin/pip install -U setuptools pynvim jedi neovim-remote ueberzug
+  pip install ueberzug pynvim neovim-remote isort yapf black flake8
 }
 
 dapVenvInit() {

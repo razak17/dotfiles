@@ -1,45 +1,73 @@
 #!/bin/zsh
 
+alias v="$EDITOR ./"
+alias nv=nvimProfiling
+alias nvr=nvimRawProfiling
+
+# shell
 alias b="bash"
 alias d="dirs -v"
 for index ({1..17}) alias "$index"="cd +${index}"; unset index
-alias i='sudo'
-alias e="touch"
-alias m="mkdir"
-alias grep="grep --color=auto"
-alias obd="objdump -d"
 alias so="source"
 alias cl='clear'
 alias c='clear'
 alias wd="pwd"
-alias is='sudo su'
 alias lh="ls -a"
 alias loc="locate"
 alias cdd="cd -"
 alias rmf="rm -r"
 alias cpf="cp -r"
-alias irm="sudo rm"
-alias icp="sudo cp"
-alias imv="sudo mv"
-alias irmf="sudo rm -r"
-alias icpf="sudo cp -r"
-alias imvf="sudo mv"
 alias lsl="ls -l"
-alias crole='sudo -iu'
 alias zs='source ~/.config/zsh/.zshrc'
-alias imi="sudo make install"
-alias imci="sudo make clean install"
+alias i='sudo'
+alias e="touch"
+alias m="mkdir"
+
+# system
+alias obd="objdump -d"
+alias rcs="sudo rc-service"
+alias rcu="sudo rc-update"
+alias wscan="iwlist scanning"
+alias iws="sudo nvim /etc/wpa_supplicant/wpa_supplicant.conf"
+# alias wifi="nmtui"
+alias clocale="dpkg-reconfigure locales"
+alias imodem="systemctl start ModemManager.service"
 alias swap="cat /proc/sys/vm/swappiness"
 alias rnscd="systemctl restart nscd"
 alias brx='xrandr --output eDP-1 --brightness'
 alias br='brightnessctl -'
+alias ge='find | fzf | sed 's/^..//g' | tr -d '\n' | xclip -selection c'
+alias gf='find -type f | sed 's/^..//g' | fzf | tr -d '\n' | xclip -selection c'
+
+# sudo
+alias is='sudo su'
+alias irm="sudo rm"
+alias icp="sudo cp"
+alias imv="sudo mv"
+alias inv="sudo nvim"
+alias irmf="sudo rm -r"
+alias icpf="sudo cp -r"
+alias imvf="sudo mv"
+alias crole='sudo -iu'
 alias uadd='sudo usermod -aG'
-alias clocale="dpkg-reconfigure locales"
-alias imodem="systemctl start ModemManager.service"
-# alias wifi="nmtui"
-alias wscan="iwlist scanning"
-alias rcs="sudo rc-service"
-alias rcu="sudo rc-update"
+alias imci="sudo make clean install"
+alias imi="sudo make install"
+
+# Pacman
+alias Qi="pacman -Qi"
+alias Ql="pacman -Ql"
+alias wp='pacman -Qs'
+alias p='sudo pacman -S'
+alias r='sudo pacman -Rs'
+alias y='yay -Sy'
+alias upd='sudo pacman -Syu'
+alias rcache="sudo pacman -Sc"
+alias pkgs="pacman -Q | fzf"
+# get fastest mirrors
+alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
+alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
+alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
+alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
 
 # sysact
 alias sx="startx"
@@ -47,13 +75,18 @@ alias kx="killall xinit"
 alias reb="sudo -A openrc-shutdown -rq now"
 alias die="sudo -A openrc-shutdown -pq now"
 
+# Programs
+alias grep="grep --color=auto"
+alias ipsql="systemctl start postgresql"
+alias iredis="sudo /etc/init.d/redis_6379 start"
+alias codium="sudo nvim /usr/share/vscodium-bin/resources/app/product.json"
+alias py="python"
+alias xi="tuxi"
+alias aw="toilet"
+alias igp="sudo gparted"
+alias vsc="vscodium ."
 
 # editor
-alias v="$EDITOR ./"
-alias nv=nvimProfiling
-alias vim="nvim"
-alias nvr=nvimRawProfiling
-
 alias a="nvr ~/.config/zsh/aliases"
 alias lc="nv ~/.config/nvim/lua/core/init.lua"
 alias vc="nv ~/.config/nvim/init.lua"
@@ -72,17 +105,6 @@ alias nvz="nvr ~/.zsh_history"
 alias nvv="nvr ~/docs/vim.log"
 alias nvli="nv lua/core/init.lua"
 
-# Programs
-alias fm="firefox -ProfileManager"
-alias ipsql="systemctl start postgresql"
-alias iredis="sudo /etc/init.d/redis_6379 start"
-alias codium="sudo nvim /usr/share/vscodium-bin/resources/app/product.json"
-alias py="python"
-alias xi="tuxi"
-alias aw="toilet"
-alias igp="sudo gparted"
-alias vsc="vscodium ."
-
 # Docker and Docker Compose
 alias idocker="systemctl start docker.service"
 alias dc="docker-compose"
@@ -91,8 +113,7 @@ alias dci="docker-compose up"
 alias dcd="docker-compose down -v"
 alias juiceshop='docker run --rm -p 3000:3000 bkimminich/juice-shop'
 
-# Git
-alias gp='git add . && git commit -m "updates" && git push'
+# git bare (nvim, dotfiles)
 alias conf='/usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME'
 alias nconf='/usr/bin/git --git-dir=$HOME/.dots/$EDITOR/ --work-tree=$HOME/.config/$EDITOR'
 alias confs="iconf -cs"
@@ -113,7 +134,7 @@ alias ncks="nconf checkout slides"
 alias nckt="nconf checkout test"
 alias nckv="nconf checkout vscode"
 
-# Nord VPN
+# nord vpn
 alias inord="systemctl start nordvpnd.service"
 alias vn="nordvpn"
 alias cvn="nordvpn connect"
@@ -122,22 +143,12 @@ alias svn="nordvpn status"
 alias me="curl icanhazip.com/"
 alias alive="ping google.com"
 
-# Ranger
+# ranger
 alias f="ranger"
 alias rc='ranger ~/.config'
 alias rnv='ranger ~/.config/nvim'
 
-# Pacman
-alias Qi="pacman -Qi"
-alias Ql="pacman -Ql"
-alias wp='pacman -Qs'
-alias p='sudo pacman -S'
-alias r='sudo pacman -Rs'
-alias y='yay -Sy'
-alias upd='sudo pacman -Syu'
-alias rcache="sudo pacman -Sc"
-
-# Tmux
+# tmux
 alias xds="tmux -L Dev"
 alias xbs="tmux -L Dull"
 alias xd="tmuxd"
@@ -149,30 +160,41 @@ alias aff='ftmux -first'
 alias fn='ftmux -s'
 alias fk='ftmux -k'
 
+# ssh
+if [ -s "${XDG_CONFIG_HOME}/ssh/config" ]; then
+  SSH_CONFIG="-F ${XDG_CONFIG_HOME}/ssh/config"
+else
+  SSH_CONFIG="-F ~/.config/ssh/config"
+fi
+if [ -s "${XDG_DATA_HOME}/ssh/id_dsa" ]; then
+  SSH_ID="-i ${XDG_DATA_HOME}/ssh/id_dsa"
+else
+  SSH_ID="-i ~/.local/share/ssh/id_rsa"
+fi
+
+alias ssh="ssh $SSH_CONFIG $SSH_ID "
+alias ssh-copy-id="ssh-copy-id $SSH_ID"
+
+# confirm before overwriting something
+alias cp="cp -i"
+alias mv='mv -i'
+alias rm='rm -i'
+
+# easier to read disk
+alias df='df -h'
+alias free='free -m'
+
+# get top process eating memory
+alias psmem='ps auxf | sort -nr -k 4 | head -5'
+# get top process eating cpu ##
+alias pscpu='ps auxf | sort -nr -k 3 | head -5'
+
 # Misc
 alias rfonts='fc-cache -vf ~/.local/share/fonts/'
 alias remfonts='fc-cache -f -v'
 alias plague='curl https://corona-stats.online/states/us'
 alias lg='lazygit'
 alias list_systemctl="systemctl list-unit-files --state=enabled"
-
-# c@m
-# get fastest mirrors
-alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
-alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
-alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
-alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
-# confirm before overwriting something
-alias cp="cp -i"
-alias mv='mv -i'
-alias rm='rm -i'
-# easier to read disk
-alias df='df -h'                          # human-readable sizes
-alias free='free -m'                      # show sizes in MB
-# get top process eating memory
-alias psmem='ps auxf | sort -nr -k 4 | head -5'
-# get top process eating cpu ##
-alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 
 mo=~/.mozilla/firefox/profiles
 nca=~/.cache/nvim
@@ -181,9 +203,8 @@ docs=~/docs
 dots=~/.dots
 skl=~/.dots/suckless
 dw=~/Downloads
-za=/run/media/razak/3E83258C04A90A32
 
-alias cdbin="cd ~/.local/bin"
+alias zl='nv ${XDG_DATA_HOME:-$HOME/.cache}/nvim/site/pack/packer/start/zephyr-nvim/lua/zephyr.lua'
 alias cdmo='cd "$mo"'
 alias cdnca='cd "$nca"'
 alias cdc='cd "$doc"'
@@ -191,8 +212,6 @@ alias cdcs='cd "$docs"'
 alias cdts='cd "$dots"'
 alias cdskl='cd "$skl"'
 alias cddw='cd "$dw"'
-alias cdza='cd "$za"'
-alias cdwr='cd "$HOME/personal/workspace"'
 alias cdcc='cd "$HOME/personal/workspace/coding"'
 alias cdll='cd "$HOME/personal/workspace/coding/learn_something_new_everyday"'
 alias cdco='cd "$XDG_CONFIG_HOME"'
