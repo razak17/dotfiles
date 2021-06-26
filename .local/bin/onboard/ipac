@@ -61,6 +61,7 @@ yay_packages=(
   'zoxide'
   'notion-app'
   'bibata-cursor-theme'
+  'devour'
   # 'vscodium-bin'
   # 'skippy-xd'
   # 'packettracer'

@@ -189,7 +189,7 @@ xnoremap('K', ':m \'<-2<CR>gv=gv')
 xnoremap('N', ':m \'>+1<CR>gv=gv')
 nnoremap('<Leader>aO', ':set fo-=cro<CR>') -- Close all folds
 nnoremap('<C-c>', '<Esc>')
-tnoremap('<Esc>', '<C-\\><C-N>')
+-- tnoremap('<Esc>', '<C-\\><C-N>')
 
 -- Better Navigation
 nnoremap('<C-h>', '<C-w>h')

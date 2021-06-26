@@ -20,7 +20,7 @@
     "hotkey": {
         "modifiers": [
             "<ctrl>",
-            "<shift>"
+            "<super>"
         ],
         "hotKey": "'"
     },
