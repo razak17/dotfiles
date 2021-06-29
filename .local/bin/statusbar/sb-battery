@@ -11,8 +11,8 @@ case $BLOCK_BUTTON in
 ⚡: charged
 ❗: battery very low!
 - Scroll to change adjust xbacklight." ;;
-	4) brightnessctl set 20+ ;;
-	5) brightnessctl set 20- ;;
+	4) brightnessctl set 100+ ;;
+	5) brightnessctl set 100- ;;
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 

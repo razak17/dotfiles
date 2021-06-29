@@ -90,3 +90,19 @@ copydir() {
 }
 zle -N copydir
 bindkey "^w" copydir
+
+# ftmux - propose running tmux session
+# https://github.com/Phantas0s/.dotfiles/blob/master/zsh/scripts_fzf.zsh
+axd() {
+  if [[ ! -n $TMUX ]]; then
+    # get the IDs
+    ID="`tmux -L "$@" list-sessions`"
+    ID="`echo $ID | fzf | cut -d: -f1`"
+    if [[ -n "$ID" ]]; then
+      printf '\033]777;tabbedx;set_tab_name;%s\007' "$ID"
+      tmux -L "$@" attach-session -t "$ID"
+    else
+      :  # Start terminal normally
+    fi
+  fi
+}

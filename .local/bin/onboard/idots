@@ -2,32 +2,43 @@
 
 mkdir -p $HOME/.dots
 
+conf() {
+  /usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME $@
+}
+
+nconf() {
+  /usr/bin/git --git-dir=$HOME/.dots/nvim/ --work-tree=$HOME/.config/nvim $@
+}
+
 newRawGit() {
   git init --bare $HOME/.dots/dotfiles
-  alias conf='/usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME'
   conf config --local status.showUntrackedFiles no
 }
 
 importRawGitDotfiles() {
   git clone --bare https://github.com/razak17/dotfiles $HOME/.dots/dotfiles
-  alias conf='/usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME'
-  echo ".dots/dotfiles" >> .gitignore
   conf checkout
-  mkdir -p .config-backup && \
-    conf checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
-    xargs -I{} mv {} .config-backup/{}
+  if [ $? = 0 ]; then
+    echo "Checked out dotfiles...";
+  else
+    mkdir -p ~/.config-backup
+    echo "Backing up pre-existing dot files.";
+    conf checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} ~/.config-backup/{}
+  fi;
   conf checkout
   conf config --local status.showUntrackedFiles no
 }
 
 importRawGitNvim() {
   git clone --bare https://github.com/razak17/nvim $HOME/.dots/nvim
-  alias nconf='/usr/bin/git --git-dir=$HOME/.config/nvim/ --work-tree=$HOME/.config/nvim'
-  echo ".dots/nvim" >> .gitignore
   conf checkout
-  mkdir -p .config-backup && \
-    conf checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
-    xargs -I{} mv {} .config-backup/{}
+  if [ $? = 0 ]; then
+    echo "Checked out dotfiles...";
+  else
+    mkdir -p ~/.config-backup-nvim
+    echo "Backing up pre-existing dot files.";
+    nconf checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} ~/.config-backup-nvim/{}
+  fi;
   conf checkout
   conf config --local status.showUntrackedFiles no
 }

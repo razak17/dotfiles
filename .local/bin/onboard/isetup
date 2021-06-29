@@ -22,11 +22,11 @@ installZshPlugins() {
   mkdir -p ~/.config/zsh/completion
   plugins=(
     'esc/conda-zsh-completion'
-    'djui/alias-tips'
+    # 'djui/alias-tips'
     'zsh-users/zsh-autosuggestions'
     'zsh-users/zsh-completions'
     'zsh-users/zsh-syntax-highlighting'
-    'agkozak/zsh-z'
+    # 'agkozak/zsh-z'
   )
   # curl -sLo "https://github.com/$download_path" "$url"
   for i in ${plugins[@]}; do
@@ -44,7 +44,6 @@ installFzf() {
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
 }
 installTmuxPlugins() {
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
   git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 }
 

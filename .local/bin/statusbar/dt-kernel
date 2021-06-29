@@ -4,11 +4,7 @@ kern="$(uname -r)"
 echo -e "$kern "
 
 case $BLOCK_BUTTON in
-	1) notify-send "🖥 CPU hogs" "$(ps axch -o cmd:15,%cpu --sort=-%cpu | head)\\n(100% per core)" ;;
-	2) setsid -f "$TERMINAL" -e bpytop ;;
-	3) notify-send "🖥Kernel module " "\- Shows current kernel.
-- Click to show intensive processes.
-- Middle click to open bpytop." ;;
-	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+	3) notify-send "🖥 Kernel module " "\- Shows current running kernel."
+  ;;
 esac
 
