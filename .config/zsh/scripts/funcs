@@ -8,6 +8,36 @@
 #   tree -I '.git|node_modules|bower_components|.DS_Store' --dirsfirst -L $levels -aC $@
 # }
 
+function add_plugin() {
+  for i in "$@"; do
+    [ -f $ZDOTDIR/plugins/$i ] && source $ZDOTDIR/plugins/$i
+  done
+}
+
+function add_files() {
+  for i in "$@"; do
+    [ -f $ZDOTDIR/$i ] && source $ZDOTDIR/$i
+  done
+}
+
+prof="${XDG_CACHE_HOME:-$HOME/.cache}/nvim/prof.log"
+function nvimProfiling() {
+  if [ -z "$@" ]; then
+    nvim --startuptime $prof
+  else
+    nvim "$@" --startuptime $prof
+  fi
+}
+
+prof_raw="${XDG_CACHE_HOME:-$HOME/.cache}/nvim/prof_raw.log"
+function nvimRawProfiling() {
+  if [ -z "$@" ]; then
+    nvim --noplugin -u ~/init.lua --startuptime $prof_raw
+  else
+    nvim --noplugin -u ~/init.lua "$@" --startuptime $prof_raw
+  fi
+}
+
 # compress
 function comp() {
   local DATE="$(date +%Y%m%d-%H%M%S)"
@@ -37,4 +67,18 @@ function colours() {
       printf "\t"
     fi
   done
+}
+
+function alive() {
+  if ping -c 1 google.com; then
+    echo "It appears you have a working internet connection"
+  fi
+}
+
+function old() {
+  if grep -q $@ ~/.zsh_history; then
+    echo "You appear to have typed '$@' in the past."
+  else
+    echo "You haven't typed '$@' before."
+  fi
 }

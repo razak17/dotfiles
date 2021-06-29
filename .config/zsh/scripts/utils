@@ -75,36 +75,6 @@ zshcomp() {
   done | sort
 }
 
-add_plugin() {
-  for i in "$@"; do
-    [ -f $ZDOTDIR/plugins/$i ] && source $ZDOTDIR/plugins/$i
-  done
-}
-
-add_files() {
-  for i in "$@"; do
-    [ -f $ZDOTDIR/$i ] && source $ZDOTDIR/$i
-  done
-}
-
-prof="${XDG_CACHE_HOME:-$HOME/.cache}/nvim/prof.log"
-prof_raw="${XDG_CACHE_HOME:-$HOME/.cache}/nvim/prof_raw.log"
-nvimProfiling() {
-  if [ -z "$@" ]; then
-    nvim --startuptime $prof
-  else
-    nvim "$@" --startuptime $prof
-  fi
-}
-
-nvimRawProfiling() {
-  if [ -z "$@" ]; then
-    nvim --noplugin -u ~/init.lua --startuptime $prof_raw
-  else
-    nvim --noplugin -u ~/init.lua "$@" --startuptime $prof_raw
-  fi
-}
-
 # copy the active line from the command line buffer
 # onto the system clipboard
 copybuffer() {

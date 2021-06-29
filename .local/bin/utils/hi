@@ -1,8 +1,0 @@
-#!/bin/sh
-
-read -p "Enter some lowercase text: " text
-read -p "Which letter do you want to highlight?: " highlight
-echo "I have highlighted '${highlight}' for you:"
-echo ${text^^$highlight}
-
-

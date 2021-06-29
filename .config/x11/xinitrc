@@ -4,5 +4,7 @@ if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile" ]; then
   source "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile"
 fi
 
-~/.local/bin/dwm/startdwm
+while type dwm >/dev/null ; do
+  dwm 2> ~/.dwm.log && continue || break ;
+done
 

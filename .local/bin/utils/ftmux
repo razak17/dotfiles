@@ -365,7 +365,7 @@ while [[ "$#" -gt 0 ]]; do
   shift
 
   case "$curr" in
-    "-h") helpMenu ;;
+    -h | --help) helpMenu ;;
     "-c")
       arg=$1
       checkEmpty $arg
@@ -404,9 +404,9 @@ while [[ "$#" -gt 0 ]]; do
   #   shift
   #   simpleCommands $arg
   #   ;;
-  "-r") resizePane ;;
+  -r | --resize) resizePane ;;
   "-N") sessionNumber ;;
-  "-b") breakPane ;;
+  -b | --break) breakPane ;;
   "-k")
     if [[ "$#" -gt 0 ]] ; then
       arg="$@"

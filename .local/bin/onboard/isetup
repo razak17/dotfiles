@@ -56,6 +56,12 @@ installFnm() {
   curl -fsSL https://fnm.vercel.app/install | bash
 }
 
+setupUtils() {
+  touch ~/.Xresources
+  touch ~/.gtkrc-2.0.mine
+  cat . ~/.config/x11/xresources > ~/.Xresources
+}
+
 while [[ "$#" -gt 0 ]]; do
   curr=$1
   shift

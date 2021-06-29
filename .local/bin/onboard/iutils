@@ -12,7 +12,7 @@ installTuxi() {
 installYtfzf() {
   echo "Installing dependencies for ytfzf..."
   sudo pacman -S jq mpv youtube-dl fzf ueberzug
-  curl -sL "https://raw.githubusercontent.com/pystardust/ytfzf/master/ytfzf" | sudo tee $HOME/.local/bin/ytfzf >/dev/null && sudo chmod 755 $HoME/.local/bin/ytfzf
+  yay -S ytfzf
 }
 
 installGetNf() {
@@ -32,6 +32,21 @@ installNeuron() {
   neuron --version
 }
 
-installTuxi
-installYtfzf
-installGetNf
+while [[ "$#" -gt 0 ]]; do
+  curr=$1
+  shift
+
+  case "$curr" in
+  -xi | --tuxi)
+    installTuxi
+    ;;
+  -yt | --ytfzf)
+    installYtfzf
+    ;;
+  -a | --all)
+    installTuxi
+    installYtfzf
+  ;;
+  *) echo "Unavailable command... $curr"
+  esac
+done

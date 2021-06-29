@@ -34,6 +34,7 @@ pac_packages=(
   'youtube-dl'
   'bat'
   'baobab'
+  'bmon'
   #'powerline-fonts'
   #'ninja'
   # 'cmake'
@@ -90,13 +91,13 @@ while [[ "$#" -gt 0 ]]; do
   shift
 
   case "$curr" in
-  "-yay")
+  -y | --yay)
     installAurPackage
     ;;
-  "-pac")
+  -pac | --pacman)
     installPacmanPackages
     ;;
-  "-all")
+  -a | --all)
     installAurPackage
     installPacmanPackages
   ;;

@@ -22,6 +22,7 @@ alias zs='source ~/.config/zsh/.zshrc'
 alias i='sudo'
 alias e="touch"
 alias m="mkdir"
+alias cmd='command -V'
 
 # system
 alias obd="objdump -d"
@@ -98,7 +99,7 @@ alias ze="nvr ~/.config/shell/profile"
 alias xe="nvr ~/.config/x11/xprofile"
 alias xr="nvr ~/.config/x11/xresources"
 alias xR="nvr ~/.Xresources"
-alias xc="nvr ~/.config/tmux/xd.tmux.conf"
+alias xc="nvr ~/.config/tmux/tmux.conf"
 alias xn="nvr ~/.config/x11/xinitrc"
 alias nvi="nv init.lua"
 alias nvc="nvr config.h"
@@ -142,7 +143,6 @@ alias cvn="nordvpn connect"
 alias dvn="nordvpn disconnect"
 alias svn="nordvpn status"
 alias me="curl icanhazip.com/"
-alias alive="ping google.com"
 
 # ranger
 alias f="ranger"

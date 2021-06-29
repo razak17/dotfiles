@@ -1,5 +1,0 @@
-#!/bin/sh
-
-read -p "Enter some lower case text? " text
-text_upper=${text^^}
-echo "Text in uppercase is: "${text_upper}.""

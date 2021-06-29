@@ -1,10 +1,19 @@
-#!/bin/bash -e
+#!/bin/zsh
 
-config_file="$HOME/.config/tmux/xd.tmux.conf"
+config_file="$HOME/.config/tmux/tmux.conf"
+session_name="first"
+tmux -L Dev has-session -t $session_name &> /dev/null
 
-if [[ -e $config_file ]]; then
-  exec /usr/bin/tmux -L Dev -f "$config_file" new -s first -c$HOME/.config/nvim -n main
-else
-  echo config file does not exist
-  exit 1
+if [ $? != 0 ]
+ then
+  if [[ -e $config_file ]]; then
+    tmux -L Dev -f "$config_file" new -s $session_name -c$HOME/.config/nvim -n main -d
+    # tmux -L Dev send-keys -t $session_name "~/.local/bin/utils/ftmux -first" C-m
+  else
+    echo config file does not exist
+    exit 1
+  fi
 fi
+# sleep 1
+
+tmux -L Dev attach -t $session_name

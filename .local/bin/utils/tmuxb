@@ -1,10 +1,18 @@
-#!/bin/bash -e
+#!/bin/zsh
 
-dull="$HOME/.config/tmux/xb.tmux.conf"
+config_file="$HOME/.config/tmux/xb.tmux.conf"
+session_name="first"
+tmux -L Dull has-session -t $session_name &> /dev/null
 
-if [[ -e $dull ]]; then
-  exec /usr/bin/tmux -L Dull -f "$dull" new -s first -n main
-else
-  exec /usr/bin/tmux -f/dev/null new -d
+if [ $? != 0 ]
+ then
+  if [[ -e $config_file ]]; then
+    tmux -L Dull -f "$config_file" new -s $session_name -n main -d
+    # tmux -L Dull send-keys -t $session_name "~/.local/bin/utils/ftmux -first" C-m
+  else
+    tmux -f/dev/null new -d
+  fi
 fi
+# sleep 1
 
+tmux -L Dull attach -t $session_name
