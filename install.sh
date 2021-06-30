@@ -1,7 +1,7 @@
 #/bin/sh
 
 if [[ -d ~/.dots/dotfiles ]]; then
-  echo 'dotfiles directory already exists.'
+  echo 'dotfiles directory already exists. Exiting...'
   exit 1
 fi
 
