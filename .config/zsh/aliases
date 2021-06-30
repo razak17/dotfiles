@@ -27,6 +27,7 @@ alias cmd='command -V'
 alias cp="cp -i"
 alias mv='mv -i'
 alias rm='rm -i'
+alias ccat='cat'
 
 # system
 alias obd="objdump -d"
