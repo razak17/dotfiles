@@ -23,6 +23,10 @@ alias i='sudo'
 alias e="touch"
 alias m="mkdir"
 alias cmd='command -V'
+# confirm before overwriting something
+alias cp="cp -i"
+alias mv='mv -i'
+alias rm='rm -i'
 
 # system
 alias obd="objdump -d"
@@ -39,6 +43,13 @@ alias brx='xrandr --output eDP-1 --brightness'
 alias br='brightnessctl -'
 alias ge='find | fzf | sed 's/^..//g' | tr -d '\n' | xclip -selection c'
 alias gf='find -type f | sed 's/^..//g' | fzf | tr -d '\n' | xclip -selection c'
+# easier to read disk
+alias df='df -h'
+alias free='free -m'
+# get top process eating memory
+alias psmem='ps auxf | sort -nr -k 4 | head -5'
+# get top process eating cpu
+alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 
 # sudo
 alias is='sudo su'
@@ -60,11 +71,15 @@ alias Ql="pacman -Ql"
 alias wp='pacman -Qs'
 alias p='sudo pacman -S'
 alias r='sudo pacman -Rs'
+alias R='sudo pacman -Rcns'
+# packages that don't depend on other packages
+alias U='sudo pacman -Qdtq'
 alias y='yay --noconfirm'
 alias yy='yay -Sy --noconfirm'
 alias upd='sudo pacman -Syu'
 alias rcache="sudo pacman -Sc"
 alias pkgs="pacman -Q | fzf"
+alias pt="pactree"
 # get fastest mirrors
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
 alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
@@ -152,8 +167,8 @@ alias rnv='ranger ~/.config/nvim'
 # tmux
 alias xds="tmux -L Dev"
 alias xbs="tmux -L Dull"
-alias xd="tmuxd"
-alias xb="tmuxb"
+alias xd="tmuxd first"
+alias xb="tmuxb first"
 alias xsp="tmux display -p '#{socket_path}'"
 alias xls="tmux ls"
 alias nx='tmux -L Dev new -s'
@@ -172,23 +187,8 @@ if [ -s "${XDG_DATA_HOME}/ssh/id_dsa" ]; then
 else
   SSH_ID="-i ~/.local/share/ssh/id_rsa"
 fi
-
 alias ssh="ssh $SSH_CONFIG $SSH_ID "
 alias ssh-copy-id="ssh-copy-id $SSH_ID"
-
-# confirm before overwriting something
-alias cp="cp -i"
-alias mv='mv -i'
-alias rm='rm -i'
-
-# easier to read disk
-alias df='df -h'
-alias free='free -m'
-
-# get top process eating memory
-alias psmem='ps auxf | sort -nr -k 4 | head -5'
-# get top process eating cpu ##
-alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 
 # Misc
 alias rfonts='fc-cache -vf ~/.local/share/fonts/'

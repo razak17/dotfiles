@@ -28,7 +28,7 @@ dwmblocks &
 ~/.local/bin/dwm/setbg &
 picom &
 xset r rate 300 50 &
-xinput set-prop 11 329 1
+xinput set-prop 10 309 1
 redshift -O 4500K &
 brightnessctl set 3000 &
 autokey-gtk &

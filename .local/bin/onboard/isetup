@@ -58,7 +58,9 @@ installFnm() {
 setupUtils() {
   touch ~/.Xresources
   touch ~/.gtkrc-2.0.mine
+  touch $ZDOTDIR/.zshrc
   cat . ~/.config/x11/xresources > ~/.Xresources
+  cat . $ZDOTDIR/.zshrc > $ZDOTDIR/.zshrc
 }
 
 while [[ "$#" -gt 0 ]]; do

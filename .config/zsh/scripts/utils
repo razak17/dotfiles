@@ -4,14 +4,6 @@
 # https://www.topbug.net/blog/2016/10/11/speed-test-check-the-existence-of-a-command-in-bash-and-zsh/
 exists() { (( $+commands[$1] )); }
 
-# Only top level
-# list_tree() {
-#     clear
-#     tree -L 1
-# }
-# zle -N list_tree
-# bindkey '^H' list_tree
-
 # Default to using `bat` https://github.com/sharkdp/bat#installation if it has been installed
 cat() {
   if hash bat 2>/dev/null; then
@@ -39,33 +31,6 @@ cho() {
 # chmod executable
 cx() {
   sudo chmod +x "$@"
-}
-
-mnt() {
-  local FILE="/mnt/external"
-  if [ ! -z $2 ]; then
-    FILE=$2
-  fi
-
-  if [ ! -z $1 ]; then
-    sudo mount "$1" "$FILE" -o rw
-    echo "Device in read/write mounted in $FILE"
-  fi
-
-  if [ $# = 0 ]; then
-    echo "You need to provide the device (/dev/sd*) - use lsblk"
-  fi
-}
-
-umnt() {
-  local DIRECTORY="/mnt"
-  if [ ! -z $1 ]; then
-    DIRECTORY=$1
-  fi
-  MOUNTED=$(grep $DIRECTORY /proc/mounts | cut -f2 -d" " | sort -r)
-  cd "/mnt"
-  sudo umount $MOUNTED
-  echo "$MOUNTED unmounted"
 }
 
 zshcomp() {

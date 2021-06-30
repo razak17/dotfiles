@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 config_file="$HOME/.config/tmux/xb.tmux.conf"
-session_name="first"
+session_name="$@"
 tmux -L Dull has-session -t $session_name &> /dev/null
 
 if [ $? != 0 ]

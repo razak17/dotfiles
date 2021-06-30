@@ -11,9 +11,6 @@ autoload -Uz compinit
 zmodload -i zsh/complist
 _comp_options+=(globdots)   # Include hidden files.
 
-# Override colors
-eval "$(dircolors -b $ZDOTDIR/dircolors)"
-
 # Enable keyboard navigation of completions in menu
 # (not just tab/shift-tab but cursor keys as well):
 zstyle ':completion:*:*:*:*:*' menu select
