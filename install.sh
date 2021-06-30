@@ -26,5 +26,11 @@ setupUtils() {
   echo . ~/.config/zsh/zshrc > ~/.config/zsh/.zshrc
 }
 
-installDotfiles
-setupUtils
+if [[ -d ~/.dots/dotfiles ]]; then
+  echo 'dotfiles directory already exists.'
+  exit 1
+else
+  installDotfiles
+  setupUtils
+fi
+
