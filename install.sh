@@ -1,5 +1,11 @@
 #/bin/sh
 
+if [[ -d ~/.dots/dotfiles ]]; then
+  echo 'dotfiles directory already exists.'
+  exit 1
+fi
+
+
 conf() {
   /usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME $@
 }
@@ -26,11 +32,6 @@ setupUtils() {
   echo . ~/.config/zsh/zshrc > ~/.config/zsh/.zshrc
 }
 
-if [[ -d ~/.dots/dotfiles ]]; then
-  echo 'dotfiles directory already exists.'
-  exit 1
-else
-  installDotfiles
-  setupUtils
-fi
+installDotfiles
+setupUtils
 
