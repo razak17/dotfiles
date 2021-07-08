@@ -4,6 +4,19 @@ typeset -U PATH path
 
 LOCAL="$HOME/.local/bin"
 
+# XDG directories
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export DEV_HOME="$HOME/personal/workspace/coding"
+
+export EDITOR="nvim"
+export BROWSER="firefox"
+export TERMINAL="alacritty"
+
+# zsh config dir
+export ZDOTDIR=$HOME/.config/zsh
+
 # Colorful Man Pages
 export MANWIDTH=999
 export BAT_PAGER="less -RFXi"
