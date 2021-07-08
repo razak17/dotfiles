@@ -5,61 +5,51 @@ HOME="/home/razak"
 DEV=$HOME/personal/workspace
 X="tmux -L ${SERVER}"
 MONEYPORTAL=$DEV/coding/projects/money-portal
-WEBSITE="$DEV/coding/website"
-V1="$DEV/coding/web/v1"
-CC=$DEV/coding/coding_challenges
-DEMOS=$DEV/coding/demos
-DS=$DEV/coding/ds_and_algos
-SCRIPTS=$DEV/Scripts
 DOC=$HOME/docs
 NVIM=$HOME/.config/nvim
 C_NVIM=$HOME/.cache/nvim
 SH_NVIM=$HOME/.local/share/nvim
-DOCS=/run/media/razak/55CD-9C80/Portable/Documents/Docs
-SKLESS=$HOME/.dots/suckless
-config_file="$HOME/.config/tmux/xd.tmux.conf"
 
 getPaneId() {
   tag=$1
   sessionOrWindowId=$2
-  if [[ "$tag" == "-p" ]]; then
-    paneId=$($X display -p '#{pane_id}')
-  elif [[ "$tag" == "-s" ]]; then
-    paneId=$($X list-panes -s -F '#D' -t $sessionOrWindowId)
-  elif [[ "$tag" == "-w" ]]; then
-    paneId=$($X list-panes -F '#D' -t $sessionOrWindowId)
-  elif [[ "$tag" == "-a" ]]; then
-    paneId=$($X list-panes -a -F '#D')
-  fi
+  case "$tag" in
+  "-p") paneId=$($X display -p '#{pane_id}') ;;
+  "-s") paneId=$($X list-panes -s -F '#D' -t $sessionOrWindowId) ;;
+  "-w") paneId=$($X list-panes -F '#D' -t $sessionOrWindowId) ;;
+  "-a") paneId=$($X list-panes -a -F '#D') ;;
+  *) echo "Unavailable command... $curr"
+  esac
   echo $paneId
 }
 
 getWindowId() {
   tag=$1
   session=$2
-  if [[ "$tag" == "-s" ]]; then
-    windowIds=$($X list-windows -F '#{window_id}' -t $session)
-  elif [[ "$tag" == "-a" ]]; then
-    windowIds=$($X list-windows -a -F '#{window_id}')
-  fi
+  case "$tag" in
+  "-s") windowIds=$($X list-windows -F '#{window_id}' -t $session) ;;
+  "-a") windowIds=$($X list-windows -a -F '#{window_id}') ;;
+  *) echo "Unavailable command... $curr"
+  esac
   echo $windowIds
 }
 
 panesList() {
   tag=$1
   shift
-  if [[ "$tag" == "-a" ]]; then
-    panes=$($X list-panes -a -F '#D')
-  elif [[ "$tag" == "-w" ]]; then
-    panes=$($X list-panes -F '#D')
-  elif [[ "$tag" == "-s" ]]; then
+  case "$tag" in
+  "-a") panes=$($X list-panes -a -F '#D') ;;
+  "-w") panes=$($X list-panes -F '#D') ;;
+  "-s")
     if [[ $# -gt 0 ]]; then
       panes=$($X list-panes -sF "#D" -t "$@")
     else
       echo "option requires an argument a target session"
       exit 1
     fi
-  fi
+    ;;
+  *) echo "Unavailable command... $curr"
+  esac
   echo $panes
 }
 
@@ -67,11 +57,11 @@ splitPane() {
   split=$1
   shift
   cmd="$X splitw"
-  if [[ "$split" == "-v" ]]; then
-    cmd="$cmd -h $@"
-  elif [[ "$split" == "-h" ]]; then
-    cmd="$cmd -v $@"
-  fi
+  case "$split" in
+    -v) cmd="$cmd -h $@" ;;
+    -h) cmd="$cmd -v $@" ;;
+  *) echo "Unavailable command... $curr"
+  esac
   eval $cmd
 }
 
@@ -167,14 +157,6 @@ helpMenu() {
   echo -r: resize
   echo -m: moneyportal
   echo -s: "create session. followed by <session-name>"
-  echo -w: website
-  echo -n: regular sessions. followed by \"-name\"
-  echo -name:
-  echo "    -c: coding_challenges"
-  echo "    -d: demos"
-  echo "    -ds: ds_and_algos"
-  echo "    -m: m_"
-  echo "    -s: scripts"
   echo -c: regular commands. followed by \"-cmd\"
   echo -cmd:
   echo "    -zs": send \"zs\" to all panes
@@ -214,11 +196,10 @@ simpleCommands() {
 
 firstSession() {
   session="first"
+  $X has-session -t $session_name &> /dev/null
 
-  # cmd="$X -f "$config_file" new -s first2 -c$HOME/.config/nvim -n main"
-  # eval $cmd
+  (( "$?" != 0 )) && createSession $session "main" $NVIM
 
-  # createSession $session "main" $NVIM
   createWindow $session "config" -c $SH_NVIM
 
   tw=$(getTarget $session 0 -w)
@@ -228,16 +209,6 @@ firstSession() {
   tw=$(getTarget $session 1 -w)
   first=$(getTarget $tw 0 -p)
   splitPane -v -c $C_NVIM -t $first
-
-  ($X a -t first)
-}
-
-envSession() {
-  session="env"
-  createSession $session "dots" $HOME/.dots
-  createWindow $session "dwm" -c $SKLESS/dwm
-  createWindow $session "dwmblocks" -c $SKLESS/dwmblocks
-  createWindow $session "st" -c $SKLESS/st
 }
 
 finalSession() {
@@ -290,124 +261,58 @@ moneyportalSession() {
   $X send-keys -t $(getTarget $tw -1 -p) "az --h" "C-m"
 }
 
-websiteSession() {
-  session="website"
-  createSession $session "code" $WEBSITE
-  createWindow $session "run" -c $WEBSITE
-  createWindow $session "v1" -c $V1
-
-  # First Window
-  tw=$(getTarget $session 0 -w)
-  first=$(getTarget $tw 0 -p)
-  $X send-keys -t $first "nv src/pages/index.tsx" "C-m"
-
-  # Second Window
-  tw=$(getTarget $session 1 -w)
-  first=$(getTarget $tw 0 -p)
-  $X send-keys -t $first "git status" "C-m"
-  splitPane -v -c $WEBSITE -t $first
-  second=$(getTarget $tw 1 -p)
-  # $X send-keys -t $second "npm run develop" "C-m"
-  splitPane -h -c $WEBSITE -t $second
-  third=$(getTarget $tw 2 -p)
-  $X send-keys -t $third "cdocs" "C-m"
-
-  # Third Window
-  tw=$(getTarget $session 2 -w)
-  first=$(getTarget $tw 0 -p)
-  $X send-keys -t $first "nv src/pages/index.js" "C-m"
-}
-
-ccSession() {
-  session="coding_challenges"
-  createSession $session main $CC
-  tw=$(getTarget $session 0 -w)
-  first=$(getTarget $tw 0 -p)
-  splitPane -v -c $CC -t $first
-}
-
-demosSession() {
-  session="demos"
-  createSession $session main $DEMOS
-  tw=$(getTarget $session 0 -w)
-  first=$(getTarget $tw 0 -p)
-  splitPane -v -c $DEMOS -t $first
-}
-
-dsSession() {
-  session="ds_and_algos"
-  createSession $session main $DS
-  tw=$(getTarget $session 0 -w)
-  first=$(getTarget $tw 0 -p)
-  splitPane -v -c $DS -t $first
-}
-
-mSession() {
-  session="m_"
-  createSession $session main $C_NVIM
-  createWindow $session "init" -c $NVIM
-  tw=$(getTarget $session 0 -w)
-  first=$(getTarget $tw 0 -p)
-  splitPane -v -c $DOCS -t $first
-}
-
-scriptsSession() {
-  session="scripts"
-  createSession $session main $SCRIPTS
-  createWindow $session "bin" -c $HOME/.local/bin
-  tw=$(getTarget $session 0 -w)
-  first=$(getTarget $tw 0 -p)
-  splitPane -v -c $SCRIPTS -t $first
-}
-
 while [[ "$#" -gt 0 ]]; do
   curr=$1
   shift
 
   case "$curr" in
-    -h | --help) helpMenu ;;
-    "-c")
-      arg=$1
-      checkEmpty $arg
-      shift
-      case "$arg" in
-        "-a") panes=$(panesList -a) ;;
-        "-w") panes=$(panesList -w) ;;
-        "-s")
-          echo session: $1
-          if [[ $# -lt 2 ]]; then
-            echo "missing session name or command"
-            exit 1
-          else
-            panes=$(panesList -s $1)
-          fi
-          ;;
-        *) echo "Unavailables ... $cmd"
-      esac
-      if [[ $arg == "-s" ]]; then
-        shift
-      fi
-      echo panes: $panes
-      cmd=$1
-      echo cmd: $cmd
-      checkEmpty $cmd
-      shift
-      IFS=' ' read -ra ids <<< "$panes"
-      for i in ${panes[@]}; do
-        echo sending cmd: $cmd to $i
-        $X send-keys -t $i $cmd "C-m"
-      done
-    ;;
-  # "-k")
-  #   arg=$1
-  #   checkEmpty $arg
-  #   shift
-  #   simpleCommands $arg
-  #   ;;
+  -h | --help) helpMenu ;;
   -r | --resize) resizePane ;;
-  "-N") sessionNumber ;;
+  -N) sessionNumber ;;
   -b | --break) breakPane ;;
-  "-k")
+  -z) zTest ;;
+  -m) moneyportalSession ;;
+  --first) firstSession ;;
+  --final) finalSession ;;
+  -c | --command)
+    arg=$1
+    checkEmpty $arg
+    shift
+    case "$arg" in
+      "-a") panes=$(panesList -a) ;;
+      "-w") panes=$(panesList -w) ;;
+      "-s")
+        # echo session: $1
+        if [[ $# -lt 2 ]]; then
+          echo "missing session name or command"
+          exit 1
+        else
+          panes=$(panesList -s $1)
+        fi
+        ;;
+      *) echo "Unavailable ... $cmd"
+    esac
+    if [[ $arg == "-s" ]]; then
+      shift
+    fi
+    echo panes: $panes
+    cmd=$1
+    # echo cmd: $cmd
+    checkEmpty $cmd
+    shift
+    IFS=' ' read -ra ids <<< "$panes"
+    for i in ${panes[@]}; do
+      echo sending cmd: $cmd to $i
+      $X send-keys -t $i $cmd "C-m"
+    done
+    ;;
+  --simple)
+    arg=$1
+    checkEmpty $arg
+    shift
+    simpleCommands $arg
+    ;;
+  -k | --kill)
     if [[ "$#" -gt 0 ]] ; then
       arg="$@"
     else
@@ -416,7 +321,7 @@ while [[ "$#" -gt 0 ]]; do
     checkEmpty $arg
     killSession $arg
     ;;
-  "-s")
+  -s | --session)
     if [[ "$#" -gt 0 ]] ; then
       arg="$@"
     else
@@ -425,25 +330,6 @@ while [[ "$#" -gt 0 ]]; do
     checkEmpty $arg
     createSession $arg "main"
     exit 1
-    ;;
-  "-z") zTest ;;
-  "-env") envSession ;;
-  "-first") firstSession ;;
-  "-final") finalSession ;;
-  "-m") moneyportalSession ;;
-  "-w") websiteSession ;;
-  "-n")
-    arg=$1
-    checkEmpty $arg
-    shift
-    case "$arg" in
-    "-c") ccSession ;;
-    "-d") demosSession ;;
-    "-ds") dsSession ;;
-    "-m") mSession ;;
-    "-s") scriptsSession ;;
-    *) echo "Unavailable command... $arg"
-    esac
     ;;
   *) echo "Unavailable command... $curr"
   esac

@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-typeset -u PATH path
+typeset -U PATH path
 
 LOCAL="$HOME/.local/bin"
 

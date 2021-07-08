@@ -36,13 +36,38 @@ extensions=(
   dkundel.vscode-npm-source
 )
 
+disabledExtensions=(
+  # global
+  aaron-bond.better-comments
+  naumovs.color-highlight
+  zhuangtongfa.material-theme
+  pnp.polacode
+  # workspace specific
+  ms-vscode.azure-account
+  ms-azuretools.vscode-azureappservice
+  ms-vscode.azurecli
+  ms-azuretools.vscode-azureresourcegroups
+  pranaygp.vscode-css-peek
+  ms-azuretools.vscode-docker
+  dbaeumer.vscode-eslint
+  lamartire.git-indicators
+  felipecaputo.git-project-manager
+  eamodio.gitlens
+  qezhu.gitlink
+  ecmel.vscode-html-css
+  ms-toolsai.jupyter
+  ritwickdey.live-sass
+  ritwickdey.liveserver
+  esbenp.prettier-vscode
+  wallabyjs.quokka-vscode
+  humao.rest-client
+  dkundel.vscode-npm-source
+)
+
 for extension in ${extensions[@]}; do
 	vscodium --force --install-extension $extension
 done
 
-# {{ if (eq .chezmoi.os "darwin") }}
-# defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
-# defaults delete -g ApplePressAndHoldEnabled || true
-# {{ end }}
-
-# {{ end }}
+# for disabled in ${disabledExtensions[@]}; do
+# 	vscodium m --disable-extension $disabled
+# done

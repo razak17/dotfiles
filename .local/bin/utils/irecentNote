@@ -1,3 +1,0 @@
-#!/bin/sh
-
-ls -r ~/notes/src/* | head -n1 | xargs nvim -u ~/docs/raw.lua

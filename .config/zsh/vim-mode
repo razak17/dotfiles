@@ -3,17 +3,17 @@
 bindkey -v   # bindkey -e will be emacs mode
 export KEYTIMEOUT=1
 
-# Change cursor shape for different vi modes.
+# Use block cursor mode always
 function zle-keymap-select () {
   case $KEYMAP in
     vicmd) echo -ne '\e[1 q';;      # block
-    viins|main) echo -ne '\e[5 q';; # beam
+    viins|main) echo -ne '\e[1 q';; # beam
   esac
 }
 zle -N zle-keymap-select
 
-echo -ne '\e[5 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+echo -ne '\e[1 q' # Use block shape cursor on startup.
+preexec() { echo -ne '\e[1 q' ;} # Use block shape cursor for each new prompt.
 
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history

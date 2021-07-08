@@ -69,12 +69,9 @@
     }
   ],
   "liveSassCompile.settings.generateMap": false,
-  "workbench.editorAssociations": [
-    {
-      "viewType": "jupyter.notebook.ipynb",
-      "filenamePattern": "*.ipynb"
-    }
-  ],
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb"
+  },
   "liveSassCompile.settings.autoprefix": [],
   "workbench.activityBar.visible": false,
   "breadcrumbs.enabled": false,
@@ -92,7 +89,7 @@
   "editor.cursorStyle": "block",
   "terminal.integrated.cursorBlinking": false,
   "terminal.integrated.allowChords": false,
-  "terminal.integrated.shell.linux": "/bin/zsh",
+  "terminal.integrated.defaultProfile.linux": "zsh",
   "terminal.integrated.rendererType": "dom",
   "vscode-neovim.neovimExecutablePaths.linux": "/home/razak/.local/bin/nvim",
   "vscode-neovim.neovimExecutablePaths.darwin": "/home/razak/.local/bin/nvim",
@@ -328,6 +325,12 @@
           "type": "command",
           "command": "vscode-neovim.send",
           "args": ":noh<CR>"
+        },
+        {
+          "key": "r",
+          "name": "Run selected code",
+          "type": "command",
+          "command": "workbench.action.terminal.runSelected"
         },
         {
           "key": "R",

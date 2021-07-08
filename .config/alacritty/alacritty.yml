@@ -63,6 +63,7 @@ font:
   normal:
     # family: "FiraCode Nerd Font Mono"
     family: "Operator Mono Lig Book"
+    # family: "Dank Mono Nerd Font"
     style: Retina
   bold:
     family: "Operator Mono Lig"

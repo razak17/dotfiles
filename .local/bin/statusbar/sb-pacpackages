@@ -30,8 +30,8 @@ esac
 upgrades=$(pacman -Qu | grep -Fcv "[ignored]" | sed "s/^//;s/^0$//g")
 
 if [[ -z "$upgrades" ]]; then
-  echo "0"
+  echo "📦  0"
 else
-  echo -e "$upgrades"
+  echo -e "📦 $upgrades"
 fi
 

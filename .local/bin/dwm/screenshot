@@ -5,16 +5,16 @@ mkdir -p ~/Pictures/screenshots
 file=$HOME/Pictures/screenshots/$(date +%F_%H%M%S_%N).png
 
 case $1 in
-    --select) maim -u -s "$file" ;;
-    --all) maim -u "$file" ;;
-    --focused)
-        focused_win=$(xprop -root | awk '/^_NET_ACTIVE_WINDOW/ { print $NF }')
-        maim -u -i "$focused_win" "$file"
-    ;;
-    *)
-        echo 'Must pass an option.'
-        exit 1
-    ;;
+  --select) maim -u -s "$file" ;;
+  --all) maim -u "$file" ;;
+  --focused)
+    focused_win=$(xprop -root | awk '/^_NET_ACTIVE_WINDOW/ { print $NF }')
+    maim -u -i "$focused_win" "$file"
+  ;;
+  *)
+    echo 'Must pass an option.'
+    exit 1
+  ;;
 esac
 
 pngquant -f --ext .png "$file"
@@ -26,8 +26,8 @@ xclip -sel primary <<< "$file"
 
 
 if [[ $2 == "--upload" ]]; then
-    curl --upload-file "$file" https://transfer.sh/"${file##*/}"
-    echo
+  curl --upload-file "$file" https://transfer.sh/"${file##*/}"
+  echo
 else
-    printf '%s\n' "$file"
+  printf '%s\n' "$file"
 fi

@@ -33,6 +33,14 @@ function gcap() {
   git add .;git add -u :/;git commit -m "$@";git push
 }
 
+function gconf() {
+  git config --global user.name “razak17”
+  git config --global user.email moabdulrazak17@gmail.com
+  git config --global core.editor nvim
+  git config --global init.defaultBranch main
+  git config credential.helper store
+}
+
 # fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
 function fbr() {
   local branches branch

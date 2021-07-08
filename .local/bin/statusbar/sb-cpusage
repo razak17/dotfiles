@@ -8,7 +8,7 @@ cpu() {
           total=$((a+b+c+idle))
             cpu=$((100*( (total-prevtotal) - (idle-previdle) ) / (total-prevtotal) ))
             if [[ "$cpu" -gt 99 ]]; then
-              echo -e "$cpu%"
+              echo -e " $cpu%"
             elif [[ "$cpu" -gt 9 ]]; then
               echo -e "$cpu%"
             else
@@ -16,7 +16,7 @@ cpu() {
             fi
           }
 
-echo "🌡 $(cpu)"
+echo "🔥 $(cpu)"
 
 case $BLOCK_BUTTON in
 	1) notify-send "🖥 CPU hogs" "$(ps axch -o cmd:15,%cpu --sort=-%cpu | head)\\n(100% per core)" ;;

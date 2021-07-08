@@ -1,0 +1,16 @@
+#!/bin/sh
+
+cd /home/razak/.mozilla/firefox/profiles
+choices="$(dir | xargs -n 1 -P 1 echo $0 | awk {'print $2'} | dmenu)" || exit 1
+
+# echo $choices
+
+# capitalize
+profile="$(tr '[:lower:]' '[:upper:]' <<< ${choices:0:1})${choices:1}"
+
+if [[ $? != 0 ]]; then
+  echo config file does not exist
+  exit 1
+else
+  firefox -P $profile
+fi
