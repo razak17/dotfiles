@@ -1,3 +1,5 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+
 schemes:
   spacemacs_light: &light
     primary:
@@ -21,6 +23,20 @@ schemes:
       magenta: "#fd28ff"
       cyan: "#14ffff"
       white: "#c3eeff"
+
+    cursor:
+      text: "#030303"
+      cursor: "#7685b1"
+      style:
+        shape: Block
+        blinking: Never
+      vi_mode_style: None
+      unfocused_hollow: true
+
+    vi_mode_cursor:
+      text: "#030303"
+      cursor: "#7ec0ee"
+
     search:
       matches:
         foreground: "#030303"
@@ -37,7 +53,7 @@ schemes:
 
   spacemacs_dark: &dark
     primary:
-      foreground: "#7ec0ee"
+      foreground: "#828482"
       background: "#292b2e"
     normal:
       black: "#0a0814"
@@ -57,6 +73,8 @@ schemes:
       magenta: "#2C9473"
       cyan: "#6B3062"
       white: "#686868"
+
+colors: *light
 
 font:
   size: 8
@@ -92,13 +110,6 @@ window:
   startup_mode: Maximized
   dynamic_title: true
 
-cursor:
-  style:
-    shape: Block
-    blinking: Never
-  vi_mode_style: None
-  unfocused_hollow: true
-
 scrolling:
   history: 10000
   multiplier: 10
@@ -106,7 +117,6 @@ scrolling:
 selection:
   semantic_escape_chars: ',│`|:"'' ()[]{}<>'
   save_to_clipboard: false
-colors: *light
 
 draw_bold_text_with_bright_colors: true
 
