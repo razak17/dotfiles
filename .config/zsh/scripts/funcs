@@ -1,15 +1,51 @@
 #!/bin/zsh
 
-function add_plugin() {
-  for i in "$@"; do
-    [ -f $ZDOTDIR/plugins/$i ] && source $ZDOTDIR/plugins/$i
-  done
-}
-
 function add_files() {
   for i in "$@"; do
     [ -f $ZDOTDIR/$i ] && source $ZDOTDIR/$i
   done
+}
+
+function add_plugin() {
+  add_files "plugins/$1/$1.plugin.zsh" || add_file "plugins/$1/$1.zsh"
+}
+
+function add_completion() {
+  if [ "$2" = false ] && return
+  if [ -d "$ZDOTDIR/plugins/$1" ]; then
+    dir="plugins"
+    file_path=$(ls $ZDOTDIR/$dir/$1/_*)
+  elif [ -d "$ZDOTDIR/completion/$1" ]; then
+    dir="completion"
+    file_path=$(ls $ZDOTDIR/$dir/$1/_*)
+  else
+    return
+  fi
+  fpath+="$(dirname "${file_path}")"
+  # file="$(basename "${file_path}")"
+  # compinit "${file:1}" _comp_path
+}
+
+function conda_activate() {
+  # >>> conda initialize >>>
+  # !! Contents within this block are managed by 'conda init' !!
+  __conda_setup="$('/home/razak/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+  else
+    if [ -f "/home/razak/miniconda3/etc/profile.d/conda.sh" ]; then
+      . "/home/razak/miniconda3/etc/profile.d/conda.sh"
+    else
+      export PATH="/home/razak/miniconda3/bin:$PATH"
+    fi
+  fi
+  unset __conda_setup
+  # <<< conda initialize <<<
+}
+
+function conda_init() {
+  if [ "$1" = false ] && return
+  conda_activate
 }
 
 prof="${XDG_CACHE_HOME:-$HOME/.cache}/nvim/prof.log"

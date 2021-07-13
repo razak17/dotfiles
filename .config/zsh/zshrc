@@ -2,6 +2,7 @@
 
 # profiling
 zmodload zsh/zprof
+_comp_path="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump"
 
 # DO not highligh& pasted text
 zle_highlight=('paste:none')
@@ -15,14 +16,17 @@ for script in $ZDOTDIR/scripts/*; do
 done
 
 # These should be source *BEFORE* setting up hooks
-add_plugin zsh-completions/zsh-completions.plugin.zsh
-add_plugin zsh-autosuggestions/zsh-autosuggestions.zsh
-add_plugin zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-add_plugin conda-zsh-completion/conda-zsh-completion.plugin.zsh
+add_plugin 'zsh-completions'
+add_plugin 'zsh-autosuggestions'
+add_plugin 'zsh-syntax-highlighting'
 autoload zmv # builtin zsh rename command
 
 # Load config files
 add_files opts compe vim-mode hooks binds prompt aliases
+
+# Load completions
+add_completion 'fnm'
+add_completion 'conda-zsh-completion' true
 
 # Plugins options
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
@@ -50,40 +54,19 @@ if exists zoxide; then
   eval "$(zoxide init zsh)"
 fi
 
-# Load other completions
-if [ -d "$ZDOTDIR/plugins" ]; then
-  fpath+="$ZDOTDIR/completion/"
-fi
-
-# pip
-# eval "`pip completion --zsh`"
-
 # fzf
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
-conda_init() {
-  # >>> conda initialize >>>
-  # !! Contents within this block are managed by 'conda init' !!
-  __conda_setup="$('/home/razak/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-  if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-  else
-    if [ -f "/home/razak/miniconda3/etc/profile.d/conda.sh" ]; then
-      . "/home/razak/miniconda3/etc/profile.d/conda.sh"
-    else
-      export PATH="/home/razak/miniconda3/bin:$PATH"
-    fi
-  fi
-  unset __conda_setup
-  # <<< conda initialize <<<
-}
-# conda_init
+# conda_init and pip
+conda_init true
+if exists conda; then
+  eval "`pip completion --zsh`"
+fi
 
 # Load and initialize the completion system ignoring insecure directories with a
 # cache time of 20 hours, so it should almost always regenerate the first time a
 # shell is opened each day.
 # #q expands globs in conditional expressions
-_comp_path="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump"
 if [[ $_comp_path(#qNmh-20) ]]; then
   # -C (skip function check) implies -i (skip security check).
   compinit -C -d "$_comp_path"
