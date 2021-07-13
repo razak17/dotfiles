@@ -50,9 +50,14 @@ pythonVenvInit() {
 }
 
 dapVenvInit() {
-  mkdir -p ~/$dap_py
-  python3 -m venv ~/$dap_py
-  ~/$dap_py/bin/python -m pip install debugpy
+  if [ ! -d ~/$dap_dir ]; then
+    mkdir -p ~/$dap_py
+    python3 -m venv ~/$dap_py
+    ~/$dap_py/bin/python -m pip install debugpy
+  else
+    echo "python dap dir already exists"
+      exit 1
+  fi
 }
 
 nodeHostInit() {
@@ -127,11 +132,14 @@ installNodeDebug2() {
   cd ~/$dap_dir
   if [ ! -d ~/$dap_dir/vscode-node-debug2 ]; then
     git clone https://github.com/microsoft/vscode-node-debug2.git
+    cd vscode-node-debug2
+    npm install
+    npm i -g gulp-cli
+    gulp build
+  else
+    echo "node dap dir already exists"
+    exit 1
   fi
-  cd vscode-node-debug2
-  npm install
-  npm i -g gulp-cli
-  gulp build
 }
 
 installRocks() {
@@ -152,15 +160,13 @@ while [[ "$#" -gt 0 ]]; do
     ;;
   "-dap")
     dapVenvInit
+    installNodeDebug2
     ;;
   "-node")
     nodeHostInit
     ;;
   "-go")
     golangInit
-    ;;
-  "-dap")
-    installNodeDebug2
     ;;
   "-lua")
     installLua
