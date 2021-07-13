@@ -185,6 +185,29 @@ checkEmpty() {
   fi
 }
 
+prevPane() {
+  paneIdx=$($X display -p '#{pane_index}')
+  prev=$((paneIdx - 1))
+  hasPrev=$($X list-panes -F '#{pane_index}' | grep $prev)
+  last=$($X list-panes -F '#{pane_index}' | awk 'END {print NR}')
+  if [ "$hasPrev" ]; then
+    ($X select-pane -t $prev)
+  else
+    ($X select-pane -t $last)
+  fi
+}
+
+nextPane() {
+  paneIdx=$($X display -p '#{pane_index}')
+  next=$((paneIdx + 1))
+  hasNext=$($X list-panes -F '#{pane_index}' | grep $next)
+  if [ "$hasNext" ]; then
+    ($X select-pane -t $next)
+  else
+    ($X select-pane -t 1)
+  fi
+}
+
 simpleCommands() {
   case "$arg" in
     "-p") ($X run-shell -b 'echo pane id is #{pane_id}') ;;
@@ -268,6 +291,8 @@ while [[ "$#" -gt 0 ]]; do
   case "$curr" in
   -h | --help) helpMenu ;;
   -r | --resize) resizePane ;;
+  --nextpane) nextPane ;;
+  --prevpane) prevPane ;;
   -N) sessionNumber ;;
   -b | --break) breakPane ;;
   -z) zTest ;;

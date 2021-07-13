@@ -26,7 +26,7 @@ add_files opts compe vim-mode hooks binds prompt aliases
 
 # Load completions
 add_completion 'fnm'
-add_completion 'conda-zsh-completion' true
+add_completion 'conda-zsh-completion' false
 
 # Plugins options
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
@@ -58,7 +58,7 @@ fi
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
 # conda_init and pip
-conda_init true
+conda_init false
 if exists conda; then
   eval "`pip completion --zsh`"
 fi
