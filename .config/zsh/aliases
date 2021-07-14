@@ -136,6 +136,7 @@ alias vsc="vscodium ."
 # editor
 alias a="nvr ~/.config/zsh/aliases"
 alias lc="nv ~/.config/nvim/lua/core/init.lua"
+alias dfc="nv ~/.config/nvim/lua/core/defaults.lua"
 alias vc="nv ~/.config/nvim/init.lua"
 alias rvc="nv ~/docs/raw.lua"
 alias lvc="nv ~/.vimrc.local"

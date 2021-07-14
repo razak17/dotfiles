@@ -22,8 +22,6 @@ function add_completion() {
     return
   fi
   fpath+="$(dirname "${file_path}")"
-  # file="$(basename "${file_path}")"
-  # compinit "${file:1}" _comp_path
 }
 
 function conda_activate() {
