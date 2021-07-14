@@ -26,6 +26,8 @@ set noshowcmd
 set formatoptions=jql
 set laststatus=0
 set showtabline=0
+set nowrap
+set shell=/bin/zsh
 "set nocursorline
 "set signcolumn=yes
 "set nocursorcolumn
