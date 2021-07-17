@@ -41,9 +41,16 @@ function conda_activate() {
   # <<< conda initialize <<<
 }
 
+function pip_init() {
+  if exists conda; then
+    eval "`pip completion --zsh`"
+  fi
+}
+
 function conda_init() {
   if [ "$1" = false ] && return
   conda_activate
+  pip_init
 }
 
 prof="${XDG_CACHE_HOME:-$HOME/.cache}/nvim/prof.log"

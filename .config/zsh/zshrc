@@ -2,7 +2,6 @@
 
 # profiling
 zmodload zsh/zprof
-_comp_path="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump"
 
 # DO not highligh& pasted text
 zle_highlight=('paste:none')
@@ -19,14 +18,12 @@ done
 add_plugin 'zsh-completions'
 add_plugin 'zsh-autosuggestions'
 add_plugin 'zsh-syntax-highlighting'
+add_completion 'conda-zsh-completion' false
+add_completion 'fnm'
 autoload zmv # builtin zsh rename command
 
 # Load config files
 add_files opts compe vim-mode hooks binds prompt aliases
-
-# Load completions
-add_completion 'fnm'
-add_completion 'conda-zsh-completion' false
 
 # Plugins options
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
@@ -59,14 +56,12 @@ fi
 
 # conda_init and pip
 conda_init false
-if exists conda; then
-  eval "`pip completion --zsh`"
-fi
 
 # Load and initialize the completion system ignoring insecure directories with a
 # cache time of 20 hours, so it should almost always regenerate the first time a
 # shell is opened each day.
 # #q expands globs in conditional expressions
+_comp_path="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump"
 if [[ $_comp_path(#qNmh-20) ]]; then
   # -C (skip function check) implies -i (skip security check).
   compinit -C -d "$_comp_path"

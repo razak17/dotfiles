@@ -1,5 +1,5 @@
 syntax off
-filetype plugin indent off
+" filetype indent off
 filetype off
 
 set exrc
@@ -16,7 +16,7 @@ set noswapfile
 set undofile
 set nobackup
 set nowritebackup
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
 set hidden
 set number relativenumber
 set hlsearch
@@ -98,14 +98,15 @@ set shell=/bin/zsh
 "set grepprg=rg --hidden --glob "!.git" --no-heading --smart-case --vimgrep --follow $*
 "set grepformat=%f:%l:%c:%m
 
+highlight! link SignColumn Normal
+highlight StatusLine guifg=NONE guibg=NONE guisp=NONE gui=NONE blend=NONE
+highlight TabLineFill guifg=NONE guibg=NONE guisp=NONE gui=NONE blend=NONE
+highlight Todo guifg=#AF4B57 guibg=NONE guisp=NONE gui=bold blend=NONE
+highlight COlorColumn guibg=#4E525C
+highlight CursorLine guibg=#4E525C
+highlight LineNr guifg=#5B6268
 
-let mapleader=" "
-let maplocalleader=" "
-let completion_confirm_key = ""
-
-nnoremap n j
-"nnoremap z u
-nnoremap <Leader>x :q<CR>
+"nnoremap n j
 nnoremap <TAB> :bnext<CR>
 nnoremap <S-TAB> :bprevious<CR>
 nnoremap <M-j>    :resize -2<CR>
@@ -117,17 +118,24 @@ tnoremap <Esc>    <C-\\><C-N>
 xnoremap K :move '<-2<CR>gv-gv
 xnoremap J :move '>+1<CR>gv-gv
 xnoremap N :move '>+1<CR>gv-gv
+
+let mapleader=" "
+let maplocalleader=" "
+let completion_confirm_key = ""
+
+nnoremap z u
+nnoremap <Leader>x :q<CR>
 nnoremap <Leader>y "+y
 vnoremap <Leader>y' "+y
 nnoremap <Leader>aY gg"+yG
-nnoremap <Leader>aV gg"+VG
+ nnoremap <Leader>aV gg"+VG
 nnoremap <Leader>aD gg"+VG
 nnoremap <Leader>chw :h <C-R>=expand("<cword>")<CR><CR>
 
 set runtimepath=$XDG_CONFIG_HOME/nvim
 "set runtimepath=$VIMRUNTIME
-runtime! plugin/rplugin.vim
+"runtime! plugin/rplugin.vim
 "runtime! ftplugin/*.vim
 "runtime! syntax/*.vim
 "runtime! indent/*.vim
-set runtimepath=$XDG_CONFIG_HOME/nvim,$XDG_DATA_HOME/nvim/site,$XDG_DATA_HOME/nvim/pack/packer/start,$XDG_DATA_HOME/nvim/pack/packer/opt,$VIMRUNTIME
+set runtimepath=$XDG_CONFIG_HOME/nvim,$XDG_CONFIG_HOME/nvim/after,$XDG_DATA_HOME/nvim/site,$XDG_DATA_HOME/nvim/pack/packer/start,$XDG_DATA_HOME/nvim/pack/packer/opt,$VIMRUNTIME

@@ -191,9 +191,9 @@ prevPane() {
   hasPrev=$($X list-panes -F '#{pane_index}' | grep $prev)
   last=$($X list-panes -F '#{pane_index}' | awk 'END {print NR}')
   if [ "$hasPrev" ]; then
-    ($X select-pane -t $prev)
+    ($X select-pane -Z -t $prev)
   else
-    ($X select-pane -t $last)
+    ($X select-pane -Z -t $last)
   fi
 }
 
@@ -202,9 +202,9 @@ nextPane() {
   next=$((paneIdx + 1))
   hasNext=$($X list-panes -F '#{pane_index}' | grep $next)
   if [ "$hasNext" ]; then
-    ($X select-pane -t $next)
+    ($X select-pane -Z -t $next)
   else
-    ($X select-pane -t 1)
+    ($X select-pane -Z -t 1)
   fi
 }
 

@@ -136,7 +136,7 @@ alias vsc="vscodium ."
 # editor
 alias a="nvr ~/.config/zsh/aliases"
 alias lc="nv ~/.config/nvim/lua/core/init.lua"
-alias dfc="nv ~/.config/nvim/lua/core/defaults.lua"
+alias dfc="nv ~/.config/nvim/lua/defaults/init.lua"
 alias vc="nv ~/.config/nvim/init.lua"
 alias rvc="nv ~/docs/raw.lua"
 alias lvc="nv ~/.vimrc.local"
@@ -239,6 +239,7 @@ dots=~/.dots
 dw=~/Downloads
 
 alias zl='nv ${XDG_DATA_HOME:-$HOME/.cache}/nvim/site/pack/packer/start/zephyr-nvim/lua/zephyr.lua'
+alias pl='nv ~/.cache/nvim/prof.log'
 alias cdmo='cd "$mo"'
 alias cdnca='cd "$nca"'
 alias cdc='cd "$doc"'
