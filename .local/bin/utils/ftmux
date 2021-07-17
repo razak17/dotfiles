@@ -187,25 +187,24 @@ checkEmpty() {
 
 prevPane() {
   paneIdx=$($X display -p '#{pane_index}')
-  prev=$((paneIdx - 1))
-  hasPrev=$($X list-panes -F '#{pane_index}' | grep $prev)
-  last=$($X list-panes -F '#{pane_index}' | awk 'END {print NR}')
-  if [ "$hasPrev" ]; then
-    ($X select-pane -Z -t $prev)
-  else
-    ($X select-pane -Z -t $last)
+  prevIdx=$((paneIdx - 1))
+  count=$($X list-panes -F '#{pane_id}' | awk 'END {print NR}')
+  if [ "$prevIdx" -lt 1 ]; then
+    prevIdx=$count
   fi
+  prevId=$($X list-panes -F '#{pane_id}' | xargs | awk -v var=$prevIdx '{print $var}')
+  ($X select-pane -Z -t $prevId)
 }
 
 nextPane() {
   paneIdx=$($X display -p '#{pane_index}')
-  next=$((paneIdx + 1))
-  hasNext=$($X list-panes -F '#{pane_index}' | grep $next)
-  if [ "$hasNext" ]; then
-    ($X select-pane -Z -t $next)
-  else
-    ($X select-pane -Z -t 1)
+  nextIdx=$((paneIdx + 1))
+  count=$($X list-panes -F '#{pane_id}' | awk 'END {print NR}')
+  if [ "$nextIdx" -gt "$count" ]; then
+    nextIdx=1
   fi
+  nextId=$($X list-panes -F '#{pane_id}' | xargs | awk -v var=$nextIdx '{print $var}')
+  ($X select-pane -Z -t $nextId)
 }
 
 simpleCommands() {
