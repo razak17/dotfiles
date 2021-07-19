@@ -50,6 +50,7 @@ function pip_init() {
 function conda_init() {
   if [ "$1" = false ] && return
   conda_activate
+  add_completion 'conda-zsh-completion' true
   pip_init
 }
 

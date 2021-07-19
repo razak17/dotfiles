@@ -35,18 +35,18 @@ simple_lsp=(
 )
 
 createDirs() {
-  for d in ${dirs[@]}; do
-    echo creating dir: $d
-    mkdir -p ~/$d
+  for d in "${dirs[@]}"; do
+    echo creating dir: "$d"
+    mkdir -p "$HOME/$d"
   done
-  mkdir -p ~/$lsp_path
+  mkdir -p "$HOME/$lsp_path"
 }
 
 pythonVenvInit() {
   mkdir -p ~/$neovim_py
   python3 -m venv ~/$neovim_py
   ~/$neovim_py/bin/pip install -U setuptools pynvim jedi neovim-remote ueberzug
-  pip install ueberzug pynvim neovim-remote isort yapf black flake8
+  pip install ueberzug pynvim neovim-remote isort yapf black flake8 pylint mypy
 }
 
 dapVenvInit() {
@@ -61,9 +61,9 @@ dapVenvInit() {
 }
 
 nodeHostInit() {
-  for l in ${simple_lsp[@]}; do
-    echo installing server: $l
-    npm i -g $l
+  for l in "${simple_lsp[@]}"; do
+    echo installing server: "$l"
+    npm i -g "$l"
   done
 }
 
@@ -74,19 +74,19 @@ golangInit() {
 }
 
 installLua() {
-  cd ~/$lsp_path
+  cd ~/$lsp_path || exit
   curl -R -O http://www.lua.org/ftp/lua-5.3.6.tar.gz
   tar -zxf lua-5.3.6.tar.gz
-  cd lua-5.3.6
+  cd lua-5.3.6 || exit
   make linux test
   sudo make install
 }
 
 installLuarocks() {
-  cd ~/$lsp_path
+  cd ~/$lsp_path || exit
   wget https://luarocks.org/releases/luarocks-3.3.1.tar.gz
   tar -zxf luarocks-3.3.1.tar.gz
-  cd luarocks-3.3.1
+  cd luarocks-3.3.1 || exit
   ./configure --with-lua-include=/usr/local/include
   # ./configure --with-lua-include=/usr/include
   make linux
@@ -95,18 +95,18 @@ installLuarocks() {
 
 installSumneko() {
   git clone https://github.com/sumneko/lua-language-server ~/$lsp_path/lua-language-server
-  cd lua-language-server
+  cd lua-language-server || exit
   git submodule update --init --recursive
-  cd 3rd/luamake
+  cd 3rd/luamake || exit
   compile/install.sh
-  cd ../..
+  cd ../.. || exit
   ./3rd/luamake/luamake rebuild
 }
 
 installElixirLs() {
-  cd ~/$lsp_path
+  cd ~/$lsp_path || exit
   git clone https://github.com/elixir-lsp/elixir-ls
-  cd elixir-ls
+  cd elixir-ls || exit
   mix deps.get
   mix compile
   mix elixir_ls.release -o ./.bin
@@ -115,24 +115,24 @@ installElixirLs() {
 installStyLua() {
   version="0.8.1"
   curl -L https://github.com/johnnymorganz/stylua/releases/latest/download/stylua-${version}-linux.zip -o ~/.dots/stylua-${version}.zip
-  cd ~/.dots && ext stylua-${version}.zip
-  cd ~/.dots/stylua-${version} && chmod +x ./stylua
+  cd ~/.dots && ext stylua-${version}.zip || exit
+  cd ~/.dots/stylua-${version} && chmod +x ./stylua || exit
   cp --force ./stylua ~/.local/bin
-  cd .. && rm stylua-${version}.zip
+  cd .. && rm stylua-${version}.zip || exit
 }
 
 installShellcheck() {
-  cd ~/$lsp_path
+  cd ~/$lsp_path || exit
   wget -qO- "https://github.com/koalaman/shellcheck/releases/download/${scversion?}/shellcheck-${scversion?}.linux.x86_64.tar.xz" | tar -xJv
   cp "shellcheck-${scversion}/shellcheck" /usr/bin/
   shellcheck --version
 }
 
 installNodeDebug2() {
-  cd ~/$dap_dir
+  cd ~/$dap_dir || exit
   if [ ! -d ~/$dap_dir/vscode-node-debug2 ]; then
     git clone https://github.com/microsoft/vscode-node-debug2.git
-    cd vscode-node-debug2
+    cd vscode-node-debug2 || exit
     npm install
     npm i -g gulp-cli
     gulp build
@@ -144,6 +144,7 @@ installNodeDebug2() {
 
 installRocks() {
   luarocks install openssl
+  luarocks install luacheck
   luarocks install lua-http-parser
   luarocks install --server=https://luarocks.org/dev luaformatter
 }
@@ -171,6 +172,9 @@ while [[ "$#" -gt 0 ]]; do
   "-lua")
     installLua
     installLuarocks
+    ;;
+  "-sh")
+    installShellcheck
     ;;
   "-lsp")
     installSumneko

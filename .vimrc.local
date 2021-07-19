@@ -28,6 +28,7 @@ set laststatus=0
 set showtabline=0
 set nowrap
 set shell=/bin/zsh
+set colorcolumn=""
 "set nocursorline
 "set signcolumn=yes
 "set nocursorcolumn
@@ -106,7 +107,7 @@ highlight COlorColumn guibg=#4E525C
 highlight CursorLine guibg=#4E525C
 highlight LineNr guifg=#5B6268
 
-"nnoremap n j
+nnoremap n j
 nnoremap <TAB> :bnext<CR>
 nnoremap <S-TAB> :bprevious<CR>
 nnoremap <M-j>    :resize -2<CR>
