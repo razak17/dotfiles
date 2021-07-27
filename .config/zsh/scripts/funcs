@@ -54,21 +54,21 @@ function conda_init() {
   pip_init
 }
 
-prof="${XDG_CACHE_HOME:-$HOME/.cache}/nvim/prof.log"
+prof="${XDG_CACHE_HOME:-$HOME/.cache}/rvim/prof.log"
 function nvimProfiling() {
   if [ -z "$@" ]; then
-    nvim --startuptime $prof
+    nvim --startuptime "$prof"
   else
-    nvim "$@" --startuptime $prof
+    nvim "$@" --startuptime "$prof"
   fi
 }
 
-prof_raw="${XDG_CACHE_HOME:-$HOME/.cache}/nvim/prof_raw.log"
+prof_raw="${XDG_CACHE_HOME:-$HOME/.cache}/rvim/prof_raw.log"
 function nvimRawProfiling() {
   if [ -z "$@" ]; then
-    nvim --noplugin -u ~/docs/raw.lua --startuptime $prof_raw
+    nvim --noplugin -u ~/docs/raw.lua --startuptime "$prof_raw"
   else
-    nvim --noplugin -u ~/docs/raw.lua "$@" --startuptime $prof_raw
+    nvim --noplugin -u ~/docs/raw.lua "$@" --startuptime "$prof_raw"
   fi
 }
 

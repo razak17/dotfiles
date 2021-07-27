@@ -1,6 +1,41 @@
+set packpath-=$XDG_CONFIG_HOME/nvim
+set packpath-=$XDG_CONFIG_HOME/nvim/after
+set packpath-=$XDG_DATA_HOME/nvim/site
+set packpath^=$XDG_DATA_HOME/rvim/site
+set packpath^=$XDG_CONFIG_HOME/rvim
+
+set runtimepath=$XDG_CONFIG_HOME/rvim
+set runtimepath^=$XDG_CONFIG_HOME/rvim
+set runtimepath^=$XDG_DATA_HOME/rvim/site
+set runtimepath^=/usr/local/share/nvim/runtime
+
 syntax off
-" filetype indent off
 filetype off
+
+let g:loaded_tarPlugin = 0
+let g:loaded_tar= 0
+let g:loaded_tarPlugin= 0
+let g:loaded_zip= 0
+let g:loaded_zipPlugin= 0
+let g:loaded_getscript= 0
+let g:loaded_getscriptPlugin= 0
+let g:loaded_vimball= 0
+let g:loaded_vimballPlugin= 0
+let g:loaded_matchit= 0
+let g:loaded_matchparen= 0
+let g:loaded_2html_plugin= 0
+let g:loaded_logiPat= 0
+let g:loaded_rrhelper= 0
+let g:loaded_netrw= 0
+let g:loaded_netrwPlugin= 0
+let g:loaded_netrwSettings= 0
+let g:loaded_netrwFileHandlers= 0
+let g:loaded_fzf= 0
+let g:loaded_skim= 0
+let g:loaded_tutor_mode_plugin= 0
+let g:loaded_python_provider = 0
+let g:loaded_ruby_provider = 0
+let g:loaded_perl_provider = 0
 
 set exrc
 set secure
@@ -29,75 +64,6 @@ set showtabline=0
 set nowrap
 set shell=/bin/zsh
 set colorcolumn=""
-"set nocursorline
-"set signcolumn=yes
-"set nocursorcolumn
-"set conceallevel=0
-"set concealcursor=niv
-"set history=2000
-"set undolevels=1000
-"set maxmempattern=1300
-"set redrawtime=1500
-"set ignorecase
-"set nocompatible
-"set noshiftround
-"set nostartofline
-"set regexpengine=1
-"set scrolloff=3
-"set shiftwidth=2
-"set smarttab
-"set expandtab
-"set softtabstop=-1
-"set smartindent
-"set autoindent
-"set cindent
-"set smartcase
-"set timeout
-"set ttimeout
-"set noshowmode
-"set termguicolors
-"set nomore
-"set display=lastline
-"set lazyredraw
-"set noequalalways
-"set list
-"set eadirection=hor
-"set report=2
-"set title
-"set titlelen=70
-"set titlestring= 🐬 %t %r %m
-"set inccommand=split
-"set linebreak
-"set infercase
-"set incsearch
-"set splitbelow
-"set splitright
-"set wrapscan
-"set showmatch
-"set pumheight=15
-"set pumblend=15
-"set cmdwinheight=5
-"set winblend=10
-"set winwidth=30
-"set winminwidth=10
-"set helpheight=12
-"set previewheight=12
-"set synmaxcol=2500
-"set shell=/bin/zsh
-"set switchbuf=useopen,usetab,vsplit
-"set backspace=indent,eol,start
-"set guicursor=n-v-c-sm:block,i-ci-ve:block,r-cr-o:block
-"set backupskip=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim
-"set matchpairs=(:),{:},[:]
-"set listchars=tab:»•,nbsp:+,trail:·,precedes:,extends:
-"set diffopt=vertical,iwhite,hiddenoff,foldcolumn:0,context:4,algorithm:histogram,indent-heuristic
-"set wildmode=longest,full
-"set wildoptions=pum
-"set wildignorecase
-"set wildignore=*.so,.git,.hg,.svn,.stversions,*.pyc,*.spl,*.o,*.out,*~,%*,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**,*/.sass-cache/*,application/vendor/**,**/vendor/ckeditor/**,media/vendor/**,__pycache__,*.egg-info
-"set fillchars=vert:▕,fold: ,eob: ,diff:─,msgsep: ,foldopen:▾,foldsep:│,foldclose:▸,eob:
-"set grepprg=rg --hidden --glob "!.git" --no-heading --smart-case --vimgrep --follow $*
-"set grepformat=%f:%l:%c:%m
 
 highlight! link SignColumn Normal
 highlight StatusLine guifg=NONE guibg=NONE guisp=NONE gui=NONE blend=NONE
@@ -117,26 +83,19 @@ nnoremap <M-h>    :vertical resize +2<CR>
 nnoremap <C-z>    :undo<CR>
 tnoremap <Esc>    <C-\\><C-N>
 xnoremap K :move '<-2<CR>gv-gv
-xnoremap J :move '>+1<CR>gv-gv
-xnoremap N :move '>+1<CR>gv-gv
+xnoremap J :move '>+0<CR>gv-gv
+xnoremap N :move '>+0<CR>gv-gv
 
 let mapleader=" "
 let maplocalleader=" "
 let completion_confirm_key = ""
 
 nnoremap z u
+nnoremap W q
 nnoremap <Leader>x :q<CR>
 nnoremap <Leader>y "+y
 vnoremap <Leader>y' "+y
 nnoremap <Leader>aY gg"+yG
- nnoremap <Leader>aV gg"+VG
+nnoremap <Leader>aV gg"+VG
 nnoremap <Leader>aD gg"+VG
 nnoremap <Leader>chw :h <C-R>=expand("<cword>")<CR><CR>
-
-set runtimepath=$XDG_CONFIG_HOME/nvim
-"set runtimepath=$VIMRUNTIME
-"runtime! plugin/rplugin.vim
-"runtime! ftplugin/*.vim
-"runtime! syntax/*.vim
-"runtime! indent/*.vim
-set runtimepath=$XDG_CONFIG_HOME/nvim,$XDG_CONFIG_HOME/nvim/after,$XDG_DATA_HOME/nvim/site,$XDG_DATA_HOME/nvim/pack/packer/start,$XDG_DATA_HOME/nvim/pack/packer/opt,$VIMRUNTIME

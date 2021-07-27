@@ -7,45 +7,44 @@ pip=~/.cache/pip
 yarn=~/.cache/yarn
 yay=~/.cache/yay
 
-
 deleteDir() {
-  dir=$1
-  if [[ -d $dir ]]; then
-    sudo rm -r $dir
-    echo "${dir} has been removed."
-  else
-    echo "${dir} deos not exist."
-  fi
+	dir=$1
+	if [[ -d $dir ]]; then
+		sudo rm -r "$dir"
+		echo "${dir} has been removed."
+	else
+		echo "${dir} deos not exist."
+	fi
 }
 
 while [[ "$#" -gt 0 ]]; do
-  curr=$1
-  shift
+	curr=$1
+	shift
 
-  case "$curr" in
-    "-h")
-      echo "help"
-      ;;
-    "-a")
-      deleteDir $brave
-      deleteDir $conda
-      deleteDir $moz
-      deleteDir $pip
-      deleteDir $yarn
-      deleteDir $yay
-      ;;
-    "-b")
-      deleteDir $brave
-      ;;
-    "-c")
-      deleteDir $conda
-      ;;
-    "-m")
-      deleteDir $moz
-      ;;
-    "-y")
-      deleteDir $yarn
-      ;;
-    *) echo "Unavailable command... $curr"
-  esac
+	case "$curr" in
+	"-h")
+		echo "help"
+		;;
+	"-a")
+		deleteDir $brave
+		deleteDir $conda
+		deleteDir $moz
+		deleteDir $pip
+		deleteDir $yarn
+		deleteDir $yay
+		;;
+	"-b")
+		deleteDir $brave
+		;;
+	"-c")
+		deleteDir $conda
+		;;
+	"-m")
+		deleteDir $moz
+		;;
+	"-y")
+		deleteDir $yarn
+		;;
+	*) echo "Unavailable command... $curr" ;;
+	esac
 done

@@ -1,8 +1,10 @@
 #!/bin/zsh
 
-alias v="$EDITOR ./"
-alias nv=nvimProfiling
+#alias v="$EDITOR ./"
+# alias nv=nvimProfiling
 alias nvr=nvimRawProfiling
+alias rv=rvim
+alias nv=rvim
 
 # shell
 alias b="bash"
@@ -35,7 +37,7 @@ alias obd="objdump -d"
 alias rcs="sudo rc-service"
 alias rcu="sudo rc-update"
 alias wscan="iwlist scanning"
-alias iws="sudo $EDITOR /etc/wpa_supplicant/wpa_supplicant.conf"
+alias iws="sudo nvim /etc/wpa_supplicant/wpa_supplicant.conf"
 alias clocale="dpkg-reconfigure locales"
 alias imodem="systemctl start ModemManager.service"
 alias swap="cat /proc/sys/vm/swappiness"
@@ -107,7 +109,6 @@ alias yy='yay -Sy --noconfirm'
 alias upd='sudo pacman -Syu'
 alias rcache="sudo pacman -Sc"
 alias pkgs="pacman -Q | fzf"
-alias pt="pactree"
 #maintenance
 alias clean='sudo pacman -Rns $(pacman -Qtdq)'
 # get fastest mirrors
@@ -134,25 +135,27 @@ alias igp="sudo gparted"
 alias vsc="vscodium ."
 
 # editor
-alias a="nv ~/.config/zsh/aliases"
-alias lc="nv ~/.config/nvim/lua/core/init.lua"
-alias dfc="nv ~/.config/nvim/lua/defaults/init.lua"
-alias vc="nv ~/.config/nvim/init.lua"
-alias rvc="nv ~/docs/raw.lua"
-alias lvc="nv ~/.vimrc.local"
-alias ivc="sudo $EDITOR /etc/xdg/nvim/sysinit.vim"
-alias al="nv ~/.config/alacritty/alacritty.yml"
-alias zc="nv ~/.config/zsh/.zshrc"
-alias ze="nv ~/.config/shell/profile"
-alias xe="nv ~/.config/x11/xprofile"
-alias xr="nv ~/.config/x11/xresources"
-alias xR="nv ~/.Xresources"
-alias xn="nv ~/.config/x11/xinitrc"
-alias nvi="nv init.lua"
-alias nvc="nv config.h"
-alias nvz="nv ~/.zsh_history"
-alias nvv="nv ~/docs/vim.log"
+alias a="rv ~/.config/zsh/aliases"
+alias lc="rv ~/.config/rvim/lua/core/init.lua"
+alias dfc="rv ~/.config/rvim/lua/defaults/init.lua"
+alias vc="rv ~/.config/rvim/init.lua"
+alias rvc="rv ~/.config/rvim/init.lua"
+alias rnvc="rv ~/docs/raw.lua"
+alias lvc="rv ~/.vimrc.local"
+alias ivc="sudo nvim /etc/xdg/nvim/sysinit.vim"
+alias al="rv ~/.config/alacritty/alacritty.yml"
+alias zc="rv ~/.config/zsh/.zshrc"
+alias ze="rv ~/.config/shell/profile"
+alias xe="rv ~/.config/x11/xprofile"
+alias xr="rv ~/.config/x11/xresources"
+alias xR="rv ~/.Xresources"
+alias xn="rv ~/.config/x11/xinitrc"
+alias nvi="rv init.lua"
+alias rvi="rv init.lua"
+alias nvz="nvr ~/.zsh_history"
+alias rvz="rv ~/.zsh_history"
 alias nvli="nv lua/core/init.lua"
+alias rvli="rv lua/core/init.lua"
 
 # Docker and Docker Compose
 alias idocker="systemctl start docker.service"
@@ -164,24 +167,22 @@ alias juiceshop='docker run --rm -p 3000:3000 bkimminich/juice-shop'
 
 # git bare (nvim, dotfiles)
 alias conf='/usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME'
-alias nconf='/usr/bin/git --git-dir=$HOME/.dots/$EDITOR/ --work-tree=$HOME/.config/$EDITOR'
+# alias nconf='/usr/bin/git --git-dir=$HOME/.dots/$EDITOR/ --work-tree=$HOME/.config/$EDITOR'
+alias rconf='/usr/bin/git --git-dir=$HOME/.dots/rvim/ --work-tree=$HOME/.config/rvim'
 alias confs="iconf -cs"
 alias confa="iconf -csa"
 alias confc="iconf -ccoms"
-alias nconfs="iconf -ncs"
-alias nconfa="iconf -ncsa"
-alias nconfc="iconf -nccoms"
+alias rconfs="iconf -rcs"
+alias rconfa="iconf -rcsa"
+alias rconfc="iconf -rccoms"
 alias ccom="iconf -ccom"
-alias nccom="iconf -nccom"
+alias rccom="iconf -rccom"
 alias ccomall="iconf -ccomall"
-alias nccomall="iconf -nccomall"
+alias rccomall="iconf -rccomall"
 alias confe="iconf -cp"
-alias nconfe="iconf -ncp"
-alias nckm="nconf checkout main"
-alias ncko="nconf checkout old"
-alias ncks="nconf checkout slides"
-alias nckt="nconf checkout test"
-alias nckv="nconf checkout vscode"
+alias rconfe="iconf -rcp"
+alias rckm="rconf checkout main"
+alias rckt="rconf checkout test"
 
 # nord vpn
 alias inord="systemctl start nordvpnd.service"
@@ -197,8 +198,8 @@ alias rc='ranger ~/.config'
 alias rnv='ranger ~/.config/nvim'
 
 # tmux
-alias xc="nv ~/.config/tmux/tmux.conf"
-alias xbc="nv ~/.config/tmux/xb.tmux.conf"
+alias xc="rv ~/.config/tmux/tmux.conf"
+alias xbc="rv ~/.config/tmux/xb.tmux.conf"
 alias xds="tmux -L Dev"
 alias xbs="tmux -L Dull"
 alias xd="tmuxd first"
@@ -210,20 +211,6 @@ alias aff='ftmux --first'
 alias fn='ftmux -s'
 alias fk='ftmux -k'
 
-# ssh
-if [ -s "${XDG_CONFIG_HOME}/ssh/config" ]; then
-  SSH_CONFIG="-F ${XDG_CONFIG_HOME}/ssh/config"
-else
-  SSH_CONFIG="-F ~/.config/ssh/config"
-fi
-if [ -s "${XDG_DATA_HOME}/ssh/id_dsa" ]; then
-  SSH_ID="-i ${XDG_DATA_HOME}/ssh/id_dsa"
-else
-  SSH_ID="-i ~/.local/share/ssh/id_rsa"
-fi
-alias ssh="ssh $SSH_CONFIG $SSH_ID "
-alias ssh-copy-id="ssh-copy-id $SSH_ID"
-
 # Misc
 alias ufonts='fc-cache -vf ~/.local/share/fonts/'
 alias plague='curl https://corona-stats.online/states/us'
@@ -233,15 +220,17 @@ alias scr='cd ~/Pictures/screenshots'
 
 mo=~/.mozilla/firefox/profiles
 nca=~/.cache/nvim
+rca=~/.cache/rvim
 doc=~/Documents
 docs=~/docs
 dots=~/.dots
 dw=~/Downloads
 
-alias zl='nv ${XDG_DATA_HOME:-$HOME/.cache}/nvim/site/pack/packer/start/zephyr-nvim/lua/zephyr.lua'
-alias pl='nv ~/.cache/nvim/prof.log'
+alias zl='rv ${XDG_DATA_HOME:-$HOME/.cache}/rvim/site/pack/packer/start/zephyr-nvim/lua/zephyr.lua'
+alias pl='nvr ~/.cache/rvim/prof.log'
 alias cdmo='cd "$mo"'
-alias cdnca='cd "$nca"'
+alias cdnca='cd "$rca"'
+alias cdrca='cd "$rca"'
 alias cdc='cd "$doc"'
 alias cdcs='cd "$docs"'
 alias cdts='cd "$dots"'
@@ -250,6 +239,8 @@ alias cdcc='cd "$HOME/personal/workspace/coding"'
 alias cdll='cd "$HOME/personal/workspace/coding/learn_something_new_everyday"'
 alias cdco='cd "$XDG_CONFIG_HOME"'
 alias cdnv='cd "$XDG_CONFIG_HOME/nvim"'
-alias cdnsh='cd "$XDG_DATA_HOME/nvim"'
+alias cdrv='cd "$XDG_CONFIG_HOME/rvim"'
+alias cdnsh='cd "$XDG_DATA_HOME/rvim"'
+alias cdrsh='cd "$XDG_DATA_HOME/rvim"'
 alias cdusb1=' cd /run/media/razak/22B6-E52C/'
 alias cdusb2=' cd /run/media/razak/Ventoy/'

@@ -2,6 +2,7 @@
 
 CONF='/usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME'
 NCONF='/usr/bin/git --git-dir=$HOME/.dots/$EDITOR/ --work-tree=$HOME/.config/$EDITOR'
+RCONF='/usr/bin/git --git-dir=$HOME/.dots/rvim/ --work-tree=$HOME/.config/rvim'
 
 confStatus() {
   eval "$CONF status"
@@ -41,42 +42,42 @@ confPush() {
  eval "$CONF push"
 }
 
-nconfStatus() {
-  eval "$NCONF status"
+rconfStatus() {
+  eval "$RCONF status"
 }
 
-nconfAdd() {
-  eval "$NCONF add ./*/**"
+rconfAdd() {
+  eval "$RCONF add ./*/**"
 }
 
-nconfCommit() {
+rconfCommit() {
   if [[ -z "$*" ]]; then
     echo "-n should have the next argument contain actual session"
   else
     message="$*"
     echo message: $message
-    eval "$NCONF commit -m '${message}'"
+    eval "$RCONF commit -m '${message}'"
   fi
   exit 1
 }
 
-nconfCommits() {
-  eval "$NCONF log --pretty=oneline --abbrev-commit -- ."
+rconfCommits() {
+  eval "$RCONF log --pretty=oneline --abbrev-commit -- ."
 }
 
-nconfCommitAll() {
+rconfCommitAll() {
   if [[ -z "$*" ]]; then
     echo "-n should have the next argument contain actual session"
   else
     message="$*"
     echo message: $message
-    eval "$NCONF commit -a -m '${message}'"
+    eval "$RCONF commit -a -m '${message}'"
   fi
   exit 1
 }
 
-nconfPush() {
- eval "$NCONF push"
+rconfPush() {
+ eval "$RCONF push"
 }
 
 
@@ -109,29 +110,29 @@ while [[ "$#" -gt 0 ]]; do
   "-cp")
     confPush
     ;;
-  "-ncs")
-    nconfStatus
+  "-rcs")
+    rconfStatus
     ;;
-  "-ncsa")
-    nconfAdd
+  "-rcsa")
+    rconfAdd
     ;;
-  "-nccom")
+  "-rccom")
     read -p "Enter commit message: " arg
-    nconfCommit "$arg"
+    rconfCommit "$arg"
     ;;
-  "-nccoms")
-    nconfCommits
+  "-rccoms")
+    rconfCommits
     ;;
-  "-nccomall")
+  "-rccomall")
     if [[ "$#" -gt 0 ]] ; then
       arg="$@"
     else
       read -p "Enter commit message: " arg
     fi
-    nconfCommitAll "$arg"
+    rconfCommitAll "$arg"
     ;;
-  "-ncp")
-    nconfPush
+  "-rcp")
+    rconfPush
   ;;
   *) echo "Unavailable command... $curr"
   esac

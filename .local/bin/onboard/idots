@@ -6,8 +6,8 @@ conf() {
   /usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME $@
 }
 
-nconf() {
-  /usr/bin/git --git-dir=$HOME/.dots/nvim/ --work-tree=$HOME/.config/nvim $@
+rconf() {
+  /usr/bin/git --git-dir=$HOME/.dots/rvim/ --work-tree=$HOME/.config/rvim $@
 }
 
 newRawGit() {
@@ -30,17 +30,19 @@ importRawGitDotfiles() {
 }
 
 importRawGitNvim() {
-  git clone --bare https://github.com/razak17/nvim $HOME/.dots/nvim
-  conf checkout
+  git clone --bare https://github.com/razak17/nvim $HOME/.dots/rvim
+  rconf checkout
   if [ $? = 0 ]; then
     echo "Checked out dotfiles...";
   else
     mkdir -p ~/.config-backup-nvim
     echo "Backing up pre-existing dot files.";
-    nconf checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} ~/.config-backup-nvim/{}
+    rconf checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} ~/.config-backup-nvim/{}
   fi;
-  conf checkout
-  conf config --local status.showUntrackedFiles no
+  mkdir -p ~/.config/rvim
+  cd ~/.config/rvim
+  rconf checkout
+  rconf config --local status.showUntrackedFiles no
 }
 
 setupUtils() {
@@ -51,6 +53,27 @@ setupUtils() {
   echo . ~/.config/zsh/zshrc > ~/.config/zsh/.zshrc
 }
 
-importRawGitDotfiles
-importRawGitNvim
-setupUtils
+
+while [[ "$#" -gt 0 ]]; do
+  curr=$1
+  shift
+
+  case "$curr" in
+  "-a")
+    importRawGitDotfiles
+    importRawGitNvim
+    setupUtils
+    ;;
+  "-dots")
+    importRawGitDotfiles
+    ;;
+  "-rvim")
+    importRawGitNvim
+    ;;
+  "-utils")
+    setupUtils
+    ;;
+  *) echo "Unavailable command... $curr"
+  esac
+done
+

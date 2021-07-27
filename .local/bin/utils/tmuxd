@@ -7,7 +7,7 @@ tmux -L Dev has-session -t $session_name &> /dev/null
 if [ $? != 0 ]
  then
   if [[ -e $config_file ]]; then
-    tmux -L Dev -f "$config_file" new -s $session_name -c$HOME/.config/nvim -n main -d
+    tmux -L Dev -f "$config_file" new -s $session_name -c$HOME/.config/rvim -n main -d
     # tmux -L Dev send-keys -t $session_name "~/.local/bin/utils/ftmux -first" C-m
   else
     echo config file does not exist
