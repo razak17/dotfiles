@@ -17,7 +17,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export DEV_HOME="$HOME/personal/workspace/coding"
 
-export EDITOR="nvim"
+export EDITOR="rvim"
 export BROWSER="firefox"
 export TERMINAL="alacritty"
 

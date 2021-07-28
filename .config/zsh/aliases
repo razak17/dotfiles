@@ -167,7 +167,6 @@ alias juiceshop='docker run --rm -p 3000:3000 bkimminich/juice-shop'
 
 # git bare (nvim, dotfiles)
 alias conf='/usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME'
-# alias nconf='/usr/bin/git --git-dir=$HOME/.dots/$EDITOR/ --work-tree=$HOME/.config/$EDITOR'
 alias rconf='/usr/bin/git --git-dir=$HOME/.dots/rvim/ --work-tree=$HOME/.config/rvim'
 alias confs="iconf -cs"
 alias confa="iconf -csa"
@@ -182,7 +181,7 @@ alias rccomall="iconf -rccomall"
 alias confe="iconf -cp"
 alias rconfe="iconf -rcp"
 alias rckm="rconf checkout main"
-alias rckt="rconf checkout test"
+alias rckr="rconf checkout rolling"
 
 # nord vpn
 alias inord="systemctl start nordvpnd.service"

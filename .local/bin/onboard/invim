@@ -13,10 +13,6 @@ dirs=(
 	'.cache/rvim/undodir'
 	'.cache/rvim/nvim_lsp'
 	'.local/share/rvim'
-	# '.cache/nvim/swap'
-	# '.cache/nvim/tags'
-	# '.cache/nvim/view'
-	# '.cache/nvim/backup'
 )
 
 simple_lsp=(

@@ -1,9 +1,3 @@
 #!/bin/sh
 
-prof="${XDG_CACHE_HOME:-$HOME/.cache}/rvim/prof.log"
-
-if [ -z "$*" ]; then
-	nvim -u ~/.config/rvim/init.lua --startuptime "$prof"
-else
-	nvim -u ~/.config/rvim/init.lua "$@" --startuptime "$prof"
-fi
+nvim -u ~/.config/rvim/init.lua "$@"

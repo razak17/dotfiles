@@ -56,20 +56,16 @@ function conda_init() {
 
 prof="${XDG_CACHE_HOME:-$HOME/.cache}/rvim/prof.log"
 function nvimProfiling() {
-  if [ -z "$@" ]; then
-    nvim --startuptime "$prof"
-  else
-    nvim "$@" --startuptime "$prof"
-  fi
+  nvim "$@" --startuptime "$prof"
 }
 
 prof_raw="${XDG_CACHE_HOME:-$HOME/.cache}/rvim/prof_raw.log"
 function nvimRawProfiling() {
-  if [ -z "$@" ]; then
-    nvim --noplugin -u ~/docs/raw.lua --startuptime "$prof_raw"
-  else
-    nvim --noplugin -u ~/docs/raw.lua "$@" --startuptime "$prof_raw"
-  fi
+  nvim --noplugin -u ~/docs/raw.lua "$@" --startuptime "$prof_raw"
+}
+
+function rvimRawProfiling() {
+  rvim --startuptime "$prof_raw"
 }
 
 # compress

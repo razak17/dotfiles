@@ -1,38 +1,34 @@
-set packpath-=$XDG_CONFIG_HOME/nvim
-set packpath-=$XDG_CONFIG_HOME/nvim/after
-set packpath-=$XDG_DATA_HOME/nvim/site
-set packpath^=$XDG_DATA_HOME/rvim/site
-set packpath^=$XDG_CONFIG_HOME/rvim
+set packpath=$XDG_DATA_HOME/rvim/site
 
 set runtimepath=$XDG_CONFIG_HOME/rvim
-set runtimepath^=$XDG_CONFIG_HOME/rvim
+set runtimepath^=$XDG_CONFIG_HOME/rvim/after
 set runtimepath^=$XDG_DATA_HOME/rvim/site
 set runtimepath^=/usr/local/share/nvim/runtime
 
 syntax off
 filetype off
 
-let g:loaded_tarPlugin = 0
-let g:loaded_tar= 0
-let g:loaded_tarPlugin= 0
-let g:loaded_zip= 0
-let g:loaded_zipPlugin= 0
-let g:loaded_getscript= 0
-let g:loaded_getscriptPlugin= 0
-let g:loaded_vimball= 0
-let g:loaded_vimballPlugin= 0
-let g:loaded_matchit= 0
-let g:loaded_matchparen= 0
-let g:loaded_2html_plugin= 0
-let g:loaded_logiPat= 0
-let g:loaded_rrhelper= 0
-let g:loaded_netrw= 0
-let g:loaded_netrwPlugin= 0
-let g:loaded_netrwSettings= 0
-let g:loaded_netrwFileHandlers= 0
-let g:loaded_fzf= 0
-let g:loaded_skim= 0
-let g:loaded_tutor_mode_plugin= 0
+let g:loaded_tarPlugin = 1
+let g:loaded_tar= 1
+let g:loaded_tarPlugin= 1
+let g:loaded_zip= 1
+let g:loaded_zipPlugin= 1
+let g:loaded_getscript= 1
+let g:loaded_getscriptPlugin= 1
+let g:loaded_vimball= 1
+let g:loaded_vimballPlugin= 1
+let g:loaded_matchit= 1
+let g:loaded_matchparen= 1
+let g:loaded_2html_plugin= 1
+let g:loaded_logiPat= 1
+let g:loaded_rrhelper= 1
+let g:loaded_netrw= 1
+let g:loaded_netrwPlugin= 1
+let g:loaded_netrwSettings= 1
+let g:loaded_netrwFileHandlers= 1
+let g:loaded_fzf= 1
+let g:loaded_skim= 1
+let g:loaded_tutor_mode_plugin= 1
 let g:loaded_python_provider = 0
 let g:loaded_ruby_provider = 0
 let g:loaded_perl_provider = 0
@@ -41,6 +37,7 @@ set exrc
 set secure
 set encoding=utf-8
 set fileencoding=utf-8
+set guicursor=n-v-c-sm:block,i-ci-ve:block,r-cr-o:block
 set t_Co=256
 set shortmess+=c
 set iskeyword+=-
@@ -64,6 +61,8 @@ set showtabline=0
 set nowrap
 set shell=/bin/zsh
 set colorcolumn=""
+set nocursorline
+set noshowmode
 
 highlight! link SignColumn Normal
 highlight StatusLine guifg=NONE guibg=NONE guisp=NONE gui=NONE blend=NONE
@@ -73,25 +72,16 @@ highlight COlorColumn guibg=#4E525C
 highlight CursorLine guibg=#4E525C
 highlight LineNr guifg=#5B6268
 
+let mapleader=" "
 nnoremap n j
+nnoremap z u
+nnoremap W q
 nnoremap <TAB> :bnext<CR>
 nnoremap <S-TAB> :bprevious<CR>
-nnoremap <M-j>    :resize -2<CR>
-nnoremap <M-k>    :resize +2<CR>
-nnoremap <M-l>    :vertical resize -2<CR>
-nnoremap <M-h>    :vertical resize +2<CR>
 nnoremap <C-z>    :undo<CR>
-tnoremap <Esc>    <C-\\><C-N>
 xnoremap K :move '<-2<CR>gv-gv
 xnoremap J :move '>+0<CR>gv-gv
 xnoremap N :move '>+0<CR>gv-gv
-
-let mapleader=" "
-let maplocalleader=" "
-let completion_confirm_key = ""
-
-nnoremap z u
-nnoremap W q
 nnoremap <Leader>x :q<CR>
 nnoremap <Leader>y "+y
 vnoremap <Leader>y' "+y

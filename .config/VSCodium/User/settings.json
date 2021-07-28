@@ -91,10 +91,10 @@
   "terminal.integrated.allowChords": false,
   "terminal.integrated.defaultProfile.linux": "zsh",
   "terminal.integrated.rendererType": "dom",
-  "vscode-neovim.neovimExecutablePaths.linux": "/home/razak/.local/bin/nvim",
-  "vscode-neovim.neovimExecutablePaths.darwin": "/home/razak/.local/bin/nvim",
-  "vscode-neovim.neovimInitVimPaths.linux": "$HOME/.config/nvim/vscode/init.vim",
-  "vscode-neovim.neovimInitVimPaths.darwin": "$HOME/.config/nvim/vscode/init.vim",
+  "vscode-neovim.neovimExecutablePaths.linux": "/home/razak/.local/bin/rvim",
+  "vscode-neovim.neovimExecutablePaths.darwin": "/home/razak/.local/bin/rvim",
+  "vscode-neovim.neovimInitVimPaths.linux": "$HOME/.config/rvim/external/vscode/init.vim",
+  "vscode-neovim.neovimInitVimPaths.darwin": "$HOME/.config/rvim/external/vscode/init.vim",
   "window.menuBarVisibility": "toggle",
   "workbench.activityBar.iconClickBehavior": "toggle",
   "workbench.panel.defaultLocation": "left",
@@ -658,7 +658,7 @@
           "name": "Find files",
           "type": "command",
           "command": "workbench.action.quickOpen"
-        },
+        }
       ]
     },
     {
