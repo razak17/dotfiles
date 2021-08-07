@@ -4,5 +4,8 @@ DIR="/home/razak/pics/distro/main"
 # FAV="/home/razak/pics/distro/main/night-glow-5839x3893.jpg"
 wall=$(find $DIR -type f | shuf -n 1)
 
-xwallpaper --zoom $wall
-
+if [ "$#" -gt 0 ]; then
+  xwallpaper --zoom "$@"
+else
+  xwallpaper --zoom $wall
+fi

@@ -26,7 +26,7 @@ schemes:
 
     cursor:
       text: "#030303"
-      cursor: "#7685b1"
+      cursor: "#7ec0ee"
       style:
         shape: Block
         blinking: Never
@@ -35,7 +35,7 @@ schemes:
 
     vi_mode_cursor:
       text: "#030303"
-      cursor: "#7ec0ee"
+      cursor: "#7685b1"
 
     search:
       matches:

@@ -1,10 +1,9 @@
 #!/bin/zsh
 
 #alias v="$EDITOR ./"
-# alias nv=nvimProfiling
-alias nvr=nvimRawProfiling
-alias rv=rvim
-alias nv=rvim
+alias rv=rvimProfiling
+alias nv=rvimProfiling
+alias nvim=nvimProfiling
 
 # shell
 alias b="bash"
@@ -137,11 +136,11 @@ alias vsc="vscodium ."
 # editor
 alias a="rv ~/.config/zsh/aliases"
 alias lc="rv ~/.config/rvim/lua/core/init.lua"
-alias dfc="rv ~/.config/rvim/lua/defaults/init.lua"
+alias dfc="rv ~/.config/rvim/lua/core/defaults.lua"
 alias vc="rv ~/.config/rvim/init.lua"
 alias rvc="rv ~/.config/rvim/init.lua"
 alias rnvc="rv ~/docs/raw.lua"
-alias lvc="rv ~/.vimrc.local"
+alias lvc="rv ~/.config/rvim/external/utils/.vimrc.local"
 alias ivc="sudo nvim /etc/xdg/nvim/sysinit.vim"
 alias al="rv ~/.config/alacritty/alacritty.yml"
 alias zc="rv ~/.config/zsh/.zshrc"
@@ -152,7 +151,7 @@ alias xR="rv ~/.Xresources"
 alias xn="rv ~/.config/x11/xinitrc"
 alias nvi="rv init.lua"
 alias rvi="rv init.lua"
-alias nvz="nvr ~/.zsh_history"
+alias nvz="nvim ~/.zsh_history"
 alias rvz="rv ~/.zsh_history"
 alias nvli="nv lua/core/init.lua"
 alias rvli="rv lua/core/init.lua"
@@ -226,9 +225,10 @@ dots=~/.dots
 dw=~/Downloads
 
 alias zl='rv ${XDG_DATA_HOME:-$HOME/.cache}/rvim/site/pack/packer/start/zephyr-nvim/lua/zephyr.lua'
-alias pl='nvr ~/.cache/rvim/prof.log'
+alias pl='nvim ~/.cache/rvim/prof.log'
 alias cdmo='cd "$mo"'
 alias cdnca='cd "$rca"'
+alias cdno='cd ~/notes/src'
 alias cdrca='cd "$rca"'
 alias cdc='cd "$doc"'
 alias cdcs='cd "$docs"'

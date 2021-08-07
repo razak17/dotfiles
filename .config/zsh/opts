@@ -1,43 +1,43 @@
 #!/bin/sh
 
 # Zsh Directory Stack
-setopt AUTO_PUSHD                # Push the old directory onto the stack on cd.
-setopt PUSHD_IGNORE_DUPS         # Do not store duplicates in the stack.
-setopt PUSHD_SILENT              # Do not print the directory stack after pushd or popd.
+setopt AUTO_PUSHD        # Push the old directory onto the stack on cd.
+setopt PUSHD_IGNORE_DUPS # Do not store duplicates in the stack.
+setopt PUSHD_SILENT      # Do not print the directory stack after pushd or popd.
 
 # History
 setopt APPEND_HISTORY
-setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
-setopt SHARE_HISTORY             # Share history between all sessions.
-setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
-setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate.
-setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
-setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
-setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
-setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
-setopt HIST_REDUCE_BLANKS        # remove superfluous blanks from history items
-setopt INC_APPEND_HISTORY        # save history entries as soon as they are entered
+setopt EXTENDED_HISTORY       # Write the history file in the ':start:elapsed;command' format.
+setopt SHARE_HISTORY          # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST # Expire a duplicate event first when trimming history.
+setopt HIST_IGNORE_ALL_DUPS   # Delete an old recorded event if a new event is a duplicate.
+setopt HIST_FIND_NO_DUPS      # Do not display a previously found event.
+setopt HIST_IGNORE_SPACE      # Do not record an event starting with a space.
+setopt HIST_SAVE_NO_DUPS      # Do not write a duplicate event to the history file.
+setopt HIST_VERIFY            # Do not execute immediately upon history expansion.
+setopt HIST_REDUCE_BLANKS     # remove superfluous blanks from history items
+setopt INC_APPEND_HISTORY     # save history entries as soon as they are entered
 
 # Completion
-setopt LIST_PACKED               # Make completio take less space
-setopt AUTO_LIST                 # automatically list choices on ambiguous completion
-setopt AUTO_MENU                 # automatically use menu completion
-setopt NO_MENU_COMPLETE          # Do not autoselect the first completion entry
-setopt COMPLETE_ALIASES          # autocomplete for aliases
-setopt CORRECT_ALL               # autocorrect commands
-setopt ALWAYS_TO_END             # move cursor to end if word had one match
-setopt AUTO_PARAM_SLASH          # If completed parameter is a directory, add a trailing slash.
-setopt COMPLETE_IN_WORD          # Make completion happen on both ends of the word
+setopt LIST_PACKED      # Make completio take less space
+setopt AUTO_LIST        # automatically list choices on ambiguous completion
+setopt AUTO_MENU        # automatically use menu completion
+setopt NO_MENU_COMPLETE # Do not autoselect the first completion entry
+setopt COMPLETE_ALIASES # autocomplete for aliases
+setopt CORRECT_ALL      # autocorrect commands
+setopt ALWAYS_TO_END    # move cursor to end if word had one match
+setopt AUTO_PARAM_SLASH # If completed parameter is a directory, add a trailing slash.
+setopt COMPLETE_IN_WORD # Make completion happen on both ends of the word
 
-setopt RM_STAR_WAIT             # Wait 10 seconds and ignore anything typed to avoid reflexively answering yes
-setopt AUTO_CD                   # cd by typing directory name if it's not a command
-setopt INTERACTIVE_COMMENTS      # allow comments in interactive shells
-setopt No_BEEP                   # beeping is annoying
-setopt EXTENDED_GLOB             # Needed for file modification glob modifiers with compinit.
-setopt CDABLE_VARS               # expand a cd argument when it is not a dir or does not begin with a slash
-unsetopt NOMATCH                 # Do not print an error when a pattern has no match
-unsetopt PROMPT_SP               # Attempt to preserve a partial line
-unsetopt FLOW_CONTROL            # Disable start/stop characters in shell editor.
+setopt RM_STAR_WAIT         # Wait 10 seconds and ignore anything typed to avoid reflexively answering yes
+setopt AUTO_CD              # cd by typing directory name if it's not a command
+setopt INTERACTIVE_COMMENTS # allow comments in interactive shells
+setopt No_BEEP              # beeping is annoying
+setopt EXTENDED_GLOB        # Needed for file modification glob modifiers with compinit.
+setopt CDABLE_VARS          # expand a cd argument when it is not a dir or does not begin with a slash
+unsetopt NOMATCH            # Do not print an error when a pattern has no match
+unsetopt PROMPT_SP          # Attempt to preserve a partial line
+unsetopt FLOW_CONTROL       # Disable start/stop characters in shell editor.
 
 CORRECT_IGNORE='.bin,.bins,bin,bins'
 CORRECT_IGNORE_FILE='.bin,.bins,bin,bins'

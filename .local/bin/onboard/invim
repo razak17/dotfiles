@@ -40,6 +40,10 @@ createDirs() {
 	mkdir -p "$HOME/$lsp_path"
 }
 
+cloneRepo() {
+	sudo cp "$HOME/.config/nvim/external/bin/rvim" "/usr/local/bin"
+}
+
 pythonVenvInit() {
 	mkdir -p ~/$neovim_py
 	python3 -m venv ~/$neovim_py
