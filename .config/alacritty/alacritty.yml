@@ -3,76 +3,76 @@
 schemes:
   spacemacs_light: &light
     primary:
-      foreground: "#7ec0ee"
-      background: "#282c34"
+      foreground: '#7ec0ee'
+      background: '#282c34'
     normal:
-      black: "#282c34"
-      red: "#e95678"
-      green: "#19cb00"
-      yellow: "#cecb00"
-      blue: "#51afef"
-      magenta: "#cb1ed1"
-      cyan: "#0dcdcd"
-      white: "#b3deef"
+      black: '#282c34'
+      red: '#e95678'
+      green: '#19cb00'
+      yellow: '#cecb00'
+      blue: '#51afef'
+      magenta: '#cb1ed1'
+      cyan: '#0dcdcd'
+      white: '#b3deef'
     bright:
-      black: "#888c94"
-      red: "#f92648"
-      green: "#23fd00"
-      yellow: "#f4f719"
-      blue: "#6cb0ff"
-      magenta: "#fd28ff"
-      cyan: "#14ffff"
-      white: "#c3eeff"
+      black: '#888c94'
+      red: '#f92648'
+      green: '#23fd00'
+      yellow: '#f4f719'
+      blue: '#6cb0ff'
+      magenta: '#fd28ff'
+      cyan: '#14ffff'
+      white: '#c3eeff'
 
     cursor:
-      text: "#030303"
-      cursor: "#7ec0ee"
+      text: '#030303'
+      cursor: '#7ec0ee'
       style:
         shape: Block
         blinking: Never
-      vi_mode_style: None
+        vi_mode_style: None
       unfocused_hollow: true
 
     vi_mode_cursor:
-      text: "#030303"
-      cursor: "#7685b1"
+      text: '#030303'
+      cursor: '#7685b1'
 
     search:
       matches:
-        foreground: "#030303"
-        background: "#7685b1"
+        foreground: '#030303'
+        background: '#7685b1'
       focused_match:
-        foreground: "#030303"
-        background: "#7685b1"
+        foreground: '#030303'
+        background: '#7685b1'
       bar:
-        background: "#7685b1"
-        foreground: "#030303"
+        background: '#7685b1'
+        foreground: '#030303'
       line_indicator:
-        foreground: "#202328"
-        background: "#7685b1"
+        foreground: '#202328'
+        background: '#7685b1'
 
   spacemacs_dark: &dark
     primary:
-      foreground: "#828482"
-      background: "#292b2e"
+      foreground: '#828482'
+      background: '#292b2e'
     normal:
-      black: "#0a0814"
-      red: "#f2241f"
-      green: "#67b11d"
-      yellow: "#b1951d"
-      blue: "#3a81c3"
-      magenta: "#a31db1"
-      cyan: "#21b8c7"
-      white: "#b2b2b2"
+      black: '#0a0814'
+      red: '#f2241f'
+      green: '#67b11d'
+      yellow: '#b1951d'
+      blue: '#3a81c3'
+      magenta: '#a31db1'
+      cyan: '#21b8c7'
+      white: '#b2b2b2'
     bright:
-      black: "#42444a"
-      red: "#DF201C"
-      green: "#29A0AD"
-      yellow: "#DB742E"
-      blue: "#3980C2"
-      magenta: "#2C9473"
-      cyan: "#6B3062"
-      white: "#686868"
+      black: '#42444a'
+      red: '#DF201C'
+      green: '#29A0AD'
+      yellow: '#DB742E'
+      blue: '#3980C2'
+      magenta: '#2C9473'
+      cyan: '#6B3062'
+      white: '#686868'
 
 colors: *light
 
@@ -80,17 +80,17 @@ font:
   size: 8
   normal:
     # family: "FiraCode Nerd Font Mono"
-    family: "Operator Mono Lig Book"
+    family: 'Operator Mono Lig Book'
     # family: "Dank Mono Nerd Font"
     style: Retina
   bold:
-    family: "Operator Mono Lig"
+    family: 'Operator Mono Lig'
     style: Medium
   italic:
-    family: "Operator Mono Lig Book"
+    family: 'Operator Mono Lig Book'
     style: Italic
   bold_italic:
-    family: "Operator Mono Lig"
+    family: 'Operator Mono Lig'
     style: Medium Italic
   offset:
     x: 0
@@ -154,7 +154,7 @@ key_bindings:
   - { key: Key8, mods: Control, action: DecreaseFontSize }
   - { key: Minus, mods: Control, action: DecreaseFontSize }
   - { key: NumpadSubtract, mods: Control, action: DecreaseFontSize }
-  - { key: Up, mods: Shift, chars: "shift+up pressed" }
-  - { key: Down, mods: Shift, chars: "shift+down pressed" }
-  - { key: Left, mods: Alt|Shift, chars: "alt+shift+left pressed" }
-  - { key: Right, mods: Alt|Shift, chars: "alt+shift+right pressed" }
+  - { key: Up, mods: Shift, chars: 'shift+up pressed' }
+  - { key: Down, mods: Shift, chars: 'shift+down pressed' }
+  - { key: Left, mods: Alt|Shift, chars: 'alt+shift+left pressed' }
+  - { key: Right, mods: Alt|Shift, chars: 'alt+shift+right pressed' }

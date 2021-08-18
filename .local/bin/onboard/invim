@@ -1,78 +1,9 @@
 #!/bin/sh
 
-scversion="stable" # or "v0.4.7", or "latest"
 lsp_path='.cache/rvim/nvim_lsp'
-neovim_py='.cache/rvim/venv/neovim'
-dap_py='.cache/rvim/venv/dap'
-dap_dir='.cache/rvim/dap'
-
-dirs=(
-	'.cache/rvim'
-	'.cache/rvim/dap'
-	'.cache/rvim/sessions'
-	'.cache/rvim/undodir'
-	'.cache/rvim/nvim_lsp'
-	'.local/share/rvim'
-)
-
-simple_lsp=(
-	"vscode-langservers-extracted"
-	"dockerfile-language-server-nodejs"
-	"graphql-language-service-cli"
-	"svelte-language-server"
-	"vim-language-server"
-	"yaml-language-server"
-	"bash-language-server"
-	'sql-language-server'
-	'typescript-language-server'
-	'typescript'
-	'pyright'
-	'neovim'
-	'prettier'
-	'eslint'
-)
-
-createDirs() {
-	for d in "${dirs[@]}"; do
-		echo creating dir: "$d"
-		mkdir -p "$HOME/$d"
-	done
-	mkdir -p "$HOME/$lsp_path"
-}
 
 cloneRepo() {
 	sudo cp "$HOME/.config/nvim/external/bin/rvim" "/usr/local/bin"
-}
-
-pythonVenvInit() {
-	mkdir -p ~/$neovim_py
-	python3 -m venv ~/$neovim_py
-	~/$neovim_py/bin/pip install -U setuptools pynvim jedi neovim-remote ueberzug
-	pip install ueberzug pynvim neovim-remote isort yapf black flake8 pylint mypy
-}
-
-dapVenvInit() {
-	if [ ! -d ~/$dap_dir ]; then
-		mkdir -p ~/$dap_py
-		python3 -m venv ~/$dap_py
-		~/$dap_py/bin/python -m pip install debugpy
-	else
-		echo "python dap dir already exists"
-		exit 1
-	fi
-}
-
-nodeHostInit() {
-	for l in "${simple_lsp[@]}"; do
-		echo installing server: "$l"
-		npm i -g "$l"
-	done
-}
-
-golangInit() {
-	go get github.com/mattn/efm-langserver
-	go get golang.org/x/tools/gopls@latest
-	asdf reshim golang
 }
 
 installLua() {
@@ -95,25 +26,6 @@ installLuarocks() {
 	sudo make install
 }
 
-installSumneko() {
-	git clone https://github.com/sumneko/lua-language-server ~/$lsp_path/lua-language-server
-	cd lua-language-server || exit
-	git submodule update --init --recursive
-	cd 3rd/luamake || exit
-	compile/install.sh
-	cd ../.. || exit
-	./3rd/luamake/luamake rebuild
-}
-
-installElixirLs() {
-	cd ~/$lsp_path || exit
-	git clone https://github.com/elixir-lsp/elixir-ls
-	cd elixir-ls || exit
-	mix deps.get
-	mix compile
-	mix elixir_ls.release -o ./.bin
-}
-
 installStyLua() {
 	version="0.10.0"
 	curl -L https://github.com/johnnymorganz/stylua/releases/latest/download/stylua-${version}-linux.zip -o ~/.dots/stylua-${version}.zip
@@ -121,27 +33,6 @@ installStyLua() {
 	cd ~/.dots/stylua-${version} && chmod +x ./stylua || exit
 	cp --force ./stylua ~/.local/bin
 	cd .. && rm stylua-${version}.zip || exit
-}
-
-installShellcheck() {
-	cd ~/$lsp_path || exit
-	wget -qO- "https://github.com/koalaman/shellcheck/releases/download/${scversion?}/shellcheck-${scversion?}.linux.x86_64.tar.xz" | tar -xJv
-	cp "shellcheck-${scversion}/shellcheck" /usr/bin/
-	shellcheck --version
-}
-
-installNodeDebug2() {
-	cd ~/$dap_dir || exit
-	if [ ! -d ~/$dap_dir/vscode-node-debug2 ]; then
-		git clone https://github.com/microsoft/vscode-node-debug2.git
-		cd vscode-node-debug2 || exit
-		npm install
-		npm i -g gulp-cli
-		gulp build
-	else
-		echo "node dap dir already exists"
-		exit 1
-	fi
 }
 
 installRocks() {
@@ -158,32 +49,9 @@ while [[ "$#" -gt 0 ]]; do
 	shift
 
 	case "$curr" in
-	"-py")
-		pythonVenvInit
-		;;
-	"-dap")
-		dapVenvInit
-		installNodeDebug2
-		;;
-	"-node")
-		nodeHostInit
-		;;
-	"-go")
-		golangInit
-		;;
 	"-lua")
 		installLua
 		installLuarocks
-		;;
-	"-sh")
-		installShellcheck
-		;;
-	"-lsp")
-		installSumneko
-		installElixirLs
-		;;
-	"-lua-ls")
-		installSumneko
 		;;
 	"-rocks")
 		installRocks
@@ -192,15 +60,8 @@ while [[ "$#" -gt 0 ]]; do
 		installStyLua
 		;;
 	"-all")
-		pythonVenvInit
-		dapVenvInit
-		nodeHostInit
-		golangInit
 		installLua
 		installLuarocks
-		installSumneko
-		installElixirLs
-		installNodeDebug2
 		installRocks
 		;;
 	*) echo "Unavailable command... $curr" ;;
