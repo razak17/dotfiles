@@ -2,8 +2,8 @@
 
 #alias v="$EDITOR ./"
 alias rv=rvimProfiling
-alias nv=rvimProfiling
-alias nvim=nvimProfiling
+# alias nv=rvimProfiling
+alias nv=nvimProfiling
 
 # shell
 alias b="bash"
@@ -21,7 +21,6 @@ alias l='ls'
 alias l.="ls -A | egrep '^\.'"
 alias cdd="cd -"
 alias zs='source ~/.config/zsh/.zshrc'
-alias i='sudo'
 alias e="touch"
 alias m="mkdir"
 alias cmd='command -V'
@@ -35,8 +34,8 @@ alias ccat='cat'
 alias obd="objdump -d"
 alias rcs="sudo rc-service"
 alias rcu="sudo rc-update"
-alias wscan="iwlist scanning"
-alias iws="sudo nvim /etc/wpa_supplicant/wpa_supplicant.conf"
+alias wsc="iwlist scanning"
+alias iws="sudoedit /etc/wpa_supplicant/wpa_supplicant.conf"
 alias clocale="dpkg-reconfigure locales"
 alias imodem="systemctl start ModemManager.service"
 alias swap="cat /proc/sys/vm/swappiness"
@@ -81,12 +80,14 @@ alias yta-wav="youtube-dl --extract-audio --audio-format wav "
 alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 
 # sudo
+alias i='sudo'
+alias ie='sudoedit'
+alias inv='sudoedit'
 alias is='sudo su'
 alias iv='sudo -v'
 alias irm="sudo rm"
 alias icp="sudo cp"
 alias imv="sudo mv"
-alias inv="sudo nvim"
 alias irmf="sudo rm -r"
 alias icpf="sudo cp -r"
 alias imvf="sudo mv"
@@ -126,7 +127,7 @@ alias die="sudo -A openrc-shutdown -pq now"
 alias grep="grep --color=auto"
 alias ipsql="systemctl start postgresql"
 alias iredis="sudo /etc/init.d/redis_6379 start"
-alias codium="sudo nvim /usr/share/vscodium-bin/resources/app/product.json"
+alias codium="sudoedit /usr/share/vscodium-bin/resources/app/product.json"
 alias py="python"
 alias xi="tuxi"
 alias aw="toilet"
@@ -141,7 +142,7 @@ alias vc="rv ~/.config/rvim/init.lua"
 alias rvc="rv ~/.config/rvim/init.lua"
 alias rnvc="rv ~/docs/raw.lua"
 alias lvc="rv ~/.config/rvim/external/utils/.vimrc.local"
-alias ivc="sudo nvim /etc/xdg/nvim/sysinit.vim"
+alias ivc="sudoedit /etc/xdg/nvim/sysinit.vim"
 alias al="rv ~/.config/alacritty/alacritty.yml"
 alias zc="rv ~/.config/zsh/.zshrc"
 alias ze="rv ~/.config/shell/profile"
@@ -153,7 +154,7 @@ alias nvi="rv init.lua"
 alias rvi="rv init.lua"
 alias nvz="nvim ~/.zsh_history"
 alias rvz="rv ~/.zsh_history"
-alias nvli="nv lua/core/init.lua"
+alias nvli="rv lua/core/init.lua"
 alias rvli="rv lua/core/init.lua"
 
 # Docker and Docker Compose
@@ -177,8 +178,10 @@ alias ccom="iconf -ccom"
 alias rccom="iconf -rccom"
 alias ccomall="iconf -ccomall"
 alias rccomall="iconf -rccomall"
-alias confe="iconf -cp"
-alias rconfe="iconf -rcp"
+alias confe="iconf -ce"
+alias confp="iconf -cp"
+alias rconfe="iconf -rce"
+alias rconfp="iconf -rcp"
 alias rckm="rconf checkout main"
 alias rckr="rconf checkout rolling"
 

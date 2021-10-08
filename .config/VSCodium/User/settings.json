@@ -73,7 +73,6 @@
     "*.ipynb": "jupyter.notebook.ipynb"
   },
   "liveSassCompile.settings.autoprefix": [],
-  "workbench.activityBar.visible": false,
   "breadcrumbs.enabled": false,
   "editor.smoothScrolling": true,
   "workbench.list.smoothScrolling": true,

@@ -1,139 +1,152 @@
 #!/bin/bash
 
-CONF='/usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME'
-NCONF='/usr/bin/git --git-dir=$HOME/.dots/$EDITOR/ --work-tree=$HOME/.config/$EDITOR'
-RCONF='/usr/bin/git --git-dir=$HOME/.dots/rvim/ --work-tree=$HOME/.config/rvim'
+CONF="/usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME"
+NCONF="/usr/bin/git --git-dir=$HOME/.dots/$EDITOR/ --work-tree=$HOME/.config/$EDITOR"
+RCONF="/usr/bin/git --git-dir=$HOME/.dots/rvim/ --work-tree=$HOME/.config/rvim"
 
 confStatus() {
-  eval "$CONF status"
+	eval "$CONF status"
 }
 
 confAdd() {
-  eval "$CONF add ./**/*"
+	eval "$CONF add ./**/*"
 }
 
 confCommit() {
-  if [[ -z "$*" ]]; then
-    echo "-n should have the next argument contain actual session"
-  else
-    message="$*"
-    echo message: $message
-    eval "$CONF commit -m '${message}'"
-  fi
-  exit 1
+	if [[ -z "$*" ]]; then
+		echo "-n should have the next argument contain actual session"
+	else
+		message="$*"
+		echo message: "$message"
+		eval "$CONF commit -m '${message}'"
+	fi
+	exit 1
 }
 
 confCommits() {
-  eval "$CONF log --pretty=oneline --abbrev-commit -- ."
+	eval "$CONF log --pretty=oneline --abbrev-commit -- ."
 }
 
 confCommitAll() {
-  if [[ -z "$*" ]]; then
-    echo "-n should have the next argument contain actual session"
-  else
-    message="$*"
-    echo message: $message
-    eval "$CONF commit -a -m '${message}'"
-  fi
-  exit 1
+	if [[ -z "$*" ]]; then
+		echo "-n should have the next argument contain actual session"
+	else
+		message="$*"
+		echo message: "$message"
+		eval "$CONF commit -a -m '${message}'"
+	fi
+	exit 1
+}
+
+confPull() {
+	eval "$CONF pull"
 }
 
 confPush() {
- eval "$CONF push"
+	eval "$CONF push"
 }
 
 rconfStatus() {
-  eval "$RCONF status"
+	eval "$RCONF status"
 }
 
 rconfAdd() {
-  eval "$RCONF add ./*/**"
+	eval "$RCONF add ./*/**"
 }
 
 rconfCommit() {
-  if [[ -z "$*" ]]; then
-    echo "-n should have the next argument contain actual session"
-  else
-    message="$*"
-    echo message: $message
-    eval "$RCONF commit -m '${message}'"
-  fi
-  exit 1
+	if [[ -z "$*" ]]; then
+		echo "-n should have the next argument contain actual session"
+	else
+		message="$*"
+		echo message: "$message"
+		eval "$RCONF commit -m '${message}'"
+	fi
+	exit 1
 }
 
 rconfCommits() {
-  eval "$RCONF log --pretty=oneline --abbrev-commit -- ."
+	eval "$RCONF log --pretty=oneline --abbrev-commit -- ."
 }
 
 rconfCommitAll() {
-  if [[ -z "$*" ]]; then
-    echo "-n should have the next argument contain actual session"
-  else
-    message="$*"
-    echo message: $message
-    eval "$RCONF commit -a -m '${message}'"
-  fi
-  exit 1
+	if [[ -z "$*" ]]; then
+		echo "-n should have the next argument contain actual session"
+	else
+		message="$*"
+		echo message: "$message"
+		eval "$RCONF commit -a -m '${message}'"
+	fi
+	exit 1
+}
+
+rconfPull() {
+	eval "$RCONF pull"
 }
 
 rconfPush() {
- eval "$RCONF push"
+	eval "$RCONF push"
 }
 
-
 while [[ "$#" -gt 0 ]]; do
-  curr=$1
-  shift
+	curr=$1
+	shift
 
-  case "$curr" in
-  "-cs")
-    confStatus
-    ;;
-  "-csa")
-    confAdd
-    ;;
-  "-ccom")
-    read -p "Enter commit message: " arg
-    confCommit "$arg"
-    ;;
-  "-ccoms")
-    confCommits
-    ;;
-  "-ccomall")
-    if [[ "$#" -gt 0 ]] ; then
-      arg="$@"
-    else
-      read -p "Enter commit message: " arg
-    fi
-    confCommitAll "$arg"
-    ;;
-  "-cp")
-    confPush
-    ;;
-  "-rcs")
-    rconfStatus
-    ;;
-  "-rcsa")
-    rconfAdd
-    ;;
-  "-rccom")
-    read -p "Enter commit message: " arg
-    rconfCommit "$arg"
-    ;;
-  "-rccoms")
-    rconfCommits
-    ;;
-  "-rccomall")
-    if [[ "$#" -gt 0 ]] ; then
-      arg="$@"
-    else
-      read -p "Enter commit message: " arg
-    fi
-    rconfCommitAll "$arg"
-    ;;
-  "-rcp")
-    rconfPush
-  ;;
-  *) echo "Unavailable command... $curr"
-  esac
+	case "$curr" in
+	"-cs")
+		confStatus
+		;;
+	"-csa")
+		confAdd
+		;;
+	"-ccom")
+		read -p "Enter commit message: " arg
+		confCommit "$arg"
+		;;
+	"-ccoms")
+		confCommits
+		;;
+	"-ccomall")
+		if [[ "$#" -gt 0 ]]; then
+			arg="$@"
+		else
+			read -rp "Enter commit message: " arg
+		fi
+		confCommitAll "$arg"
+		;;
+	"-cp")
+		confPush
+		;;
+	"-ce")
+		confPull
+		;;
+	"-rcs")
+		rconfStatus
+		;;
+	"-rcsa")
+		rconfAdd
+		;;
+	"-rccom")
+		read -rp "Enter commit message: " arg
+		rconfCommit "$arg"
+		;;
+	"-rccoms")
+		rconfCommits
+		;;
+	"-rccomall")
+		if [[ "$#" -gt 0 ]]; then
+			arg="$@"
+		else
+			read -rp "Enter commit message: " arg
+		fi
+		rconfCommitAll "$arg"
+		;;
+	"-rcp")
+		rconfPush
+		;;
+	"-rce")
+		rconfPull
+		;;
+	*) echo "Unavailable command... $curr" ;;
+	esac
 done

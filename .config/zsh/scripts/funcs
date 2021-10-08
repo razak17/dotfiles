@@ -61,7 +61,7 @@ function rvimProfiling() {
 
 prof_raw="${XDG_CACHE_HOME:-$HOME/.cache}/rvim/prof_raw.log"
 function nvimProfiling() {
-  nvim "$@" --startuptime "$prof"
+  nvim -u "$HOME/.config/nvim/raw.lua" "$@" --startuptime "$prof_raw"
 }
 
 # compress

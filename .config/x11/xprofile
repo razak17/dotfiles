@@ -19,6 +19,8 @@ export DEV_HOME="$HOME/personal/workspace/coding"
 export RVIM_PATH="$HOME/.config/rvim"
 
 export EDITOR="rvim"
+export VISUAL="rvim"
+export SUDO_EDITOR="nvim"
 export BROWSER="firefox"
 export TERMINAL="alacritty"
 

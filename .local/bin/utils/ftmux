@@ -15,23 +15,23 @@ getPaneId() {
 	sessionOrWindowId=$2
 	case "$tag" in
 	"-p") paneId=$($X display -p '#{pane_id}') ;;
-	"-s") paneId=$($X list-panes -s -F '#D' -t $sessionOrWindowId) ;;
-	"-w") paneId=$($X list-panes -F '#D' -t $sessionOrWindowId) ;;
+	"-s") paneId=$($X list-panes -s -F '#D' -t "$sessionOrWindowId") ;;
+	"-w") paneId=$($X list-panes -F '#D' -t "$sessionOrWindowId") ;;
 	"-a") paneId=$($X list-panes -a -F '#D') ;;
 	*) echo "Unavailable command... $curr" ;;
 	esac
-	echo $paneId
+  echo "$paneId"
 }
 
 getWindowId() {
 	tag=$1
 	session=$2
 	case "$tag" in
-	"-s") windowIds=$($X list-windows -F '#{window_id}' -t $session) ;;
+	"-s") windowIds=$($X list-windows -F '#{window_id}' -t "$session") ;;
 	"-a") windowIds=$($X list-windows -a -F '#{window_id}') ;;
 	*) echo "Unavailable command... $curr" ;;
 	esac
-	echo $windowIds
+  echo "$windowIds"
 }
 
 panesList() {
@@ -41,7 +41,7 @@ panesList() {
 	"-a") panes=$($X list-panes -a -F '#D') ;;
 	"-w") panes=$($X list-panes -F '#D') ;;
 	"-s")
-		if [[ $# -gt 0 ]]; then
+		if [ $# -gt 0 ]; then
 			panes=$($X list-panes -sF "#D" -t "$@")
 		else
 			echo "option requires an argument a target session"
@@ -50,7 +50,7 @@ panesList() {
 		;;
 	*) echo "Unavailable command... $curr" ;;
 	esac
-	echo $panes
+  echo "$panes"
 }
 
 splitPane() {
@@ -62,7 +62,7 @@ splitPane() {
 	-h) cmd="$cmd -v $@" ;;
 	*) echo "Unavailable command... $curr" ;;
 	esac
-	eval $cmd
+  eval "$cmd"
 }
 
 getTarget() {
@@ -70,11 +70,11 @@ getTarget() {
 	id=$2
 	shift
 	shift
-	if [[ $# -gt 0 ]]; then
-		if [[ "$@" == "-w" ]]; then
-			cmd=$(getWindowId -s $target)
-		elif [[ "$@" == "-p" ]]; then
-			cmd=$(getPaneId -w $target)
+	if [ $# -gt 0 ]; then
+		if [ "$@" == "-w" ]; then
+			cmd=$(getWindowId -s "$target")
+		elif [ "$@" == "-p" ]; then
+			cmd=$(getPaneId -w "$target")
 		fi
 	fi
 	IFS=' ' read -ra ids <<<"$cmd"
@@ -83,7 +83,7 @@ getTarget() {
 
 sessionNumber() {
 	res=$($X display -p '#{session_id}' | cut -b 2-)
-	echo $res
+	echo "$res"
 }
 
 resizePane() {
@@ -104,17 +104,17 @@ createSession() {
 	# ($X list-sessions -F \#S | awk '{print $1}')
 	# printf "hasSession: %s.\n" "$hasSession"
 	# printf "session: %s, window: %s.\n" "$session" "$window"
-	if [[ "$session" == "$hasSession" ]]; then
+	if [ "$session" == "$hasSession" ]; then
 		printf "duplicate session '%s'. Available sessions:\n" "$session"
 		($X list-sessions)
 	else
-		if [[ "$#" -gt 0 ]]; then
+		if [ "$#" -gt 0 ]; then
 			cmd="$X new -s $session -d -c$@ -n $window > /dev/null 2>&1"
 		else
 			cmd="$X new -s $session -d -n $window > /dev/null 2>&1"
 		fi
 		printf "session '%s' has been created.\n" "$session"
-		eval $cmd
+		eval "$cmd"
 	fi
 }
 
@@ -125,13 +125,13 @@ killSession() {
 
 	printf "session: %s, target: %s.\n" "$session" "$target"
 	shift
-	if [[ "$current" == "$session" ]]; then
+	if [ "$current" == "$session" ]; then
 		printf "cannot delete attached session '%s'.\n" "$session"
 		exit 1
 	fi
-	if [[ "$target" == "$session" ]]; then
+	if [ "$target" == "$session" ]; then
 		printf "session '%s' has been deleted.\n" "$session"
-		($X kill-session -t $session)
+		($X kill-session -t "$session")
 	else
 		printf "session '%s' does not exist. Available sessions:\n" "$session"
 		($X list-sessions)
@@ -144,11 +144,11 @@ createWindow() {
 	window=$2
 	shift
 	shift
-	hasWindow=$($X list-windows -t $session | grep "$window")
+	hasWindow=$($X list-windows -t "$session" | grep "$window")
 	if [[ -z "$hasWindow" ]]; then
-		($X neww -t $session: -n $window -d $@)
+		($X neww -t $session: -n "$window" -d $@)
 	else
-		echo duplicate window: $window
+		echo duplicate window: "$window"
 	fi
 }
 
@@ -167,19 +167,19 @@ helpMenu() {
 }
 
 zTest() {
-	if [[ -z "$*" ]]; then
+	if [ -z "$*" ]; then
 		echo "-n should have the next argument contain actual session"
 		exit 1
 	else
 		arg="$*"
-		echo YAY $arg
+		echo YAY "$arg"
 		exit 1
 	fi
 }
 
 checkEmpty() {
 	arg="$1"
-	if [[ -z $arg ]]; then
+	if [ -z "$arg" ]; then
 		echo "missing actual command."
 		exit 1
 	fi
@@ -192,45 +192,45 @@ prevPane() {
 	if [ "$prevIdx" -lt 1 ]; then
 		prevIdx=$count
 	fi
-	prevId=$($X list-panes -F '#{pane_id}' | xargs | awk -v var=$prevIdx '{print $var}')
-	($X select-pane -Z -t $prevId)
+	prevId=$($X list-panes -F '#{pane_id}' | xargs | awk -v var="$prevIdx" '{print $var}')
+	($X select-pane -Z -t "$prevId")
 }
 
 nextPane() {
 	paneIdx=$($X display -p '#{pane_index}')
 	nextIdx=$((paneIdx + 1))
 	count=$($X list-panes -F '#{pane_id}' | awk 'END {print NR}')
-	if [ "$nextIdx" -gt "$count" ]; then
+	if [ "$count" -lt "$nextIdx" ]; then
 		nextIdx=1
 	fi
 	nextId=$($X list-panes -F '#{pane_id}' | xargs | awk -v var=$nextIdx '{print $var}')
-	($X select-pane -Z -t $nextId)
+	($X select-pane -Z -t "$nextId")
 }
 
 simpleCommands() {
 	case "$arg" in
 	"-p") ($X run-shell -b 'echo pane id is #{pane_id}') ;;
 	"-pt") ($X run-shell -b 'echo pane title is #{pane_title}') ;;
-	"-w") $($X run-shell -b 'echo window name is #{window_name}') ;;
+	"-w") $X run-shell -b 'echo window name is #{window_name}' ;;
 	*) echo "Unavailables ... $cmd" ;;
 	esac
 }
 
 firstSession() {
 	session="first"
-	$X has-session -t $session_name &>/dev/null
+	$X has-session -t "$session_name" &>/dev/null
 
 	(("$?" != 0)) && createSession $session "main" $NVIM
 
 	createWindow $session "config" -c $SH_NVIM
 
 	tw=$(getTarget $session 0 -w)
-	first=$(getTarget $tw 0 -p)
-	splitPane -v -c $DOC -t $first
+	first=$(getTarget "$tw" 0 -p)
+	splitPane -v -c $DOC -t "$first"
 
-	tw=$(getTarget $session 1 -w)
-	first=$(getTarget $tw 0 -p)
-	splitPane -v -c $C_NVIM -t $first
+	tw=$(getTarget "$session" 1 -w)
+	first=$(getTarget "$tw" 0 -p)
+	splitPane -v -c "$C_NVIM" -t "$first"
 }
 
 finalSession() {
@@ -239,10 +239,10 @@ finalSession() {
 	createWindow $session "run" -c $DEV/Code/py/ml/getting-started
 	tw=$(getTarget $session 0 -w)
 	tw2=$(getTarget $session 1 -w)
-	second=$(getTarget $tw2 0 -p)
-	$X send-keys -t $(getTarget $tw 0 -p) "conda activate project-work" "C-m"
-	$X send-keys -t $second "conda activate project-work" "C-m"
-	$X send-keys -t $second "jupyter lab" "C-m"
+	second=$(getTarget "$tw2" 0 -p)
+	$X send-keys -t "$(getTarget "$tw" 0 -p)" "conda activate project-work" "C-m"
+	$X send-keys -t "$second" "conda activate project-work" "C-m"
+	$X send-keys -t "$second" "jupyter lab" "C-m"
 }
 
 moneyportalSession() {
@@ -254,36 +254,36 @@ moneyportalSession() {
 
 	# First Window
 	tw=$(getTarget $session 0 -w)
-	$X send-keys -t $(getTarget $tw 0 -p) "nvim" "C-m"
+	$X send-keys -t "$(getTarget "$tw" 0 -p)" "nvim" "C-m"
 
 	# Second Window
 	tw=$(getTarget $session 1 -w)
-	first=$(getTarget $tw 0 -p)
-	$X send-keys -t $first "yarn dev" "C-m"
-	splitPane -v -c $MONEYPORTAL/server -t $first
-	second=$(getTarget $tw 1 -p)
-	$X send-keys -t $second "yarn watch" "C-m"
-	splitPane -h -c $MONEYPORTAL/server -t $second
-	third=$(getTarget $tw 2 -p)
-	$X send-keys -t $third "yarn dev" "C-m"
+	first=$(getTarget "$tw" 0 -p)
+	$X send-keys -t "$first" "yarn dev" "C-m"
+	splitPane -v -c $MONEYPORTAL/server -t "$first"
+	second=$(getTarget "$tw" 1 -p)
+	$X send-keys -t "$second" "yarn watch" "C-m"
+	splitPane -h -c $MONEYPORTAL/server -t "$second"
+	third=$(getTarget "$tw" 2 -p)
+	$X send-keys -t "$third" "yarn dev" "C-m"
 
 	# Third Window
 	tw=$(getTarget $session 2 -w)
-	first=$(getTarget $tw 0 -p)
-	$X send-keys -t $first "psql -U postgres" "C-m"
-	splitPane -v -c $MONEYPORTAL/server -t $first
-	second=$(getTarget $tw -1 -p)
-	$X send-keys -t $second "redis-cli ping" "C-m"
+	first=$(getTarget "$tw" 0 -p)
+	$X send-keys -t "$first" "psql -U postgres" "C-m"
+	splitPane -v -c $MONEYPORTAL/server -t "$first"
+	second=$(getTarget "$tw" -1 -p)
+	$X send-keys -t "$second" "redis-cli ping" "C-m"
 
 	# Fourth Window
 	tw=$(getTarget $session 3 -w)
-	first=$(getTarget $tw 0 -p)
-	$X send-keys -t $first "docker info" "C-m"
-	splitPane -v -c $MONEYPORTAL/server -t $first
-	$X send-keys -t $(getTarget $tw -1 -p) "az --h" "C-m"
+	first=$(getTarget "$tw" 0 -p)
+	$X send-keys -t "$first" "docker info" "C-m"
+	splitPane -v -c $MONEYPORTAL/server -t "$first"
+	$X send-keys -t "$(getTarget "$tw" -1 -p)" "az --h" "C-m"
 }
 
-while [[ "$#" -gt 0 ]]; do
+while [ "$#" -gt 0 ]; do
 	curr=$1
 	shift
 
@@ -294,65 +294,65 @@ while [[ "$#" -gt 0 ]]; do
 	--prevpane) prevPane ;;
 	-N) sessionNumber ;;
 	-b | --break) breakPane ;;
-	-z) zTest ;;
+	-z) zTest "$@" ;;
 	-m) moneyportalSession ;;
 	--first) firstSession ;;
 	--final) finalSession ;;
 	-c | --command)
 		arg=$1
-		checkEmpty $arg
+		checkEmpty "$arg"
 		shift
 		case "$arg" in
 		"-a") panes=$(panesList -a) ;;
 		"-w") panes=$(panesList -w) ;;
 		"-s")
 			# echo session: $1
-			if [[ $# -lt 2 ]]; then
+			if [ $# -lt 2 ]; then
 				echo "missing session name or command"
 				exit 1
 			else
-				panes=$(panesList -s $1)
+				panes=$(panesList -s "$1")
 			fi
 			;;
 		*) echo "Unavailable ... $cmd" ;;
 		esac
-		if [[ $arg == "-s" ]]; then
+		if [ "$arg" == "-s" ]; then
 			shift
 		fi
-		echo panes: $panes
+		echo panes: "$panes"
 		cmd=$1
 		# echo cmd: $cmd
-		checkEmpty $cmd
+		checkEmpty "$cmd"
 		shift
 		IFS=' ' read -ra ids <<<"$panes"
 		for i in ${panes[@]}; do
-			echo sending cmd: $cmd to $i
-			$X send-keys -t $i $cmd "C-m"
+			echo sending cmd: "$cmd" to "$i"
+			$X send-keys -t "$i" "$cmd" "C-m"
 		done
 		;;
 	--simple)
 		arg=$1
-		checkEmpty $arg
+		checkEmpty "$arg"
 		shift
-		simpleCommands $arg
+		simpleCommands "$arg"
 		;;
 	-k | --kill)
-		if [[ "$#" -gt 0 ]]; then
+		if [ "$#" -gt 0 ]; then
 			arg="$@"
 		else
-			read -p "Enter session name: " arg
+			read -rp "Enter session name: " arg
 		fi
-		checkEmpty $arg
-		killSession $arg
+		checkEmpty "$arg"
+		killSession "$arg"
 		;;
 	-s | --session)
-		if [[ "$#" -gt 0 ]]; then
+		if [ "$#" -gt 0 ]; then
 			arg="$@"
 		else
-			read -p "Enter session name: " arg
+			read -rp "Enter session name: " arg
 		fi
-		checkEmpty $arg
-		createSession $arg "main"
+		checkEmpty "$arg"
+		createSession "$arg" "main"
 		exit 1
 		;;
 	*) echo "Unavailable command... $curr" ;;

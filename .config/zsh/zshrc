@@ -1,5 +1,10 @@
 #!/bin/zsh
 
+# Init completions
+autoload -Uz compinit
+zmodload -i zsh/complist
+_comp_options+=(globdots)   # Include hidden files.
+
 # profiling
 zmodload zsh/zprof
 

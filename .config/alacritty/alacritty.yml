@@ -1,4 +1,4 @@
-# Configuration for Alacritty, the GPU enhanced terminal emulator.
+# Configuration for Alacritty, the GPU enhanced terminal emulator. 
 
 schemes:
   spacemacs_light: &light

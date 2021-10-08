@@ -65,7 +65,7 @@ axd() {
     ID="`echo $ID | fzf | cut -d: -f1`"
     if [[ -n "$ID" ]]; then
       printf '\033]777;tabbedx;set_tab_name;%s\007' "$ID"
-      tmux -L "$@" attach-session -t "$ID"
+      # tmux -L "$@" attach-session -t "$ID"
     else
       :  # Start terminal normally
     fi
@@ -73,7 +73,7 @@ axd() {
 }
 
 ires() {
-  xdpyinfo | awk '/dimensions/{print $2}'
+  xdpyinfo | awk '/dimnsions/{print $2}'
 }
 
 irecentNote() {

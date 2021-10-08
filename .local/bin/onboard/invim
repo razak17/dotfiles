@@ -2,6 +2,23 @@
 
 lsp_path='.cache/rvim/nvim_lsp'
 
+# simple_lsp=(
+# 	"vscode-langservers-extracted"
+# 	"dockerfile-language-server-nodejs"
+# 	"graphql-language-service-cli"
+# 	"svelte-language-server"
+# 	"vim-language-server"
+# 	"yaml-language-server"
+# 	"bash-language-server"
+# 	'sql-language-server'
+# 	'typescript-language-server'
+# 	'typescript'
+# 	'pyright'
+# 	'neovim'
+# 	'prettier'
+# 	'eslint'
+# )
+
 cloneRepo() {
 	sudo cp "$HOME/.config/nvim/external/bin/rvim" "/usr/local/bin"
 }
