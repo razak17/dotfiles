@@ -136,11 +136,9 @@ alias vsc="vscodium ."
 
 # editor
 alias a="rv ~/.config/zsh/aliases"
-alias lc="rv ~/.config/rvim/lua/core/init.lua"
-alias dfc="rv ~/.config/rvim/lua/core/defaults.lua"
-alias vc="rv ~/.config/rvim/init.lua"
-alias rvc="rv ~/.config/rvim/init.lua"
-alias rnvc="rv ~/docs/raw.lua"
+alias lc='rv ${RVIM_CONFIG_PATH:-$HOME/.config}/rvim/lua/config/init.lua'
+alias rvc='rv ${RVIM_CONFIG_PATH:-$HOME/.config}/rvim/init.lua'
+alias vc="rv ~/.config/nvim/raw.lua"
 alias lvc="rv ~/.config/rvim/external/utils/.vimrc.local"
 alias ivc="sudoedit /etc/xdg/nvim/sysinit.vim"
 alias al="rv ~/.config/alacritty/alacritty.yml"
@@ -218,6 +216,7 @@ alias plague='curl https://corona-stats.online/states/us'
 alias lg='lazygit'
 alias list_systemctl="systemctl list-unit-files --state=enabled"
 alias scr='cd ~/Pictures/screenshots'
+alias aria='aria2c --max-connection-per-server=12'
 
 mo=~/.mozilla/firefox/profiles
 nca=~/.cache/nvim

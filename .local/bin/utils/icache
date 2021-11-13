@@ -6,6 +6,7 @@ moz=~/.cache/mozilla/firefox/profiles/default/cache2
 pip=~/.cache/pip
 yarn=~/.cache/yarn
 yay=~/.cache/yay
+pkg=/var/cache/pacman/pkg
 
 deleteDir() {
 	dir=$1
@@ -32,6 +33,7 @@ while [[ "$#" -gt 0 ]]; do
 		deleteDir $pip
 		deleteDir $yarn
 		deleteDir $yay
+		deleteDir $pkg
 		;;
 	"-b")
 		deleteDir $brave

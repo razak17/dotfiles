@@ -51,7 +51,7 @@ rconfStatus() {
 }
 
 rconfAdd() {
-	eval "$RCONF add ./*/**"
+	eval "$RCONF add ."
 }
 
 rconfCommit() {
