@@ -87,6 +87,12 @@ function colours() {
   done
 }
 
+function marco() {
+  if ping -c 1 1.1.1.1; then
+    echo "It appears you have a working internet connection"
+  fi
+}
+
 function alive() {
   if ping -c 1 google.com; then
     echo "It appears you have a working internet connection"
