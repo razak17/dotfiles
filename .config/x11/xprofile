@@ -31,9 +31,10 @@ export ZDOTDIR=$HOME/.config/zsh
 
 dwmblocks &
 ~/.local/bin/dwm/setbg &
+~/.local/bin/utils/itouch &
 picom &
 xset r rate 300 50 &
-xinput set-prop 11 329 1
+xrandr --output eDP-1 --brightness 0.7
 redshift -O 4500K &
 brightnessctl set 3000 &
 autokey-gtk &
