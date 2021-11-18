@@ -29,6 +29,7 @@ alias cp="cp -i"
 alias mv='mv -i'
 alias rm='rm -i'
 alias ccat='cat'
+alias notes='cd ~/notes/src'
 
 # system
 alias obd="objdump -d"
