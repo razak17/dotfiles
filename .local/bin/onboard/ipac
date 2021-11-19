@@ -38,6 +38,7 @@ pac_packages=(
   'arc-gtk-theme'
   'pulseaudio'
   'gvfs'
+	'xf86-input-libinput'
   #'powerline-fonts'
   #'ninja'
   # 'cmake'
