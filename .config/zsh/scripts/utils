@@ -84,3 +84,7 @@ ivpn() {
   server="$@"
   sudo openvpn --config $server --auth-user-pass ~/docs/vpnbook
 }
+
+mc() {
+  mkdir "$@" && cd "$@"
+}
