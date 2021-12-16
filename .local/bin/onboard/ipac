@@ -19,6 +19,7 @@ pac_packages=(
   'maim'
   'lazygit'
   'ctags'
+	'strace'
   'fzf'
   'fd'
   'kitty'

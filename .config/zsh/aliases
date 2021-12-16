@@ -155,6 +155,7 @@ alias nvz="nvim ~/.zsh_history"
 alias rvz="rv ~/.zsh_history"
 alias nvli="rv lua/core/init.lua"
 alias rvli="rv lua/core/init.lua"
+alias nvcp="cp --force ~/.dots/neovim/build/bin/nvim  ~/.local/bin"
 
 # Docker and Docker Compose
 alias idocker="systemctl start docker.service"
