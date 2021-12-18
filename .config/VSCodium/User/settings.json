@@ -1314,5 +1314,6 @@
       "command": "workbench.action.toggleZenMode"
     }
   ],
-  "workbench.statusBar.visible": false
+  "workbench.statusBar.visible": false,
+  "workbench.editor.untitled.hint": "hidden"
 }
