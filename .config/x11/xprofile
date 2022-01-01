@@ -34,7 +34,7 @@ dwmblocks &
 ~/.local/bin/utils/itouch &
 picom &
 xset r rate 300 50 &
-brightnessctl set 3000 &
+brightnessctl set 1000 &
 xrandr --output eDP-1 --brightness 0.6
 autokey-gtk &
 
