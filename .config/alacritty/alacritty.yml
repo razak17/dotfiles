@@ -5,6 +5,7 @@ schemes:
     primary:
       foreground: '#7ec0ee'
       background: '#282c34'
+      # background: '#1e2127'
     normal:
       black: '#282c34'
       red: '#e95678'
