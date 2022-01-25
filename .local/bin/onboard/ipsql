@@ -12,4 +12,3 @@ sudo touch /var/lib/postgres/.psql_history
 
 createuser --interactive
 createdb myDatabaseName
-
