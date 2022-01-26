@@ -9,7 +9,6 @@ case $BLOCK_BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-# swap="$(free -h | awk '/^Swap:/ {print $3 "/ " $2}')"
-# free --mebi | sed -n '2{p;q}' | awk '{printf ("🔃 %2.2fGiB", ( $3 / 1024))}'
-# echo -e "🔁 $swap"
-free -h |  awk '/^Swap:/ {printf ("🔃 %2.2fGiB", ( $3 / 1024))}'
+# swap="$(free -h | awk '/^Swap:/ {print "🔃 " $3 " / " $2}')"
+swap="$(free -m |  awk '/^Swap:/ {printf ("🔃 %2.2fGiB/%2.2fGiB\n", ($3 / 1024), ($2 / 1024))}')"
+echo -e "$swap"
