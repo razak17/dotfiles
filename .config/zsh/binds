@@ -45,7 +45,7 @@ bindkey '^r' history-incremental-search-backward      # [Ctrl-r] - Search backwa
 bindkey ' ' magic-space                               # [Space] - don't do history expansion
 bindkey '^ ' autosuggest-accept
 bindkey -s '^z' 'zi^M'
-bindkey "^n" down-line-or-beginning-search # Down
+bindkey "^j" down-line-or-beginning-search # Down
 bindkey "^k" up-line-or-beginning-search # Up
 
 # Edit the current command line in $EDITOR

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+sudo rm /var/run/wpa_supplicant/wlan0
+sudo rc-service net.wlan0 restart

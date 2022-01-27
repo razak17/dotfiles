@@ -18,7 +18,7 @@ esac
 vol="$(pamixer --get-volume)"
 
 if [ "$vol" -gt "70" ]; then
-	icon="🔊"
+	icon="🔊 "
 elif [ "$vol" -lt "30" ]; then
 	icon="🔈"
 else
@@ -27,7 +27,7 @@ fi
 
 # echo "$icon $vol%"
 if [[ "$vol" -gt 99 ]]; then
-  echo "$icon $vol%"
+  echo "$icon$vol%"
 elif [[ "$vol" -gt 9 ]]; then
   echo "$icon $vol%"
 else

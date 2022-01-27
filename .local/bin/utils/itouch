@@ -1,11 +1,17 @@
 #!/bin/sh
 
 touchId=$(xinput list | grep Touchpad | awk '{print $6}' | cut -b 4-)
+mouseId=$(xinput list | grep "USB OPTICAL MOUSE" | awk '{print $6}' | cut -b 4-)
+
 tappingEnabledId=$(xinput list-props $touchId | grep "Tapping Enabled" | awk 'NR<2 {print $(NF-1)}' | cut -b 2- | rev | cut -b 3- | rev)
 cmd="xinput set-prop $touchId $tappingEnabledId 1"
+mainVal=2.400000
+zeroval=0.000000
+matrix="Coordinate Transformation Matrix"
 
 echo "cmd: $cmd"
 xinput set-prop $touchId $tappingEnabledId 1
+xinput set-prop $mouseId "$matrix" $mainVal, 0.000000, 0.000000, 0.000000, $mainVal, 0.000000, 0.000000, 0.000000, 1.000000
 
 # sed -i '/xinput/d' ~/.config/x11/xprofile
 # echo "Removing old line from xprofile..."

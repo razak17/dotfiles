@@ -1,0 +1,4 @@
+#!/bin/sh
+
+keyboardId=$(xinput list | grep Touchpad | awk '{print $6}' | cut -b 4-)
+xset r rate 300 50

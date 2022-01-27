@@ -1,0 +1,4 @@
+#!/bin/sh
+
+brightnessctl set 500
+redshift -O 6500K
