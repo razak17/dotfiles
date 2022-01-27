@@ -5,7 +5,7 @@ mouseId=$(xinput list | grep "USB OPTICAL MOUSE" | awk '{print $6}' | cut -b 4-)
 
 tappingEnabledId=$(xinput list-props $touchId | grep "Tapping Enabled" | awk 'NR<2 {print $(NF-1)}' | cut -b 2- | rev | cut -b 3- | rev)
 cmd="xinput set-prop $touchId $tappingEnabledId 1"
-mainVal=2.400000
+mainVal=1.400000
 zeroval=0.000000
 matrix="Coordinate Transformation Matrix"
 

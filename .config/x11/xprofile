@@ -35,8 +35,6 @@ dwmblocks &
 ~/.local/bin/utils/ikeyboard &
 ~/.local/bin/utils/ibrightness &
 picom &
-brightnessctl set 1000 &
-xrandr --output eDP-1 --brightness 0.6
 autokey-gtk &
 
 # This line autostarts an instance of Pulseaudio that does not exit on idle.
