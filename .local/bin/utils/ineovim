@@ -13,10 +13,9 @@ if [ -d ~/.dots/neovim ]; then
     exit
   else
     sudo make CMAKE_BUILD_TYPE=RelWithDebInfo
-    mv ~/.local/bin/nvim ~/.local/bin/$oldfile
     echo $oldfile
+    mv ~/.local/bin/nvim ~/.local/bin/$oldfile
     cp ~/.dots/neovim/build/bin/nvim ~/.local/bin/
-    rm -r ~/.dots/neovim/build/bin/nvim
   fi
 fi
 
