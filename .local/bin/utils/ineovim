@@ -1,0 +1,22 @@
+#!/bin/sh
+
+dd=$(date +%F_%H%M%S_%N)
+oldfile="nvim-$dd"
+if [ -d ~/.dots/neovim ]; then
+  cd ~/.dots/neovim
+  git pull
+
+  # cmd="$(git pull 2&>1 | grep 'Already up to date.')"
+  cmd="$(git pull)"
+
+  if [[ $cmd == "Already up to date." ]]; then
+    exit
+  else
+    sudo make CMAKE_BUILD_TYPE=RelWithDebInfo
+    mv ~/.local/bin/nvim ~/.local/bin/$oldfile
+    echo $oldfile
+    cp ~/.dots/neovim/build/bin/nvim ~/.local/bin/
+    rm -r ~/.dots/neovim/build/bin/nvim
+  fi
+fi
+
