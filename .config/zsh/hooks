@@ -34,8 +34,6 @@ command_not_found_handler() {
       file="$res[4]"
       printf '  %s/%s %s: /%s\n' "$repo" "$package" "$version" "$file"
     done
-  else
-    printf '\n'
   fi
   return 127
 }

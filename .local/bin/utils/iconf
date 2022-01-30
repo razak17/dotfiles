@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CONF="/usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME"
-NCONF="/usr/bin/git --git-dir=$HOME/.dots/$EDITOR/ --work-tree=$HOME/.config/$EDITOR"
+# NCONF="/usr/bin/git --git-dir=$HOME/.dots/$EDITOR/ --work-tree=$HOME/.config/$EDITOR"
 RCONF="/usr/bin/git --git-dir=$HOME/.dots/rvim/ --work-tree=$HOME/.config/rvim"
 
 confStatus() {

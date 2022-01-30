@@ -78,8 +78,7 @@
   "workbench.list.smoothScrolling": true,
   "editor.cursorSmoothCaretAnimation": true,
   "js/ts.implicitProjectConfig.checkJs": true,
-  "telemetry.enableCrashReporter": false,
-  "telemetry.enableTelemetry": false,
+  "telemetry.telemetryLevel": "off",
   "terminal.integrated.inheritEnv": false,
   "python.dataScience.alwaysTrustNotebooks": true,
   "update.mode": "none",
@@ -104,6 +103,10 @@
   "zenMode.hideActivityBar": true,
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -1314,6 +1317,5 @@
       "command": "workbench.action.toggleZenMode"
     }
   ],
-  "workbench.statusBar.visible": false,
   "workbench.editor.untitled.hint": "hidden"
 }

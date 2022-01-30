@@ -39,5 +39,5 @@ unsetopt NOMATCH            # Do not print an error when a pattern has no match
 unsetopt PROMPT_SP          # Attempt to preserve a partial line
 unsetopt FLOW_CONTROL       # Disable start/stop characters in shell editor.
 
-CORRECT_IGNORE='.bin,.bins,bin,bins'
-CORRECT_IGNORE_FILE='.bin,.bins,bin,bins'
+setopt CORRECT_IGNORE='.bin,.bins,bin,bins'
+setopt CORRECT_IGNORE_FILE='.bin,.bins,bin,bins'
