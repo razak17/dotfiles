@@ -27,6 +27,10 @@ add_completion 'conda-zsh-completion' false
 add_completion 'fnm'
 autoload zmv # builtin zsh rename command
 
+# ignore params
+CORRECT_IGNORE="bin"
+CORRECT_IGNORE_FILE=".*"
+
 # Load config files
 add_files opts compe vim-mode hooks binds prompt aliases
 

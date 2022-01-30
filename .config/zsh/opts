@@ -38,6 +38,3 @@ setopt CDABLE_VARS          # expand a cd argument when it is not a dir or does 
 unsetopt NOMATCH            # Do not print an error when a pattern has no match
 unsetopt PROMPT_SP          # Attempt to preserve a partial line
 unsetopt FLOW_CONTROL       # Disable start/stop characters in shell editor.
-
-setopt CORRECT_IGNORE='.bin,.bins,bin,bins'
-setopt CORRECT_IGNORE_FILE='.bin,.bins,bin,bins'
