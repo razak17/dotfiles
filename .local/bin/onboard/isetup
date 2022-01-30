@@ -27,6 +27,7 @@ installZshPlugins() {
     'zsh-users/zsh-completions'
     'zsh-users/zsh-syntax-highlighting'
     # 'agkozak/zsh-z'
+    'marlonrichert/zsh-hist'
   )
   # curl -sLo "https://github.com/$download_path" "$url"
   for i in ${plugins[@]}; do

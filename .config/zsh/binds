@@ -63,3 +63,6 @@ zle -N accept-line autocorrect
 zle -N magic-space autocorrect
 bindkey ' ' magic-space
 
+bindkey "^_" undo
+bindkey "^[q" push-line-or-edit
+bindkey "^[g" get-line
