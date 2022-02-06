@@ -55,13 +55,13 @@ bindkey '\C-e' edit-command-line
 
 bindkey -M menuselect '^x' clear-screen
 
-autocorrect () {
-  zle .spell-word
-  zle .$WIDGET
-}
-zle -N accept-line autocorrect
-zle -N magic-space autocorrect
-bindkey ' ' magic-space
+# autocorrect () {
+#   zle .spell-word
+#   zle .$WIDGET
+# }
+# zle -N accept-line autocorrect
+# zle -N magic-space autocorrect
+# bindkey ' ' magic-space
 
 bindkey "^_" undo
 bindkey "^[q" push-line-or-edit
