@@ -17,7 +17,7 @@ cmds="\
 🖥 shutdown	${die:-sudo openrc-shutdown -pq now}"
 
 # choices="$(echo "$cmds" | cut -d'	' -f 1)" || exit 1
-choices="$(echo "$cmds" | cut -d'	' -f 1 | dmenu)" || exit 1
+choices="$(echo "$cmds" | cut -d'	' -f 1 | dmenu -l 10)" || exit 1
 
 # echo $choices
 `echo "$cmds" | grep "^$choices	" | cut -d '	' -f2-`
