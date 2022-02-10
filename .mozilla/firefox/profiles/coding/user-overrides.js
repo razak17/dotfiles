@@ -44,8 +44,7 @@ user_pref("full-screen-api.warning.timeout", 0);
 
 // APPEARANCE
 user_pref("sidebar.position_start", false);
-// user_pref("browser.display.background_color", "#ff0000");
-user_pref("browser.display.background_color", "#1e2127");
+// user_pref("browser.display.background_color", "#1e2127");
 user_pref("browser.download.autohideButton", false); // [FF57+]
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true); // [FF68+] allow userChrome/userContent
 
@@ -108,12 +107,13 @@ user_pref("dom.security.https_only_mode", false); // [FF76+]
 /*** [SECTION 0700]: DNS / DoH / PROXY / SOCKS / IPv6 ***/
 user_pref("network.dns.disableIPv6", false); // localhost:8000 not working
 
-/*** [SECTION 4500]: RFP (RESIST FINGERPRINTING) **/
-// user_pref("privacy.resistFingerprinting", false); // Cause of light theme bug
-// user_pref("privacy.resistFingerprinting.letterboxing", false); // [HIDDEN PREF]
 user_pref("key.url", "https://html.duckduckgo.com/html?q=\\");
 
-/*** [SECTION 9000]: PERSONAL
-   Non-project related but useful. If any interest you, add them to your overrides
-***/
-user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true); // [FF68+] allow userChrome/userContent
+/*** [SECTION 0700]: DNS / DoH / PROXY / SOCKS / IPv6 ***/
+user_pref("network.trr.mode", 2);
+user_pref("network.trr.custom_uri", "https://doh.libredns.gr/dns-query");
+user_pref("network.trr.uri", "https://doh.libredns.gr/dns-query");
+
+// Hardware acceleration
+user_pref("browser.preferences.defaultPerformanceSettings.enabled", false);
+user_pref("layers.acceleration.disabled", true);
