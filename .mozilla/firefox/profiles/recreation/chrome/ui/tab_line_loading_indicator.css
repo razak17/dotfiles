@@ -15,12 +15,12 @@ See the above repository for updates as well as full license text. */
   transition: background-size 80ms linear;
 }
 
-.tabbrowser-tab[busy] > .tab-stack > .tab-background::before{
+/* .tabbrowser-tab[busy] > .tab-stack > .tab-background::before{
   background-size: 10%;
   background-image: linear-gradient(currentColor,currentColor);
   opacity: 0.7;
   animation: tab-loading-line-anim 400ms alternate infinite ease-in-out;
-}
+} */
 
 .tab-throbber{ display: none }
 .tab-icon-image[src]{ display: -moz-box }

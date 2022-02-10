@@ -117,11 +117,8 @@ user_pref("network.trr.uri", "https://doh.libredns.gr/dns-query");
 user_pref("browser.preferences.defaultPerformanceSettings.enabled", false);
 user_pref("layers.acceleration.disabled", true);
 
-/* 1212: set OCSP fetch failures (non-stapled, see 1211) to hard-fail [SETUP-WEB]
- * When a CA cannot be reached to validate a cert, Firefox just continues the connection (=soft-fail)
- * Setting this pref to true tells Firefox to instead terminate the connection (=hard-fail)
- * It is pointless to soft-fail when an OCSP fetch fails: you cannot confirm a cert is still valid (it
- * could have been revoked) and/or you could be under attack (e.g. malicious blocking of OCSP servers)
- * [1] https://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox/
- * [2] https://www.imperialviolet.org/2014/04/19/revchecking.html ***/
+/* 1212: set OCSP fetch failures (non-stapled, see 1211) to hard-fail [SETUP-WEB]  ***/
 user_pref("security.OCSP.require", false);
+
+// Disable firefox suggest (Manually)
+user_pref("browser.urlbar.groupLabels.enabled", false)

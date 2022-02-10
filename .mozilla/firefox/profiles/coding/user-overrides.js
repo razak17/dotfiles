@@ -116,3 +116,9 @@ user_pref("network.trr.uri", "https://doh.libredns.gr/dns-query");
 // Hardware acceleration
 user_pref("browser.preferences.defaultPerformanceSettings.enabled", false);
 user_pref("layers.acceleration.disabled", true);
+
+/* 1212: set OCSP fetch failures (non-stapled, see 1211) to hard-fail [SETUP-WEB]  ***/
+user_pref("security.OCSP.require", false);
+
+// Disable firefox suggest (Manually)
+user_pref("browser.urlbar.groupLabels.enabled", false)

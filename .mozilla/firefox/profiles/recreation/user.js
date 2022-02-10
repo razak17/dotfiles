@@ -1380,7 +1380,6 @@ user_pref("accessibility.browsewithcaret", false);
 user_pref("devtools.theme", "dark");
 user_pref("devtools.editor.keymap", "vim");
 user_pref("key.url", "https://html.duckduckgo.com/html?q=\\");
-user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true)
 
 /*** [SECTION 4500]: RFP (RESIST FINGERPRINTING) **/
 user_pref("privacy.resistFingerprinting", false); // Cause of light theme bug
@@ -1397,3 +1396,6 @@ user_pref("layers.acceleration.disabled", true);
 
 /* 1212: set OCSP fetch failures (non-stapled, see 1211) to hard-fail [SETUP-WEB]  ***/
 user_pref("security.OCSP.require", false);
+
+// Select a container for each tab
+user_pref("privacy.userContext.newTabContainerOnLeftClick.enabled", true);
