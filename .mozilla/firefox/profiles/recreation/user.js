@@ -1356,7 +1356,6 @@ user_pref("browser.urlbar.placeholderName.private", "DuckDuckGo");
 user_pref("browser.toolbars.bookmarks.visibility", "never");
 user_pref("browser.startup.page", 3);
 user_pref("sidebar.position_start", false);
-user_pref("browser.display.background_color", "#1e2127");
 user_pref("browser.download.autohideButton", false); // [FF57+]
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true); // [FF68+] allow userChrome/userContent
 user_pref("identity.fxaccounts.enabled", false); // Firefox Accounts & Sync [FF60+] [RESTART]

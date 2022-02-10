@@ -2,15 +2,12 @@
 /* by Denis G. (https://github.com/denis-g/firefox-settings) */
 
 @import 'content/about_page_scrollbars.css';
-@import 'content/addon_manage_buttons_without_popup.css';
 @import 'content/auto_devtools_theme.css';
-@import 'content/compact_addons_manager.css';
 @import 'content/css_scrollbar_width_color.css';
-@import 'content/dark_settings_pages.css';
-@import 'content/limit_css_data_leak.css';
+/* @import 'content/dark_settings_pages.css'; */
+/* @import 'content/limit_css_data_leak.css'; */
 @import 'content/multi_column_addons.css';
 @import 'content/newtab_background_color.css';
 @import 'content/remove_textbox_focusring.css';
 @import 'content/standalone_image_page_mods.css';
 @import 'content/transparent_reader_toolbar.css';
-@import 'content/two_column_addons.css';

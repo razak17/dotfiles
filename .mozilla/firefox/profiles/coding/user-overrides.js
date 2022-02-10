@@ -44,7 +44,6 @@ user_pref("full-screen-api.warning.timeout", 0);
 
 // APPEARANCE
 user_pref("sidebar.position_start", false);
-// user_pref("browser.display.background_color", "#1e2127");
 user_pref("browser.download.autohideButton", false); // [FF57+]
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true); // [FF68+] allow userChrome/userContent
 

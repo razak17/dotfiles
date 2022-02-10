@@ -5,5 +5,5 @@ See the above repository for updates as well as full license text. */
 /* Uses color from theme_colors if available */
 
 #tabbrowser-tabpanels{
-  background-color: var(--uc-light-bkgnd-color,rgb(46,54,69)) !important;
+  background-color: var(--uc-light-bkgnd-color,rgb(146,54,69)) !important;
 }

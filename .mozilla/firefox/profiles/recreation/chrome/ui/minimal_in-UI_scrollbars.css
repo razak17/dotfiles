@@ -7,6 +7,6 @@ See the above repository for updates as well as full license text. */
 #permList,
 scrollbar{
  color: inherit;
- scrollbar-color: currentColor transparent;
- scrollbar-width: thin 
+ scrollbar-color: rgb(220,0,0) transparent;
+ scrollbar-width: thin
 }

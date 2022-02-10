@@ -2,13 +2,13 @@
 /* by Denis G. (https://github.com/denis-g/firefox-settings) */
 
 /* @import 'ui/autohide_bookmarks_and_main_toolbars.css'; */
-@import 'ui/blank_page_background.css';
-/* @import 'ui/classic_grid_main_menu_popup.css'; */
+/* @import 'ui/blank_page_background.css'; */
+@import 'ui/classic_grid_main_menu_popup.css';
 @import 'ui/close-tab-button-shown-on-hover.css';
 /* @import 'ui/color_variable_template.css'; */
-/* @import 'ui/compact-list-menu.css'; */
-/* @import 'ui/compact_proton.css'; */
-/* @import 'ui/dark_additional_windows.css'; */
+@import 'ui/compact-list-menu.css';
+@import 'ui/compact_proton.css';
+@import 'ui/dark_additional_windows.css';
 @import 'ui/dark_checkboxes_and_radios.css';
 @import 'ui/dark_date_picker_panel.css';
 @import 'ui/floating_findbar_on_top.css';
@@ -26,15 +26,13 @@
 @import 'ui/navbar_tabs_oneliner.css';
 @import 'ui/numbered_tabs.css';
 @import 'ui/privatemode_indicator_as_menu_button.css';
-@import 'ui/scrollable_menupopups.css';
-@import 'ui/scrollable_urlbar_popup.css';
 @import 'ui/tab_line_loading_indicator.css';
 @import 'ui/tabs_animated_gradient_border.css';
 /* @import 'ui/tabs_fill_available_width.css'; */
 /* @import 'ui/theme_color_variables.css'; */
 /* @import 'ui/theme_popups_and_menus.css'; */
 @import 'ui/theme_sidebar.css';
-@import 'ui/urlbar_connection_type_colors.css';
+/* @import 'ui/urlbar_connection_type_colors.css'; */
 @import 'ui/urlbar_container_color_border.css';
 @import 'ui/urlbar_info_icons_on_hover.css';
 @import 'ui/urlbar_results_in_two_rows.css';
