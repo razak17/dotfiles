@@ -4,6 +4,7 @@
 autoload -Uz compinit
 zmodload -i zsh/complist
 _comp_options+=(globdots)   # Include hidden files.
+compinit
 
 # profiling
 zmodload zsh/zprof
@@ -24,6 +25,7 @@ add_plugin 'zsh-completions'
 add_plugin 'zsh-autosuggestions'
 add_plugin 'zsh-syntax-highlighting'
 add_plugin 'zsh-hist'
+add_plugin 'git'
 add_completion 'conda-zsh-completion' false
 add_completion 'fnm'
 autoload zmv # builtin zsh rename command

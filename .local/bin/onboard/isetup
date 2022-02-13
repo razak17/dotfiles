@@ -30,7 +30,7 @@ installZshPlugins() {
     'marlonrichert/zsh-hist'
   )
   # curl -sLo "https://github.com/$download_path" "$url"
-  for i in ${plugins[@]}; do
+  for i in "${plugins[@]}"; do
     name=$(echo ${i} | sed 's|.*/||')
     if [[ -d "$HOME/.config/zsh/plugins/${name}" ]]; then
       echo "dir ${name} already exists."
@@ -39,6 +39,11 @@ installZshPlugins() {
       echo "clone"
     fi
   done
+
+  mkdir -p ~/.config/zsh/plugins/git
+  cd ~/.config/zsh/plugins/git || exit
+  curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/git/git.plugin.zsh --output git.plugin.zsh
+  curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/git/README.md --output README.md
 }
 
 installFzf() {

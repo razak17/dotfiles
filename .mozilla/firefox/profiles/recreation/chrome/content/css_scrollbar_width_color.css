@@ -3,5 +3,5 @@ See the above repository for updates as well as full license text. */
 
 /* Scrollbar colors and width - applied globally */
 @namespace url("http://www.w3.org/1999/xhtml");
-:root{ scrollbar-color: rgb(210,21,210) rgb(42,42,46) }
+:root{ scrollbar-color: rgb(30,33,39) rgb(42,42,46) }
 *{ scrollbar-width: thin }
