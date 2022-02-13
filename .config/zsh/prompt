@@ -20,7 +20,7 @@ zstyle ':vcs_info:*' enable git
 # setup a hook that runs before every ptompt.
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
-setopt prompt_subst
+setopt promptsubst
 
 # add a function to check for untracked files in the directory.
 # from https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
@@ -37,7 +37,12 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
     fi
 }
 
+zstyle ':vcs_info:*' get-revision true
 zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' stagedstr '✚'
+zstyle ':vcs_info:*' unstagedstr '±'
+zstyle ':vcs_info:*' actionformats ' %u%c'
+zstyle ':vcs_info:*' formats ' %u%c'
 zstyle ':vcs_info:git:*' formats " %{$fg[blue]%}(%{$fg[red]%}%m%u%c%{$fg[yellow]%}%{$fg[yellow]%} %b%{$fg[blue]%})"
 # zstyle ':vcs_info:git:*' formats " (%{$fg[yellow]%}%b%{$fg[blue]%})"
 
