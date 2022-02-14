@@ -57,6 +57,12 @@ if [ -d "$HOME/lib/azure-cli" ]; then
   export AZ_CLI="$HOME/lib/azure-cli"
 fi
 
+# yarn
+if [[ -x "$FNM_PACKAGES/bin/zsh" ]]; then
+  export YARN_PACKAGES="$HOME/.local/share/yarn/global/node_modules"
+fi
+
+
 path=(
   "$LOCAL"
   "$LOCAL/dmenu"
@@ -70,6 +76,7 @@ path=(
 # "$GOPACKAGES/bin"
   "$GOPACKAGES2/bin"
   "$FNM_PACKAGES/bin"
+  "$YARN_PACKAGES/.bin"
   "$path[@]"
 )
 
