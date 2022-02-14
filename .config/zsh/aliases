@@ -191,7 +191,7 @@ alias rckr="rconf checkout rolling"
 
 # nord vpn
 alias inord="systemctl start nordvpnd.service"
-alias vn="nordvpn"
+alias vpn="nordvpn"
 alias cvn="nordvpn connect"
 alias dvn="nordvpn disconnect"
 alias svn="nordvpn status"
