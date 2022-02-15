@@ -34,29 +34,34 @@ export HISTFILE=~/.zsh_history
 export HISTSIZE=50000
 export SAVEHIST=50000
 
+# asdf
+if [ -e "$HOME/.asdf/asdf.sh" ]; then
+  source $HOME/.asdf/asdf.sh
+fi
+
 # fnm
 if [ -e "$HOME/.fnm/fnm" ]; then
   version="v17.3.0"
-  export FNM_PATH="/home/razak/.fnm"
+  export FNMDIR="/home/razak/.fnm"
   FNM_PREFIX="$HOME/.fnm/node-versions/$version/installation"
-  export FNM_PACKAGES="$FNM_PREFIX/lib/node_modules"
+  export FNMPATH="$FNM_PREFIX/lib/node_modules/bin"
 fi
 
-# asdf
-if [ -d "$HOME/.asdf/installs/golang" ]; then
-  source $HOME/.asdf/asdf.sh
-  # export GOPATH="$ASDF_DIR/installs/golang/1.16.2/go"
-  # export GOPACKAGES="$ASDF_DIR/installs/golang/1.16.2/packages"
-fi
-
+# GO
 if [ -d "$HOME/go" ]; then
-  export GOPATH="$HOME/go"
+  export GOPATH="$HOME/go/bin"
+fi
+
+# YARN
+if [ -d "$HOME/.yarn" ]; then
+  export YARNPATH="$HOME/.yarn/bin"
 fi
 
 # Azure cli
 if [ -d "$HOME/lib/azure-cli" ]; then
-  export AZ_CLI="$HOME/lib/azure-cli"
+  export AZCLI="$HOME/lib/azure-cli/bin"
 fi
+
 
 path=(
   "$LOCAL"
@@ -65,14 +70,12 @@ path=(
   "$LOCAL/sb"
   "$LOCAL/statusbar"
   "$LOCAL/utils"
-  "$FNM_PATH"
-  "$AZ_CLI/bin"
-  "$GOPATH/bin"
-  # "$GOPACKAGES/bin"
-  # "$GOPACKAGES2/bin"
-  "$FNM_PACKAGES/bin"
-  # "$YARN_PACKAGES/.bin"
+  "$FNMDIR"
+  "$GOPATH"
+  "$FNMPATH"
+  "$YARNPATH"
+  "$AZCLI"
   "$path[@]"
 )
 
-export PATH="$PATH:$(yarn global bin)"
+export PATH
