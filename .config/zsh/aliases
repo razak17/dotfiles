@@ -223,6 +223,8 @@ alias lg='lazygit'
 alias list_systemctl="systemctl list-unit-files --state=enabled"
 alias scr='cd ~/Pictures/screenshots'
 alias aria='aria2c --max-connection-per-server=12'
+alias sf="find -type f -iname"
+alias cf="find -type f | fzf | sed 's/^..//g' | tr -d '\n' | xclip -selection c"
 
 mo=~/.mozilla/firefox/profiles
 nca=~/.cache/nvim

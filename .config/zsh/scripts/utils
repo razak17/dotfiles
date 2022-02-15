@@ -103,14 +103,6 @@ syn() {
   curl -s "https://api.dictionaryapi.dev/api/v2/entries/en/$1" | jq '.[].meanings[].definitions[].synonyms[]'
 }
 
-# zd - use zoxide & FZF to find and go to directory
-# Not sure why zoxide query -i with FZF doesn't CD
-zd() {
-  local dir
-  dir=$(zoxide query -l | fzf )
-  cde $dir || exit
-}
-
 # take, npm init and git init and ignore node_modules
 tng() {
   take $1 && npm init -y && git init && echo "node_modules" >> .gitignore
@@ -151,3 +143,24 @@ vn() {
   fi
 }
 
+# find files
+ff() {
+  local file
+  file=$(fd . | fzf)
+  if [[ -n $file ]]
+  then
+    rvim $file
+  fi
+}
+
+# zd - use zoxide & FZF to find and go to directory
+# Not sure why zoxide query -i with FZF doesn't CD
+zd() {
+  local dir
+  dir=$(zoxide query -l | fzf )
+
+  if [[ -n $dir ]]
+  then
+    cde $dir || exit
+  fi
+}
