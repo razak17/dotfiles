@@ -35,9 +35,10 @@ export HISTSIZE=50000
 export SAVEHIST=50000
 
 # fnm
-if [ -x "$HOME/.fnm/fnm" ]; then
-  export FNMPATH="/home/razak/.fnm"
-  FNM_PREFIX="$HOME/.fnm/node-versions/v16.3.0/installation"
+if [ -e "$HOME/.fnm/fnm" ]; then
+  version="v17.3.0"
+  export FNM_PATH="/home/razak/.fnm"
+  FNM_PREFIX="$HOME/.fnm/node-versions/$version/installation"
   export FNM_PACKAGES="$FNM_PREFIX/lib/node_modules"
 fi
 
@@ -57,12 +58,6 @@ if [ -d "$HOME/lib/azure-cli" ]; then
   export AZ_CLI="$HOME/lib/azure-cli"
 fi
 
-# yarn
-if [[ -x "$FNM_PACKAGES/bin/zsh" ]]; then
-  export YARN_PACKAGES="$HOME/.local/share/yarn/global/node_modules"
-fi
-
-
 path=(
   "$LOCAL"
   "$LOCAL/dmenu"
@@ -70,14 +65,14 @@ path=(
   "$LOCAL/sb"
   "$LOCAL/statusbar"
   "$LOCAL/utils"
-  "$FNMPATH"
+  "$FNM_PATH"
   "$AZ_CLI/bin"
   "$GOPATH/bin"
-# "$GOPACKAGES/bin"
-  "$GOPACKAGES2/bin"
+  # "$GOPACKAGES/bin"
+  # "$GOPACKAGES2/bin"
   "$FNM_PACKAGES/bin"
-  "$YARN_PACKAGES/.bin"
+  # "$YARN_PACKAGES/.bin"
   "$path[@]"
 )
 
-export PATH
+export PATH="$PATH:$(yarn global bin)"

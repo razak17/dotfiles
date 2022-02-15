@@ -26,6 +26,13 @@ installElixir() {
   asdf global elixir 1.11.3-otp-23
 }
 
+
+installYarn() {
+  asdf plugin-add yarn
+  asdf install yarn latest
+  asdf global yarn 1.22.17
+}
+
 while [[ "$#" -gt 0 ]]; do
   curr=$1
   shift
@@ -43,11 +50,15 @@ while [[ "$#" -gt 0 ]]; do
   "-ex")
     installElixir
     ;;
+  "-yarn")
+    installYarn
+    ;;
   "-all")
     installNode
     installGolang
     installErlang
     installElixir
+    installYarn
   ;;
   *) echo "Unavailable command... $curr"
   esac
