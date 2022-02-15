@@ -81,6 +81,8 @@ add-zsh-hook chpwd python_venv
 
 python_venv
 
+export NODE_OPTIONS=--openssl-legacy-provider
+
 # Load and initialize the completion system ignoring insecure directories with a
 # cache time of 20 hours, so it should almost always regenerate the first time a
 # shell is opened each day.
