@@ -22,19 +22,19 @@ add-zsh-hook -Uz precmd reset_broken_terminal
 command_not_found_handler() {
   local pkgs cmd="$1" files=()
   printf 'command not found: %s\n' "$cmd" # print command not found asap, then search for packages
-  printf 'please wait. searching for package in repos...'
-  files=(${(f)"$(pacman -F --machinereadable -- "/usr/bin/${cmd}")"})
-  if (( ${#files[@]} )); then
-    printf '\r%s may be found in the following packages:\n' "$cmd"
-    local res=() repo package version file
-    for file in "$files[@]"; do
-      res=("${(0)file}")
-      repo="$res[1]"
-      package="$res[2]"
-      version="$res[3]"
-      file="$res[4]"
-      printf '  %s/%s %s: /%s\n' "$repo" "$package" "$version" "$file"
-    done
-  fi
+  # printf 'please wait. searching for package in repos...'
+  # files=(${(f)"$(pacman -F --machinereadable -- "/usr/bin/${cmd}")"})
+  # if (( ${#files[@]} )); then
+  #   printf '\r%s may be found in the following packages:\n' "$cmd"
+  #   local res=() repo package version file
+  #   for file in "$files[@]"; do
+  #     res=("${(0)file}")
+  #     repo="$res[1]"
+  #     package="$res[2]"
+  #     version="$res[3]"
+  #     file="$res[4]"
+  #     printf '  %s/%s %s: /%s\n' "$repo" "$package" "$version" "$file"
+  #   done
+  # fi
   return 127
 }
