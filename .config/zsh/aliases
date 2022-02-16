@@ -205,8 +205,6 @@ alias rnv='ranger ~/.config/nvim'
 # tmux
 alias xc="rv ~/.config/tmux/tmux.conf"
 alias xbc="rv ~/.config/tmux/xb.tmux.conf"
-alias xds="tmux -L Dev"
-alias xbs="tmux -L Dull"
 alias xd="tmuxd first"
 alias xb="tmuxb first"
 alias xsp="tmux display -p '#{socket_path}'"
@@ -217,7 +215,7 @@ alias fn='ftmux -s'
 alias fk='ftmux -k'
 
 # Misc
-alias ufonts='fc-cache -vf ~/.local/share/fonts/'
+alias rfonts='fc-cache -vf ~/.local/share/fonts/'
 alias plague='curl https://corona-stats.online/states/us'
 alias lg='lazygit'
 alias list_systemctl="systemctl list-unit-files --state=enabled"
