@@ -1,0 +1,10 @@
+/* Personal Firefox settings. Based by arkenfox/user.js      */
+/* by Denis G. (https://github.com/denis-g/firefox-settings) */
+
+@import 'ui/auto-hide-bookmarks-toolbar.css';
+@import 'ui/close-tab-button-shown-on-hover.css';
+@import 'ui/compact-list-menu.css';
+@import 'ui/hide-on-urlbar-this-time.css';
+@import 'ui/iconized-main-menu.css';
+@import 'ui/minimal-ui-scrollbars.css';
+@import 'ui/urlbar_container_color_border.css';
