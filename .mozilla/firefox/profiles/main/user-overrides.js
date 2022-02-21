@@ -4,7 +4,7 @@ user_pref("browser.newtabpage.activity-stream.feeds.topsites", false);
 
 // FONT
 user_pref("font.name.serif.x-western", "FreeSans");
-user_pref("font.size.variable.x-western", 12);
+user_pref("font.size.variable.x-western", 14);
 user_pref("font.internaluseonly.changed", false);
 
 // SEARCH AND URL BAR

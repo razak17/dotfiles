@@ -139,7 +139,7 @@ vn() {
   note=$(fd . '/home/razak/notes/src' | fzf)
   if [[ -n $note ]]
   then
-    nvim $note
+    rvim $note
   fi
 }
 
