@@ -62,6 +62,11 @@ user_pref("extensions.screenshots.disabled", false); // [FF55+]
 user_pref("identity.fxaccounts.enabled", false); // Firefox Accounts & Sync [FF60+] [RESTART]
 user_pref("reader.parse-on-load.enabled", false); // Reader View
 
+/*** [SECTION 5000]: OPTIONAL OPSEC ***/
+user_pref("signon.rememberSignons", false);
+user_pref("browser.privatebrowsing.autostart", false);
+user_pref("extensions.formautofill.addresses.usage.hasEntry", false);
+
 /*** [SECTION 0400]: SAFE BROWSING (SB) ***/
 user_pref("browser.safebrowsing.malware.enabled", true);
 user_pref("browser.safebrowsing.phishing.enabled", true);
@@ -88,3 +93,8 @@ user_pref("browser.search.geoSpecificDefaults", false);
 user_pref("browser.search.geoSpecificDefaults.url", "");
 user_pref("browser.urlbar.placeholderName", "DuckDuckGo");
 user_pref("browser.urlbar.placeholderName.private", "DuckDuckGo");
+
+/* 4520: disable WebGL (Web Graphics Library)
+ * [SETUP-WEB] If you need it then override it. RFP still randomizes canvas for naive scripts ***/
+user_pref("webgl.disabled", false);
+
