@@ -15,9 +15,9 @@ urlbar_popup_full_width.css is VERY MUCH recommended for Firefox 71+ because of 
 
 /* Modify these to change relative widths or default height */
 #navigator-toolbox{
-  --uc-navigationbar-width: 40vw;
+  --uc-navigationbar-width: 45vw;
   --uc-toolbar-height: 40px;
-  --uc-urlbar-min-width: 50vw; /* minimum width for opened urlbar */
+  --uc-urlbar-min-width: 60vw; /* minimum width for opened urlbar */
 }
 
 #scrollbutton-up,
