@@ -27,6 +27,7 @@
 
 /* Loading Indicator */
 @import 'ui/loading_indicator_bouncing_line.css';
+@import 'ui/tab_line_loading_indicator.css';
 
 /* Navbar Bar and Tabs in on Line */
 @import 'ui/menubar_in_tabs_toolbar_oneliner_compatible.css';
@@ -41,7 +42,6 @@
 @import 'ui/more_visible_tab_icon.css';
 @import 'ui/numbered_tabs.css';
 @import 'ui/privatemode_indicator_as_menu_button.css';
-@import 'ui/tab_line_loading_indicator.css';
 @import 'ui/tabs_animated_gradient_border.css';
 @import 'ui/urlbar_container_color_border.css';
 @import 'ui/urlbar_info_icons_on_hover.css';

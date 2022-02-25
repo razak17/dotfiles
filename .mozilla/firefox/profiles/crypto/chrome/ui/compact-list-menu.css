@@ -1,0 +1,7 @@
+/* Personal Firefox settings. Based by arkenfox/user.js      */
+/* by Denis G. (https://github.com/denis-g/firefox-settings) */
+
+
+:root {
+    --arrowpanel-menuitem-padding-block: 6px !important;
+}
