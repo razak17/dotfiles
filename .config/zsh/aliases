@@ -2,7 +2,6 @@
 
 #alias v="$EDITOR ./"
 alias rv=rvimProfiling
-# alias nv=rvimProfiling
 alias nv=nvimProfiling
 
 # shell
@@ -24,6 +23,7 @@ alias zs='source ~/.config/zsh/.zshrc'
 alias e="touch"
 alias m="mkdir"
 alias cmd='command -V'
+
 # confirm before overwriting something
 alias cp="cp -i"
 alias mv='mv -i'
@@ -38,14 +38,9 @@ alias rcs="sudo rc-service"
 alias rcu="sudo rc-update"
 alias wsc="iwlist scanning"
 alias iws="sudoedit /etc/wpa_supplicant/wpa_supplicant.conf"
-alias clocale="dpkg-reconfigure locales"
-alias imodem="systemctl start ModemManager.service"
 alias swap="cat /proc/sys/vm/swappiness"
-alias rnscd="systemctl restart nscd"
 alias brx='xrandr --output eDP-1 --brightness'
 alias br='brightnessctl -'
-alias ge='find | fzf | sed 's/^..//g' | tr -d '\n' | xclip -selection c'
-alias gf='find -type f | sed 's/^..//g' | fzf | tr -d '\n' | xclip -selection c'
 # easier to read disk
 alias df='df -h'
 alias free='free -m'
@@ -53,9 +48,8 @@ alias free='free -m'
 alias psmem='ps auxf | sort -nr -k 4 | head -5'
 # get top process eating cpu
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
-alias big="expac -H M '%m\t%n' | sort -h | nl"
-#iso and version used to install ArcoLinux
-alias iso="cat /etc/dev-rel | awk -F '=' '/ISO/ {print $2}'"
+# get packages taking most space
+alias bigg="expac -H M '%m\t%n' | sort -h | nl"
 #Recent Installed Packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 alias riplong="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 | nl"
@@ -127,13 +121,11 @@ alias die="sudo -A openrc-shutdown -pq now"
 
 # Programs
 alias grep="grep --color=auto"
-alias ipsql="systemctl start postgresql"
 alias iredis="sudo /etc/init.d/redis_6379 start"
 alias codium="sudoedit /usr/share/vscodium-bin/resources/app/product.json"
 alias py="python"
 alias xi="tuxi"
 alias aw="toilet"
-alias igp="sudo gparted"
 alias vsc="vscodium ."
 
 # editor
@@ -218,11 +210,11 @@ alias fk='ftmux -k'
 alias rfonts='fc-cache -vf ~/.local/share/fonts/'
 alias plague='curl https://corona-stats.online/states/us'
 alias lg='lazygit'
-alias list_systemctl="systemctl list-unit-files --state=enabled"
 alias scr='cd ~/Pictures/screenshots'
 alias aria='aria2c --max-connection-per-server=12'
-alias sf="find -type f -iname"
-alias cf="find -type f | fzf | sed 's/^..//g' | tr -d '\n' | xclip -selection c"
+alias cf="find -type f | fzf | sed 's/^..//g' | tr -d '\n' | xclip -sel c"
+alias ge="find | fzf | sed 's/^..//g' | tr -d '\n' | xclip -sel c"
+alias gf="find -type f | sed 's/^..//g' | fzf | tr -d '\n' | xclip -sel c"
 
 mo=~/.mozilla/firefox/profiles
 nca=~/.cache/nvim

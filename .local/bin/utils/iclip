@@ -8,11 +8,11 @@ while [ "$#" -gt 0 ]; do
 	shift
 
 	case "$curr" in
-    -s)
-      echo "$(xclip -o -sel c)" >> $clip_history
-      ;;
-    -l)
-      echo "$(cat $clip_history | dmenu -l 10)" | xclip -sel c
-      ;;
+	-s)
+		echo "$(xclip -o -sel c)" >>$clip_history
+		;;
+	-l)
+		echo "$(cat $clip_history | dmenu -l 10)" | tr -d '\n' | xclip -sel c
+		;;
 	esac
 done
