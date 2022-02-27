@@ -20,7 +20,7 @@ getPaneId() {
 	"-a") paneId=$($X list-panes -a -F '#D') ;;
 	*) echo "Unavailable command... $curr" ;;
 	esac
-  echo "$paneId"
+	echo "$paneId"
 }
 
 getWindowId() {
@@ -31,7 +31,7 @@ getWindowId() {
 	"-a") windowIds=$($X list-windows -a -F '#{window_id}') ;;
 	*) echo "Unavailable command... $curr" ;;
 	esac
-  echo "$windowIds"
+	echo "$windowIds"
 }
 
 panesList() {
@@ -50,7 +50,7 @@ panesList() {
 		;;
 	*) echo "Unavailable command... $curr" ;;
 	esac
-  echo "$panes"
+	echo "$panes"
 }
 
 splitPane() {
@@ -62,7 +62,7 @@ splitPane() {
 	-h) cmd="$cmd -v $@" ;;
 	*) echo "Unavailable command... $curr" ;;
 	esac
-  eval "$cmd"
+	eval "$cmd"
 }
 
 getTarget() {

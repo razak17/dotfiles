@@ -12,7 +12,7 @@ while [ "$#" -gt 0 ]; do
       echo "$(xclip -o -sel c)" >> $clip_history
       ;;
     -l)
-      echo "$(cat $clip_history | dmenu -l 10)" | tr -n | xclip -sel c
+      echo "$(cat $clip_history | dmenu -l 10)" | xclip -sel c
       ;;
 	esac
 done

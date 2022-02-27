@@ -85,7 +85,7 @@ ires() {
 }
 
 irecentNote() {
-  ls -r ~/notes/src/* | head -n1 | xargs nvim -u ~/docs/raw.lua
+  ls -r ~/notes/src/* | head -n1 | xargs rvim -u ~/docs/raw.lua
 }
 
 ivpn() {
