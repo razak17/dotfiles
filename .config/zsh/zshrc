@@ -71,10 +71,12 @@ conda_init false
 
 python_venv() {
   MYVENV=./venv
+  MYPIPENV=./Pipfile
   # when you cd into a folder that contains $MYVENV
   [[ -d $MYVENV ]] && source $MYVENV/bin/activate
+  [[ -e $MYPIPENV ]] && pipenv shell
   # when you cd into a folder that doesn't
-  # [[ ! -d $MYVENV ]] && deactivate > /dev/null 2>&1
+  [[ ! -d $MYVENV || ! -e $MYPIPENV ]] && deactivate > /dev/null 2>&1
 }
 autoload -U add-zsh-hook
 add-zsh-hook chpwd python_venv
