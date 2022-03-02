@@ -69,6 +69,7 @@ path=(
   "$LOCAL/dwm"
   "$LOCAL/sb"
   "$LOCAL/statusbar"
+  "$LOCAL/startup"
   "$LOCAL/utils"
   "$FNMDIR"
   "$GOPATH"
