@@ -34,9 +34,9 @@ export ZDOTDIR=$HOME/.config/zsh
 
 dwmblocks &
 ~/.local/bin/dwm/setbg &
-~/.local/bin/utils/itouch &
-~/.local/bin/utils/ikeyboard &
-~/.local/bin/utils/ibrightness &
+~/.local/bin/startup/itouch &
+~/.local/bin/startup/ikeyboard &
+~/.local/bin/startup/ibrightness &
 picom &
 # autokey-gtk &
 
