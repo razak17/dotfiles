@@ -244,7 +244,7 @@ alias cdrv='cd "$XDG_CONFIG_HOME/rvim"'
 alias nsh='cd "$XDG_DATA_HOME/rvim"'
 alias rsh='cd "$XDG_DATA_HOME/rvim"'
 alias cdusb1=' cd /run/media/razak/22B6-E52C/'
-alias cdusb2=' cd /run/media/razak/Ventoy/'
+alias cdvt=' cd /run/media/razak/Ventoy/'
 
 # common spelling mistakes
 alias dcos="docs"
