@@ -7,6 +7,7 @@ pip=~/.cache/pip
 yarn=~/.cache/yarn
 yay=~/.cache/yay
 pkg=/var/cache/pacman/pkg
+npm=~/.npm/_cacache/content-v2/sha512/
 
 deleteDir() {
 	dir=$1
@@ -34,6 +35,7 @@ while [[ "$#" -gt 0 ]]; do
 		deleteDir $yarn
 		deleteDir $yay
 		deleteDir $pkg
+		deleteDir $npm
 		;;
 	"-b")
 		deleteDir $brave

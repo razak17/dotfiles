@@ -205,6 +205,8 @@ alias nx='tmux -L Dev new -s'
 alias aff='ftmux --first'
 alias fn='ftmux -s'
 alias fk='ftmux -k'
+alias dm='dmenumount'
+alias du='dmenuumount'
 
 # Misc
 alias rfonts='fc-cache -vf ~/.local/share/fonts/'

@@ -42,9 +42,7 @@ function conda_activate() {
 }
 
 function pip_init() {
-  if exists conda; then
-    eval "`pip completion --zsh`"
-  fi
+  eval "`pip completion --zsh`"
 }
 
 function conda_init() {
