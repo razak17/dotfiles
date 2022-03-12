@@ -15,11 +15,18 @@ zle_highlight=('paste:none')
 # colors
 autoload -U colors && colors
 
+# ignore params
+CORRECT_IGNORE="bin"
+CORRECT_IGNORE_FILE=".*"
+
 # Local scripts
 for script in $ZDOTDIR/scripts/*; do
   source $script
 done
 
+#-------------------------------------------------------------------------------
+#           Plugins
+#-------------------------------------------------------------------------------
 # These should be source *BEFORE* setting up hooks
 add_plugin 'zsh-completions'
 add_plugin 'zsh-autosuggestions'
@@ -30,12 +37,10 @@ add_completion 'conda-zsh-completion' false
 add_completion 'fnm'
 autoload zmv # builtin zsh rename command
 
-# ignore params
-CORRECT_IGNORE="bin"
-CORRECT_IGNORE_FILE=".*"
-
-# Load modules
-add_modules opts compe vim-mode hooks binds prompt aliases
+#-------------------------------------------------------------------------------
+#               Modules
+#-------------------------------------------------------------------------------
+add_modules opts compe vim-mode hooks binds vcs prompt aliases
 
 # Plugins options
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
