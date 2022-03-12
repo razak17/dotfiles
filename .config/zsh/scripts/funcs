@@ -1,5 +1,11 @@
 #!/bin/zsh
 
+function add_modules() {
+  for i in "$@"; do
+    [ -f $ZDOTDIR/modules/$i ] && source $ZDOTDIR/modules/$i
+  done
+}
+
 function add_files() {
   for i in "$@"; do
     [ -f $ZDOTDIR/$i ] && source $ZDOTDIR/$i

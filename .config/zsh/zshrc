@@ -34,8 +34,8 @@ autoload zmv # builtin zsh rename command
 CORRECT_IGNORE="bin"
 CORRECT_IGNORE_FILE=".*"
 
-# Load config files
-add_files opts compe vim-mode hooks binds prompt aliases
+# Load modules
+add_modules opts compe vim-mode hooks binds prompt aliases
 
 # Plugins options
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)

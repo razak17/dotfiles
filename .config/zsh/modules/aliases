@@ -129,7 +129,7 @@ alias aw="toilet"
 alias vsc="vscodium ."
 
 # editor
-alias a="rv ~/.config/zsh/aliases"
+alias a="rv $HOME/.config/zsh/modules/aliases"
 alias lc='rv ${RVIM_CONFIG_PATH:-$HOME/.config}/rvim/lua/user/config/init.lua'
 alias rvc='rv ${RVIM_CONFIG_PATH:-$HOME/.config}/rvim/init.lua'
 alias vc="rv ~/.config/nvim/raw.lua"
