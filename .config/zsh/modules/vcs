@@ -46,3 +46,8 @@ zstyle ':vcs_info:git+set-message:*' hooks git-untracked git-stash
 zstyle ':vcs_info:git*:*' actionformats '(%B%F{red}%b|%a%c%u%%b%f) '
 zstyle ':vcs_info:git:*' formats " %{$fg[blue]%}(%{$fg[red]%}%m%u%c%{$fg[yellow]%}%{$fg[yellow]%} %b%{$fg[blue]%})"
 # zstyle ':vcs_info:git:*' formats " (%{$fg[yellow]%}%b%{$fg[blue]%})"
+
+# Add the zsh directory to the autoload dirs
+fpath+=$ZDOTDIR/zshfunctions
+
+autoload -Uz _fill_line && _fill_line
