@@ -1,0 +1,76 @@
+#!/bin/sh
+
+# find files
+ff() {
+	local file
+	file=$(fd . | fzf)
+	if [[ -n $file ]]; then
+		rvim $file
+	fi
+}
+
+# Another function which is not based on grep or locate
+cdf() {
+	local file
+	local dir
+	file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir" || exit
+}
+
+# zd - use zoxide & FZF to find and go to directory
+# Not sure why zoxide query -i with FZF doesn't CD
+zd() {
+	local dir
+	dir=$(zoxide query -l | fzf)
+
+	if [[ -n $dir ]]; then
+		cde $dir || exit
+	fi
+}
+
+# see environment variables
+envs() {
+	# ps eww -o command | tr ' ' '\n'
+	printenv | fzf
+}
+
+# search notes and open it in nvim
+vn() {
+	local note
+	note=$(fd . '/home/razak/notes/src' | fzf)
+	if [[ -n $note ]]; then
+		rvim $note
+	fi
+}
+
+# tm with no sessions open it will create a session called "new".
+# tm irc it will attach to the irc session (if it exists), else it will create it.
+# tm with one session open, it will attach to that session.
+# tm with more than one session open it will let you select the session via fzf.
+tmd() {
+	server="Dev"
+	[[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
+	if [ $1 ]; then
+		tmux -L $server $change -t "$1" 2>/dev/null || (tmux -L $server new-session -d -s $1 && tmux -L $server $change -t "$1")
+		return
+	fi
+	session=$(tmux -L $server list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) && tmux -L $server $change -t "$session" || echo "No sessions found."
+}
+
+# fs [FUZZY PATTERN] - Select selected tmux session
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+fs() {
+	local session
+	session=$(tmux -L Dev list-sessions -F "#{session_name}" |
+		fzf --query="$1" --select-1 --exit-0) &&
+		tmux -L Dev switch-client -t "$session"
+}
+
+# fe [FUZZY PATTERN] - Open the selected file with the default editor
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+fe() {
+	local files
+	IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview 'bat --theme="OneHalfDark" --color "always" {}' --preview-window=right:60%))
+	[[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}
