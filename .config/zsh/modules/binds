@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+export KEYTIMEOUT=1
+
 # Ref: from oh-my-zsh (tools/key-bindings)
 # Make sure that the terminal is in application mode when zle is active, since
 # only then values from $terminfo are valid
@@ -43,7 +45,10 @@ zle -N down-line-or-beginning-search
 
 bindkey '^r' history-incremental-search-backward      # [Ctrl-r] - Search backward incrementally for a specified string. The string may begin with ^ to anchor the search to the beginning of the line.
 bindkey ' ' magic-space                               # [Space] - don't do history expansion
-bindkey '^ ' autosuggest-accept
+bindkey '^P' up-history
+bindkey '^N' down-history
+bindkey '^U' autosuggest-accept
+# bindkey '^ ' autosuggest-accept
 bindkey -s '^z' 'zi^M'
 bindkey "^j" down-line-or-beginning-search # Down
 bindkey "^k" up-line-or-beginning-search # Up

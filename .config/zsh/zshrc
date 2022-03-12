@@ -19,7 +19,9 @@ autoload -U colors && colors
 CORRECT_IGNORE="bin"
 CORRECT_IGNORE_FILE=".*"
 
-# Local scripts
+#-------------------------------------------------------------------------------
+#   LOCAL SCRIPTS
+#-------------------------------------------------------------------------------
 for script in $ZDOTDIR/scripts/*; do
   source $script
 done
@@ -42,11 +44,16 @@ autoload zmv # builtin zsh rename command
 #-------------------------------------------------------------------------------
 add_modules opts compe vim-mode hooks binds vcs prompt aliases
 
-# Plugins options
+#-------------------------------------------------------------------------------
+#               Configurations
+#-------------------------------------------------------------------------------
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_MANUAL_REBIND=""
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+
+# fzf
+[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
 # asdf
 if exists asdf; then
@@ -58,37 +65,27 @@ if exists fnm; then
   eval "`fnm env`"
 fi
 
-# Azure cli
-if exists az; then
-  source $HOME/lib/azure-cli/az.completion
-fi
-
 # zoxide
 if exists zoxide; then
   eval "$(zoxide init zsh)"
 fi
 
-# fzf
-[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
+# Azure cli
+if exists az; then
+  source $HOME/lib/azure-cli/az.completion
+fi
+
+# Azure cli
+if exists cargo; then
+  source "$HOME/.cargo/env"
+fi
 
 # conda_init and pip
 conda_init false
 
-python_venv() {
-  MYVENV=./venv
-  MYDOTVENV=".venv"
-  MYPIPENV=./Pipfile
-  # when you cd into a folder that contains $MYVENV
-  [[ -d $MYVENV ]] && source $MYVENV/bin/activate
-  [[ -d $MYDOTVENV ]] && source $MYDOTVENV/bin/activate
-  [[ -e $MYPIPENV ]] && pipenv shell
-  # when you cd into a folder that doesn't
-  [[ ! -d $MYVENV || ! -e $MYPIPENV ]] && deactivate > /dev/null 2>&1
-}
 autoload -U add-zsh-hook
-add-zsh-hook chpwd python_venv
-
-python_venv
+add-zsh-hook chpwd python_env
+python_env
 
 # Load and initialize the completion system ignoring insecure directories with a
 # cache time of 20 hours, so it should almost always regenerate the first time a

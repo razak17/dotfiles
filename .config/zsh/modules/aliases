@@ -28,7 +28,8 @@ alias cmd='command -V'
 alias cp="cp -i"
 alias mv='mv -i'
 alias rm='rm -i'
-alias rmf='rm -r'
+alias rm='rm -i'
+alias rmf='rm -f'
 alias ccat='cat'
 alias notes='cd ~/notes/src'
 

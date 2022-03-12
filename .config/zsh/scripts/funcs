@@ -58,6 +58,18 @@ function conda_init() {
   pip_init
 }
 
+function python_env() {
+  MYVENV=./venv
+  MYDOTVENV=".venv"
+  MYPIPENV=./Pipfile
+  # when you cd into a folder that contains $MYVENV
+  [[ -d $MYVENV ]] && source $MYVENV/bin/activate
+  [[ -d $MYDOTVENV ]] && source $MYDOTVENV/bin/activate
+  [[ -e $MYPIPENV ]] && pipenv shell
+  # when you cd into a folder that doesn't
+  [[ ! -d $MYVENV || ! -e $MYPIPENV ]] && deactivate > /dev/null 2>&1
+}
+
 prof="${XDG_CACHE_HOME:-$HOME/.cache}/rvim/prof.log"
 function rvimProfiling() {
   rvim "$@" --startuptime "$prof"
