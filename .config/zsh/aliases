@@ -133,7 +133,6 @@ alias a="rv ~/.config/zsh/aliases"
 alias lc='rv ${RVIM_CONFIG_PATH:-$HOME/.config}/rvim/lua/user/config/init.lua'
 alias rvc='rv ${RVIM_CONFIG_PATH:-$HOME/.config}/rvim/init.lua'
 alias vc="rv ~/.config/nvim/raw.lua"
-alias lvc="rv ~/.config/rvim/external/utils/.vimrc.local"
 alias ivc="sudoedit /etc/xdg/nvim/sysinit.vim"
 alias al="rv ~/.config/alacritty/alacritty.yml"
 alias zc="rv ~/.config/zsh/.zshrc"
@@ -195,14 +194,10 @@ alias rc='ranger ~/.config'
 alias rnv='ranger ~/.config/nvim'
 
 # tmux
-alias xc="rv ~/.config/tmux/tmux.conf"
-alias xbc="rv ~/.config/tmux/xb.tmux.conf"
 alias xd="tmuxd first"
 alias xb="tmuxb first"
 alias xsp="tmux display -p '#{socket_path}'"
 alias xls="tmux ls"
-alias nx='tmux -L Dev new -s'
-alias aff='ftmux --first'
 alias fn='ftmux -s'
 alias fk='ftmux -k'
 alias dm='dmenumount'
@@ -220,7 +215,6 @@ alias gf="find -type f | sed 's/^..//g' | fzf | tr -d '\n' | xclip -sel c"
 alias vso="source .venv/bin/activate"
 
 mo=~/.mozilla/firefox/profiles
-nca=~/.cache/nvim
 rca=~/.cache/rvim
 doc=~/Documents
 docs=~/docs
@@ -228,26 +222,17 @@ dots=~/.dots
 dw=~/Downloads
 co=~/.config
 
-alias zl='rv ${XDG_DATA_HOME:-$HOME/.cache}/rvim/site/pack/packer/start/zephyr-nvim/lua/zephyr.lua'
-alias pl='nvim ~/.cache/rvim/prof.log'
-alias cdmo='cd "$mo"'
 alias nca='cd "$rca"'
-alias cdno='cd ~/notes/src'
-alias cdrca='cd "$rca"'
-alias cdc='cd "$doc"'
-alias cdco='cd "$co"'
-alias cdcs='cd "$docs"'
-alias cdts='cd "$dots"'
 alias dw='cd "$dw"'
-alias cdcc='cd "$HOME/personal/workspace/coding"'
-alias cdll='cd "$HOME/personal/workspace/coding/learn_something_new_everyday"'
 alias co='cd "$XDG_CONFIG_HOME"'
-alias cdnv='cd "$XDG_CONFIG_HOME/nvim"'
-alias cdrv='cd "$XDG_CONFIG_HOME/rvim"'
 alias nsh='cd "$XDG_DATA_HOME/rvim"'
 alias rsh='cd "$XDG_DATA_HOME/rvim"'
+alias cdc='cd "$doc"'
+alias cdco='cd "$co"'
+alias cdmo='cd "$mo"'
+alias cdcs='cd "$docs"'
+alias cdcc='cd "$HOME/personal/workspace/coding"'
+alias cdnv='cd "$XDG_CONFIG_HOME/nvim"'
+alias cdrv='cd "$XDG_CONFIG_HOME/rvim"'
 alias cdusb1=' cd /run/media/razak/22B6-E52C/'
 alias cdvt=' cd /run/media/razak/Ventoy/'
-
-# common spelling mistakes
-alias dcos="docs"

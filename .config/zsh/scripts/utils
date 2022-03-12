@@ -64,22 +64,6 @@ copydir() {
 zle -N copydir
 bindkey "^w" copydir
 
-# ftmux - propose running tmux session
-# https://github.com/Phantas0s/.dotfiles/blob/master/zsh/scripts_fzf.zsh
-axd() {
-  if [[ ! -n $TMUX ]]; then
-    # get the IDs
-    ID="`tmux -L "$@" list-sessions`"
-    ID="`echo $ID | fzf | cut -d: -f1`"
-    if [[ -n "$ID" ]]; then
-      printf '\033]777;tabbedx;set_tab_name;%s\007' "$ID"
-      # tmux -L "$@" attach-session -t "$ID"
-    else
-      :  # Start terminal normally
-    fi
-  fi
-}
-
 ires() {
   xdpyinfo | awk '/dimnsions/{print $2}'
 }
@@ -108,59 +92,14 @@ tng() {
   take $1 && npm init -y && git init && echo "node_modules" >> .gitignore
 }
 
-# see environment variables
-envs() {
- # ps eww -o command | tr ' ' '\n'
- printenv | fzf
-}
-
-
-# get 12 newest or hottest posts from @subreddit & open selection in browser
-# ex: > reddit neovim new
-# @subreddit - Required (should default to `neovim` )
-# @filter - new(default) | hot | or any listing filter: https://www.reddit.com/dev/api/#GET_hot - Optional
-reddit() {
-  local filter=${2:-new}
-  local json
-  local url
-  # TODO: get a preview with `selftext`-->`\t\(.data.selftext[:30])`
-  # TODO: make `limit` a variable
-  # Note: Using SauceCodePro reddit icon in list items. Remove or replace as needed.
-  json=$(curl -s -A 'Reddit Post Picker' "https://www.reddit.com/r/$1/$filter.json?limit=12" | jq -r '.data.children| .[] | " \(.data.title)\t\(.data.permalink)"')
-  url=$(echo "$json" | fzf --delimiter='\t' --with-nth=1 | cut -f2)
-  if [[ -n $url ]]; then
-    open "https://www.reddit.com$url"
-  fi
-}
-
-# search notes and open it in nvim
-vn() {
-  local note
-  note=$(fd . '/home/razak/notes/src' | fzf)
-  if [[ -n $note ]]
-  then
-    rvim $note
-  fi
-}
-
-# find files
-ff() {
-  local file
-  file=$(fd . | fzf)
-  if [[ -n $file ]]
-  then
-    rvim $file
-  fi
-}
-
-# zd - use zoxide & FZF to find and go to directory
-# Not sure why zoxide query -i with FZF doesn't CD
-zd() {
-  local dir
-  dir=$(zoxide query -l | fzf )
-
-  if [[ -n $dir ]]
-  then
-    cde $dir || exit
-  fi
+buildnvim() {
+    neovim_dir="$HOME/.dots/nvim/neovim"
+    [ ! -d $neovim_dir ] && git clone git@github.com:neovim/neovim.git $neovim_dir
+    pushd $neovim_dir
+    git checkout master
+    git pull upstream master
+    [ -d "$neovim_dir/build/" ] && sudo rm -r ./build/  # clear the CMake cache
+    make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim"
+    make install
+    popd
 }
