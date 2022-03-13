@@ -17,7 +17,7 @@ function add_plugin() {
 }
 
 function add_completion() {
-  if [ "$2" = false ] && return
+  [ "$2" = false ] && return
   if [ -d "$ZDOTDIR/plugins/$1" ]; then
     dir="plugins"
     file_path=$(ls $ZDOTDIR/$dir/$1/_*)
@@ -58,6 +58,15 @@ function conda_init() {
   pip_init
 }
 
+function activate() {
+  MYVENV=./venv
+  MYDOTVENV=".venv"
+  MYPIPENV=./Pipfile
+  [[ -d $MYVENV ]] && source $MYVENV/bin/activate
+  [[ -d $MYDOTVENV ]] && source $MYDOTVENV/bin/activate
+  [[ -e $MYPIPENV ]] && pipenv shell
+}
+
 prof="${XDG_CACHE_HOME:-$HOME/.cache}/rvim/prof.log"
 function rvimProfiling() {
   rvim "$@" --startuptime "$prof"
@@ -89,12 +98,6 @@ function colours() {
       printf "\t"
     fi
   done
-}
-
-function marco() {
-  if ping -c 1 1.1.1.1; then
-    echo "It appears you have a working internet connection"
-  fi
 }
 
 function alive() {

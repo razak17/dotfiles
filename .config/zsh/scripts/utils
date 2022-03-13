@@ -48,22 +48,6 @@ zshcomp() {
   done | sort
 }
 
-# copy the active line from the command line buffer
-# onto the system clipboard
-copybuffer() {
-  printf "%s" "$BUFFER" | clipcopy
-}
-zle -N copybuffer
-bindkey "^o" copybuffer
-
-# Copies the pathname of the current directory to the system or X Windows clipboard
-copydir() {
-  emulate -L zsh
-  print -n $PWD | clipcopy
-}
-zle -N copydir
-bindkey "^w" copydir
-
 ires() {
   xdpyinfo | awk '/dimnsions/{print $2}'
 }
@@ -102,14 +86,4 @@ buildnvim() {
     make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim"
     make install
     popd
-}
-
-activate() {
-  MYVENV=./venv
-  MYDOTVENV=".venv"
-  MYPIPENV=./Pipfile
-  # when you cd into a folder that contains $MYVENV
-  [[ -d $MYVENV ]] && source $MYVENV/bin/activate
-  [[ -d $MYDOTVENV ]] && source $MYDOTVENV/bin/activate
-  [[ -e $MYPIPENV ]] && pipenv shell
 }

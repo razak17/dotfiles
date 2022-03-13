@@ -47,8 +47,8 @@ bindkey '^r' history-incremental-search-backward      # [Ctrl-r] - Search backwa
 bindkey ' ' magic-space                               # [Space] - don't do history expansion
 bindkey '^P' up-history
 bindkey '^N' down-history
-bindkey '^U' autosuggest-accept
-# bindkey '^ ' autosuggest-accept
+bindkey '^ ' autosuggest-accept
+# bindkey '^U' autosuggest-accept
 bindkey -s '^z' 'zi^M'
 bindkey "^j" down-line-or-beginning-search # Down
 bindkey "^k" up-line-or-beginning-search # Up
@@ -60,6 +60,22 @@ bindkey '\C-e' edit-command-line
 
 bindkey -M menuselect '^x' clear-screen
 
+# copy the active line from the command line buffer
+# onto the system clipboard
+copybuffer() {
+  printf "%s" "$BUFFER" | clipcopy
+}
+zle -N copybuffer
+bindkey "^o" copybuffer
+
+# Copies the pathname of the current directory to the system or X Windows clipboard
+copydir() {
+  emulate -L zsh
+  print -n $PWD | clipcopy
+}
+zle -N copydir
+bindkey "^w" copydir
+
 # autocorrect () {
 #   zle .spell-word
 #   zle .$WIDGET
@@ -67,7 +83,3 @@ bindkey -M menuselect '^x' clear-screen
 # zle -N accept-line autocorrect
 # zle -N magic-space autocorrect
 # bindkey ' ' magic-space
-
-bindkey "^_" undo
-bindkey "^[q" push-line-or-edit
-bindkey "^[g" get-line
