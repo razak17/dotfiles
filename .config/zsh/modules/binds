@@ -44,14 +44,12 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
 bindkey '^r' history-incremental-search-backward      # [Ctrl-r] - Search backward incrementally for a specified string. The string may begin with ^ to anchor the search to the beginning of the line.
-bindkey ' ' magic-space                               # [Space] - don't do history expansion
-bindkey '^P' up-history
-bindkey '^N' down-history
 bindkey '^ ' autosuggest-accept
-# bindkey '^U' autosuggest-accept
 bindkey -s '^z' 'zi^M'
 bindkey "^j" down-line-or-beginning-search # Down
 bindkey "^k" up-line-or-beginning-search # Up
+# bindkey ' ' magic-space                               # [Space] - don't do history expansion
+# bindkey '^U' autosuggest-accept
 
 # Edit the current command line in $EDITOR
 autoload -U edit-command-line
