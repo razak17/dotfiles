@@ -111,3 +111,7 @@ fix() {
   find "$@" -type f -print0 | xargs -0 chmod 0664
   find "$@" -type d -print0 | xargs -0 chmod 0775
 }
+
+rcompinit() {
+  rm $HOME/.cache/zsh/zcompdump
+}
