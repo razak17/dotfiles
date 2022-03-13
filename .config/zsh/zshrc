@@ -21,11 +21,6 @@ for script in $ZDOTDIR/scripts/*; do
 done
 
 #-------------------------------------------------------------------------------
-#               Modules
-#-------------------------------------------------------------------------------
-add_modules opts compe vim-mode hooks binds vcs prompt aliases
-
-#-------------------------------------------------------------------------------
 #           Plugins
 #-------------------------------------------------------------------------------
 # These should be source *BEFORE* setting up hooks
@@ -33,10 +28,15 @@ add_plugin 'zsh-completions'
 add_plugin 'zsh-autosuggestions'
 add_plugin 'zsh-syntax-highlighting'
 add_plugin 'zsh-hist'
-add_plugin 'git'
 add_completion 'conda-zsh-completion' false
 add_completion 'fnm'
 autoload zmv # builtin zsh rename command
+
+#-------------------------------------------------------------------------------
+#               Modules
+#-------------------------------------------------------------------------------
+add_modules opts compe vim-mode hooks binds vcs prompt aliases
+add_plugin 'git' # Needs to be here b/c it requires compdef (compe)
 
 #-------------------------------------------------------------------------------
 #               Configurations
@@ -76,7 +76,3 @@ fi
 
 # conda_init and pip
 conda_init false
-
-autoload -U add-zsh-hook
-add-zsh-hook chpwd python_env
-python_env

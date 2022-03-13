@@ -33,7 +33,7 @@ add-zsh-hook -Uz precmd reset_broken_terminal
 
 command_not_found_handler() {
   local pkgs cmd="$1" files=()
-  printf 'command not found: %s\n' "$cmd" # print command not found asap, then search for packages
+  printf "command '%s' does not exist\n" "$cmd" # print command not found asap, then search for packages
   return 127
 }
 

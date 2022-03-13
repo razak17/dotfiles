@@ -213,7 +213,6 @@ alias aria='aria2c --max-connection-per-server=12'
 alias cf="find -type f | fzf | sed 's/^..//g' | tr -d '\n' | xclip -sel c"
 alias ge="find | fzf | sed 's/^..//g' | tr -d '\n' | xclip -sel c"
 alias gf="find -type f | sed 's/^..//g' | fzf | tr -d '\n' | xclip -sel c"
-alias vso="source .venv/bin/activate"
 
 mo=~/.mozilla/firefox/profiles
 rca=~/.cache/rvim
