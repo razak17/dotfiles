@@ -1,3 +1,0 @@
-#!/bin/sh
-
-(iwlist scanning | awk '/ESSID/{print $1}' | grep ESSID)
