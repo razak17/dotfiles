@@ -5,6 +5,7 @@ alias rv=rvimProfiling
 alias nv=nvimProfiling
 
 # shell
+alias sudo="doas"
 alias b="bash"
 alias d="dirs -v"
 for index ({1..17}) alias "$index"="cd +${index}"; unset index
@@ -183,6 +184,8 @@ alias rcma="iconf -rcma"
 alias ccma="iconf -ccma"
 alias rckr="rconf checkout rolling"
 alias rckm="rconf checkout main"
+alias cstb="rconf status -sb"
+alias rstb="rconf status -sb"
 
 # nord vpn
 alias inord="systemctl start nordvpnd.service"
