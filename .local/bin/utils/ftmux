@@ -303,14 +303,15 @@ while [ "$#" -gt 0 ]; do
 		checkEmpty "$arg"
 		shift
 		case "$arg" in
-		"-a") panes=$(panesList -a) ;;
-		"-w") panes=$(panesList -w) ;;
+		"-a") panes=$(panesList -a | xargs) ;;
+		"-w") panes=$(panesList -w | xargs) ;;
 		"-s")
 			# echo session: $1
 			if [ $# -lt 2 ]; then
 				echo "missing session name or command"
 				exit 1
 			else
+				# panes=$(panesList -s "$1" | xargs | cut -b 13-)
 				panes=$(panesList -s "$1")
 			fi
 			;;
@@ -324,9 +325,10 @@ while [ "$#" -gt 0 ]; do
 		# echo cmd: $cmd
 		checkEmpty "$cmd"
 		shift
+		# TODO: Figure out how to get each individual pane id from panes array or its a string (maybe)
 		IFS=' ' read -ra ids <<<"$panes"
 		for i in "${panes[@]}"; do
-			echo sending cmd: "$cmd" to "$i"
+			echo sending cmd: "$cmd" to "$i" hello
 			$X send-keys -t "$i" "$cmd" "C-m"
 		done
 		;;

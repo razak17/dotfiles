@@ -82,11 +82,12 @@ buildnvim() {
   [ ! -d $neovim_dir ] && git clone git@github.com:neovim/neovim.git $neovim_dir
   pushd $neovim_dir
   git checkout master
-  git pull upstream master
+  # git pull upstream master
+  git pull
   [ -d "$neovim_dir/build/" ] && sudo rm -r ./build/  # clear the CMake cache
   sudo make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim"
   sudo make install
-  
+
   # Save old binary
   dd=$(date +%F_%H%M%S_%N)
   oldfile="nvim-$dd"

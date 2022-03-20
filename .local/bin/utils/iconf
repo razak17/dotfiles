@@ -38,6 +38,10 @@ confCommitAll() {
 	exit 1
 }
 
+confCommitAllNoMsg() {
+	eval "$CONF commit -a"
+}
+
 confPull() {
 	eval "$CONF pull"
 }
@@ -80,6 +84,10 @@ rconfCommitAll() {
 	exit 1
 }
 
+rconfCommitAllNoMsg() {
+	eval "$RCONF commit -a"
+}
+
 rconfPull() {
 	eval "$RCONF pull"
 }
@@ -105,6 +113,9 @@ while [[ "$#" -gt 0 ]]; do
 		;;
 	"-ccoms")
 		confCommits
+		;;
+	"-ccma")
+		confCommitAllNoMsg
 		;;
 	"-ccomall")
 		if [[ "$#" -gt 0 ]]; then
@@ -132,6 +143,9 @@ while [[ "$#" -gt 0 ]]; do
 		;;
 	"-rccoms")
 		rconfCommits
+		;;
+	"-rcma")
+		rconfCommitAllNoMsg
 		;;
 	"-rccomall")
 		if [[ "$#" -gt 0 ]]; then

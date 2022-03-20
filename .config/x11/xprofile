@@ -37,6 +37,7 @@ dwmblocks &
 ~/.local/bin/startup/itouch &
 ~/.local/bin/startup/ikeyboard &
 ~/.local/bin/startup/ibrightness &
+~/.local/bin/startup/ipipewire &
 picom &
 # autokey-gtk &
 

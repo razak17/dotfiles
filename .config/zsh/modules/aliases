@@ -179,10 +179,10 @@ alias cpl="iconf -ce"
 alias cps="iconf -cp"
 alias rpl="iconf -rce"
 alias rps="iconf -rcp"
-alias rckm="rconf checkout main"
+alias rcma="iconf -rcma"
+alias ccma="iconf -ccma"
 alias rckr="rconf checkout rolling"
-alias rcma="rconf commit -a"
-alias ccma="conf commit -a"
+alias rckm="rconf checkout main"
 
 # nord vpn
 alias inord="systemctl start nordvpnd.service"

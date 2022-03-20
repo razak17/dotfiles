@@ -5,110 +5,111 @@ PAC="sudo pacman -S"
 
 # Install packages
 pac_packages=(
-  'tmux'
-  'ranger'
-  'qbittorrent'
-  'ttf-joypixels'
-  'redshift'
-  'mpv'
-  'xclip'
-  'brightnessctl'
-  'alacritty'
-  'lxappearance'
-  'ripgrep'
-  'maim'
-  'lazygit'
-  'ctags'
+	'tmux'
+	'ranger'
+	'qbittorrent'
+	'ttf-joypixels'
+	'redshift'
+	'mpv'
+	'xclip'
+	'brightnessctl'
+	'alacritty'
+	'lxappearance'
+	'ripgrep'
+	'maim'
+	'lazygit'
+	'ctags'
 	'strace'
-  'fzf'
-  'fd'
-  'kitty'
-  'bpytop'
-  'screenkey'
-  'python-pywal'
-  'xwallpaper'
-  'exa'
-  'toilet'
-  'dunst'
-  'axel'
-  'elinks'
-  'youtube-dl'
-  'bat'
-  'baobab'
-  'bmon'
-  'arc-gtk-theme'
-  'pulseaudio'
-  'gvfs'
+	'fzf'
+	'fd'
+	'kitty'
+	'bpytop'
+	'screenkey'
+	'python-pywal'
+	'xwallpaper'
+	'exa'
+	'toilet'
+	'dunst'
+	'axel'
+	'elinks'
+	'youtube-dl'
+	'bat'
+	'baobab'
+	'bmon'
+	'arc-gtk-theme'
+	'pulseaudio'
+	'gvfs'
 	'xf86-input-libinput'
-  'copyq'
-  'android-tools'
-  'android-file-transfer'
-  #'powerline-fonts'
-  #'ninja'
-  # 'cmake'
-  # 'pamixer'
-  # 'htop'
-  # 'slock'
-  # 'lolcat'
-  # 'docker'
-  # 'postgresql'
-  # 'clang'
-  # 'firefox'
-  # 'rust-analyzer'
-  # 'timeshift'
-  # 'keepassxc'
-  # 'thunderbird'
-  # 'whatsapp-nativefier'
-  # 'telegram-desktop'
-  # 'vlc'
-  # 'brave'
+	'copyq'
+	'android-tools'
+	'android-file-transfer'
+	#'powerline-fonts'
+	#'ninja'
+	# 'cmake'
+	# 'pamixer'
+	# 'htop'
+	# 'slock'
+	# 'lolcat'
+	# 'docker'
+	# 'postgresql'
+	# 'clang'
+	# 'firefox'
+	# 'rust-analyzer'
+	# 'timeshift'
+	# 'keepassxc'
+	# 'thunderbird'
+	# 'whatsapp-nativefier'
+	# 'telegram-desktop'
+	# 'vlc'
+	# 'brave'
 )
 
 yay_packages=(
-  'autokey-gtk'
-  'libxft-bgra'
-  'zoxide'
-  'notion-app'
-  'bibata-cursor-theme'
-  'devour'
-  # 'vscodium-bin'
-  # 'skippy-xd'
-  # 'packettracer'
-  # 'ttf-ancient-fonts'
-  # 'wps-office'
+	'autokey-gtk'
+	'libxft-bgra'
+	'zoxide'
+	'notion-app'
+	'bibata-cursor-theme'
+	'devour'
+	'pipewire'
+	# 'vscodium-bin'
+	# 'skippy-xd'
+	# 'packettracer'
+	# 'ttf-ancient-fonts'
+	# 'wps-office'
 )
 
 installAurPackage() {
-  echo 'Aur stuff'
-  echo '\n'
-  for i in ${yay_packages[@]}; do
-    echo Installing: $i
-    $YAY $i
-  done
+	echo 'Aur stuff'
+	echo '\n'
+	for i in "${yay_packages[@]}"; do
+		echo Installing: $i
+		$YAY $i
+	done
 }
 
 installPacmanPackages() {
-  for i in ${pac_packages[@]}; do
-    echo Installing: $i
-    $PAC $i
-  done
+	for i in "${pac_packages[@]}"; do
+		echo Installing: $i
+		$PAC $i
+	done
 }
 
 while [[ "$#" -gt 0 ]]; do
-  curr=$1
-  shift
+	curr=$1
+	shift
 
-  case "$curr" in
-  -y | --yay)
-    installAurPackage
-    ;;
-  -pac | --pacman)
-    installPacmanPackages
-    ;;
-  -a | --all)
-    installAurPackage
-    installPacmanPackages
-  ;;
-  *) echo "Unavailable command... $curr"
-  esac
+	case "$curr" in
+	-y | --yay)
+		installAurPackage
+		;;
+	-pac | --pacman)
+		installPacmanPackages
+		;;
+	-a | --all)
+		installAurPackage
+		installPacmanPackages
+		;;
+	*) echo "Unavailable command... $curr" ;;
+	esac
 done
