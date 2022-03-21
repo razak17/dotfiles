@@ -49,7 +49,7 @@ fi
 
 # GO
 if [ -d "$HOME/go" ]; then
-  export GOPATH="$HOME/go/bin"
+  export GOPATH="$HOME/go"
 fi
 
 # YARN
@@ -72,7 +72,7 @@ path=(
   "$LOCAL/startup"
   "$LOCAL/utils"
   "$FNMDIR"
-  "$GOPATH"
+  "$GOPATH/bin"
   "$FNMPATH"
   "$YARNPATH"
   "$AZCLI"
