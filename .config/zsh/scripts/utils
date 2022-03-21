@@ -62,7 +62,7 @@ ivpn() {
 }
 
 mc() {
-  mkdir "$@" && cd "$@"
+  mkdir -p "$@" && cd "$@"
 }
 
 #look up synonym - (word)

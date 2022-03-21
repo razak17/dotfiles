@@ -1,0 +1,10 @@
+#/bin/sh
+
+ak_dir="$HOME/.dots/ak-dotfiles"
+local_akv_dir="$HOME/.dots/nvim/nvim-ak"
+
+[ -d "$local_akv_dir" ] && sudo rm -r $local_akv_dir
+pushd $ak_dir
+git checkout main
+git pull
+cp -r $ak_dir/.config/nvim "$HOME/.dots/nvim/nvim-ak"
