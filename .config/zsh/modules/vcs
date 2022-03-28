@@ -44,5 +44,5 @@ zstyle ':vcs_info:*' unstagedstr "%F{red}●%f "
 zstyle ':vcs_info:*' use-simple true
 zstyle ':vcs_info:git+set-message:*' hooks git-untracked git-stash
 zstyle ':vcs_info:git*:*' actionformats '(%B%F{red}%b|%a%c%u%%b%f) '
-zstyle ':vcs_info:git:*' formats " %{$fg[blue]%}%{$fg[red]%}%m%u%c(%{$fg[yellow]%}%{$fg[yellow]%} %b%{$fg[blue]%})"
+zstyle ':vcs_info:git:*' formats " %{$fg[blue]%}%{$fg[red]%}%m%u%c%{$fg[blue]%}(%{$fg[yellow]%}%{$fg[yellow]%} %b%{$fg[blue]%})"
 # zstyle ':vcs_info:git:*' formats " (%{$fg[yellow]%}%b%{$fg[blue]%})"
