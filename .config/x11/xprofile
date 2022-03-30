@@ -27,7 +27,7 @@ export EDITOR="rvim"
 export VISUAL="rvim"
 export SUDO_EDITOR="nvim"
 export BROWSER="firefox"
-export TERMINAL="alacritty"
+export TERMINAL="kitty"
 
 # zsh config dir
 export ZDOTDIR=$HOME/.config/zsh
