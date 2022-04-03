@@ -3,64 +3,82 @@
 set -eufo pipefail
 
 extensions=(
-  # global
   dkundel.vscode-new-file
   atishay-jain.all-autocomplete
+  formulahendry.auto-rename-tahg
+  hookyqr.beautify
   aaron-bond.better-comments
   alefragnani.bookmarks
   formulahendry.code-runner
+  streetsidesoftware.code-spell-checker
   naumovs.color-highlight
-  asvetliakov.vscode-neovim
+  mikestead.dotenv
+  dbaeumer.vscode-eslint
+  eamodio.gitlens
+  kisstkondoros.vscode-gutter-preview
+  emilast.logfilehighlighter
   zhuangtongfa.material-theme
-  pnp.polacode
+  christian-kohler.path-intellisense
+  esbenp.prettier-vscode
+  wayou.vscode-todo-highlight
+  chakrounanas.turbo-console-log
+  asvetliakov.vscode-neovim
   vspacecode.whichkey
-  # workspace specific
   ms-vscode.azure-account
   ms-azuretools.vscode-azureappservice
   ms-vscode.azurecli
   ms-azuretools.vscode-azureresourcegroups
+  vsblox.blox
   pranaygp.vscode-css-peek
   ms-azuretools.vscode-docker
-  dbaeumer.vscode-eslint
   lamartire.git-indicators
   felipecaputo.git-project-manager
-  eamodio.gitlens
+  github.copilot
   qezhu.gitlink
   ecmel.vscode-html-css
   ms-toolsai.jupyter
+  toolsai.jupyter-keymap
+  ms-toolsai.jupyter-renderers
   ritwickdey.live-sass
   ritwickdey.liveserver
-  esbenp.prettier-vscode
+  stateful.marquee
+  pnp.polacode
   wallabyjs.quokka-vscode
   humao.rest-client
+  rangav.vscode-thunder-client
   dkundel.vscode-npm-source
 )
 
 disabledExtensions=(
-  # global
   aaron-bond.better-comments
   naumovs.color-highlight
   zhuangtongfa.material-theme
+  stateful.marquee
   pnp.polacode
-  # workspace specific
   ms-vscode.azure-account
   ms-azuretools.vscode-azureappservice
   ms-vscode.azurecli
   ms-azuretools.vscode-azureresourcegroups
+  vsblox.blox
   pranaygp.vscode-css-peek
   ms-azuretools.vscode-docker
   dbaeumer.vscode-eslint
   lamartire.git-indicators
   felipecaputo.git-project-manager
   eamodio.gitlens
+  felipecaputo.git-project-manager
+  github.copilot
   qezhu.gitlink
   ecmel.vscode-html-css
   ms-toolsai.jupyter
+  toolsai.jupyter-keymap
+  ms-toolsai.jupyter-renderers
   ritwickdey.live-sass
   ritwickdey.liveserver
   esbenp.prettier-vscode
   wallabyjs.quokka-vscode
   humao.rest-client
+  rangav.vscode-thunder-client
   dkundel.vscode-npm-source
 )
 

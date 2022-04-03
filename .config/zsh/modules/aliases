@@ -79,9 +79,10 @@ alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 
 # sudo
 alias i='doas'
+alias sd="sudo"
 alias ie='sudoedit'
 alias inv='sudoedit'
-alias is='doas su'
+# alias is='doas su'
 alias iv='doas -v'
 alias irm="doas rm"
 alias icp="doas cp"
