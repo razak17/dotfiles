@@ -3,6 +3,7 @@
 typeset -U PATH path
 
 LOCAL="$HOME/.local/bin"
+ASDF_INSTALLS="$HOME/.asdf/installs"
 
 # Colorful Man Pages
 export MANWIDTH=999
@@ -48,7 +49,9 @@ if [ -e "$HOME/.fnm/fnm" ]; then
 fi
 
 # GO
-if [ -d "$HOME/go" ]; then
+if [ -d "$ASDF_INSTALLS/golang" ]; then
+  v="1.18"
+  export GOROOT="$ASDF_INSTALLS/golang/$v/go"
   export GOPATH="$HOME/go"
 fi
 
