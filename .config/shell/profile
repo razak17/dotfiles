@@ -76,6 +76,7 @@ path=(
   "$LOCAL/utils"
   "$FNMDIR"
   "$GOPATH/bin"
+  "$GOROOT/bin"
   "$FNMPATH"
   "$YARNPATH"
   "$AZCLI"
