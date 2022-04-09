@@ -45,7 +45,7 @@ if [ -e "$HOME/.fnm/fnm" ]; then
   version="v17.3.0"
   export FNMDIR="/home/razak/.fnm"
   FNM_PREFIX="$HOME/.fnm/node-versions/$version/installation"
-  export FNMPATH="$FNM_PREFIX/lib/node_modules/bin"
+  export FNMPATH="$FNM_PREFIX/bin"
 fi
 
 # GO
