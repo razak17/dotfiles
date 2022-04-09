@@ -92,8 +92,8 @@ buildnvim() {
   dd=$(date +%F_%H%M%S_%N)
   oldfile="nvim-$dd"
   echo $oldfile
-  mv $bin_dir/nvim $bin_dir/$oldfile
-  cp $neovim_dir/build/bin/nvim $bin_dir
+  [ -e "$bin_dir/nvim" ] && mv $bin_dir/nvim $bin_dir/$oldfile
+  cp $HOME/neovim/bin/nvim $bin_dir
 
   popd
 }
