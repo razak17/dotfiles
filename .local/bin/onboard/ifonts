@@ -1,0 +1,27 @@
+#!/bin/sh
+
+dw=~/Downloads
+nerd="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0"
+loc="$HOME/.local/share/fonts"
+
+mkdir -p $dw $loc
+
+fonts=(
+	'JetBrainsMono'
+	'FiraMono'
+	'Hurmit'
+	'Hack'
+)
+
+installAurPackage() {
+	for i in "${fonts[@]}"; do
+		pushd $dw
+		mkdir -p $loc/$i
+		wget $nerd/"$i.zip"
+		pushd $loc/$i
+		unzip $dw/"$i.zip"
+	done
+}
+
+installAurPackage
+fc-cache -fv

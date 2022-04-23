@@ -78,11 +78,12 @@ schemes:
 colors: *light
 
 font:
-  size: 8
+  size: 10
   normal:
-    family: 'JetBrains Mono Nerd Font Mono'
-    # family: "FiraCode Nerd Font Mono"
+    # family: 'JetBrains Mono Nerd Font Mono'
+    family: "FiraCode Nerd Font Mono"
     # family: 'Operator Mono Lig Book'
+    # family: 'Hurmit Nerd Font'
     # family: 'Cartograph CF Light'
     # family: "Dank Mono Nerd Font"
     style: Retina
