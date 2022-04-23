@@ -17,9 +17,9 @@ installYtfzf() {
 
 installGetNf() {
   mkdir -p $HOME/.dots
-  cd $HOME/.dots
+  pushd $HOME/.dots
   git clone https://github.com/ronniedroid/getnf.git
-  cd getnf
+  pushd getnf
   ./install.sh
 }
 

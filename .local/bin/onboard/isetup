@@ -1,10 +1,5 @@
 #!/bin/sh
 
-changeShell() {
-	cat /etc/shells
-	chsh --shell /bin/zsh razak
-}
-
 setupSsh() {
 	if [[ -d "$HOME/.ssh" ]]; then
 		chmod 600 ~/.ssh/id_rsa
@@ -77,17 +72,24 @@ installDoas() {
 	makepkg -si
 }
 
-installNeeded() {
-	pacman -S git curl wget unzip make cmake
+installSuckless() {
+  mkdir -p $HOME/.dots
+  pushd $HOME/.dots
+  git clone https://github.com/razak17/suckless
+  pushd $HOME/.dots/suckless/dwm
+  sudo make clean install
+  pushd $HOME/.dots/suckless/dmenu
+  sudo make clean install
 }
-
-installNeeded
 
 while [[ "$#" -gt 0 ]]; do
 	curr=$1
 	shift
 
 	case "$curr" in
+	"-suck")
+		installSuckless
+		;;
 	"-doas")
 		installDoas
 		;;
@@ -106,21 +108,22 @@ while [[ "$#" -gt 0 ]]; do
 	"-zsh")
 		installZshPlugins
 		;;
+	"-tmux")
+		installTmuxPlugins
+		;;
 	"-ssh")
 		setupSsh
 		;;
-	"-shell")
-		changeShell
-		;;
 	"-all")
 		# setupSsh
-		changeShell
 		installZshPlugins
+		installTmuxPlugins
 		installFnm
 		installAsdf
 		installFzf
 		installDoas
 		installYay
+		installSuckless
 		;;
 	*) echo "Unavailable command... $curr" ;;
 	esac

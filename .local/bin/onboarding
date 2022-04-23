@@ -1,0 +1,39 @@
+#!/bin/sh
+
+# Change shell
+cat /etc/shells
+chsh --shell /bin/zsh razak
+
+# Create dotfiles directory
+mkdir -p $HOME/.dots
+
+# Install needed packages
+pacman -S git curl wget unzip make cmake picom dunst artix-archlinux-support
+
+# Install rVim (brach:rolling)
+BRANCH=rolling bash <(curl -s https://raw.githubusercontent.com/razak17/nvim/rolling/external/bin/install) --all
+
+# Add aliases to zshrc
+touch -f ~/.zshrc
+echo . $HOME/.config/zsh/modules/aliases >~/.zshrc
+
+# Install doas
+$HOME/.local/bin/onboard/isetup -doas
+
+# Install yay
+$HOME/.local/bin/onboard/isetup -yay
+
+# Install dwm, dmenu
+$HOME/.local/bin/onboard/isetup -suck
+
+# Install zsh plugins
+$HOME/.local/bin/onboard/isetup -zsh
+
+# Install others
+$HOME/.local/bin/onboard/isetup -fnm
+$HOME/.local/bin/onboard/isetup -asdf
+$HOME/.local/bin/onboard/isetup -fzf
+$HOME/.local/bin/onboard/isetup -tmux
+
+# Install fonts
+$HOME/.local/bin/onboard/ifonts
