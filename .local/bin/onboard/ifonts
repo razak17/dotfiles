@@ -9,11 +9,12 @@ mkdir -p $dw $loc
 fonts=(
 	'JetBrainsMono'
 	'FiraMono'
+	'FiraCode'
 	'Hurmit'
 	'Hack'
 )
 
-installAurPackage() {
+installFonts() {
 	for i in "${fonts[@]}"; do
 		pushd $dw
 		mkdir -p $loc/$i
@@ -23,5 +24,5 @@ installAurPackage() {
 	done
 }
 
-installAurPackage
+installFonts
 fc-cache -fv

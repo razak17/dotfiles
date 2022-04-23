@@ -1,97 +1,127 @@
 #!/bin/sh
 
 changeShell() {
-  cat /etc/shells
-  chsh --shell /bin/zsh razak
+	cat /etc/shells
+	chsh --shell /bin/zsh razak
 }
 
 setupSsh() {
-  if [[ -d "$HOME/.ssh" ]]; then
-    chmod 600 ~/.ssh/id_rsa
-    eval "$(ssh-agent -s)"
-    ssh-add ~/.ssh/id_rsa
-  fi
+	if [[ -d "$HOME/.ssh" ]]; then
+		chmod 600 ~/.ssh/id_rsa
+		eval "$(ssh-agent -s)"
+		ssh-add ~/.ssh/id_rsa
+	fi
 }
 
 # ZSH only and most performant way to check existence of an executable
 # https://www.topbug.net/blog/2016/10/11/speed-test-check-the-existence-of-a-command-in-bash-and-zsh/
-exists() { (( $+commands[$1] )); }
+exists() { (($ + commands[$1])); }
 
 installZshPlugins() {
-  mkdir -p ~/.config/zsh/plugins
-  mkdir -p ~/.config/zsh/completion
-  plugins=(
-    'esc/conda-zsh-completion'
-    # 'djui/alias-tips'
-    'zsh-users/zsh-autosuggestions'
-    'zsh-users/zsh-completions'
-    'zsh-users/zsh-syntax-highlighting'
-    # 'agkozak/zsh-z'
-    'marlonrichert/zsh-hist'
-  )
-  # curl -sLo "https://github.com/$download_path" "$url"
-  for i in "${plugins[@]}"; do
-    name=$(echo ${i} | sed 's|.*/||')
-    if [[ -d "$HOME/.config/zsh/plugins/${name}" ]]; then
-      echo "dir ${name} already exists."
-    else
-      $(git clone https://github.com/$i ~/.config/zsh/plugins/$name)
-      echo "clone"
-    fi
-  done
+	mkdir -p ~/.config/zsh/plugins
+	mkdir -p ~/.config/zsh/completion
+	plugins=(
+		'esc/conda-zsh-completion'
+		# 'djui/alias-tips'
+		'zsh-users/zsh-autosuggestions'
+		'zsh-users/zsh-completions'
+		'zsh-users/zsh-syntax-highlighting'
+		# 'agkozak/zsh-z'
+		'marlonrichert/zsh-hist'
+	)
+	# curl -sLo "https://github.com/$download_path" "$url"
+	for i in "${plugins[@]}"; do
+		name=$(echo ${i} | sed 's|.*/||')
+		if [[ -d "$HOME/.config/zsh/plugins/${name}" ]]; then
+			echo "dir ${name} already exists."
+		else
+			$(git clone https://github.com/$i ~/.config/zsh/plugins/$name)
+			echo "clone"
+		fi
+	done
 
-  mkdir -p ~/.config/zsh/plugins/git
-  cd ~/.config/zsh/plugins/git || exit
-  curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/git/git.plugin.zsh --output git.plugin.zsh
-  curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/git/README.md --output README.md
+	mkdir -p ~/.config/zsh/plugins/git
+	cd ~/.config/zsh/plugins/git || exit
+	curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/git/git.plugin.zsh --output git.plugin.zsh
+	curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/git/README.md --output README.md
 }
 
 installFzf() {
-  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
+	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
 }
 installTmuxPlugins() {
-  git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+	git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 }
 
 installAsdf() {
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.0-rc1
+	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.0-rc1
 }
 
 installFnm() {
-  curl -fsSL https://fnm.vercel.app/install | bash
+	curl -fsSL https://fnm.vercel.app/install | bash
 }
 
-while [[ "$#" -gt 0 ]]; do
-  curr=$1
-  shift
+installYay() {
+	mkdir -p $HOME/.dots
+	pushd $HOME/.dots
+	git clone https://aur.archlinux.org/yay.git
+	pushd $HOME/.dots/yay
+	makepkg -si
+}
 
-  case "$curr" in
-  "-fnm")
-    installFnm
-    ;;
-  "-asdf")
-  installAsdf
-    ;;
-  "-fzf")
-    installFzf
-    ;;
-  "-zsh")
-    installZshPlugins
-    ;;
-  "-ssh")
-    setupSsh
-    ;;
-  "-shell")
-    changeShell
-    ;;
-  "-all")
-    setupSsh
-    changeShell
-    installZshPlugins
-    installFnm
-    installAsdf
-    installFzf
-  ;;
-  *) echo "Unavailable command... $curr"
-  esac
+installDoas() {
+	mkdir -p $HOME/.dots
+	pushd $HOME/.dots
+	git clone https://aur.archlinux.org/doas.git
+	pushd $HOME/.dots/doas
+	makepkg -si
+}
+
+installNeeded() {
+	pacman -S git curl wget unzip make cmake
+}
+
+installNeeded
+
+while [[ "$#" -gt 0 ]]; do
+	curr=$1
+	shift
+
+	case "$curr" in
+	"-doas")
+		installDoas
+		;;
+	"-yay")
+		installYay
+		;;
+	"-fnm")
+		installFnm
+		;;
+	"-asdf")
+		installAsdf
+		;;
+	"-fzf")
+		installFzf
+		;;
+	"-zsh")
+		installZshPlugins
+		;;
+	"-ssh")
+		setupSsh
+		;;
+	"-shell")
+		changeShell
+		;;
+	"-all")
+		# setupSsh
+		changeShell
+		installZshPlugins
+		installFnm
+		installAsdf
+		installFzf
+		installDoas
+		installYay
+		;;
+	*) echo "Unavailable command... $curr" ;;
+	esac
 done

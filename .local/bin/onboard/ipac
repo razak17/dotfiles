@@ -3,66 +3,39 @@
 YAY="yay -Sy"
 PAC="sudo pacman -S"
 
+###############################################################
+# add this to /etc/pacman.conf after artix-archlinux-support is
+# installed then run 'pacman -Syu'
+
+# Arch
+# [extra]
+# Include = /etc/pacman.d/mirrorlist-arch
+
+# [community]
+# Include = /etc/pacman.d/mirrorlist-arch
+
+# [universe]
+# Server = https://universe.artixlinux.org/$arch
+# Server = https://mirror1.artixlinux.org/universe/$arch
+# Server = https://mirror.pascalpuffke.de/artix-universe/$arch
+# Server = https://artixlinux.qontinuum.space:4443/artixlinux/universe/os/$arch
+# Server = https://mirror1.cl.netactuate.com/artix/universe/$arch
+##################################################################
+
 # Install packages
-pac_packages=(
-	'tmux'
-	'ranger'
-	'qbittorrent'
-	'ttf-joypixels'
-	'redshift'
-	'mpv'
-	'xclip'
-	'brightnessctl'
-	'alacritty'
-	'lxappearance'
-	'ripgrep'
-	'maim'
-	'lazygit'
-	'ctags'
-	'strace'
-	'fzf'
-	'fd'
-	'kitty'
-	'bpytop'
-	'screenkey'
-	'python-pywal'
-	'xwallpaper'
-	'exa'
-	'toilet'
-	'dunst'
-	'axel'
-	'elinks'
-	'youtube-dl'
-	'bat'
-	'baobab'
-	'bmon'
-	'arc-gtk-theme'
-	'pulseaudio'
-	'gvfs'
-	'xf86-input-libinput'
-	'copyq'
-	'android-tools'
-	'android-file-transfer'
-	#'powerline-fonts'
-	#'ninja'
-	# 'cmake'
-	# 'pamixer'
-	# 'htop'
-	# 'slock'
-	# 'lolcat'
-	# 'docker'
-	# 'postgresql'
-	# 'clang'
-	# 'firefox'
-	# 'rust-analyzer'
-	# 'timeshift'
-	# 'keepassxc'
-	# 'thunderbird'
-	# 'whatsapp-nativefier'
-	# 'telegram-desktop'
-	# 'vlc'
-	# 'brave'
-)
+pac_packages='htop ninja pamixer cmake make tmux ranger qbittorrent ttf-joypixels redshift mpv xclip brightnessctl alacritty lxappearance ripgrep maim lazygit ctags strace fzf fd kitty bpytop screenkey python-pywal xwallpaper exa dunst axel elinks youtube-dl bat baobab bmon arc-gtk-theme pulseaudio gvfs xf86-input-libinput copyq android-tools android-file-transfer powerline-font htop sloc lolcat'
+# 'docker'
+# 'postgresql'
+# 'clang'
+# 'firefox'
+# 'rust-analyzer'
+# 'timeshift'
+# 'keepassxc'
+# 'thunderbird'
+# 'whatsapp-nativefier'
+# 'telegram-desktop'
+# 'vlc'
+# 'brave'
 
 yay_packages=(
 	'autokey-gtk'
@@ -72,10 +45,11 @@ yay_packages=(
 	'bibata-cursor-theme'
 	'devour'
 	'pipewire'
+	'toilet'
+	'ttf-ancient-fonts'
 	# 'vscodium-bin'
 	# 'skippy-xd'
 	# 'packettracer'
-	# 'ttf-ancient-fonts'
 	# 'wps-office'
 )
 
@@ -89,10 +63,11 @@ installAurPackage() {
 }
 
 installPacmanPackages() {
-	for i in "${pac_packages[@]}"; do
-		echo Installing: $i
-		$PAC $i
-	done
+	$PAC $pac_packages
+}
+
+addSupport() {
+	$PAC artix-archlinux-support
 }
 
 while [[ "$#" -gt 0 ]]; do
@@ -100,6 +75,9 @@ while [[ "$#" -gt 0 ]]; do
 	shift
 
 	case "$curr" in
+	-s | --support)
+		addSupport
+		;;
 	-y | --yay)
 		installAurPackage
 		;;
@@ -107,6 +85,7 @@ while [[ "$#" -gt 0 ]]; do
 		installPacmanPackages
 		;;
 	-a | --all)
+		addSupport
 		installAurPackage
 		installPacmanPackages
 		;;
