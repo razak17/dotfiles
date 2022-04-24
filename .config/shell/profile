@@ -50,7 +50,8 @@ fi
 
 # GO
 if [ -d "$ASDF_INSTALLS/golang" ]; then
-  v="1.18"
+  v="1.18.1"
+  export GOHOME="$ASDF_INSTALLS/golang/$v"
   export GOROOT="$ASDF_INSTALLS/golang/$v/go"
   export GOPATH="$HOME/go"
 fi
@@ -75,6 +76,7 @@ path=(
   "$LOCAL/startup"
   "$LOCAL/utils"
   "$FNMDIR"
+  "$GOHOME/packages/bin"
   "$GOPATH/bin"
   "$GOROOT/bin"
   "$FNMPATH"

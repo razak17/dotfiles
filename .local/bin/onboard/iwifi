@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Wifi
+pacman -S wpa_supplicant wireless_tools networkmanager rp-pppoe usb_modeswitch modemmanager mobile-broadband-provider-info
+sudo rc-update add wpa_supplicant default
+sudo rc-update del lightdm default
+
+# wpa_passphrase HUAWEI-B612-344B TAHN8A1F0FY | sudo tee /etc/wpa_supplicant/wlan0.conf
+# wpa_supplicant -B -i interface -c /etc/wpa_supplicant/wlan0.conf

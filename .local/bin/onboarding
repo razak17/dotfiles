@@ -8,7 +8,7 @@ chsh --shell /bin/zsh razak
 mkdir -p $HOME/.dots
 
 # Install needed packages
-pacman -S git curl wget unzip make cmake picom dunst artix-archlinux-support
+pacman -S git curl wget unzip make cmake picom dunst artix-archlinux-support xorg-xinput
 
 # Install rVim (brach:rolling)
 BRANCH=rolling bash <(curl -s https://raw.githubusercontent.com/razak17/nvim/rolling/external/bin/install) --all
