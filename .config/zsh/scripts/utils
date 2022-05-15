@@ -98,7 +98,7 @@ buildnvim() {
   popd
 }
 
-wifi() {
+wifi_cconnect() {
   (iwlist scanning | awk '/ESSID/{print $1}' | grep ESSID)
 }
 
