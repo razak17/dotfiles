@@ -1,3 +1,3 @@
 #!/bin/sh
 
-. .config/x11/xinitrc
+[ -f $HOME/.config/x11/xinitrc ] && . $HOME/.config/x11/xinitrc
