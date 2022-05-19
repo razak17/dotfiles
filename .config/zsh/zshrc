@@ -28,6 +28,7 @@ add_plugin 'zsh-completions'
 add_plugin 'zsh-autosuggestions'
 add_plugin 'zsh-syntax-highlighting'
 add_plugin 'zsh-hist'
+add_plugin 'zsh-autopair'
 add_completion 'conda-zsh-completion' false
 add_completion 'fnm'
 autoload zmv # builtin zsh rename command

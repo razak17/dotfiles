@@ -23,6 +23,7 @@ installZshPlugins() {
 		'zsh-users/zsh-syntax-highlighting'
 		# 'agkozak/zsh-z'
 		'marlonrichert/zsh-hist'
+		'hlissner/zsh-autopair'
 	)
 	# curl -sLo "https://github.com/$download_path" "$url"
 	for i in "${plugins[@]}"; do
@@ -73,13 +74,13 @@ installDoas() {
 }
 
 installSuckless() {
-  mkdir -p $HOME/.dots
-  pushd $HOME/.dots
-  git clone https://github.com/razak17/suckless
-  pushd $HOME/.dots/suckless/dwm
-  sudo make clean install
-  pushd $HOME/.dots/suckless/dmenu
-  sudo make clean install
+	mkdir -p $HOME/.dots
+	pushd $HOME/.dots
+	git clone https://github.com/razak17/suckless
+	pushd $HOME/.dots/suckless/dwm
+	sudo make clean install
+	pushd $HOME/.dots/suckless/dmenu
+	sudo make clean install
 }
 
 while [[ "$#" -gt 0 ]]; do
