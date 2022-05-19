@@ -200,6 +200,8 @@ alias rckm="rconf checkout main"
 alias cstb="rconf status -sb"
 alias rstb="rconf status -sb"
 
+alias gs="git status"
+
 # nord vpn
 alias inord="systemctl start nordvpnd.service"
 alias vpn="nordvpn"
