@@ -3,6 +3,7 @@
 #alias v="$EDITOR ./"
 alias rv=rvimProfiling
 alias nv=nvimProfiling
+alias -s {js,html,js,ts,css,md}=nvim
 
 # shell
 alias sudo="doas"
