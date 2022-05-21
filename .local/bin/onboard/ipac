@@ -25,7 +25,7 @@ PAC="sudo pacman -S"
 ##################################################################
 
 # Install packages
-pac_packages='exa plocate xorg-xinput wireless_tools github-cli fd htop ninja pamixer cmake make tmux ranger qbittorrent redshift mpv xclip brightnessctl alacritty lxappearance ripgrep maim lazygit ctags strace fd kitty bpytop screenkey python-pywal xwallpaper exa dunst axel elinks youtube-dl bat baobab bmon arc-gtk-theme pulseaudio gvfs xf86-input-libinput copyq android-tools android-file-transfer htop sloc lolcat pipewire pipewire-pulse pipewire-media-session'
+pac_packages='aria2 exa plocate xorg-xinput wireless_tools github-cli fd htop ninja pamixer cmake make tmux ranger qbittorrent redshift mpv xclip brightnessctl alacritty lxappearance ripgrep maim lazygit ctags strace fd kitty bpytop screenkey python-pywal xwallpaper exa dunst axel elinks youtube-dl bat baobab bmon arc-gtk-theme pulseaudio gvfs xf86-input-libinput copyq android-tools android-file-transfer htop sloc lolcat pipewire pipewire-pulse pipewire-media-session'
 # 'docker'
 # 'postgresql'
 # 'clang'
