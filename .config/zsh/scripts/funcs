@@ -58,6 +58,17 @@ function conda_init() {
   pip_init
 }
 
+function pyenv_init() {
+  if [ "$1" = false ] && return
+  if exists pyenv; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init --path)"
+    eval "$(pyenv init -)"
+    eval "$(pyenv init - --no-rehash zsh)"
+  fi
+}
+
 function activate() {
   MYVENV=./venv
   MYDOTVENV=".venv"

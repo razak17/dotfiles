@@ -77,3 +77,6 @@ fi
 
 # conda_init and pip
 conda_init false
+
+# pyenv init
+pyenv_init false
