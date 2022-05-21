@@ -79,7 +79,7 @@ tng() {
 buildnvim() {
   neovim_dir="$HOME/.dots/nvim/neovim"
   bin_dir="$HOME/.local/bin"
-  [ ! -d $neovim_dir ] && git clone git@github.com:neovim/neovim.git $neovim_dir
+  [ ! -d $neovim_dir ] && git clone https://github.com/neovim/neovim $neovim_dir
   pushd $neovim_dir
   git checkout master
   # git pull upstream master
