@@ -31,8 +31,7 @@ export FZF_TMUX=0
 
 # History
 export HIST_STAMPS="mm/dd/yyyy"
-# export HISTFILE=~/.zsh_history
-export HISTFILE=$ZSH_CACHE_DIR/zsh/.zsh_history
+export HISTFILE=$ZSH_CACHE_DIR/.zsh_history
 export HISTSIZE=50000
 export SAVEHIST=50000
 
@@ -44,7 +43,7 @@ fi
 # fnm
 if [ -e "$HOME/.fnm/fnm" ]; then
   version="v18.0.0"
-  export FNMDIR="/home/razak/.fnm"
+  export FNMDIR="$HOME/.fnm"
   FNM_PREFIX="$HOME/.fnm/node-versions/$version/installation"
   export FNMPATH="$FNM_PREFIX/bin"
 fi
