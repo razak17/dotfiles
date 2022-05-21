@@ -101,8 +101,11 @@ function colours() {
 }
 
 function alive() {
-  if ping -c 1 google.com; then
+  if ping -c 2 google.com; then
     echo "It appears you have a working internet connection"
+    notify-send "📶 Internet Status " "\- You are connected."
+  else
+    notify-send "❎ Internet Status " "\- No internet connection."
   fi
 }
 
