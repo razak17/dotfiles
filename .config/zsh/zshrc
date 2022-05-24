@@ -80,3 +80,13 @@ conda_init false
 
 # pyenv init
 pyenv_init false
+
+export CODELLDB='$HOME/.vscode-oss/extensions/vadimcn.vscode-lldb-1.7.0'
+
+path=(
+  "$CODELLDB/adapter/"
+  "$CODELLDB/lldb/bin"
+  "$path[@]"
+)
+
+export PATH
