@@ -8,16 +8,30 @@
 # 	*openrc*) reb="sudo -A openrc-shutdown -r"; shut="sudo -A openrc-shutdown -p" ;;
 # esac
 
+# A dmenu wrapper script for system functions.
+export WM="dwm"
+case "$(readlink -f /sbin/init)" in
+*systemd*) ctl='systemctl' ;;
+*) ctl='loginctl' ;;
+esac
+wmpid() { # This function is needed if there are multiple instances of the window manager.
+	tree="$(pstree -ps $$)"
+	tree="${tree#*$WM(}"
+	echo "${tree%%)*}"
+}
+
 cmds="\
 🔒 lock		slock
-🚪 leave dwm	kill -TERM $(pgrep -u $USER "\bdwm$")
-♻ renew dwm	kill -HUP $(pgrep -u $USER "\bdwm$")
-🐻 killx	${kx:-killall xinit}
+♻ renew 	kill -HUP $(wmpid)
+🚪 leave	${kx:-killall xinit}
+🐻 hibernate	${reb:-slock $ctl hibernate -i}
+💤 sleep	${reb:-slock $ctl suspend -i}
 🔃 reboot	${reb:-sudo openrc-shutdown -rq now}
-🖥 shutdown	${die:-sudo openrc-shutdown -pq now}"
+🖥 shutdown	${die:-sudo openrc-shutdown -pq now}
+📺 display off	${die:-xset dpms force off}"
 
 # choices="$(echo "$cmds" | cut -d'	' -f 1)" || exit 1
 choices="$(echo "$cmds" | cut -d'	' -f 1 | dmenu -l 10)" || exit 1
 
 # echo $choices
-`echo "$cmds" | grep "^$choices	" | cut -d '	' -f2-`
+eval "$(echo "$cmds" | grep "^$choices	" | cut -d '	' -f2-)"
