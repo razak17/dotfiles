@@ -22,8 +22,8 @@ dwmblocks &
 ~/.local/bin/startup/ikeyboard &
 ~/.local/bin/startup/ibrightness &
 ~/.local/bin/startup/ipipewire &
-picom &
-# autokey-gtk &
+redshift &
+# picom &
 
 # This line autostarts an instance of Pulseaudio that does not exit on idle.
 # This is "necessary" on Artix due to a current bug between PA and
