@@ -227,6 +227,8 @@ alias fk='ftmux -k'
 alias dm='dmenumount'
 alias du='dmenuumount'
 
+alias yarndev='yarn add -D eslint_d prettier_d_slim prettier eslint eslint-config-prettier'
+
 # Misc
 alias rfonts='fc-cache -vf ~/.local/share/fonts/'
 alias plague='curl https://corona-stats.online/states/us'
