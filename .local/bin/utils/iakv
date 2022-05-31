@@ -6,6 +6,6 @@ local_akv_dir="$HOME/.dots/nvim/nvim-ak"
 [ -d "$local_akv_dir" ] && sudo rm -r $local_akv_dir
 [ ! -d $ak_dir ] && git clone git@github.com:akinsho/dotfiles.git $neovim_dir
 pushd $ak_dir || exit
-git checkout main
+git checkout nightly
 git pull
 cp -r $ak_dir/.config/nvim "$HOME/.dots/nvim/nvim-ak"

@@ -78,8 +78,8 @@ function +vi-git-compare() {
   ahead=${ahead_and_behind[1]}
   behind=${ahead_and_behind[2]}
 
-  local ahead_symbol="%{$fg[red]%}⇡%{$reset_color%}${ahead} "
-  local behind_symbol="%{$fg[cyan]%}⇣%{$reset_color%}${behind} "
+  local ahead_symbol="%{$fg[red]%} ⇡%{$reset_color%}${ahead}"
+  local behind_symbol="%{$fg[cyan]%} ⇣%{$reset_color%}${behind}"
   (( $ahead )) && gitstatus+=( "${ahead_symbol}" )
   (( $behind )) && gitstatus+=( "${behind_symbol}" )
   # `(j:<char>:)` represents joining the items of a list with a character
