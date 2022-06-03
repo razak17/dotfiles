@@ -48,8 +48,9 @@ bindkey -s '^z' 'zi^M'
 bindkey "^j" down-line-or-beginning-search # Down
 bindkey "^k" up-line-or-beginning-search # Up
 # bindkey ' ' magic-space  # [Space] - don't do history expansion
-# bindkey '^ ' autosuggest-accept
-bindkey '^U' autosuggest-accept
+bindkey '^U' autosuggest-execute
+bindkey '^H' autosuggest-accept
+# bindkey '^j' autosuggest-clear
 bindkey '^]' clear-screen
 
 # Edit line in vim with v whilst in normal mod in vi mode
