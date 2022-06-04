@@ -81,7 +81,8 @@ font:
   size: 10
   normal:
     # family: 'JetBrains Mono Nerd Font Mono'
-    family: "FiraCode Nerd Font Mono"
+    # family: "FiraCode Nerd Font Mono"
+    family: "FiraMono Nerd Font Mono"
     # family: 'Operator Mono Lig Book'
     # family: 'Hurmit Nerd Font'
     # family: 'Cartograph CF Light'
