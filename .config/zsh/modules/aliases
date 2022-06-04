@@ -20,7 +20,7 @@ alias lsl='ls -la'
 alias loc="locate"
 alias l.="ls -A | egrep '^\.'"
 alias cdd="cd -"
-alias zs='source ~/.config/zsh/.zshrc'
+alias zs='source $HOME/.config/zsh/.zshrc'
 alias e="touch"
 alias m="mkdir"
 alias cmd='command -V'
@@ -32,7 +32,7 @@ alias rm='rm -i'
 alias rm='rm -i'
 alias rmf='rm -f'
 alias ccat='cat'
-alias notes='cd ~/notes/src'
+alias notes='fn'
 
 # system
 alias obd="objdump -d"
@@ -148,21 +148,21 @@ alias a="rv $HOME/.config/zsh/modules/aliases"
 alias lc='rv ${RVIM_CONFIG_PATH:-$HOME/.config}/rvim/lua/user/config/init.lua'
 alias rvc='rv ${RVIM_CONFIG_PATH:-$HOME/.config}/rvim/init.lua'
 alias nvc='nvim config.h'
-alias vc="rv ~/.config/nvim/raw.lua"
+alias vc="rv $HOME/.config/nvim/raw.lua"
 alias ivc="sudoedit /etc/xdg/nvim/sysinit.vim"
-alias al="rv ~/.config/alacritty/alacritty.yml"
-alias zc="rv ~/.config/zsh/.zshrc"
-alias ze="rv ~/.config/zsh/.zshenv"
-alias zp="rv ~/.config/shell/profile"
-alias xp="rv ~/.config/x11/xprofile"
-alias xc="rv ~/.config/tmux/tmux.conf"
-alias xr="rv ~/.config/x11/xresources"
-alias xR="rv ~/.Xresources"
-alias xn="rv ~/.config/x11/xinitrc"
+alias al="rv $HOME/.config/alacritty/alacritty.yml"
+alias zc="rv $HOME/.config/zsh/.zshrc"
+alias ze="rv $HOME/.config/zsh/.zshenv"
+alias zp="rv $HOME/.config/shell/profile"
+alias xp="rv $HOME/.config/x11/xprofile"
+alias xc="rv $HOME/.config/tmux/tmux.conf"
+alias xr="rv $HOME/.config/x11/xresources"
+alias xR="rv $HOME/.Xresources"
+alias xn="rv $HOME/.config/x11/xinitrc"
 alias nvi="rv init.lua"
 alias rvi="rv init.lua"
-alias nvz="nvim ~/.cache/zsh/.zsh_history"
-alias rvz="rv ~/.zsh_history"
+alias nvz="nvim $HOME/.cache/zsh/.zsh_history"
+alias rvz="rv $HOME/.zsh_history"
 alias nvli="rv lua/core/init.lua"
 alias rvli="rv lua/core/init.lua"
 alias nvcp="cp --force ~/.dots/neovim/build/bin/nvim  ~/.local/bin"
@@ -214,16 +214,16 @@ alias me="curl icanhazip.com/"
 
 # ranger
 alias f="ranger"
-alias rc='ranger ~/.config'
-alias rnv='ranger ~/.config/nvim'
+alias rc='ranger $HOME/.config'
+alias rnv='ranger $HOME/.config/nvim'
 
 # tmux
 alias xd="tmuxd first"
 alias xb="tmuxb first"
 alias xsp="tmux display -p '#{socket_path}'"
 alias xls="tmux ls"
-alias fn='ftmux -s'
-alias fk='ftmux -k'
+alias ftn='ftmux -s'
+alias ftk='ftmux -k'
 alias dm='dmenumount'
 alias du='dmenuumount'
 
@@ -235,11 +235,10 @@ alias yarnreactts='yarn add -D @typescript-eslint/eslint-plugin @typescript-esli
 alias rfonts='fc-cache -vf ~/.local/share/fonts/'
 alias plague='curl https://corona-stats.online/states/us'
 alias lg='lazygit'
-alias scr='cd ~/Pictures/screenshots'
+alias scr='cd $HOME/Pictures/screenshots'
 alias aria='aria2c --max-connection-per-server=12'
-alias cf="find -type f | fzf | sed 's/^..//g' | tr -d '\n' | xclip -sel c"
-alias ge="find | fzf | sed 's/^..//g' | tr -d '\n' | xclip -sel c"
-alias gf="find -type f | sed 's/^..//g' | fzf | tr -d '\n' | xclip -sel c"
+alias cf="find -type f | sed 's/^..//g' | fzf | tr -d '\n' | xclip -sel c"
+alias cff="find | fzf | sed 's/^..//g' | tr -d '\n' | xclip -sel c"
 alias thequickbrownfoxjumpsoverthelazydog="echo hellooooo"
 mo=~/.mozilla/firefox/profiles
 rca=~/.cache/rvim

@@ -75,3 +75,24 @@ fe() {
 	IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview 'bat --theme="OneHalfDark" --color "always" {}' --preview-window=right:60%))
 	[[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
+
+fn() {
+	local files
+  pushd "$HOME/notes/src" > /dev/null || return
+	IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview 'bat --theme="OneHalfDark" --color "always" {}' --preview-window=right:60%))
+	[[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}
+
+fr() {
+	local files
+  pushd "$HOME/.config/rvim" > /dev/null || return
+	IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview 'bat --theme="OneHalfDark" --color "always" {}' --preview-window=right:60%))
+	[[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}
+
+fz() {
+	local files
+  pushd "$ZDOTDIR" > /dev/null || return
+	IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview 'bat --theme="OneHalfDark" --color "always" {}' --preview-window=right:60%))
+	[[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}
