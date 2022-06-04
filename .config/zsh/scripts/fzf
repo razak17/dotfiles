@@ -90,6 +90,13 @@ fr() {
 	[[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
+fu() {
+	local files
+  pushd "$HOME/.local/bin" > /dev/null || return
+	IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview 'bat --theme="OneHalfDark" --color "always" {}' --preview-window=right:60%))
+	[[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}
+
 fz() {
 	local files
   pushd "$ZDOTDIR" > /dev/null || return
