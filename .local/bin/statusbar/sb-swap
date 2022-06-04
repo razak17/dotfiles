@@ -1,14 +1,15 @@
 #! /bin/bash
 
 case $BLOCK_BUTTON in
-	1) notify-send "🔁 Swap hogs" "$(ps axch -o cmd:15,%mem --sort=-%mem | head)" ;;
-	2) setsid -f "$TERMINAL" -e bpytop ;;
-	3) notify-send "🔁 Swap module" "\- Shows Swap Space Used/Total.
+1) notify-send "🔁 Swap hogs" "$(ps axch -o cmd:15,%mem --sort=-%mem | head)" ;;
+2) setsid -f "$TERMINAL" -e bpytop ;;
+3) notify-send "🔁 Swap module" "\- Shows Swap Space Used/Total.
 - Click to show swap hogs.
 - Middle click to open bpytop." ;;
-	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
 # swap="$(free -h | awk '/^Swap:/ {print "🔃 " $3 " / " $2}')"
-swap="$(free -m |  awk '/^Swap:/ {printf ("🔃 %2.2fGiB/%2.2fGiB\n", ($3 / 1024), ($2 / 1024))}')"
+# swap="$(free -m |  awk '/^Swap:/ {printf ("🔃 %2.2fGiB/%2.2fGiB\n", ($3 / 1024), ($2 / 1024))}')"
+swap="$(free -m | awk '/^Swap:/ {printf ("🔃 %2.2fGiB\n", ($3 / 1024), ($2 / 1024))}')"
 echo -e "$swap"
