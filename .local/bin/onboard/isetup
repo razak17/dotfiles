@@ -31,7 +31,7 @@ installZshPlugins() {
 		if [[ -d "$HOME/.config/zsh/plugins/${name}" ]]; then
 			echo "dir ${name} already exists."
 		else
-			$(git clone https://github.com/$i ~/.config/zsh/plugins/$name)
+			git clone https://github.com/$i ~/.config/zsh/plugins/$name
 			echo "clone"
 		fi
 	done
@@ -59,27 +59,27 @@ installFnm() {
 
 installYay() {
 	mkdir -p $HOME/.dots
-	pushd $HOME/.dots
+	pushd $HOME/.dots || exit
 	git clone https://aur.archlinux.org/yay.git
-	pushd $HOME/.dots/yay
+	pushd $HOME/.dots/yay || exit
 	makepkg -si
 }
 
 installDoas() {
 	mkdir -p $HOME/.dots
-	pushd $HOME/.dots
+	pushd $HOME/.dots || exit
 	git clone https://aur.archlinux.org/doas.git
-	pushd $HOME/.dots/doas
+	pushd $HOME/.dots/doas || exit
 	makepkg -si
 }
 
 installSuckless() {
 	mkdir -p $HOME/.dots
-	pushd $HOME/.dots
+	pushd $HOME/.dots || exit
 	git clone https://github.com/razak17/suckless
-	pushd $HOME/.dots/suckless/dwm
+	pushd $HOME/.dots/suckless/dwm || exit
 	sudo make clean install
-	pushd $HOME/.dots/suckless/dmenu
+	pushd $HOME/.dots/suckless/dmenu || exit
 	sudo make clean install
 }
 
