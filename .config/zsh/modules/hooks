@@ -40,3 +40,13 @@ command_not_found_handler() {
 add-zsh-hook chpwd () {
   __auto-ls-after-cd
 }
+
+# function __trap_exit_tmux() {
+# 	test (tmux list-windows | wc -l) = 1 || exit
+# 	test (tmux list-panes | wc -l) = 1 || exit
+# 	tmux switch-client -t default
+# }
+
+# if [[ -o interactive ]]; then
+#   trap 'echo trap; sleep 1' EXIT     # POSIX
+# fi
