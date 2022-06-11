@@ -66,6 +66,10 @@ if [ -d "$HOME/lib/azure-cli" ]; then
   export AZCLI="$HOME/lib/azure-cli/bin"
 fi
 
+# Codelldb for use in neovim
+if [ -d "$HOME/.vscode-oss/extensions/vadimcn.vscode-lldb-1.7.0" ]; then
+  export CODELLDB='$HOME/.vscode-oss/extensions/vadimcn.vscode-lldb-1.7.0'
+fi
 
 path=(
   "$LOCAL"
