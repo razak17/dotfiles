@@ -1,5 +1,4 @@
 #!/bin/zsh
-
 autoload -Uz add-zsh-hook
 
 zshcache_time="$(date +%s%N)"
@@ -14,14 +13,20 @@ rehash_precmd() {
     fi
   fi
 }
-
 add-zsh-hook -Uz precmd rehash_precmd
+
+# cdr
+autoload -Uz chpwd_recent_dirs cdr
+add-zsh-hook chpwd chpwd_recent_dirs
+
 
 command_not_found_handler() {
   local pkgs cmd="$1" files=()
   printf "command '%s' does not exist\n" "$cmd" # print command not found asap, then search for packages
   return 127
 }
+
+cdr # Jump to the most recently used directory on startup
 
 # function __trap_exit_tmux() {
 # 	test (tmux list-windows | wc -l) = 1 || exit

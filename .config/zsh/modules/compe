@@ -3,17 +3,14 @@
 #-------------------------------------------------------------------------------
 #               Completion
 #-------------------------------------------------------------------------------
-
 typeset -A __DOTS
 
 __DOTS[ITALIC_ON]=$'\e[3m'
 __DOTS[ITALIC_OFF]=$'\e[23m'
-# __DOTS[LS_COLORS]=${LS_COLORS:-'di=34:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:'}
 
 # Init completions
 autoload -Uz compinit
 zmodload -i zsh/complist
-_comp_options+=(globdots)   # Include hidden files.
 
 # Load and initialize the completion system ignoring insecure directories with a
 # cache time of 20 hours, so it should almost always regenerate the first time a
@@ -31,7 +28,15 @@ else
 fi
 unset _comp_path
 
+# Completion for kitty
+if [[ "$TERM" == "xterm-kitty" ]]; then
+  kitty + complete setup zsh | source /dev/stdin
+fi
 
+
+#-------------------------------------------------------------------------------
+#               Styling & Stuff
+#-------------------------------------------------------------------------------
 # Enable keyboard navigation of completions in menu
 # (not just tab/shift-tab but cursor keys as well):
 zstyle ':completion:*:*:*:*:*' menu select
@@ -56,7 +61,7 @@ zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-d
 
 # Use caching to make completion for commands such as dpkg and apt usable.
 zstyle ':completion::complete:*' use-cache on
-zstyle ':completion::complete:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompcache"
+zstyle ':completion:*' cache-path "$ZSH_CACHE_DIR/zcompcache"
 
 # Group matches and descriptions.
 zstyle ':completion:*:*:*:*:corrections' format '%F{teal}!- %d (errors: %e) -!%f'
@@ -106,15 +111,17 @@ zstyle ':completion:*' complete-options true
 zstyle ':completion:*:*:nvim:*' file-patterns '^*.(aux|log|pdf):source-files' '*:all-files'
 zstyle ':completion:*:*:rvim:*' file-patterns '^*.(aux|log|pdf):source-files' '*:all-files'
 
-expand-or-complete-with-dots() {
-  print -Pn "%F{red}…%f"
-  zle expand-or-complete
-  zle redisplay
-}
-zle -N expand-or-complete-with-dots
-# Set the function as the default tab completion widget
-bindkey -M viins "^I" expand-or-complete-with-dots
-bindkey -M vicmd "^I" expand-or-complete-with-dots
-
 zstyle ':hist:*' expand-aliases no
-alias sl=ls lsbkl=lsblk dcos=docs
+
+#-------------------------------------------------------------------------------
+#   CDR
+#-------------------------------------------------------------------------------
+# https://github.com/zsh-users/zsh/blob/master/Functions/Chpwd/cdr
+
+zstyle ':completion:*:*:cdr:*:*' menu selection
+# $WINDOWID is an environment variable set by kitty representing the window ID
+# of the OS window (NOTE this is not the same as the $KITTY_WINDOW_ID)
+# @see: https://github.com/kovidgoyal/kitty/pull/2877
+zstyle ':chpwd:*' recent-dirs-file $ZSH_CACHE_DIR/.chpwd-recent-dirs-${WINDOWID##*/} +
+zstyle ':completion:*' recent-dirs-insert always
+zstyle ':chpwd:*' recent-dirs-default yes

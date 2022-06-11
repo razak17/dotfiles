@@ -24,6 +24,7 @@ alias zs='source $HOME/.config/zsh/.zshrc'
 alias e="touch"
 alias m="mkdir"
 alias cmd='command -V'
+alias sl=ls lsbkl=lsblk dcos=docs
 
 # confirm before overwriting something
 alias cp="cp -i"

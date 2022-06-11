@@ -1,15 +1,19 @@
 #!/bin/zsh
 
+zmodload zsh/datetime
+
+_comp_options+=(globdots)   # Include hidden files.
+
 # profiling
 zmodload zsh/zprof
 
-# DO not highligh& pasted text
-zle_highlight=('paste:none')
-
 # colors
 autoload -U colors && colors
+
+# DO not highligh& pasted text
+zle_highlight=('paste:none')
 #-------------------------------------------------------------------------------
-#   LOCAL SCRIPTS
+#           LOCAL SCRIPTS
 #-------------------------------------------------------------------------------
 for script in $ZDOTDIR/scripts/*; do
   source $script
@@ -24,9 +28,12 @@ add_plugin 'zsh-syntax-highlighting'
 add_plugin 'zsh-hist'
 add_plugin 'zsh-autopair'
 add_plugin 'yarn'
+autoload zmv # builtin zsh rename command
+#-------------------------------------------------------------------------------
+#   Completions
+#-------------------------------------------------------------------------------
 add_completion 'conda-zsh-completion' false
 add_completion 'fnm'
-autoload zmv # builtin zsh rename command
 #-------------------------------------------------------------------------------
 #   Modules
 #-------------------------------------------------------------------------------
@@ -42,18 +49,6 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 # ignore params
 CORRECT_IGNORE="bin"
 CORRECT_IGNORE_FILE=".*"
-#-------------------------------------------------------------------------------
-#   CDR
-#-------------------------------------------------------------------------------
-# https://github.com/zsh-users/zsh/blob/master/Functions/Chpwd/cdr
-
-zstyle ':completion:*:*:cdr:*:*' menu selection
-# $WINDOWID is an environment variable set by kitty representing the window ID
-# of the OS window (NOTE this is not the same as the $KITTY_WINDOW_ID)
-# @see: https://github.com/kovidgoyal/kitty/pull/2877
-zstyle ':chpwd:*' recent-dirs-file $ZSH_CACHE_DIR/.chpwd-recent-dirs-${WINDOWID##*/} +
-zstyle ':completion:*' recent-dirs-insert always
-zstyle ':chpwd:*' recent-dirs-default yes
 #-------------------------------------------------------------------------------
 #   PATH
 #-------------------------------------------------------------------------------
