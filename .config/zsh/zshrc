@@ -40,16 +40,6 @@ add_completion 'fnm'
 add_modules opts compe hooks binds vim-mode vcs prompt aliases
 add_plugin 'git' # Needs to be here b/c it requires compdef (compe)
 #-------------------------------------------------------------------------------
-#   Plugin Options & Configurations
-#-------------------------------------------------------------------------------
-ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-ZSH_AUTOSUGGEST_MANUAL_REBIND=""
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-# ignore params
-CORRECT_IGNORE="bin"
-CORRECT_IGNORE_FILE=".*"
-#-------------------------------------------------------------------------------
 #   PATH
 #-------------------------------------------------------------------------------
 # fzf
