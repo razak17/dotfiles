@@ -43,8 +43,6 @@ add_plugin 'git' # Needs to be here b/c it requires compdef (compe)
 #-------------------------------------------------------------------------------
 #   PATH
 #-------------------------------------------------------------------------------
-# fzf
-[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
 # asdf
 if exists asdf; then
@@ -66,21 +64,11 @@ if exists az; then
   source $HOME/lib/azure-cli/az.completion
 fi
 
-# Azure cli
-if [[ -e "$HOME/.cargo/env" ]]; then
-  source "$HOME/.cargo/env"
-fi
+# Cargo
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 # conda_init and pip
 conda_init false
 
 # pyenv init
 pyenv_init false
-
-path=(
-  "$CODELLDB/adapter/"
-  "$CODELLDB/lldb/bin"
-  "$path[@]"
-)
-
-export PATH

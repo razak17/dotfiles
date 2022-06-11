@@ -5,10 +5,14 @@ typeset -U PATH path
 LOCAL="$HOME/.local/bin"
 ASDF_INSTALLS="$HOME/.asdf/installs"
 
+# fzf
+[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
+
 # asdf
-if [ -e "$HOME/.asdf/asdf.sh" ]; then
-  source $HOME/.asdf/asdf.sh
-fi
+[ -f $HOME/.asdf/asdf.sh ] && source $HOME/.asdf/asdf.sh
+
+# YARN
+[ -d "$HOME/.yarn" ] and export YARNPATH="$HOME/.yarn/bin"
 
 # fnm
 if [ -e "$HOME/.fnm/fnm" ]; then
@@ -26,19 +30,15 @@ if [ -d "$ASDF_INSTALLS/golang" ]; then
   export GOPATH="$HOME/go"
 fi
 
-# YARN
-if [ -d "$HOME/.yarn" ]; then
-  export YARNPATH="$HOME/.yarn/bin"
-fi
-
 # Azure cli
 if [ -d "$HOME/lib/azure-cli" ]; then
   export AZCLI="$HOME/lib/azure-cli/bin"
 fi
 
 # Codelldb for use in neovim
-if [ -d "$HOME/.vscode-oss/extensions/vadimcn.vscode-lldb-1.7.0" ]; then
-  export CODELLDB='$HOME/.vscode-oss/extensions/vadimcn.vscode-lldb-1.7.0'
+local CODELLDB_DIR="$HOME/.vscode-oss/extensions/vadimcn.vscode-lldb-1.7.0"
+if [ -d $CODELLDB ]; then
+  export CODELLDB=$CODELLDB_DIR
 fi
 
 path=(
