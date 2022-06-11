@@ -1,0 +1,35 @@
+#!/bin/zsh
+
+#-------------------------------------------------------------------------------
+#  PLUGIN MANAGEMENT
+#-------------------------------------------------------------------------------
+
+function add_modules() {
+  for i in "$@"; do
+    [ -f $ZDOTDIR/modules/$i ] && source $ZDOTDIR/modules/$i
+  done
+}
+
+function add_files() {
+  for i in "$@"; do
+    [ -f $ZDOTDIR/$i ] && source $ZDOTDIR/$i
+  done
+}
+
+function add_plugin() {
+  add_files "plugins/$1/$1.plugin.zsh" || add_file "plugins/$1/$1.zsh"
+}
+
+function add_completion() {
+  [ "$2" = false ] && return
+  if [ -d "$ZDOTDIR/plugins/$1" ]; then
+    dir="plugins"
+    file_path=$(ls $ZDOTDIR/$dir/$1/_*)
+  elif [ -d "$ZDOTDIR/completion/$1" ]; then
+    dir="completion"
+    file_path=$(ls $ZDOTDIR/$dir/$1/_*)
+  else
+    return
+  fi
+  fpath+="$(dirname "${file_path}")"
+}
