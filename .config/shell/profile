@@ -12,7 +12,7 @@ ASDF_INSTALLS="$HOME/.asdf/installs"
 [ -f $HOME/.asdf/asdf.sh ] && source $HOME/.asdf/asdf.sh
 
 # YARN
-[ -d "$HOME/.yarn" ] and export YARNPATH="$HOME/.yarn/bin"
+[ -d "$HOME/.yarn" ] && export YARNPATH="$HOME/.yarn/bin"
 
 # fnm
 if [ -e "$HOME/.fnm/fnm" ]; then
