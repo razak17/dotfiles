@@ -2,9 +2,9 @@
 
 setupSsh() {
 	if [[ -d "$HOME/.ssh" ]]; then
-		chmod 600 ~/.ssh/id_rsa
+		chmod 600 $HOME/.ssh/id_rsa
 		eval "$(ssh-agent -s)"
-		ssh-add ~/.ssh/id_rsa
+		ssh-add $HOME/.ssh/id_rsa
 	fi
 }
 
@@ -13,17 +13,18 @@ setupSsh() {
 exists() { (($ + commands[$1])); }
 
 installZshPlugins() {
-	mkdir -p ~/.config/zsh/plugins
-	mkdir -p ~/.config/zsh/completion
+	mkdir -p $HOME/.config/zsh/plugins
+	mkdir -p $HOME/.config/zsh/completion
 	plugins=(
 		'esc/conda-zsh-completion'
 		# 'djui/alias-tips'
+    # 'agkozak/zsh-z'
 		'zsh-users/zsh-autosuggestions'
 		'zsh-users/zsh-completions'
 		'zsh-users/zsh-syntax-highlighting'
-		# 'agkozak/zsh-z'
 		'marlonrichert/zsh-hist'
 		'hlissner/zsh-autopair'
+		'MichaelAquilina/zsh-auto-notify'
 	)
 	# curl -sLo "https://github.com/$download_path" "$url"
 	for i in "${plugins[@]}"; do
@@ -32,25 +33,29 @@ installZshPlugins() {
 			echo "dir ${name} already exists."
 		else
 			git clone https://github.com/$i ~/.config/zsh/plugins/$name
-			echo "clone"
 		fi
 	done
 
-	mkdir -p ~/.config/zsh/plugins/git
-	cd ~/.config/zsh/plugins/git || exit
-	curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/git/git.plugin.zsh --output git.plugin.zsh
-	curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/git/README.md --output README.md
+  OH_MY_ZSH="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins"
+  if [ -e "$HOME/.config/zsh/plugins/git" ]; then
+    exit
+  else
+    mkdir -p $HOME/.config/zsh/plugins/git
+    pushd $HOME/.config/zsh/plugins/git || exit
+    curl -fsSL $OH_MY_ZSH/git/git.plugin.zsh --output git.plugin.zsh
+    curl -fsSL $OH_MY_ZSH/git/README.md --output README.md
+  fi
 }
 
 installFzf() {
-	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
+	git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf && $HOME/.fzf/install
 }
 installTmuxPlugins() {
-	git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+	git clone https://github.com/tmux-plugins/tpm $HOME/.config/tmux/plugins/tpm
 }
 
 installAsdf() {
-	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.0-rc1
+	git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.8.0-rc1
 }
 
 installFnm() {

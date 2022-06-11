@@ -27,6 +27,7 @@ add_plugin 'zsh-autosuggestions'
 add_plugin 'zsh-syntax-highlighting'
 add_plugin 'zsh-hist'
 add_plugin 'zsh-autopair'
+add_plugin 'zsh-auto-notify' 'auto-notify.plugin'
 add_plugin 'yarn'
 autoload zmv # builtin zsh rename command
 #-------------------------------------------------------------------------------
