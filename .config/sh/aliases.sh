@@ -1,4 +1,4 @@
-# Bash
+#!/bin/bash
 alias a="nvim ~/.config/sh/aliases.sh"
 alias bs='source ~/.bashrc'
 alias b="nvim ~/.bashrc"

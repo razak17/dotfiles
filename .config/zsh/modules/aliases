@@ -1,8 +1,16 @@
 #!/bin/zsh
 
 #alias v="$EDITOR ./"
-alias rv=rvimProfiling
-alias nv=nvimProfiling
+if [[ $+commands[rvimProfiling] ]]; then
+  alias rv=rvimProfiling
+else
+  alias rv=nvim
+fi
+if [[ $+commands[nvimProfiling] ]]; then
+  alias nv=nvimProfiling
+else
+  alias nv=nvim
+fi
 alias -s {js,html,js,ts,css,md}=nvim
 
 # shell

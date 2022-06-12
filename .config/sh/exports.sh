@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Limit number of lines and entries in the history.
 export HISTFILESIZE=50000
 export HISTSIZE=50000
