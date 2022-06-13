@@ -24,11 +24,11 @@ cmds="\
 🔒 lock		slock
 ♻ renew 	kill -HUP $(wmpid)
 🚪 leave	${kx:-killall xinit}
-🐻 hibernate	${reb:-slock $ctl hibernate -i}
-💤 sleep	${reb:-slock $ctl suspend -i}
+🐻 hibernate	${hib:-slock $ctl hibernate -i}
+💤 sleep	${sleep:-slock $ctl suspend -i}
 🔃 reboot	${reb:-sudo openrc-shutdown -rq now}
 🖥 shutdown	${die:-sudo openrc-shutdown -pq now}
-📺 display off	${die:-xset dpms force off}"
+📺 display off	${off:-xset dpms force off}"
 
 # choices="$(echo "$cmds" | cut -d'	' -f 1)" || exit 1
 choices="$(echo "$cmds" | cut -d'	' -f 1 | dmenu -l 10)" || exit 1
