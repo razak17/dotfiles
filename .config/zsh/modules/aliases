@@ -14,7 +14,7 @@ fi
 alias -s {js,html,js,ts,css,md}=nvim
 
 # shell
-# alias sudo="doas"
+alias sudo="doas"
 alias b="bash"
 alias d="dirs -v"
 for index ({1..17}) alias "$index"="cd +${index}"; unset index
