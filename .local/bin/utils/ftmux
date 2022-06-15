@@ -157,13 +157,11 @@ helpMenu() {
 	echo -r: resize
 	echo -m: moneyportal
 	echo -s: "create session. followed by <session-name>"
-	echo -c: regular commands. followed by \"-cmd\"
-	echo -cmd:
-	echo "    -zs": send \"zs\" to all panes
-	echo "    -cls" send \"clear\" to all panes
-	echo "    -w: window name"
-	echo "    -p: pane id"
-	echo "    -pt: pane title"
+	echo -c: "send command to eeach pane. followed by <arg>"
+	echo "        -arg: -a | -w | -s. followed by actual command. eg 'ls'"
+  echo "            -a: all session panes"
+	echo "            -w: window panes"
+  echo "            -s: session panes"
 }
 
 zTest() {
@@ -320,17 +318,20 @@ while [ "$#" -gt 0 ]; do
 		if [ "$arg" == "-s" ]; then
 			shift
 		fi
-		echo panes: "$panes"
+		# echo panes: "$panes"
 		cmd=$1
 		# echo cmd: $cmd
 		checkEmpty "$cmd"
 		shift
-		# TODO: Figure out how to get each individual pane id from panes array or its a string (maybe)
-		IFS=' ' read -ra ids <<<"$panes"
-		for i in "${panes[@]}"; do
-			echo sending cmd: "$cmd" to "$i" hello
-			$X send-keys -t "$i" "$cmd" "C-m"
-		done
+    first=$(echo $panes | cut -b 2) # first pane_id (num)
+    len=$(echo $panes | awk '{print substr($0,length,1)}') # last pane_id use for len
+    cc=1 # why:  pane id starting from num > 1
+    for ((i = first ; i <= len ; i++)); do
+      curr=$(echo $panes | cut -d ' ' -f $cc)
+      cc=$((cc+1))
+			# echo sending cmd: "$cmd" to "$curr" hello
+			$X send-keys -t "$curr" "$cmd" "C-m"
+    done
 		;;
 	--simple)
 		arg=$1
