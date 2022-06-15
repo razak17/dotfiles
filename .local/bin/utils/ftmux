@@ -91,7 +91,7 @@ resizePane() {
 }
 
 breakPane() {
-	($X break-pane -dP -F '#{session_name}:#{window_index}.#{pane_index}' -n 'break')
+	($X break-pane -P -F '#{session_name}:#{window_index}.#{pane_index}' -n 'break')
 }
 
 createSession() {
@@ -153,15 +153,26 @@ createWindow() {
 }
 
 helpMenu() {
-	echo -h: help
-	echo -r: resize
-	echo -m: moneyportal
-	echo -s: "create session. followed by <session-name>"
-	echo -c: "send command to eeach pane. followed by <arg>"
-	echo "        -arg: -a | -w | -s. followed by actual command. eg 'ls'"
+	echo "FTMUX: Tmux Utilities to improve functionality"
+	echo "-h: help"
+	echo "-np: select next pane"
+	echo "-pp: select previous pane"
+  echo "-r: resize (equal splits)"
+	echo "-N: session number"
+  echo "-b: break active pane to new window"
+  echo "-s: create session. Followed by <session-name>"
+  echo "-k: kill session. Followed by <session-name> (cannot be attached session)"
+	echo "-s: create new session"
+	echo "-c: send command to each pane. Followed by <arg>"
+	echo "        -arg: -a | -w | -s. Followed by actual command. eg 'ls'"
   echo "            -a: all session panes"
 	echo "            -w: window panes"
   echo "            -s: session panes"
+	echo "-t: echo simple tmux commands. Followed by <arg>"
+	echo "        -arg: -p | -pt | -"
+  echo "            -p: pane id"
+	echo "            -pt: pane title"
+  echo "            -w: window name"
 }
 
 zTest() {
@@ -216,7 +227,7 @@ simpleCommands() {
 
 firstSession() {
 	session="first"
-	$X has-session -t "$session_name" &>/dev/null
+	$X has-session -t "$session" &>/dev/null
 
 	(("$?" != 0)) && createSession $session "main" $NVIM
 
@@ -287,9 +298,9 @@ while [ "$#" -gt 0 ]; do
 
 	case "$curr" in
 	-h | --help) helpMenu ;;
-	-r | --resize) resizePane ;;
-	--nextpane) nextPane ;;
-	--prevpane) prevPane ;;
+	-np | --nextpane) nextPane ;;
+	-pp | --prevpane) prevPane ;;
+  -r | --resize) resizePane ;;
 	-N) sessionNumber ;;
 	-b | --break) breakPane ;;
 	-z) zTest "$@" ;;
@@ -315,7 +326,7 @@ while [ "$#" -gt 0 ]; do
 			;;
 		*) echo "Unavailable ... $cmd" ;;
 		esac
-		if [ "$arg" == "-s" ]; then
+		if [ "$arg" = "-s" ]; then
 			shift
 		fi
 		# echo panes: "$panes"
@@ -333,7 +344,7 @@ while [ "$#" -gt 0 ]; do
 			$X send-keys -t "$curr" "$cmd" "C-m"
     done
 		;;
-	--simple)
+	-t)
 		arg=$1
 		checkEmpty "$arg"
 		shift
