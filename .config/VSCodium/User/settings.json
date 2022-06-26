@@ -96,7 +96,6 @@
   "workbench.activityBar.iconClickBehavior": "toggle",
   "workbench.panel.defaultLocation": "left",
   "workbench.startupEditor": "newUntitledFile",
-  "workbench.colorTheme": "One Dark Pro",
   "workbench.commandPalette.preserveInput": true,
   "workbench.iconTheme": "vs-seti",
   "zenMode.hideActivityBar": true,
@@ -2740,5 +2739,7 @@
       }
     }
   },
-  "marquee.configuration.name": "Razak Mo"
+  "marquee.configuration.name": "Razak Mo",
+  "workbench.colorTheme": "One Dark Pro",
+  "window.zoomLevel": 1
 }

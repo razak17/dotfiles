@@ -1,7 +1,6 @@
 #!/bin/bash
 
 YAY="yay -Sy"
-PAC="sudo pacman -S"
 
 ###############################################################
 # NOTE:
@@ -24,50 +23,95 @@ PAC="sudo pacman -S"
 # Server = https://mirror1.cl.netactuate.com/artix/universe/$arch
 ##################################################################
 
-# Install packages
-pac_packages='aria2 exa plocate xorg-xinput wireless_tools github-cli fd htop ninja pamixer cmake make tmux ranger qbittorrent redshift mpv xclip brightnessctl alacritty lxappearance ripgrep maim lazygit ctags strace fd kitty bpytop screenkey python-pywal xwallpaper exa dunst axel elinks youtube-dl bat baobab bmon arc-gtk-theme pulseaudio gvfs xf86-input-libinput copyq android-tools android-file-transfer htop sloc lolcat pipewire pipewire-pulse pipewire-media-session'
-# 'docker'
-# 'postgresql'
-# 'clang'
-# 'firefox'
-# 'rust-analyzer'
-# 'timeshift'
-# 'keepassxc'
-# 'thunderbird'
-# 'whatsapp-nativefier'
-# 'telegram-desktop'
-# 'vlc'
-# 'brave'
-
-yay_packages=(
-	'autokey-gtk'
-	'libxft-bgra'
-	'zoxide'
-	'bibata-cursor-theme'
-	'devour'
-	'toilet'
-	'ttf-joypixels'
-	'ueberzug'
-	'jq'
-	'ttf-ancient-fonts'
-	# 'notion-app'
-	# 'vscodium-bin'
-	# 'skippy-xd'
-	# 'packettracer'
-	# 'wps-office'
-)
-
 installAurPackage() {
 	echo 'Aur stuff'
-	echo '\n'
-	for i in "${yay_packages[@]}"; do
-		echo Installing: $i
-		$YAY $i
-	done
+	# notion-app \
+	# vscodium-bin \
+	# skippy-xd \
+	# packettracer \
+	# wps-office \
+	yay -Sy \
+		autokey-gtk \
+		libxft-bgra \
+		zoxide \
+		bibata-cursor-theme \
+		devour \
+		toilet \
+		ttf-joypixels \
+		ueberzug \
+		jq \
+		ttf-ancient-fonts
 }
 
 installPacmanPackages() {
-	$PAC $pac_packages
+	echo 'Pacman stuff'
+	# Install packages
+	# docker \
+	# postgresql \
+	# clang \
+	# firefox \
+	# rust-analyzer \
+	# timeshift \
+	# keepassxc \
+	# thunderbird \
+	# whatsapp-nativefier \
+	# telegram-desktop \
+	# vlc \
+	# brave \
+	# copyq \
+	# pulseaudio \
+	# qbittorrent \
+	# axel \
+	sudo pacman -S \
+		aria2 \
+		exa \
+		plocate \
+		xorg-xinput \
+		wireless_tools \
+		github-cli \
+		fd \
+		htop \
+		ninja \
+		pamixer \
+		cmake \
+		make \
+		tmux \
+		ranger \
+		redshift \
+		mpv \
+		xclip \
+		brightnessctl \
+		alacritty \
+		lxappearance \
+		ripgrep \
+		maim \
+		lazygit \
+		ctags \
+		strace \
+		fd \
+		kitty \
+		bpytop \
+		screenkey \
+		python-pywal \
+		xwallpaper \
+		exa \
+		dunst \
+		elinks \
+		youtube-dl \
+		bat \
+		baobab \
+		bmon \
+		arc-gtk-theme \
+		gvfs \
+		xf86-input-libinput \
+		android-tools \
+		android-file-transfer \
+		htop \
+		slock \
+		lolcat \
+		pipewire \
+		pipewire-pulse \
+		pipewire-media-session
 }
 
 while [[ "$#" -gt 0 ]]; do
