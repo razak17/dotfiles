@@ -1,10 +1,13 @@
 #!/bin/bash
 
-echo enter username
-read $USER
+pacman -S docker docker-openrc
 
 sudo groupadd docker
 sudo usermod -aG docker $USER
+
+# openrc
+sudo rc-update add docker default
+sudo rc-service docker start
 
 # sudo systemctl enable docker.service
 # sudo systemctl enable containerd.service
