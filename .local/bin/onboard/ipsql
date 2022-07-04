@@ -16,6 +16,7 @@ createdb myDatabaseName
 sudo rc-update add postgresql default
 sudo rc-service postgresql start
 
+# SELECT rolname FROM pg_roles;
 # normal mode
 # sudo systemctl enable postgresql.service
 # sudo systemctl start postgresql.service

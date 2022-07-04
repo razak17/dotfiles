@@ -1,0 +1,36 @@
+#!/bin/sh
+base_dir=$HOME/.mozilla/firefox/profiles
+coding=$base_dir/coding
+crypto=$base_dir/crypto
+dev=$base_dir/dev
+main=$base_dir/main
+rec=$base_dir/rec
+user=$base_dir/user
+
+update_config() {
+	pushd $coding
+	$coding/updater.sh
+	$coding/prefsCleaner.sh
+
+	pushd $crypto
+	$crypto/updater.sh
+	$crypto/prefsCleaner.sh
+
+	pushd $dev
+	$dev/updater.sh
+	$dev/prefsCleaner.sh
+
+	pushd $main
+	$main/updater.sh
+	$main/prefsCleaner.sh
+
+	pushd $rec
+	$rec/updater.sh
+	$rec/prefsCleaner.sh
+
+	pushd $user
+	$user/updater.sh
+	$user/prefsCleaner.sh
+}
+
+update_config
