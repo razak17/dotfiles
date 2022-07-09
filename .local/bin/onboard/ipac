@@ -40,7 +40,9 @@ installAurPackage() {
 		ttf-joypixels \
 		ueberzug \
 		jq \
-		ttf-ancient-fonts
+		ttf-ancient-fonts \
+    mongodb-compass \
+    prisma-studio
 }
 
 installPacmanPackages() {
