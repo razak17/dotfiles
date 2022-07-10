@@ -37,7 +37,7 @@ confCommitAll() {
 }
 
 confCommitAllNoMsg() {
-	eval "$CONF commit -a"
+	eval "$CONF commit -v -a"
 }
 
 confPull() {
