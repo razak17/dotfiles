@@ -59,6 +59,9 @@ if exists zoxide; then
   eval "$(zoxide init zsh)"
 fi
 
+# bun completions
+[ -s "/home/razak/.bun/_bun" ] && source "/home/razak/.bun/_bun"
+
 # Azure cli
 if exists az; then
   source $HOME/lib/azure-cli/az.completion

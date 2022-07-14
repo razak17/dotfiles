@@ -154,6 +154,7 @@ fi
 
 # editor
 alias a="rv $HOME/.config/zsh/modules/aliases"
+alias ic="rv $HOME/.dots/clip/clip_hist.txt"
 alias lc='rv ${RVIM_CONFIG_PATH:-$HOME/.config}/rvim/lua/user/config/init.lua'
 alias rvc='rv ${RVIM_CONFIG_PATH:-$HOME/.config}/rvim/init.lua'
 alias nvc='nvim config.h'
@@ -200,6 +201,7 @@ alias cst="iconf -cs"
 alias cstb="conf status -sb"
 
 alias gs="git status"
+alias gI="git init"
 
 # nord vpn
 alias inord="systemctl start nordvpnd.service"

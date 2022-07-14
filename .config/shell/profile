@@ -30,6 +30,11 @@ if [ -d "$ASDF_INSTALLS/golang" ]; then
   export GOPATH="$HOME/go"
 fi
 
+# Bun
+if [ -d "$HOME/.bun" ]; then
+  export BUN_INSTALL="$HOME/.bun"
+fi
+
 # Azure cli
 if [ -d "$HOME/lib/azure-cli" ]; then
   export AZCLI="$HOME/lib/azure-cli/bin"
@@ -56,6 +61,7 @@ path=(
   "$FNMPATH"
   "$YARNPATH"
   "$AZCLI"
+  "$BUN_INSTALL/bin"
   "$path[@]"
 )
 
