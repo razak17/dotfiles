@@ -94,6 +94,14 @@ breakPane() {
 	($X break-pane -P -F '#{session_name}:#{window_index}.#{pane_index}' -n 'break')
 }
 
+# TODO: Implement break a pane into a new session
+breakIntoSession() {
+  paneIdx=$($X display -p '#{pane_index}')
+  window_name=$($X display -p '#{window_name}')
+  createSession $window_name
+	# ($X break-pane -P -F '#{session_name}:#{window_index}.#{pane_index}' -n 'break')
+}
+
 createSession() {
 	session=$1
 	window=$2
@@ -303,6 +311,7 @@ while [ "$#" -gt 0 ]; do
   -r | --resize) resizePane ;;
 	-N) sessionNumber ;;
 	-b | --break) breakPane ;;
+	-B | --break-into-session) breakIntoSession ;;
 	-z) zTest "$@" ;;
 	-m) moneyportalSession ;;
 	--first) firstSession ;;
