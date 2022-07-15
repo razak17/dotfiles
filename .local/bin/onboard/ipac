@@ -92,7 +92,7 @@ installPacmanPackages() {
 		strace \
 		fd \
 		kitty \
-		bpytop \
+		btop \
 		screenkey \
 		python-pywal \
 		xwallpaper \
