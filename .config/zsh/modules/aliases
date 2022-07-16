@@ -14,7 +14,7 @@ fi
 alias -s {js,html,js,ts,css,md}=nvim
 
 # shell
-# alias sudo="doas"
+# alias sudo="sudo"
 alias b="bash"
 alias d="dirs -v"
 for index ({1..17}) alias "$index"="cd +${index}"; unset index
@@ -45,8 +45,8 @@ alias notes='fn'
 
 # system
 alias obd="objdump -d"
-alias rcs="doas rc-service"
-alias rcu="doas rc-update"
+alias rcs="sudo rc-service"
+alias rcu="sudo rc-update"
 alias wsc="iwlist scanning"
 alias iws="sudoedit /etc/wpa_supplicant/wpa_supplicant.conf"
 alias swap="cat /proc/sys/vm/swappiness"
@@ -69,8 +69,8 @@ alias microcode='grep . /sys/devices/system/cpu/vulnerabilities/*'
 #hardware info --short
 alias hw="hwinfo --short"
 #switch between bash and zsh
-alias tobash="doas chsh $USER -s /bin/bash && echo 'Now log out.'"
-alias tozsh="doas chsh $USER -s /bin/zsh && echo 'Now log out.'"
+alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
+alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
 alias ulist="cut -d: -f1 /etc/passwd"
 #merge new settings
 alias merge="xrdb -merge ~/.Xresources"
@@ -87,53 +87,53 @@ alias yta-wav="youtube-dl --extract-audio --audio-format wav "
 alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 
 # sudo
-alias i='doas'
+alias i='sudo'
 alias sd="sudo"
 alias ie='sudoedit'
 alias inv='sudoedit'
-# alias is='doas su'
-alias iv='doas -v'
-alias irm="doas rm"
-alias icp="doas cp"
-alias imv="doas mv"
-alias irmf="doas rm -r"
-alias icpf="doas cp -r"
-alias imvf="doas mv"
-alias crole='doas -iu'
-alias uadd='doas usermod -aG'
-alias imci="doas make clean install"
-alias imi="doas make install"
+# alias is='sudo su'
+alias iv='sudo -v'
+alias irm="sudo rm"
+alias icp="sudo cp"
+alias imv="sudo mv"
+alias irmf="sudo rm -r"
+alias icpf="sudo cp -r"
+alias imvf="sudo mv"
+alias crole='sudo -iu'
+alias uadd='sudo usermod -aG'
+alias imci="sudo make clean install"
+alias imi="sudo make install"
 
 # Pacman
 alias Qi="pacman -Qi"
 alias Ql="pacman -Ql"
 alias wp='pacman -Qs'
-alias p='doas pacman -S'
-alias r='doas pacman -Rs'
-alias R='doas pacman -Rcns'
-alias U='doas pacman -Qdtq'
+alias p='sudo pacman -S'
+alias r='sudo pacman -Rs'
+alias R='sudo pacman -Rcns'
+alias U='sudo pacman -Qdtq'
 alias y='yay --noconfirm'
 alias yy='yay -Sy --noconfirm'
-alias upd='doas pacman -Syu'
-alias rcache="doas pacman -Sc"
+alias upd='sudo pacman -Syu'
+alias rcache="sudo pacman -Sc"
 alias pkgs="pacman -Q | fzf"
 #maintenance
-alias clean='doas pacman -Rns $(pacman -Qtdq)'
+alias clean='sudo pacman -Rns $(pacman -Qtdq)'
 # get fastest mirrors
-alias mirror="doas reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
-alias mirrord="doas reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
-alias mirrors="doas reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
-alias mirrora="doas reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
+alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
+alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
+alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
+alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
 
 # sysact
 alias sx="startx"
 alias kx="killall xinit"
-alias reb="doas -A openrc-shutdown -rq now"
-alias die="doas -A openrc-shutdown -pq now"
+alias reb="sudo -A openrc-shutdown -rq now"
+alias die="sudo -A openrc-shutdown -pq now"
 
 # Programs
 alias grep="grep --color=auto"
-alias iredis="doas /etc/init.d/redis_6379 start"
+alias iredis="sudo /etc/init.d/redis_6379 start"
 alias codium="sudoedit /usr/share/vscodium-bin/resources/app/product.json"
 alias py="python"
 alias xi="tuxi"
@@ -179,9 +179,9 @@ alias nvcp="cp --force ~/.dots/neovim/build/bin/nvim  ~/.local/bin"
 
 # Docker and Docker Compose
 # alias idocker="systemctl start docker.service"
-alias udocker="doas rc-update add docker default"
-# alias udocker="doas rc-update del docker default"
-alias idocker="doas rc-service docker start"
+alias udocker="sudo rc-update add docker default"
+# alias udocker="sudo rc-update del docker default"
+alias idocker="sudo rc-service docker start"
 alias dc="docker-compose"
 alias dce="docker-compose exec"
 alias dci="docker-compose up"
