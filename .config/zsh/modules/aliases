@@ -89,21 +89,14 @@ alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 # sudo
 alias i='sudo'
 alias ir='sudo rm -r'
-alias sd="sudo"
+alias ic="sudo cp -r"
+alias im="sudo mv"
 alias ie='sudoedit'
-alias inv='sudoedit'
-# alias is='sudo su'
 alias iv='sudo -v'
-alias irm="sudo rm"
-alias icp="sudo cp"
-alias imv="sudo mv"
-alias irmf="sudo rm -r"
-alias icpf="sudo cp -r"
-alias imvf="sudo mv"
+alias imi="sudo make install"
+alias imci="sudo make clean install"
 alias crole='sudo -iu'
 alias uadd='sudo usermod -aG'
-alias imci="sudo make clean install"
-alias imi="sudo make install"
 
 # Pacman
 alias Qi="pacman -Qi"
@@ -155,7 +148,7 @@ fi
 
 # editor
 alias a="rv $HOME/.config/zsh/modules/aliases"
-alias ic="rv $HOME/.dots/clip/clip_hist.txt"
+alias icl="rv $HOME/.dots/clip/clip_hist.txt"
 alias lc='rv ${RVIM_CONFIG_PATH:-$HOME/.config}/rvim/lua/user/config/init.lua'
 alias rvc='rv ${RVIM_CONFIG_PATH:-$HOME/.config}/rvim/init.lua'
 alias nvc='nvim config.h'
