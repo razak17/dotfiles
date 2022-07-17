@@ -88,6 +88,7 @@ alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 
 # sudo
 alias i='sudo'
+alias ir='sudo rm -r'
 alias sd="sudo"
 alias ie='sudoedit'
 alias inv='sudoedit'
