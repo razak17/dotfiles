@@ -1,7 +1,7 @@
 #!/bin/bash
 
 kern="$(uname -r)"
-echo -e "$kern "
+echo -e "$kern " | cut -d '-' -f 1
 
 case $BLOCK_BUTTON in
 	3) notify-send "🖥 Kernel module " "\- Shows current running kernel."
