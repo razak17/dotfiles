@@ -85,3 +85,14 @@ fz() {
 	IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview 'bat --theme="OneHalfDark" --color "always" {}' --preview-window=right:60%))
 	[[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
+
+nextutils() {
+  eslintrc="$HOME/.dots/web/.eslintrc-next.json" 
+  prettierrc="$HOME/.dots/web/.prettierrc" 
+  if [ -e "$eslintrc" ]; then
+    cp -f "$eslintrc" "$PWD"/.eslintrc.json
+  fi
+  if [ -e "$prettierrc" ]; then
+    cp -f "$prettierrc" .
+  fi
+}
