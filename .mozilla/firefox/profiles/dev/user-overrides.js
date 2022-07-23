@@ -2,11 +2,6 @@
 user_pref("browser.newtabpage.activity-stream.feeds.section.highlights", false);
 user_pref("browser.newtabpage.activity-stream.feeds.topsites", false);
 
-/*** [SECTION 9000]: PERSONAL
-   Non-project related but useful. If any interest you, add them to your overrides
-***/
-user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true); // [FF68+] allow userChrome/userContent
-
 /*** [SECTION 0700]: DNS / DoH / PROXY / SOCKS / IPv6 ***/
 user_pref("network.trr.mode", 2);
 user_pref("network.trr.custom_uri", "https://doh.libredns.gr/dns-query");
@@ -48,6 +43,7 @@ user_pref("devtools.editor.keymap", "vim");
 // WARNINGS
 user_pref("browser.tabs.warnOnClose", false);
 user_pref("browser.tabs.warnOnCloseOtherTabs", false);
+user_pref("browser.tabs.closeWindowWithLastTab", false);
 user_pref("browser.tabs.warnOnOpen", false);
 user_pref("full-screen-api.warning.delay", 0);
 user_pref("full-screen-api.warning.timeout", 0);
@@ -55,12 +51,20 @@ user_pref("full-screen-api.warning.timeout", 0);
 // APPEARANCE
 user_pref("sidebar.position_start", false);
 user_pref("browser.download.autohideButton", false); // [FF57+]
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true); // [FF68+] allow userChrome/userContent
+
+// CONTENT BEHAVIOR
+user_pref("accessibility.browsewithcaret", false);
+user_pref("accessibility.typeaheadfind", false);
+user_pref("clipboard.autocopy", false); // disable autocopy default [LINUX]
+user_pref("layout.spellcheckDefault", 2); // 0=none, 1-multi-line, 2=multi-line & single-line
 
 // UX FEATURES: disable and hide the icons and menus
 user_pref("extensions.pocket.enabled", false); // Pocket Account [FF46+]
 user_pref("extensions.screenshots.disabled", false); // [FF55+]
 user_pref("identity.fxaccounts.enabled", false); // Firefox Accounts & Sync [FF60+] [RESTART]
 user_pref("reader.parse-on-load.enabled", false); // Reader View
+user_pref("full-screen-api.ignore-widgets", true);
 
 /*** [SECTION 5000]: OPTIONAL OPSEC ***/
 user_pref("signon.rememberSignons", false);
@@ -97,4 +101,3 @@ user_pref("browser.urlbar.placeholderName.private", "DuckDuckGo");
 /* 4520: disable WebGL (Web Graphics Library)
  * [SETUP-WEB] If you need it then override it. RFP still randomizes canvas for naive scripts ***/
 user_pref("webgl.disabled", false);
-

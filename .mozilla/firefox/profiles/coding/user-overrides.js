@@ -38,6 +38,7 @@ user_pref("startup.homepage_override_url", ""); // What's New page after updates
 // WARNINGS
 user_pref("browser.tabs.warnOnClose", false);
 user_pref("browser.tabs.warnOnCloseOtherTabs", false);
+user_pref("browser.tabs.closeWindowWithLastTab", false);
 user_pref("browser.tabs.warnOnOpen", false);
 user_pref("full-screen-api.warning.delay", 0);
 user_pref("full-screen-api.warning.timeout", 0);
@@ -56,7 +57,6 @@ user_pref("layout.spellcheckDefault", 2); // 0=none, 1-multi-line, 2=multi-line 
 // UX BEHAVIOR
 user_pref("browser.backspace_action", 2); // 0=previous page, 1=scroll up, 2=do nothing
 user_pref("browser.quitShortcut.disabled", true); // disable Ctrl-Q quit shortcut [LINUX] [MAC] [FF87+]
-user_pref("browser.tabs.closeWindowWithLastTab", false);
 user_pref("browser.urlbar.decodeURLsOnCopy", true); // see bugzilla 1320061 [FF53+]
 user_pref("general.autoScroll", false); // middle-click enabling auto-scrolling [DEFAULT: false on Linux]
 user_pref("ui.key.menuAccessKey", 0); // disable alt key toggling the menu bar [RESTART]
