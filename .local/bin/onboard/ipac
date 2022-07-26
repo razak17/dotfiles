@@ -42,7 +42,8 @@ installAurPackage() {
 		jq \
 		ttf-ancient-fonts \
     mongodb-compass \
-    prisma-studio
+    prisma-studio \
+    paru
 }
 
 installPacmanPackages() {
