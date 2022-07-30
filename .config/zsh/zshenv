@@ -20,8 +20,16 @@ export ZDOTDIR=$HOME/.config/zsh
 
 local TEXT_EDITOR="nvim"
 
-if [ -e "$HOME/.local/bin/rvim" ]; then
+if [[ $+commands[pvim] ]]; then
+  TEXT_EDITOR="pvim"
+elif [[ $+commands[rvim] ]]; then
   TEXT_EDITOR="rvim"
+elif [[ $+commands[nvim] ]]; then
+  TEXT_EDITOR="nvim"
+elif [[ $+commands[vi] ]]; then
+  TEXT_EDITOR="vi"
+else
+  TEXT_EDITOR="nano"
 fi
 
 export MANPATH="/usr/local/man:$MANPATH"
