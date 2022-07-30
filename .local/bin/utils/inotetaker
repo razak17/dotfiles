@@ -8,8 +8,13 @@ if [ ! -f "$noteFilename" ]; then
 	echo "# Notes for $(date +%B-%d-%Y)" >"$noteFilename"
 fi
 
+editor="nvim"
+if [[ $+commands[pvim] ]]; then
+  editor="pvim"
+fi
+
 # rvim -c "norm Go" -c "norm Go## $(date +%H:%M:%S)" -c "norm G2o" -c "startinsert" "$noteFilename"
-nvim -c "norm Go" \
+$editor -c "norm Go" \
 	-c "norm Go## $(date +%H:%M:%S)" \
 	-c "norm G2o" \
 	-c "startinsert" "$noteFilename"
