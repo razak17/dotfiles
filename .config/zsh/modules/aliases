@@ -221,7 +221,7 @@ alias dm='dmenumount'
 alias du='dmenuumount'
 
 alias ywa="yarn watch"
-alias yarndev='yarn add -D eslint_d prettier_d_slim prettier eslint eslint-config-prettier'
+alias yarndev='yarn add -D eslint_d @fsouza/prettierd prettier eslint eslint-config-prettier'
 alias yarndevb='yarn add -D @babel/eslint-parser @babel/preset-env @babel/core'
 alias yarndevts='yarn add -D @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser'
 alias yarnreactts='yarn add -D @babel/eslint-parser eslint-plugin-import eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-jsx-a11y'

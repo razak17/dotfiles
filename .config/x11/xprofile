@@ -14,7 +14,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 	unset f
 fi
 
-[ -f $HOME/.config/zsh/zshenv ] && . $HOME/.config/zsh/zshenv
+[ -f "$HOME/.config/zsh/zshenv" ] && . "$HOME/.config/zsh/zshenv"
 
 dwmblocks &
 ~/.local/bin/dwm/setbg &

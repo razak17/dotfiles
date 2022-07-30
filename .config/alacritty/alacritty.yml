@@ -80,9 +80,9 @@ colors: *light
 font:
   size: 10
   normal:
-    family: 'JetBrains Mono Nerd Font'
-    # family: "FiraCode Nerd Font Mono"
-    # family: "FiraMono Nerd Font Mono"
+    family: 'Cascadia Code'
+    # family: 'JetBrains Mono Nerd Font'
+    # family: "FiraCode Nerd Font"
     # family: 'Operator Mono Lig Book'
     # family: 'Hurmit Nerd Font'
     # family: 'Cartograph CF Light'

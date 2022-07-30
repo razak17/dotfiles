@@ -1,7 +1,5 @@
 #!/bin/bash
 
-YAY="yay -Sy"
-
 ###############################################################
 # NOTE:
 # add this to /etc/pacman.conf after artix-archlinux-support is
