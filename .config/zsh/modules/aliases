@@ -1,20 +1,23 @@
 #!/bin/zsh
 
-#alias v="$EDITOR ./"
-if [[ $+commands[rvimProfiling] ]]; then
-  alias rv=rvimProfiling
-else
-  alias rv=nvim
-fi
-if [[ $+commands[nvimProfiling] ]]; then
-  alias nv=nvimProfiling
-else
-  alias nv=nvim
-fi
+alias v="$EDITOR ./"
+
 alias -s {js,html,js,ts,css,md}=nvim
+
+if [[ $+commands[rvim] ]]; then
+  alias rv=rvim
+fi
 
 if [[ $+commands[pvim] ]]; then
   alias pv=pvim
+fi
+
+if [[ $+commands[rvimProfiling] ]]; then
+  alias rvlog=rvimProfiling
+fi
+
+if [[ $+commands[nvimProfiling] ]]; then
+  alias nvlog=nvimProfiling
 fi
 
 # shell
@@ -221,10 +224,10 @@ alias dm='dmenumount'
 alias du='dmenuumount'
 
 alias ywa="yarn watch"
-alias yarndev='yarn add -D eslint_d @fsouza/prettierd prettier eslint eslint-config-prettier'
+alias yarndev='yarn add -D eslint_d @fsouza/prettierd  eslint-config-prettier'
 alias yarndevb='yarn add -D @babel/eslint-parser @babel/preset-env @babel/core'
 alias yarndevts='yarn add -D @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser'
-alias yarnreactts='yarn add -D @babel/eslint-parser eslint-plugin-import eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-jsx-a11y'
+alias yarnreactts='yarn add -D @babel/eslint-parser eslint-plugin-import eslint-plugin-react eslint-plugin-react-hooks'
 alias yarnreacttsv='yarn add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-jsx-a11y'
 
 # Misc
