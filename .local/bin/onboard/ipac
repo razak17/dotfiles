@@ -64,6 +64,11 @@ installPacmanPackages() {
 	# qbittorrent \
 	# axel \
 	sudo pacman -S \
+    zathura \
+    zathura-ps \
+    zathura-pdf-poppler \
+    zathura-djvu \
+    zathura-cb \
 		aria2 \
 		exa \
 		plocate \
