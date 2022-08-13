@@ -1,5 +1,5 @@
 #!/bin/sh
 
-sudo killall dhclient wpa_supplicant
+# sudo killall dhclient wpa_supplicant
 sudo wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf
-sudo dhclient wlan0
+# sudo dhclient wlan0
