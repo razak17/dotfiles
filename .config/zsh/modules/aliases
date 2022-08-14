@@ -1,24 +1,32 @@
 #!/bin/zsh
 
 alias v="$EDITOR ./"
-
 alias -s {js,html,js,ts,css,md}=nvim
+alias sl=ls lsbkl=lsblk dcos=docs
 
-if [[ $+commands[rvim] ]]; then
-  alias rv=rvim
-fi
+safe_alias() {
+  lhs=$1
+  rhs=$2
+  cmd=$3
+  if [[ $+commands["$cmd"] ]]; then
+    if [ -z "$rhs" ]; then
+      alias "$lhs"="$cmd"
+      return 1
+    fi
+    alias "$lhs"="$rhs"
+  fi
+}
 
-if [[ $+commands[pvim] ]]; then
-  alias pv=pvim
-fi
-
-if [[ $+commands[rvimProfiling] ]]; then
-  alias rvlog=rvimProfiling
-fi
-
-if [[ $+commands[nvimProfiling] ]]; then
-  alias nvlog=nvimProfiling
-fi
+safe_alias rv rvim 
+safe_alias pv pvim
+safe_alias rvlog rvimProfiling
+safe_alias nvlog nvimProfiling
+safe_alias wl 'iwctl station list' iwctl
+safe_alias cm connmanctl
+safe_alias py python
+safe_alias xi tuxi
+safe_alias ew toilet
+safe_alias vsc "vscodium ." vscodium
 
 # shell
 # alias sudo="sudo"
@@ -39,7 +47,6 @@ alias zs='source $HOME/.config/zsh/.zshrc'
 alias e="touch"
 alias m="mkdir"
 alias cmd='command -V'
-alias sl=ls lsbkl=lsblk dcos=docs
 
 # confirm before overwriting something
 alias cp="cp -i"
@@ -136,15 +143,10 @@ alias die="sudo -A openrc-shutdown -pq now"
 alias grep="grep --color=auto"
 alias iredis="sudo /etc/init.d/redis_6379 start"
 alias codium="sudoedit /usr/share/vscodium-bin/resources/app/product.json"
-alias py="python"
-alias xi="tuxi"
-alias aw="toilet"
-alias vsc="vscodium ."
 
 # Others
 alias ...="cd ../../.."
 alias ....="cd ../../../.."
-alias wifi='sudo wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wlan0.conf'
 if [[ $+commands[exa] ]]; then
   alias ll="exa --long --all --git --color=always --group-directories-first --icons $@"
   alias lt="exa --icons --all --color=always -T $@"
