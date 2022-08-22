@@ -117,7 +117,8 @@ installPacmanPackages() {
 		lolcat \
 		pipewire \
 		pipewire-pulse \
-		pipewire-media-session
+		pipewire-media-session \
+    git-delta
 }
 
 while [[ "$#" -gt 0 ]]; do
