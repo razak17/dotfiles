@@ -89,15 +89,15 @@ font:
     # family: "Dank Mono Nerd Font"
     style: Retina
   bold:
-    family: 'JetBrains Mono Nerd Font Mono'
+    family: 'Cascadia Code'
     # family: 'Operator Mono Lig'
     style: Medium
   italic:
-    family: 'JetBrains Mono Nerd Font Mono'
+    family: 'Cascadia Code'
     # family: 'Operator Mono Lig Book'
     style: Italic
   bold_italic:
-    family: 'JetBrains Mono Nerd Font Mono'
+    family: 'Cascadia Code'
     # family: 'Operator Mono Lig'
     style: Medium Italic
   offset:
