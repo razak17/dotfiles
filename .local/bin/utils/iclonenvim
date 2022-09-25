@@ -1,0 +1,39 @@
+#!/bin/bash
+
+clone_config() {
+	arg="$1"
+
+	if [ "$arg" == "-ak" ]; then
+		upstream="https://github.com/akinsho/dotfiles"
+		dir="$HOME/.dots/ak-dotfiles"
+		nvim_dir="$HOME/.dots/ak-dotfiles/.config/nvim"
+		nvim_local="$HOME/.dots/nvim/nvim-ak"
+		branch="nightly"
+	fi
+
+	if [ "$arg" == "-tj" ]; then
+		upstream="https://github.com/tjdevries/config_manager"
+		dir="$HOME/.dots/tj-dotfiles"
+		nvim_dir="$HOME/.dots/tj-dotfiles/xdg_config/nvim"
+		nvim_local="$HOME/.dots/nvim/nvim-tj"
+		branch="master"
+	fi
+
+	[ ! -d "$dir" ] && git clone $upstream "$dir"
+	[ -d "$nvim_local" ] && sudo rm -r "$nvim_local"
+	pushd "$dir" || exit
+	git checkout "$branch"
+	git pull
+	cp -r "$nvim_dir" "$nvim_local"
+}
+
+while [ "$#" -gt 0 ]; do
+	curr=$1
+	shift
+
+	case "$curr" in
+	-ak) clone_config "$curr" ;;
+	-tj) clone_config "$curr" ;;
+	*) echo "Unavailable command... $curr" ;;
+	esac
+done

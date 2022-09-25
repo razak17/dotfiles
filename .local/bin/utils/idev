@@ -1,0 +1,40 @@
+#!/bin/sh
+
+cp_dev_files() {
+	if [ ! -d "$HOME/.dots/web/" ]; then
+    echo "Web directory not found."
+		exit
+	fi
+
+	arg="$1"
+
+	common="$HOME/.dots/web/common"
+	if [ "$arg" = "-node" ]; then
+		dir="$HOME/.dots/web/node"
+	fi
+
+	if [ "$arg" = "-react" ]; then
+		dir="$HOME/.dots/web/react"
+	fi
+
+	if [ "$arg" = "-next" ]; then
+		dir="$HOME/.dots/web/next"
+	fi
+
+	cp "$dir"/NOTES.md .
+  cp "$common"/gitignore ./.gitignore
+	cp "$dir"/eslintrc.json ./.eslintrc.json
+	cp "$dir"/prettierrc.json ./.prettierrc.json
+}
+
+while [ "$#" -gt 0 ]; do
+	curr=$1
+	shift
+
+	case "$curr" in
+	-node) cp_dev_files "$curr" ;;
+	-react) cp_dev_files "$curr" ;;
+	-next) cp_dev_files "$curr" ;;
+	*) echo "Unavailable command... $curr" ;;
+	esac
+done
