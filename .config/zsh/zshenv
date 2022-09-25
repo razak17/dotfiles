@@ -18,7 +18,7 @@ export TERMINAL="kitty"
 # zsh config dir
 export ZDOTDIR=$HOME/.config/zsh
 
-export TEXT_EDITOR="nvim"
+export TEXT_EDITOR="pvim"
 
 if which $TEXT_EDITOR >/dev/null; then
   export MANPAGER='less'
