@@ -226,14 +226,12 @@ alias dm='dmenumount'
 alias du='dmenuumount'
 
 alias ywa="yarn watch"
-alias yarndev='yarn add -D eslint_d @fsouza/prettierd  eslint-config-prettier'
+alias yarndev='yarn add -D eslint_d @fsouza/prettierd  eslint-config-prettier @typescript-eslint/parser  @typescript-eslint/eslint-plugin'
 alias yarndevb='yarn add -D @babel/eslint-parser @babel/preset-env @babel/core'
 alias reactwebpack='yarn add @babel/core @babel/preset-env @babel/preset-react @babel/preset-typescript babel-loader cross-env html-webpack-plugin serve terser-webpack-plugin webpack webpack-cli webpack-dev-server -D'
 
-alias yarnnode='yarn add -D nodemon @types/node dotenv ts-node-dev typescript @types/express express @typescript-eslint/parser  @typescript-eslint/eslint-plugin @typescript-eslint/parser'
-alias yarnreactts='yarn add -D typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-import eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-react'
-alias yarnreacttsally='yarn add -D eslint-plugin-jsx-a11y typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-import eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-react'
-alias reactstuffts='cp $HOME/.dots/web/vite.eslintrc.json .eslintrc.json && cp $HOME/.dots/web/vite.prettierrc.json .prettierrc.json'
+alias yarnnode='yarn add -D typescript eslint_d @fsouza/prettierd  eslint-config-prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin'
+alias yarnreact='yarn add -D eslint-plugin-jsx-a11y slint-plugin-import eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-react'
 
 # Misc
 alias rfonts='fc-cache -vf ~/.local/share/fonts/'
