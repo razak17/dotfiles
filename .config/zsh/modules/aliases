@@ -250,9 +250,11 @@ docs=~/docs
 dots=~/.dots
 dw=~/Downloads
 co=~/.config
+tuts=/run/media/razak/C6A86A1BA86A09EF/Users/Admin/Coding/Tuts/
 
 alias nca='cd "$rca"'
 alias dw='cd "$dw"'
+alias tuts='cd "$tuts"'
 alias co='cd "$XDG_CONFIG_HOME"'
 alias nsh='cd "$XDG_DATA_HOME/rvim"'
 alias rsh='cd "$XDG_DATA_HOME/rvim"'

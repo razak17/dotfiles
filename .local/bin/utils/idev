@@ -23,6 +23,7 @@ cp_dev_files() {
 
 	cp "$dir"/NOTES.md .
   cp "$common"/gitignore ./.gitignore
+  cp "$common"/prettierignore ./.prettierignore
 	cp "$dir"/eslintrc.json ./.eslintrc.json
 	cp "$dir"/prettierrc.json ./.prettierrc.json
 }
