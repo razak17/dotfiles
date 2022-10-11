@@ -8,7 +8,7 @@ clone_config() {
 		dir="$HOME/.dots/ak-dotfiles"
 		nvim_dir="$HOME/.dots/ak-dotfiles/.config/nvim"
 		nvim_local="$HOME/.dots/nvim/nvim-ak"
-		branch="nightly"
+		branch="main"
 	fi
 
 	if [ "$arg" == "-tj" ]; then
