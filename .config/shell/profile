@@ -46,6 +46,11 @@ if [ -d $CODELLDB ]; then
   export CODELLDB=$CODELLDB_DIR
 fi
 
+# Deta cli
+if [ -e "$HOME/.deta/bin/deta" ]; then
+  export DETA_HOME="$HOME/.deta"
+fi
+
 path=(
   "$LOCAL"
   "$LOCAL/dmenu"
@@ -62,6 +67,7 @@ path=(
   "$YARNPATH"
   "$AZCLI"
   "$BUN_INSTALL/bin"
+  "$DETA_HOME/bin"
   "$path[@]"
 )
 
