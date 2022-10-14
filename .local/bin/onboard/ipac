@@ -29,6 +29,7 @@ installAurPackage() {
 	# packettracer \
 	# wps-office \
 	yay -Sy \
+		insomnia \
 		autokey-gtk \
 		libxft-bgra \
 		zoxide \
@@ -39,36 +40,37 @@ installAurPackage() {
 		ueberzug \
 		jq \
 		ttf-ancient-fonts \
-    mongodb-compass \
-    prisma-studio \
-    paru
+		mongodb-compass \
+		prisma-studio \
+		paru
 }
 
 installPacmanPackages() {
 	echo 'Pacman stuff'
 	# Install packages
-	# docker \
-	# postgresql \
 	# clang \
-	# firefox \
 	# rust-analyzer \
-	# timeshift \
 	# keepassxc \
-	# thunderbird \
 	# whatsapp-nativefier \
 	# telegram-desktop \
 	# vlc \
-	# brave \
 	# copyq \
 	# pulseaudio \
-	# qbittorrent \
 	# axel \
+	# timeshift \
+	# brave \
+	# qbittorrent \
 	sudo pacman -S \
-    zathura \
-    zathura-ps \
-    zathura-pdf-poppler \
-    zathura-djvu \
-    zathura-cb \
+		mtools \
+		dosfstools \
+		openvpn \
+		unrar \
+		helix \
+		zathura \
+		zathura-ps \
+		zathura-pdf-poppler \
+		zathura-djvu \
+		zathura-cb \
 		aria2 \
 		exa \
 		plocate \
@@ -118,7 +120,12 @@ installPacmanPackages() {
 		pipewire \
 		pipewire-pulse \
 		pipewire-media-session \
-    git-delta
+		thunderbird \
+		postgresql \
+		docker \
+		firefox \
+		git-delta \
+		bottom
 }
 
 while [[ "$#" -gt 0 ]]; do

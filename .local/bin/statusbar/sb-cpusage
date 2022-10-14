@@ -1,29 +1,28 @@
 #!/bin/bash
 # icons depend on nerdfonts being installed
 cpu() {
-      read cpu a b c previdle rest < /proc/stat
-        prevtotal=$((a+b+c+previdle))
-          sleep 0.5
-            read cpu a b c idle rest < /proc/stat
-          total=$((a+b+c+idle))
-            cpu=$((100*( (total-prevtotal) - (idle-previdle) ) / (total-prevtotal) ))
-            if [[ "$cpu" -gt 99 ]]; then
-              echo -e "$cpu%"
-            elif [[ "$cpu" -gt 9 ]]; then
-              echo -e " $cpu%"
-            else
-              echo -e "  $cpu%"
-            fi
-          }
+	read -r cpu a b c previdle rest </proc/stat
+	prevtotal=$((a + b + c + previdle))
+	sleep 0.5
+	read -r cpu a b c idle rest </proc/stat
+	total=$((a + b + c + idle))
+	cpu=$((100 * ((total - prevtotal) - (idle - previdle)) / (total - prevtotal)))
+	if [[ "$cpu" -gt 99 ]]; then
+		echo -e "$cpu%"
+	elif [[ "$cpu" -gt 9 ]]; then
+		echo -e " $cpu%"
+	else
+		echo -e "  $cpu%"
+	fi
+}
 
 echo "🔥 $(cpu)"
-
+# 
 case $BLOCK_BUTTON in
-	1) notify-send "🖥 CPU hogs" "$(ps axch -o cmd:15,%cpu --sort=-%cpu | head)\\n(100% per core)" ;;
-	2) setsid -f "$TERMINAL" -e bpytop ;;
-	3) notify-send "🖥 CPU module " "\- Shows CPU temperature.
+1) notify-send "🖥 CPU hogs" "$(ps axch -o cmd:15,%cpu --sort=-%cpu | head)\\n(100% per core)" ;;
+2) setsid -f "$TERMINAL" -e bpytop ;;
+3) notify-send "🖥 CPU module " "\- Shows CPU temperature.
 - Click to show intensive processes.
 - Middle click to open bpytop." ;;
-	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
-

@@ -21,7 +21,7 @@
 installed=$(pacman -Q | grep -Fcv "[ignored]" | sed "s/^//;s/^0$//g")
 
 if [[ -z "$installed" ]]; then
-  echo "0"
+	echo "0"
 else
-  echo -e "$installed"
+	echo -e "$installed"
 fi
