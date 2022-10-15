@@ -4,7 +4,7 @@ user_pref("browser.newtabpage.activity-stream.feeds.topsites", false);
 
 // FONT
 user_pref("font.name.serif.x-western", "FreeSans");
-user_pref("font.size.variable.x-western", 12);
+user_pref("font.size.variable.x-western", 14);
 user_pref("font.internaluseonly.changed", false);
 
 // SEARCH AND URL BAR
@@ -34,6 +34,9 @@ user_pref("devtools.editor.keymap", "vim");
 user_pref("startup.homepage_welcome_url", "");
 user_pref("startup.homepage_welcome_url.additional", "");
 user_pref("startup.homepage_override_url", ""); // What's New page after updates
+
+/*** [SECTION 0100]: STARTUP ***/
+user_pref("browser.startup.page", 3);
 
 // WARNINGS
 user_pref("browser.tabs.warnOnClose", false);
@@ -73,21 +76,45 @@ user_pref("reader.parse-on-load.enabled", false); // Reader View
 user_pref("browser.safebrowsing.malware.enabled", true);
 user_pref("browser.safebrowsing.phishing.enabled", true);
 user_pref("browser.safebrowsing.downloads.enabled", true);
-user_pref("layers.acceleration.disabled", false);
+
+// Hardware acceleration
+user_pref("browser.preferences.defaultPerformanceSettings.enabled", false);
+user_pref("layers.acceleration.disabled", true);
 
 /*** [SECTION 5000]: OPTIONAL OPSEC ***/
 user_pref("signon.rememberSignons", false);
 user_pref("browser.privatebrowsing.autostart", false);
 user_pref("extensions.formautofill.addresses.usage.hasEntry", false);
 
-/*** [SECTION 1600]: HEADERS / REFERERS ***/
-user_pref("privacy.userContext.newTabContainerOnLeftClick.enabled", true);
-
 /** EXTENSIONS ***/
 user_pref("extensions.webextensions.restrictedDomains", "");
 
-/*** [SECTION 0100]: STARTUP ***/
-user_pref("browser.startup.page", 3);
+/*** [SECTION 0700]: DNS / DoH / PROXY / SOCKS / IPv6 ***/
+user_pref("network.trr.mode", 2);
+user_pref("network.trr.custom_uri", "https://doh.libredns.gr/dns-query");
+user_pref("network.trr.uri", "https://doh.libredns.gr/dns-query");
+
+/*** [SECTION 0700]: DNS / DoH / PROXY / SOCKS / IPv6 ***/
+user_pref("network.dns.disableIPv6", false); // localhost:8000 not working
+
+// Disable firefox suggest (Manually)
+user_pref("browser.urlbar.groupLabels.enabled", false)
+
+/**********************************************************************
+  MIXED CONTENT
+ *********************************************************************/
+user_pref("dom.security.https_only_mode", false); // [FF76+]
+
+user_pref("key.url", "https://html.duckduckgo.com/html?q=\\");
+
+/*** [SECTION 2800]: SHUTDOWN & SANITIZING ***/
+user_pref("network.cookie.lifetimePolicy", 0);
+
+/* 1212: set OCSP fetch failures (non-stapled, see 1211) to hard-fail [SETUP-WEB]  ***/
+user_pref("security.OCSP.require", false);
+
+/*** [SECTION 1600]: HEADERS / REFERERS ***/
+user_pref("privacy.userContext.newTabContainerOnLeftClick.enabled", true);
 
 /** SANITIZE ON SHUTDOWN : ALL OR NOTHING ***/
 user_pref("privacy.clearOnShutdown.cookies", false);
@@ -96,29 +123,3 @@ user_pref("privacy.clearOnShutdown.openWindows", false);
 user_pref("privacy.cpd.openWindows", false);
 user_pref("privacy./cpd.history", false);
 user_pref("privacy.cpd.cookies", false);
-
-/*** [SECTION 2800]: SHUTDOWN & SANITIZING ***/
-user_pref("network.cookie.lifetimePolicy", 0);
-
-/** MIXED CONTENT ***/
-user_pref("dom.security.https_only_mode", false); // [FF76+]
-
-/*** [SECTION 0700]: DNS / DoH / PROXY / SOCKS / IPv6 ***/
-user_pref("network.dns.disableIPv6", false); // localhost:8000 not working
-
-user_pref("key.url", "https://html.duckduckgo.com/html?q=\\");
-
-/*** [SECTION 0700]: DNS / DoH / PROXY / SOCKS / IPv6 ***/
-user_pref("network.trr.mode", 2);
-user_pref("network.trr.custom_uri", "https://doh.libredns.gr/dns-query");
-user_pref("network.trr.uri", "https://doh.libredns.gr/dns-query");
-
-// Hardware acceleration
-user_pref("browser.preferences.defaultPerformanceSettings.enabled", false);
-user_pref("layers.acceleration.disabled", true);
-
-/* 1212: set OCSP fetch failures (non-stapled, see 1211) to hard-fail [SETUP-WEB]  ***/
-user_pref("security.OCSP.require", false);
-
-// Disable firefox suggest (Manually)
-user_pref("browser.urlbar.groupLabels.enabled", false)
