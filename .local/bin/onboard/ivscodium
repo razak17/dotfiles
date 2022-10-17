@@ -87,9 +87,9 @@ disabledExtensions=(
 )
 
 for extension in "${extensions[@]}"; do
-	vscodium --force --install-extension $extension
+  vscodium --force --install-extension "$extension"
 done
 
 for disabled in "${disabledExtensions[@]}"; do
-	vscodium --disable-extension $disabled
+  vscodium --disable-extension "$disabled"
 done

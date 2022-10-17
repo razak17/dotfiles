@@ -75,6 +75,7 @@ installPacmanPackages() {
 		exa \
 		plocate \
 		xorg-xinput \
+		xorg-xsetroot \
 		wireless_tools \
 		github-cli \
 		fd \

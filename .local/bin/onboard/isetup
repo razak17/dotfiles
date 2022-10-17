@@ -1,24 +1,12 @@
-#!/bin/sh
-
-setupSsh() {
-	if [[ -d "$HOME/.ssh" ]]; then
-		chmod 600 $HOME/.ssh/id_rsa
-		eval "$(ssh-agent -s)"
-		ssh-add $HOME/.ssh/id_rsa
-	fi
-}
-
-# ZSH only and most performant way to check existence of an executable
-# https://www.topbug.net/blog/2016/10/11/speed-test-check-the-existence-of-a-command-in-bash-and-zsh/
-exists() { (($ + commands[$1])); }
+#!/usr/bin/env bash
 
 installZshPlugins() {
-	mkdir -p $HOME/.config/zsh/plugins
-	mkdir -p $HOME/.config/zsh/completion
+	mkdir -p "$HOME"/.config/zsh/plugins
+	mkdir -p "$HOME"/.config/zsh/completion
 	plugins=(
 		'esc/conda-zsh-completion'
 		# 'djui/alias-tips'
-    # 'agkozak/zsh-z'
+		# 'agkozak/zsh-z'
 		'zsh-users/zsh-autosuggestions'
 		'zsh-users/zsh-completions'
 		'zsh-users/zsh-syntax-highlighting'
@@ -28,64 +16,77 @@ installZshPlugins() {
 	)
 	# curl -sLo "https://github.com/$download_path" "$url"
 	for i in "${plugins[@]}"; do
-		name=$(echo ${i} | sed 's|.*/||')
+		name=$(echo "${i}" | sed 's|.*/||')
 		if [[ -d "$HOME/.config/zsh/plugins/${name}" ]]; then
 			echo "dir ${name} already exists."
 		else
-			git clone https://github.com/$i ~/.config/zsh/plugins/$name
+			git clone https://github.com/"$i" ~/.config/zsh/plugins/"$name"
 		fi
 	done
 
-  OH_MY_ZSH="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins"
-  if [ -e "$HOME/.config/zsh/plugins/git" ]; then
-    exit
-  else
-    mkdir -p $HOME/.config/zsh/plugins/git
-    pushd $HOME/.config/zsh/plugins/git || exit
-    curl -fsSL $OH_MY_ZSH/git/git.plugin.zsh --output git.plugin.zsh
-    curl -fsSL $OH_MY_ZSH/git/README.md --output README.md
-  fi
+	OH_MY_ZSH="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins"
+	if [ -e "$HOME/.config/zsh/plugins/git" ]; then
+		exit
+	else
+		mkdir -p "$HOME"/.config/zsh/plugins/git
+		pushd "$HOME"/.config/zsh/plugins/git || exit
+		curl -fsSL $OH_MY_ZSH/git/git.plugin.zsh --output git.plugin.zsh
+		curl -fsSL $OH_MY_ZSH/git/README.md --output README.md
+	fi
 }
 
-installFzf() {
-	git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf && $HOME/.fzf/install
-}
 installTmuxPlugins() {
-	git clone https://github.com/tmux-plugins/tpm $HOME/.config/tmux/plugins/tpm
-}
-
-installAsdf() {
-	git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.8.0-rc1
+	git clone https://github.com/tmux-plugins/tpm "$HOME"/.config/tmux/plugins/tpm
 }
 
 installFnm() {
 	curl -fsSL https://fnm.vercel.app/install | bash
 }
 
-installYay() {
-	mkdir -p $HOME/.dots
-	pushd $HOME/.dots || exit
-	git clone https://aur.archlinux.org/yay.git
-	pushd $HOME/.dots/yay || exit
-	makepkg -si
+installAsdf() {
+	git clone https://github.com/asdf-vm/asdf.git "$HOME"/.asdf --branch v0.10.2
 }
 
-installDoas() {
-	mkdir -p $HOME/.dots
-	pushd $HOME/.dots || exit
-	git clone https://aur.archlinux.org/doas.git
-	pushd $HOME/.dots/doas || exit
-	makepkg -si
+installFzf() {
+	git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME"/.fzf && "$HOME"/.fzf/install
 }
 
 installSuckless() {
-	mkdir -p $HOME/.dots
-	pushd $HOME/.dots || exit
+	mkdir -p "$HOME"/.dots
+	pushd "$HOME"/.dots || exit
 	git clone https://github.com/razak17/suckless
-	pushd $HOME/.dots/suckless/dwm || exit
+	pushd "$HOME"/.dots/suckless/dwm || exit
 	sudo make clean install
-	pushd $HOME/.dots/suckless/dmenu || exit
+	pushd "$HOME"/.dots/suckless/dmenu || exit
 	sudo make clean install
+	pushd "$HOME"/.dots/suckless/dwmblocks || exit
+	sudo make clean install
+	pushd "$HOME"/.dots/suckless/st || exit
+	sudo make clean install
+}
+
+installRedis() {
+	pushd "$HOME"/Downloads || exit
+	wget http://download.redis.io/redis-stable.tar.gz
+	tar xvzf redis-stable.tar.gz
+	pushd redis-stable || exit
+	make
+}
+
+installDoas() {
+	mkdir -p "$HOME"/.dots
+	pushd "$HOME"/.dots || exit
+	git clone https://aur.archlinux.org/doas.git
+	pushd "$HOME"/.dots/doas || exit
+	makepkg -si
+}
+
+installYay() {
+	mkdir -p "$HOME"/.dots
+	pushd "$HOME"/.dots || exit
+	git clone https://aur.archlinux.org/yay.git
+	pushd "$HOME"/.dots/yay || exit
+	makepkg -si
 }
 
 while [[ "$#" -gt 0 ]]; do
@@ -117,19 +118,19 @@ while [[ "$#" -gt 0 ]]; do
 	"-tmux")
 		installTmuxPlugins
 		;;
-	"-ssh")
-		setupSsh
+	"-redis")
+		installRedis
 		;;
 	"-all")
-		# setupSsh
 		installZshPlugins
 		installTmuxPlugins
 		installFnm
 		installAsdf
 		installFzf
+		installSuckless
+		installRedis
 		installDoas
 		installYay
-		installSuckless
 		;;
 	*) echo "Unavailable command... $curr" ;;
 	esac
