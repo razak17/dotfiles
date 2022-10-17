@@ -1,8 +1,9 @@
-# Dotfiles
+## Dotfiles
 
-![dotfiles](https://user-images.githubusercontent.com/52210954/125114192-2a788a80-e0d9-11eb-90c6-3bc1377d3813.png)
+![2022-10-17_224903_931020021](https://user-images.githubusercontent.com/52210954/196298390-d07e519b-e164-49ad-a283-4b8a9a68ef3a.png)
+![2022-10-17_224900_391823712](https://user-images.githubusercontent.com/52210954/196298380-792d49dd-6ab7-481e-87a0-54c0123374fb.png)
 
-  ## Installation
+## Installation
 
 You will need `git`
 
