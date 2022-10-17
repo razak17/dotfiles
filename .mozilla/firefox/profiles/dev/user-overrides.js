@@ -101,7 +101,7 @@ user_pref("network.dns.disableIPv6", false); // localhost:8000 not working
   MIXED CONTENT
  *********************************************************************/
 /* 1212: set OCSP fetch failures (non-stapled, see 1211) to hard-fail [SETUP-WEB]  ***/
-user_pref("security.OCSP.require", false);
+// user_pref("security.OCSP.require", false);
 
 /*** [SECTION 4500]: RFP (RESIST FINGERPRINTING) **/
 user_pref("privacy.resistFingerprinting", false); // Cause of light theme bug
