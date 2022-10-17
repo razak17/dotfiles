@@ -1,10 +1,6 @@
 #!/bin/sh
 
 /usr/bin/xmodmap -e "clear mod5"
-# /usr/bin/xmodmap -e "keycode 108 = Alt_L"
-# /usr/bin/xmodmap -e "keycode 50 = Shift_R"
-# /usr/bin/xmodmap -e "keycode 62 = Shift_L"
-# /usr/bin/xmodmap -e "keycode 11 = Shift_L"
 
 # Executed by startx (run your window manager from here)
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
@@ -24,10 +20,3 @@ dwmblocks &
 ~/.local/bin/startup/ipipewire &
 redshift &
 picom &
-
-# This line autostarts an instance of Pulseaudio that does not exit on idle.
-# This is "necessary" on Artix due to a current bug between PA and
-# Chromium-based browsers where they fail to start PA and use dummy output.
-# pidof -s runit &&
-# ! pidof -s pulseaudio >/dev/null 2>&1 &&
-# setsid -f pulseaudio --start --exit-idle-time=-1 >/dev/null 2>&1
