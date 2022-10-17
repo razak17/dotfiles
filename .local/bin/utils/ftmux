@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 SERVER="Dev"
 HOME="/home/razak"
@@ -98,7 +98,7 @@ breakPane() {
 breakIntoSession() {
   paneIdx=$($X display -p '#{pane_index}')
   window_name=$($X display -p '#{window_name}')
-  createSession $window_name
+  createSession "$window_name"
 	# ($X break-pane -P -F '#{session_name}:#{window_index}.#{pane_index}' -n 'break')
 }
 
@@ -154,7 +154,7 @@ createWindow() {
 	shift
 	hasWindow=$($X list-windows -t "$session" | grep "$window")
 	if [[ -z "$hasWindow" ]]; then
-		($X neww -t $session: -n "$window" -d "$@")
+    ($X neww -t "$session": -n "$window" -d "$@")
 	else
 		echo duplicate window: "$window"
 	fi
@@ -343,11 +343,11 @@ while [ "$#" -gt 0 ]; do
 		# echo cmd: $cmd
 		checkEmpty "$cmd"
 		shift
-    first=$(echo $panes | cut -b 2) # first pane_id (num)
-    len=$(echo $panes | awk '{print substr($0,length,1)}') # last pane_id use for len
+    first=$(echo "$panes" | cut -b 2) # first pane_id (num)
+    len=$(echo "$panes" | awk '{print substr($0,length,1)}') # last pane_id use for len
     cc=1 # why:  pane id starting from num > 1
     for ((i = first ; i <= len ; i++)); do
-      curr=$(echo $panes | cut -d ' ' -f $cc)
+      curr=$(echo "$panes" | cut -d ' ' -f $cc)
       cc=$((cc+1))
 			# echo sending cmd: "$cmd" to "$curr" hello
 			$X send-keys -t "$curr" "$cmd" "C-m"

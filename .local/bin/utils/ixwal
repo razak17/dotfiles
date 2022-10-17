@@ -3,12 +3,12 @@
 DIR="/home/razak/pics/distro"
 wall=$(find $DIR -type f | shuf -n 1)
 # wall="/home/razak/pics/distro/108.png"
-xwallpaper --zoom $wall
+xwallpaper --zoom "$wall"
 
-wal -i $wall >/dev/null
-sed -i 'N;$!P;D' $HOME/.cache/wal/colors-wal-dwm.h
+wal -i "$wall" >/dev/null
+sed -i 'N;$!P;D' "$HOME"/.cache/wal/colors-wal-dwm.h
 
 # echo "Recompiling dwm with new colors."
-(cd $HOME/.dots/suckless/dwm && sudo -A make clean install>/dev/null)
+(cd "$HOME"/.dots/suckless/dwm && sudo -A make clean install>/dev/null)
 
 echo "^_^ Restart dwm for new look."

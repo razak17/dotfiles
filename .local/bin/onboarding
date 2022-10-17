@@ -1,8 +1,9 @@
 #!/bin/sh
 
 # Change shell
+user=$(whoami)
 cat /etc/shells
-chsh --shell /bin/zsh razak
+chsh --shell /bin/zsh "$user"
 
 # Create dotfiles directory
 mkdir -p "$HOME"/.dots
