@@ -120,7 +120,6 @@ user_pref("layers.acceleration.disabled", true);
 /* 1212: set OCSP fetch failures (non-stapled, see 1211) to hard-fail [SETUP-WEB]  ***/
 user_pref("security.OCSP.require", false);
 
-// Disable firefox suggest (Manually)
 user_pref("browser.urlbar.groupLabels.enabled", false) // manually set again after running updater.sh
 
 /* 1601: control when to send a cross-origin referer
