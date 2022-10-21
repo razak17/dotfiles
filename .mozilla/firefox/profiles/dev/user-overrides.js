@@ -35,9 +35,6 @@ user_pref("startup.homepage_welcome_url", "");
 user_pref("startup.homepage_welcome_url.additional", "");
 user_pref("startup.homepage_override_url", ""); // What's New page after updates
 
-/*** [SECTION 0100]: STARTUP ***/
-user_pref("browser.startup.page", 3);
-
 // WARNINGS
 user_pref("browser.tabs.warnOnClose", false);
 user_pref("browser.tabs.warnOnCloseOtherTabs", false);
@@ -89,6 +86,9 @@ user_pref("extensions.formautofill.addresses.usage.hasEntry", false);
 /** EXTENSIONS ***/
 user_pref("extensions.webextensions.restrictedDomains", "");
 
+/*** [SECTION 0100]: STARTUP ***/
+user_pref("browser.startup.page", 3);
+
 /*** [SECTION 0700]: DNS / DoH / PROXY / SOCKS / IPv6 ***/
 user_pref("network.trr.mode", 2);
 user_pref("network.trr.custom_uri", "https://doh.libredns.gr/dns-query");
@@ -104,7 +104,7 @@ user_pref("network.dns.disableIPv6", false); // localhost:8000 not working
 // user_pref("security.OCSP.require", false);
 
 /*** [SECTION 4500]: RFP (RESIST FINGERPRINTING) **/
-user_pref("privacy.resistFingerprinting", false); // Cause of light theme bug
+user_pref("privacy.resistFingerprinting", true); // Cause of light theme bug
 user_pref("privacy.resistFingerprinting.letterboxing", false); // reduced screen size
 
 // Disable firefox suggest (Manually)
