@@ -1,140 +1,36 @@
-
-! Add "fullscreen" to the "urxvt*perl-ext-common" field in ~/.Xdefaults and
-! a keysym to the function "switch", like: urxvt*keysym.F11: perl:fullscreen:switch
-!! Transparency (0-1):
-st.alpha: 0.92
-! st.alphaOffset: 0.3
-
-!! Set a default font and font size as below:
-! st.font: Operator Mono Lig-11;
-
-*.color0: #000000
-*.color1: #cc0403
-*.color2: #19cb00
-*.color3: #cecb00
-*.color4: #0d73cc
-*.color5: #cb1ed1
-*.color6: #0dcdcd
-*.color7: #dddddd
-*.color8: #767676
-*.color9: #f2201f
-*.color10: #23fd00
-*.color11: #fffd00
-*.color12: #1a8fff
-*.color13: #fd28ff
-*.color14: #14ffff
-*.color15: #ffffff
+! special
 *.background: #282c34
 *.foreground: #7ec0ee
 *.cursorColor: #7ec0ee
 
-! xterm*font:           7x13
-! xterm*saveLines:      2000
-! xterm*boldMode:       false
-! xterm*loginShell:     true
-! xterm*termName:       xterm-color
-! xterm*eightBitInput:  false
-! xterm*vt100*geometry: 90x34
-! Xft.dpi:              99
-! Xft.antialias:        true
-! Xft.rgba:             rgb
-! Xft.hinting:          true
-! Xft.hintstyle:        hintslight
-! xterm*charClass:      33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
+! black
+*.color0: #000000
+*.color8: #767676
 
-! general settings
-URxvt*termName:        rxvt-unicode
-URxvt*urlLauncher:     firefox
-URxvt*underlineURLs:   true
-URxvt*urlButton:       1
-URxvt*geometry:        100x30
-URxvt*intensityStyles: true
-URxvt*linespace:       0
-URxvt*saveline:        15000
-URxvt*urgentOnBell:    false
-URxvt*visualBell:      false
-URxvt*iso14755:        false
-URxvt*iso14755_52:     false
-URxvt*meta8:           false
-URxvt*metaSendsEscape: true
-URxvt*iconFile:        /usr/share/icons/Sardi-Mono/scalable/apps/terminal.svg
+! red
+*.color1: #cc0403
+*.color9: #f2201f
 
-! appearance
-URxvt*depth:          0
-URxvt*transparent:    true
-URxvt*shading:        30
-URxvt*background:     [85]#282c34
-! URxvt*foreground:     #c3eeff
-! URxvt*underlineColor: #51afef
-! URxvt*highlightColor: #6cb0ff
-! URxvt*throughColor:   #7ec0ee
-! URxvt*colorIT:        #0dcdcd
-! URxvt*colorBD:        #c5c8c6
-! URxvt*colorUL:        #87afd7
+! green
+*.color2: #19cb00
+*.color10: #23fd00
 
-! colors
-! URxvt*color0:  #3f3f3f
-! URxvt*color1:  #ac3c3c
-! URxvt*color2:  #60b48a
-! URxvt*color3:  #dfaf8f
-! URxvt*color4:  #506070
-! URxvt*color5:  #dc8cc3
-! URxvt*color6:  #8cd0d3
-! URxvt*color7:  #dcdccc
-! URxvt*color8:  #79A9FF
-! URxvt*color9:  #da6e6e
-! URxvt*color10: #c3bf9f
-! URxvt*color11: #f0dfaf
-! URxvt*color12: #94bff3
-! URxvt*color13: #ec93d3
-! URxvt*color14: #93e0e3
-! URxvt*color15: #ffffff
+! yellow
+*.color3: #cecb00
+*.color11: #fffd00
 
-! fonts
-! URxvt*letterSpace:    -1
-! URxvt*allow_bold:     true
-! URxvt*font:           xft:FiraCode Nerd Font Mono:medium:pixelsize=10
-! URxvt*imFont:         xft:FiraCode Nerd Font Mono:regular:pixelsize=10
-! URxvt*boldFont:       xft:FiraCode Nerd Font Mono:bold:pixelsize=10
-! URxvt*italicFont:     xft:FiraCode Nerd Font Mono:italic:pixelsize=10
-! URxvt*boldItalicFont: xft:FiraCode Nerd Font Mono:regular:pixelsize=10
+! blue
+*.color4: #0d73cc
+*.color12: #1a8fff
 
-! cursor
-! URxvt*cursorColor: #7ec0ee
-! URxvt*cursorColor2: #000000
-! URxvt*cursorBlink: false
-! URxvt*reverseVideo: false
+! magenta
+*.color5: #cb1ed1
+*.color13: #fd28ff
 
-! scroll
-URxvt*jumpScroll: true
-URxvt*skipScroll: true
-URxvt*scrollBar:         false
-URxvt*scrollTtyOutput:   false
-URxvt*scrollWithBuffer:  true
-URxvt*scrollTtyKeypress: true
+! cyan
+*.color6: #0dcdcd
+*.color14: #14ffff
 
-! border
-URxvt*borderLess:     false
-URxvt*internalBorder: 0
-URxvt*externalBorder: 0
-
-! perl extensions
-URxvt*perl-ext-common:    default,clipboard,url-select,keyboard-select,resize-font,fullscreen
-
-! macros for clipboard and selection
-URxvt.keysym.C-8:        resize-font:smaller
-URxvt.keysym.C-9:        resize-font:bigger
-URxvt.keysym.C-0:        resize-font:reset
-URxvt.keysym.C-question: resize-font:show
-URxvt*copyCommand:       xclip -i -selection clipboard
-URxvt*pasteCommand:      xclip -o -selection clipboard
-URxvt*keysym.M-c:        perl:clipboard:copy
-URxvt*keysym.m-v:        perl:clipboard:paste
-URxvt*keysym.M-C-v:      perl:clipboard:paste_escaped
-URxvt*keysym.M-Escape:   perl:keyboard-select:activate
-URxvt*keysym.M-s:        perl:keyboard-select:search
-URxvt*keysym.M-u:        perl:url-select:select_next
-urxvt*keysym.F11:        perl:fullscreen:switch
-
-
-
+! white
+*.color7: #dddddd
+*.color15: #ffffff
