@@ -1,7 +1,0 @@
-/* Personal Firefox settings. Based by arkenfox/user.js      */
-/* by Denis G. (https://github.com/denis-g/firefox-settings) */
-
-
-#urlbar .search-one-offs:not([hidden]) {
-    display: none !important;
-}
