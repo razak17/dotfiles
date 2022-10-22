@@ -8,7 +8,7 @@ chsh --shell /bin/zsh "$user"
 # Create dotfiles directory
 mkdir -p "$HOME"/.dots
 
-# Install needed packages
+# Install essential packages
 pacman -S git curl wget unzip make cmake picom dunst artix-archlinux-support xorg-xinput
 
 # Install rVim (brach:rolling)
@@ -19,4 +19,11 @@ touch -f ~/.zshrc
 echo . "$HOME"/.config/zsh/modules/aliases >~/.zshrc
 
 # Setup Essentials
-"$HOME"/.local/bin/onboard/isetup -all
+"$HOME/.local/bin/onboard/isetup" -all
+
+# Setup Firefox Profiles
+if [ ! -d "$HOME/.dots/firefox-user.js" ]; then
+  git clone https://github.com/razak17/firefox-user.js "$HOME/.dots"
+fi
+pushd "$HOME/.dots/firefox-user.js"
+sh ./setup.sh -all
