@@ -1,20 +1,14 @@
 #!/usr/bin/env bash
 base_dir=$HOME/.mozilla/firefox/profiles
 coding=$base_dir/coding
-crypto=$base_dir/crypto
 dev=$base_dir/dev
 main=$base_dir/main
 rec=$base_dir/rec
-user=$base_dir/user
 
 update_config() {
   pushd "$coding"|| exit
   "$coding"/updater.sh
   "$coding"/prefsCleaner.sh
-
-  pushd "$crypto"|| exit
-  "$crypto"/updater.sh
-  "$crypto"/prefsCleaner.sh
 
   pushd "$dev"|| exit
   "$dev"/updater.sh
@@ -27,10 +21,6 @@ update_config() {
   pushd "$rec"|| exit
   "$rec"/updater.sh
   "$rec"/prefsCleaner.sh
-
-  pushd "$user"|| exit
-  "$user"/updater.sh
-  "$user"/prefsCleaner.sh
 }
 
 update_config
