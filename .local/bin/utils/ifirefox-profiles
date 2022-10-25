@@ -8,7 +8,7 @@ choices="$(dir | xargs -n 1 -P 1 echo "$0" | awk {'print $2'} | dmenu -l 10)" ||
 # capitalize: Eg. main -> Main
 profile="$(tr '[:lower:]' '[:upper:]' <<< "${choices:0:1}")${choices:1}"
 
-if [[ $? != 0 ]]; then
+if [[ ! $profile ]]; then
   echo config file does not exist
   exit 1
 else
