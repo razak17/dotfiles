@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+while true; do
+	export DISPLAY=:0.0
+	battery_level=$(acpi -b | grep -P -o '[0-9]+(?=%)')
+	power_connected=false
+
+	# Loop through all attached batteries and check battery level
+	for battery in /sys/class/power_supply/BAT?*; do
+		case "$(cat "$battery/status")" in
+		"Charging") power_connected=true ;;
+		esac
+	done
+
+	if [ $power_connected == 'false' ]; then
+		if [ "$battery_level" -lt 60 ]; then
+			notify-send -u critical "You may want to connect your charger" "Battery level is below 40%" -i battery-low -t 5000
+		fi
+	fi
+
+	sleep 60 # wait for 60 secs to notify again
+done
