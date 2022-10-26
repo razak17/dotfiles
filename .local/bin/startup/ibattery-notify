@@ -18,5 +18,5 @@ while true; do
 		fi
 	fi
 
-	sleep 60 # wait for 60 secs to notify again
+	sleep 30
 done
