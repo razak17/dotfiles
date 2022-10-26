@@ -16,6 +16,10 @@ while true; do
 		if [ "$battery_level" -lt 35 ]; then
 			notify-send -u critical "You may want to connect your charger" "Battery level is below 35%" -i battery-low -t 5000
 		fi
+	elif [ $power_connected == 'true' ]; then
+		if [ "$battery_level" -gt 99 ]; then
+			notify-send -u normal "You may want to disconnect your charger" "Battery is fully charged" -t 5000
+		fi
 	fi
 
 	sleep 30
