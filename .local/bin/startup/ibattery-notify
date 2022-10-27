@@ -22,5 +22,13 @@ while true; do
 		fi
 	fi
 
-	sleep 30
+	if [ "$battery_level" -lt 15 ]; then
+		sleep 30
+	elif [ "$battery_level" -lt 25 ]; then
+		sleep 120
+	elif [ "$battery_level" -lt 35 ]; then
+		sleep 180
+	else
+		sleep 200
+	fi
 done
