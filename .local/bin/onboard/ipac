@@ -29,6 +29,7 @@ installAurPackage() {
 	# packettracer \
 	# wps-office \
 	yay -Sy \
+    cmatrix \
 		insomnia \
 		autokey-gtk \
 		libxft-bgra \
