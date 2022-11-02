@@ -29,7 +29,6 @@ installAurPackage() {
 	# packettracer \
 	# wps-office \
 	yay -Sy \
-    cmatrix \
 		insomnia \
 		autokey-gtk \
 		libxft-bgra \
@@ -62,6 +61,7 @@ installPacmanPackages() {
 	# brave \
 	# qbittorrent \
 	sudo pacman -S \
+    cmatrix \
 		mtools \
 		dosfstools \
 		openvpn \
