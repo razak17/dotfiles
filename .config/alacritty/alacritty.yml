@@ -45,7 +45,7 @@ schemes:
       focused_match:
         foreground: '#030303'
         background: '#7685b1'
-      bar:
+      colors.footer_bar:
         background: '#7685b1'
         foreground: '#030303'
       line_indicator:
