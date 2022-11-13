@@ -95,7 +95,7 @@ function alive() {
 }
 
 function old() {
-  if grep -q $@ ~/.zsh_history; then
+  if grep -q $@ ~/.cache/zsh/.zsh_history; then
     echo "You appear to have typed '$@' in the past."
   else
     echo "You haven't typed '$@' before."
