@@ -52,8 +52,8 @@ export FZF_TMUX=0 # Don't open FZF in a separate split in tmux
 # History
 export HIST_STAMPS="mm/dd/yyyy"
 export HISTFILE=$ZSH_CACHE_DIR/.zsh_history
-export HISTSIZE=50000
-export SAVEHIST=50000
+export HISTSIZE=500000
+export SAVEHIST=500000
 
 # Plugin Options & Configurations
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
