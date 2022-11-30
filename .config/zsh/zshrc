@@ -29,6 +29,7 @@ add_plugin 'zsh-hist'
 add_plugin 'zsh-autopair'
 add_plugin 'zsh-auto-notify' 'auto-notify.plugin'
 add_plugin 'yarn'
+add_plugin 'pnpm'
 autoload zmv # builtin zsh rename command
 #-------------------------------------------------------------------------------
 #   Completions

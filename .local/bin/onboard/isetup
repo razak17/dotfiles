@@ -13,10 +13,13 @@ installZshPlugins() {
 		'marlonrichert/zsh-hist'
 		'hlissner/zsh-autopair'
 		'MichaelAquilina/zsh-auto-notify'
+		'baliestri/pnpm.plugin.zsh'
 	)
-	# curl -sLo "https://github.com/$download_path" "$url"
 	for i in "${plugins[@]}"; do
 		name=$(echo "${i}" | sed 's|.*/||')
+		if [ "$name" == 'pnpm.plugin.zsh' ]; then
+			name="pnpm"
+		fi
 		if [[ -d "$HOME/.config/zsh/plugins/${name}" ]]; then
 			echo "dir ${name} already exists."
 		else
@@ -25,11 +28,13 @@ installZshPlugins() {
 	done
 
 	OH_MY_ZSH="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins"
-	if [ -e "$HOME/.config/zsh/plugins/git" ]; then
+	git_dir="$HOME/.config/zsh/plugins/git"
+	if [ -e "$git_dir" ]; then
+		echo "Done."
 		exit
 	else
-		mkdir -p "$HOME"/.config/zsh/plugins/git
-		pushd "$HOME"/.config/zsh/plugins/git || exit
+		mkdir -p "$git_dir"
+		pushd "$git_dir" || exit
 		curl -fsSL $OH_MY_ZSH/git/git.plugin.zsh --output git.plugin.zsh
 		curl -fsSL $OH_MY_ZSH/git/README.md --output README.md
 	fi
