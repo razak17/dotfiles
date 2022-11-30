@@ -30,6 +30,7 @@ installZshPlugins() {
 	OH_MY_ZSH="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins"
 	git_dir="$HOME/.config/zsh/plugins/git"
 	yarn_dir="$HOME/.config/zsh/plugins/yarn"
+	fnm_dir="$HOME/.config/zsh/plugins/fnm"
 	if [ ! -e "$git_dir" ]; then
 		mkdir -p "$git_dir"
 		pushd "$git_dir" || exit
@@ -42,6 +43,11 @@ installZshPlugins() {
 		curl -fsSL $OH_MY_ZSH/yarn/yarn.plugin.zsh --output yarn.plugin.zsh
 		curl -fsSL $OH_MY_ZSH/yarn/README.md --output README.md
 		curl -fsSL $OH_MY_ZSH/yarn/_yarn --output _yarn
+	fi
+	if [ ! -e "$fnm_dir/_fnm" ]; then
+		mkdir -p "$fnm_dir"
+		pushd "$fnm_dir" || exit
+    fnm completions --shell zsh > _fnm
 	fi
 }
 
