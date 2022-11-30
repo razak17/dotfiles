@@ -29,14 +29,19 @@ installZshPlugins() {
 
 	OH_MY_ZSH="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins"
 	git_dir="$HOME/.config/zsh/plugins/git"
-	if [ -e "$git_dir" ]; then
-		echo "Done."
-		exit
-	else
+	yarn_dir="$HOME/.config/zsh/plugins/yarn"
+	if [ ! -e "$git_dir" ]; then
 		mkdir -p "$git_dir"
 		pushd "$git_dir" || exit
 		curl -fsSL $OH_MY_ZSH/git/git.plugin.zsh --output git.plugin.zsh
 		curl -fsSL $OH_MY_ZSH/git/README.md --output README.md
+	fi
+	if [ ! -e "$yarn_dir" ]; then
+		mkdir -p "$yarn_dir"
+		pushd "$yarn_dir" || exit
+		curl -fsSL $OH_MY_ZSH/yarn/yarn.plugin.zsh --output yarn.plugin.zsh
+		curl -fsSL $OH_MY_ZSH/yarn/README.md --output README.md
+		curl -fsSL $OH_MY_ZSH/yarn/_yarn --output _yarn
 	fi
 }
 
