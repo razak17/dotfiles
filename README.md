@@ -7,7 +7,10 @@
 
 You will need `git`
 
-Run the install script. Files are cloned to `~/.dots/dotfiles` by default. (Bare repo)
+Run the install script. Files are cloned to `~/.dots/dotfiles` by default.
+
+NOTE: Installation is done using a bare repo.
+
 ```bash
 curl -s https://raw.githubusercontent.com/razak17/dotfiles/main/install.sh | sh
 
