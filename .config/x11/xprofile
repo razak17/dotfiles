@@ -18,6 +18,7 @@ dwmblocks &
 ~/.local/bin/startup/ikeyboard &
 ~/.local/bin/startup/ibrightness &
 ~/.local/bin/startup/ibattery-notify &
+~/.local/bin/startup/imem-notify &
 ~/.local/bin/startup/ipipewire &
 redshift &
 picom &

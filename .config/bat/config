@@ -4,7 +4,7 @@
 
 #  Run `bat --list-themes` for examples
 # --theme="OneHalfDark"
---theme="TwoDark"
+--theme="base16"
 
 --italic-text=always
 
