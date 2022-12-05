@@ -1,26 +1,5 @@
 #!/bin/bash
 
-###############################################################
-# NOTE:
-# add this to /etc/pacman.conf after artix-archlinux-support is
-# installed then run 'pacman -Syu'
-# rc-update del lightdm default
-
-# Arch
-# [extra]
-# Include = /etc/pacman.d/mirrorlist-arch
-
-# [community]
-# Include = /etc/pacman.d/mirrorlist-arch
-
-# [universe]
-# Server = https://universe.artixlinux.org/$arch
-# Server = https://mirror1.artixlinux.org/universe/$arch
-# Server = https://mirror.pascalpuffke.de/artix-universe/$arch
-# Server = https://artixlinux.qontinuum.space:4443/artixlinux/universe/os/$arch
-# Server = https://mirror1.cl.netactuate.com/artix/universe/$arch
-##################################################################
-
 installAurPackage() {
 	echo 'Aur stuff'
 	# notion-app \

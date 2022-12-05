@@ -1,5 +1,34 @@
 #!/bin/sh
 
+###############################################################
+# NOTE:
+# add universe repo to /etc/pacman.conf
+
+# [universe]
+# Server = https://universe.artixlinux.org/$arch
+# Server = https://mirror1.artixlinux.org/universe/$arch
+# Server = https://mirror.pascalpuffke.de/artix-universe/$arch
+# Server = https://artixlinux.qontinuum.space:4443/artixlinux/universe/os/$arch
+# Server = https://mirror1.cl.netactuate.com/artix/universe/$arch
+
+# Then run 'pacman -Syu'
+# After that 'pacman -S artix-archlinux-support'
+
+# Then add arch repos
+
+# Arch
+# [extra]
+# Include = /etc/pacman.d/mirrorlist-arch
+
+# [community]
+# Include = /etc/pacman.d/mirrorlist-arch
+
+# Then run 'pacman -Syu' again
+##################################################################
+
+# Install essential packages
+pacman -S zsh git curl wget unzip cmake picom dunst xorg  xorg-xinput --noconfirm
+
 # Change shell
 user=$(whoami)
 cat /etc/shells
@@ -7,9 +36,6 @@ chsh --shell /bin/zsh "$user"
 
 # Create dotfiles directory
 mkdir -p "$HOME"/.dots
-
-# Install essential packages
-pacman -S git curl wget unzip make cmake picom dunst artix-archlinux-support xorg-xinput
 
 # Install rVim (brach:rolling)
 BRANCH=rolling bash <(curl -s https://raw.githubusercontent.com/razak17/nvim/rolling/external/bin/install) --all
