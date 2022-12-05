@@ -82,7 +82,8 @@ installSuckless() {
 }
 
 installRedis() {
-	pushd "$HOME"/Downloads || exit
+	mkdir -p "$HOME"/.dots
+	pushd "$HOME"/.dots || exit
 	wget http://download.redis.io/redis-stable.tar.gz
 	tar xvzf redis-stable.tar.gz
 	pushd redis-stable || exit
