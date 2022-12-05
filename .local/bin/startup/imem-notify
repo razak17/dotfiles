@@ -1,16 +1,16 @@
 #!/bin/sh
 
 while true; do
-  usage=$(free -h | grep Mem | awk '{print ($3/$2)*100}')
-  int_usage=${usage%.*} # remove decimal part
-  if [ $int_usage -gt 90 ]; then
-    notify-send -u critical "High Memory Usage Detected" "You are using more than $((int_usage))% of available memory" -i battery-low -t 3000
-    echo "$int_usage"
-  fi
+	usage=$(free -h | grep Mem | awk '{print ($3/$2)*0.1}')
+	int_usage=${usage%.*} # remove decimal part
+	if [ "$int_usage" -gt 90 ]; then
+		notify-send -u critical "High Memory Usage Detected" "You are using more than $((int_usage))% of available memory" -i battery-low -t 3000
+		echo "$int_usage"
+	fi
 
-  if [ "$int_usage" -gt 80 ]; then
-    sleep 30
-  else
-    sleep 60
-  fi
+	if [ "$int_usage" -gt 80 ]; then
+		sleep 30
+	else
+		sleep 60
+	fi
 done
