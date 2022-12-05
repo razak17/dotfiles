@@ -25,9 +25,6 @@ installAurPackage() {
 	echo 'Aur stuff'
 	# notion-app \
 	# vscodium-bin \
-	# skippy-xd \
-	# packettracer \
-	# wps-office \
 	yay -Sy \
 		insomnia \
 		autokey-gtk \
@@ -48,15 +45,6 @@ installAurPackage() {
 installPacmanPackages() {
 	echo 'Pacman stuff'
 	# Install packages
-	# clang \
-	# rust-analyzer \
-	# keepassxc \
-	# whatsapp-nativefier \
-	# telegram-desktop \
-	# vlc \
-	# copyq \
-	# pulseaudio \
-	# axel \
 	# timeshift \
 	# brave \
 	# qbittorrent \
@@ -127,7 +115,7 @@ installPacmanPackages() {
 		docker \
 		firefox \
 		git-delta \
-		bottom
+		bottom --noconfirm
 }
 
 while [[ "$#" -gt 0 ]]; do
