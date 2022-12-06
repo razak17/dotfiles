@@ -6,7 +6,7 @@ parse_git_branch() {
 }
 
 # PS1 is what actually defines what your command line prompt looks like.
-export PS1="\e[0m\e[1;36m\W\e[0m \e[1;32m»"
+export PS1="\e[0m\e[1;36m\W\e[0m"
 gits=" \`parse_git_branch\`\e[0m"
-PS1+="\e[1;31m${gits}"
+PS1+="\e[1;32m${gits} \e[1;32m» "
 # PS1+="\e[1;33m✗\e[0m "
