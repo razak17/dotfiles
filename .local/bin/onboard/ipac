@@ -1,100 +1,22 @@
 #!/bin/bash
 
 installAurPackage() {
-	echo 'Aur stuff'
 	# notion-app \
 	# vscodium-bin \
-	yay -Sy \
-		insomnia \
-		autokey-gtk \
-		libxft-bgra \
-		zoxide \
-		bibata-cursor-theme \
-		devour \
-		toilet \
-		ttf-joypixels \
-		ueberzug \
-		jq \
-		ttf-ancient-fonts \
-		mongodb-compass \
-		prisma-studio \
-		paru
+	pikaur -S insomnia autokey-gtk libxft-bgra bibata-cursor-theme devour toilet ttf-joypixels \
+    ttf-ancient-fonts mongodb-compass prisma-studio paru
 }
 
 installPacmanPackages() {
-	echo 'Pacman stuff'
-	# Install packages
-	# timeshift \
-	# brave \
-	# qbittorrent \
-	sudo pacman -S \
-    cmatrix \
-		mtools \
-		dosfstools \
-		openvpn \
-		unrar \
-		helix \
-		zathura \
-		zathura-ps \
-		zathura-pdf-poppler \
-		zathura-djvu \
-		zathura-cb \
-		aria2 \
-		exa \
-		plocate \
-		xorg-xinput \
-		xorg-xsetroot \
-		wireless_tools \
-		github-cli \
-		fd \
-		htop \
-		ninja \
-		pamixer \
-		cmake \
-		make \
-		tmux \
-		ranger \
-		redshift \
-		mpv \
-		xclip \
-		brightnessctl \
-		alacritty \
-		lxappearance \
-		ripgrep \
-		maim \
-		lazygit \
-		ctags \
-		strace \
-		fd \
-		kitty \
-		btop \
-		screenkey \
-		python-pywal \
-		xwallpaper \
-		exa \
-		dunst \
-		elinks \
-		youtube-dl \
-		bat \
-		baobab \
-		bmon \
-		arc-gtk-theme \
-		gvfs \
-		xf86-input-libinput \
-		android-tools \
-		android-file-transfer \
-		htop \
-		slock \
-		lolcat \
-		pipewire \
-		pipewire-pulse \
-		pipewire-media-session \
-		thunderbird \
-		postgresql \
-		docker \
-		firefox \
-		git-delta \
-		bottom --noconfirm
+  sudo pacman -S xorg-server xorg-xinit xorg-xkill xorg-xsetroot xorg-xbacklight xorg-xprop xorg-xinput \
+    artix-archlinux-support pamixer zsh git curl wget unzip cmake picom dunst mpv xclip ranger \
+    pipewire pipewire-pulse pipewire-media-session maim lazygit github-cli ninja wireless_tools \
+    zathura zathura-ps zathura-pdf-poppler zathura-djvu zathura-cb imagemagick python-pywal \
+    tar libnotify aria2 cowsay arc-gtk-theme rsync ncmpcpp mpd libconfig bluez bluez-utils \
+    cmatrix mtools timeshift dosfstools openvpn unrar exa plocate fd ripgrep ctags strace \
+    fd btop screenkey exa elinks bat baobab bmon gvfs xf86-input-libinput android-tools \
+    android-file-transfer htop lolcat thunderbird postgresql docker bottom tmux sxiv zoxide \
+    jq brightnessctl kitty alacritty xwallpaper python-pip slock firefox ueberzug --noconfirm
 }
 
 while [[ "$#" -gt 0 ]]; do
@@ -102,7 +24,7 @@ while [[ "$#" -gt 0 ]]; do
 	shift
 
 	case "$curr" in
-	-y | --yay)
+	-pk | --pikaur)
 		installAurPackage
 		;;
 	-pac | --pacman)

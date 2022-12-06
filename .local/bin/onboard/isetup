@@ -90,20 +90,12 @@ installRedis() {
 	make
 }
 
-installDoas() {
+installPikaur() {
 	mkdir -p "$HOME"/.dots
 	pushd "$HOME"/.dots || exit
-	git clone https://aur.archlinux.org/doas.git
-	pushd "$HOME"/.dots/doas || exit
-	makepkg -si
-}
-
-installYay() {
-	mkdir -p "$HOME"/.dots
-	pushd "$HOME"/.dots || exit
-	git clone https://aur.archlinux.org/yay.git
-	pushd "$HOME"/.dots/yay || exit
-	makepkg -si
+	git clone https://aur.archlinux.org/pikaur.git
+	pushd "$HOME"/.dots/pikaur || exit
+  makepkg -fsri
 }
 
 while [[ "$#" -gt 0 ]]; do
@@ -114,11 +106,8 @@ while [[ "$#" -gt 0 ]]; do
 	"-suck")
 		installSuckless
 		;;
-	"-doas")
-		installDoas
-		;;
-	"-yay")
-		installYay
+	"-pikaur")
+		installPikaur
 		;;
 	"-fnm")
 		installFnm
@@ -138,6 +127,15 @@ while [[ "$#" -gt 0 ]]; do
 	"-redis")
 		installRedis
 		;;
+	"-ess")
+		installZshPlugins
+		installTmuxPlugins
+		installFnm
+		installAsdf
+		installFzf
+		installSuckless
+		installPikaur
+		;;
 	"-all")
 		installZshPlugins
 		installTmuxPlugins
@@ -146,8 +144,7 @@ while [[ "$#" -gt 0 ]]; do
 		installFzf
 		installSuckless
 		installRedis
-		installDoas
-		installYay
+		installPikaur
 		;;
 	*) echo "Unavailable command... $curr" ;;
 	esac

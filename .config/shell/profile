@@ -23,8 +23,8 @@ if [ -e "$HOME/.fnm/fnm" ]; then
 fi
 
 # GO
-if [ -d "$ASDF_INSTALLS/golang" ]; then
-  v="1.18.1"
+v="1.19.3"
+if [ -d "$ASDF_INSTALLS/golang/$V" ]; then
   export GOHOME="$ASDF_INSTALLS/golang/$v"
   export GOROOT="$ASDF_INSTALLS/golang/$v/go"
   export GOPATH="$HOME/go"

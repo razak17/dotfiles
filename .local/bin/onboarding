@@ -1,55 +1,29 @@
 #!/bin/sh
 
-###############################################################
-# NOTE:
-# add universe repo to /etc/pacman.conf
+mkdir -p $HOME/Documents
+mkdir -p $HOME/Downloads
+mkdir -p $HOME/Music
+mkdir -p $HOME/Pictures
+mkdir -p $HOME/Videos
+mkdir -p "$HOME"/.dots
 
-# [universe]
-# Server = https://universe.artixlinux.org/$arch
-# Server = https://mirror1.artixlinux.org/universe/$arch
-# Server = https://mirror.pascalpuffke.de/artix-universe/$arch
-# Server = https://artixlinux.qontinuum.space:4443/artixlinux/universe/os/$arch
-# Server = https://mirror1.cl.netactuate.com/artix/universe/$arch
-
-# Then run 'pacman -Syu'
-# After that 'pacman -S artix-archlinux-support'
-
-# Then add arch repos
-
-# Arch
-# [extra]
-# Include = /etc/pacman.d/mirrorlist-arch
-
-# [community]
-# Include = /etc/pacman.d/mirrorlist-arch
-
-# Then run 'pacman -Syu' again
-##################################################################
-
-# Install essential packages
-pacman -S zsh git curl wget unzip cmake picom dunst xorg  xorg-xinput --noconfirm
+# Install packer packages
+"$HOME/.local/bin/onboard/ipac" -pac
 
 # Change shell
 user=$(whoami)
 cat /etc/shells
 chsh --shell /bin/zsh "$user"
 
-# Create dotfiles directory
-mkdir -p "$HOME"/.dots
-
-# Install rVim (brach:rolling)
-BRANCH=rolling bash <(curl -s https://raw.githubusercontent.com/razak17/nvim/rolling/external/bin/install) --all
-
 # Add aliases to zshrc
 touch -f ~/.zshrc
 echo . "$HOME"/.config/zsh/modules/aliases >~/.zshrc
 
 # Setup Essentials
-"$HOME/.local/bin/onboard/isetup" -all
+"$HOME/.local/bin/onboard/isetup" -ess
 
-# Setup Firefox Profiles
-if [ ! -d "$HOME/.dots/firefox-user.js" ]; then
-  git clone https://github.com/razak17/firefox-user.js "$HOME/.dots"
-fi
-pushd "$HOME/.dots/firefox-user.js"
-sh ./setup.sh -all
+# Install aur packages
+"$HOME/.local/bin/onboard/ipac" -pk
+
+# Install go
+"$HOME/.local/bin/onboard/iconfig" -go

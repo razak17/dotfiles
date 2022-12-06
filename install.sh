@@ -29,9 +29,7 @@ setupUtils() {
   touch ~/.gtkrc-2.0.mine
   touch ~/.config/zsh/.zshrc
   echo . ~/.config/x11/xresources > ~/.Xresources
-  echo . ~/.config/zsh/zshrc > ~/.config/zsh/.zshrc
 }
 
 installDotfiles
 setupUtils
-
