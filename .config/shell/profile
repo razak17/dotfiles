@@ -3,55 +3,7 @@
 typeset -U PATH path
 
 LOCAL="$HOME/.local/bin"
-ASDF_INSTALLS="$HOME/.asdf/installs"
-
-# fzf
-[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
-
-# asdf
-[ -f $HOME/.asdf/asdf.sh ] && source $HOME/.asdf/asdf.sh
-
-# YARN
-[ -d "$HOME/.yarn" ] && export YARNPATH="$HOME/.yarn/bin"
-
-# fnm
-if [ -e "$HOME/.fnm/fnm" ]; then
-  version="v18.0.0"
-  export FNMDIR="$HOME/.fnm"
-  FNM_PREFIX="$HOME/.fnm/node-versions/$version/installation"
-  export FNMPATH="$FNM_PREFIX/bin"
-fi
-
-# GO
-v="1.19.3"
-if [ -d "$ASDF_INSTALLS/golang/$V" ]; then
-  export GOHOME="$ASDF_INSTALLS/golang/$v"
-  export GOROOT="$ASDF_INSTALLS/golang/$v/go"
-  export GOPATH="$HOME/go"
-fi
-
-# Bun
-if [ -d "$HOME/.bun" ]; then
-  export BUN_INSTALL="$HOME/.bun"
-fi
-
-# Azure cli
-if [ -d "$HOME/lib/azure-cli" ]; then
-  export AZCLI="$HOME/lib/azure-cli/bin"
-fi
-
-# Codelldb for use in neovim
-local CODELLDB_DIR="$HOME/.vscode-oss/extensions/vadimcn.vscode-lldb-1.7.0"
-if [ -d $CODELLDB ]; then
-  export CODELLDB=$CODELLDB_DIR
-fi
-
-# Deta cli
-if [ -e "$HOME/.deta/bin/deta" ]; then
-  export DETA_HOME="$HOME/.deta"
-fi
-
-path=(
+path+=(
   "$LOCAL"
   "$LOCAL/dmenu"
   "$LOCAL/dwm"
@@ -59,16 +11,60 @@ path=(
   "$LOCAL/statusbar"
   "$LOCAL/startup"
   "$LOCAL/utils"
-  "$FNMDIR"
-  "$GOHOME/packages/bin"
-  "$GOPATH/bin"
-  "$GOROOT/bin"
-  "$FNMPATH"
-  "$YARNPATH"
-  "$AZCLI"
-  "$BUN_INSTALL/bin"
-  "$DETA_HOME/bin"
-  "$path[@]"
 )
+
+# fzf
+[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
+
+# asdf
+[ -f $HOME/.asdf/asdf.sh ] && source $HOME/.asdf/asdf.sh
+
+# fnm
+if [ -e "$HOME/.fnm/fnm" ]; then
+  version="v18.0.0"
+  export FNMDIR="$HOME/.fnm"
+  FNM_PREFIX="$HOME/.fnm/node-versions/$version/installation"
+  export FNMPATH="$FNM_PREFIX/bin"
+  path+=(
+    "$FNMDIR"
+    "$FNMPATH"
+  )
+fi
+
+# YARN
+if [ -d "$HOME/.yarn/bin" ]; then
+  export YARNPATH="$HOME/.yarn/bin"
+  path+=(
+    "$YARNPATH"
+  )
+fi
+
+# GO
+v="1.19.3"
+ASDF_INSTALLS="$HOME/.asdf/installs"
+if [ -d "$ASDF_INSTALLS/golang/$V" ]; then
+  export GOHOME="$ASDF_INSTALLS/golang/$v"
+  export GOROOT="$ASDF_INSTALLS/golang/$v/go"
+  export GOPATH="$HOME/go"
+  path+=(
+    "$GOHOME/packages/bin"
+    "$GOROOT/bin"
+    "$GOPATH/bin"
+  )
+fi
+
+# Codelldb for use in neovim
+local CODELLDB_DIR="$HOME/.vscode-oss/extensions/vadimcn.vscode-lldb-1.8.1"
+if [ -d $CODELLDB_DIR ]; then
+  export CODELLDB=$CODELLDB_DIR
+fi
+
+# Deta cli
+if [ -e "$HOME/.deta/bin/deta" ]; then
+  export DETA_HOME="$HOME/.deta"
+  path+=(
+  "$DETA_HOME/bin"
+  )
+fi
 
 export PATH

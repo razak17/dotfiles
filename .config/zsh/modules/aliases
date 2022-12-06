@@ -147,8 +147,6 @@ if [[ $+commands[exa] ]]; then
   alias ls='exa'
 else
   alias ls='ls --color=auto'
-  alias lsa="ls -a"
-  alias lsl='ls -la'
   alias l='ls -lFh'     # size,show type,human readable
   alias l.="ls -A | egrep '^\.'"
 fi
