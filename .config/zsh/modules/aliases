@@ -36,11 +36,7 @@ alias so="source"
 alias cl='clear'
 alias c='clear'
 alias wd="pwd"
-alias ls='ls --color=auto'
-alias lsa="ls -a"
-alias lsl='ls -la'
 alias loc="locate"
-alias l.="ls -A | egrep '^\.'"
 alias cdd="cd -"
 alias zs='source $HOME/.config/zsh/.zshrc'
 alias e="touch"
@@ -148,9 +144,13 @@ alias ....="cd ../../../.."
 if [[ $+commands[exa] ]]; then
   alias ll="exa --long --all --git --color=always --group-directories-first --icons $@"
   alias lt="exa --icons --all --color=always -T $@"
-  alias l='ls'
+  alias ls='exa'
 else
+  alias ls='ls --color=auto'
+  alias lsa="ls -a"
+  alias lsl='ls -la'
   alias l='ls -lFh'     # size,show type,human readable
+  alias l.="ls -A | egrep '^\.'"
 fi
 
 # editor
