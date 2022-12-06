@@ -9,10 +9,12 @@ while [ "$#" -gt 0 ]; do
 
 	case "$curr" in
 	-s)
-		echo "$(xclip -o -sel c)" && notify-send -t 700 "saved!" >>$clip_history
+		item=$(xclip -o -selection c)
+		echo "$item" >>$clip_history
+		notify-send -t 700 "saved!"
 		;;
 	-l)
-		echo "$(cat $clip_history | dmenu -l 10)" | tr -d '\n' | xclip -sel c && notify-send -t 700 "copied!"
+		cat $clip_history | dmenu -l 10 | tr -d '\n' | xclip -sel c && notify-send -t 700 "copied!"
 		;;
 	esac
 done

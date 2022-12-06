@@ -1,16 +1,15 @@
 #!/usr/bin/env bash
 
 cd /home/razak/.mozilla/firefox/profiles || exit
-choices="$(dir | xargs -n 1 -P 1 echo "$0" | awk {'print $2'} | dmenu -l 10)" || exit 1
-
+choices="$(dir | xargs -n 1 -P 1 echo "$0" | awk '{print $2}' | dmenu -l 10)" || exit 1
 # echo $choices
 
 # capitalize: Eg. main -> Main
-profile="$(tr '[:lower:]' '[:upper:]' <<< "${choices:0:1}")${choices:1}"
+profile="$(tr '[:lower:]' '[:upper:]' <<<"${choices:0:1}")${choices:1}"
 
 if [[ ! $profile ]]; then
-  echo config file does not exist
-  exit 1
+	notify-send -u critical -t 2000 "Firefox Profiles" "Profile does not exist"
+	exit 1
 else
-  firefox -P "$profile"
+	firefox -P "$profile"
 fi
