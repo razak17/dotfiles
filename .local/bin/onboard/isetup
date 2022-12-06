@@ -63,10 +63,25 @@ installSuckless() {
 	fi
 }
 
-installPikaur() {
-	git clone https://aur.archlinux.org/pikaur.git "$HOME"/.dots/pikaur
-	pushd "$HOME"/.dots/pikaur || exit
-	makepkg -fsri
+installParu() {
+	if [ ! -d "$HOME/.dots/paru" ]; then
+		git clone https://aur.archlinux.org/paru.git "$HOME"/.dots/paru
+	fi
+	pushd "$HOME"/.dots/paru || exit
+	makepkg -si
+}
+
+# NOTE: enter root shell before running i.e. su
+doasSetup() {
+	username="$1"
+	[ -e "/usr/bin/sudo" ] && rm /usr/bin/sudo
+	[ -e "/etc/doas.conf" ] && rm /etc/doas.conf
+	echo "permit persist keepenv $username as root
+  permit nopass $username as root cmd /usr/bin/poweroff
+  permit nopass $username as root cmd /usr/bin/reboot
+  " >/etc/doas.conf
+	curl https://raw.githubusercontent.com/razak17/artix-install-script/main/config-files/doas-completion -o /usr/share/bash-completion/completions/doas
+	ln -s /usr/bin/doas /usr/bin/sudo
 }
 
 while [[ "$#" -gt 0 ]]; do
@@ -75,12 +90,17 @@ while [[ "$#" -gt 0 ]]; do
 
 	case "$curr" in
 	"-suck") installSuckless ;;
-	"-pikaur") installPikaur ;;
+	"-paru") installParu ;;
 	"-fnm") installFnm ;;
 	"-asdf") installAsdf ;;
 	"-fzf") installFzf ;;
 	"-zsh") installZshPlugins ;;
 	"-tmux") installTmuxPlugins ;;
+	"-doas")
+		arg="$@"
+		doasSetup "$arg"
+		shift
+		;;
 	-a | --all)
 		installZshPlugins
 		installTmuxPlugins
@@ -88,7 +108,7 @@ while [[ "$#" -gt 0 ]]; do
 		installAsdf
 		installFzf
 		installSuckless
-		installPikaur
+		installParu
 		;;
 	*) echo "Unavailable command... $curr" ;;
 	esac

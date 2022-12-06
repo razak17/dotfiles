@@ -29,7 +29,6 @@ safe_alias ew toilet
 safe_alias vsc "vscodium ." vscodium
 
 # shell
-# alias sudo="sudo"
 alias b="bash"
 alias d="dirs -v"
 for index ({1..17}) alias "$index"="cd +${index}"; unset index
@@ -62,7 +61,7 @@ alias obd="objdump -d"
 alias rcs="sudo rc-service"
 alias rcu="sudo rc-update"
 alias wsc="iwlist scanning"
-alias iws="sudoedit /etc/wpa_supplicant/wpa_supplicant.conf"
+alias iws="sudo vi /etc/wpa_supplicant/wpa_supplicant.conf"
 alias swap="cat /proc/sys/vm/swappiness"
 alias brx='xrandr --output eDP-1 --brightness'
 alias br='brightnessctl -'
@@ -105,7 +104,7 @@ alias i='sudo'
 alias ir='sudo rm -r'
 alias ic="sudo cp -r"
 alias im="sudo mv"
-alias ie='sudoedit'
+alias ie='sudo vi'
 alias iv='sudo -v'
 alias imi="sudo make install"
 alias imci="sudo make clean install"
@@ -116,15 +115,14 @@ alias uadd='sudo usermod -aG'
 alias Qi="pacman -Qi"
 alias Ql="pacman -Ql"
 alias wp='pacman -Qs'
-alias p='sudo pacman -S'
+alias pac='sudo pacman -S'
 alias r='sudo pacman -Rs'
 alias R='sudo pacman -Rcns'
 alias U='sudo pacman -Qdtq'
-alias y='yay --noconfirm'
-alias yy='yay -Sy --noconfirm'
 alias upd='sudo pacman -Syu'
 alias rcache="sudo pacman -Sc"
 alias pkgs="pacman -Q | fzf"
+alias p='paru -S'
 #maintenance
 alias clean='sudo pacman -Rns $(pacman -Qtdq)'
 # get fastest mirrors
@@ -142,7 +140,7 @@ alias die="sudo -A openrc-shutdown -pq now"
 # Programs
 alias grep="grep --color=auto"
 alias iredis="sudo /etc/init.d/redis_6379 start"
-alias codium="sudoedit /usr/share/vscodium-bin/resources/app/product.json"
+alias codium="sudo vi /usr/share/vscodium-bin/resources/app/product.json"
 
 # Others
 alias ...="cd ../../.."
@@ -161,7 +159,7 @@ alias icl="$TEXT_EDITOR $HOME/.dots/clip/clip_hist.txt"
 alias lc='rv ${RVIM_CONFIG_PATH:-$HOME/.config}/rvim/lua/user/config/init.lua'
 alias rvc='rv ${RVIM_CONFIG_PATH:-$HOME/.config}/rvim/init.lua'
 alias nvc="$TEXT_EDITOR config.h"
-alias ivc="sudoedit /etc/xdg/nvim/sysinit.vim"
+alias ivc="sudo vi /etc/xdg/nvim/sysinit.vim"
 alias al="$TEXT_EDITOR $HOME/.config/alacritty/alacritty.yml"
 alias zc="$TEXT_EDITOR $HOME/.config/zsh/.zshrc"
 alias ze="$TEXT_EDITOR $HOME/.config/zsh/.zshenv"

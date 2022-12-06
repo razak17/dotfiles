@@ -123,6 +123,13 @@ ZshCompletions() {
 	echo "DONE"
 }
 
+libxftSetup() {
+	git clone https://github.com/uditkarode/libxft-bgra "$HOME/.dots/libxft-bgra"
+	cd "$HOME/.dots/libxft-bgra" || exit
+	sh autogen.sh --sysconfdir=/etc --prefix=/usr --mandir=/usr/share/man
+	sudo make install
+}
+
 while [[ "$#" -gt 0 ]]; do
 	curr=$1
 	shift
@@ -135,6 +142,7 @@ while [[ "$#" -gt 0 ]]; do
 	"-redis") configRedis ;;
 	"-firefox") configFirefox ;;
 	"-zshc") ZshCompletions ;;
+	"-libx") libxftSetup ;;
 	"-all")
 		installGolang
 		configDocker
