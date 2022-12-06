@@ -1,18 +1,27 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-echo Enter swapfile name:
-read -r NAME
-echo Enter swap size:
-read -r SIZE
+read -rp "Enter swapfile name (default: swapfile): " NAME
+read -rp "Enter swap size (in GB): " SIZE
 
 size="${SIZE}GB"
+
+if [ -z "$NAME" ]; then
+	NAME="swapfile"
+fi
+
+if [ -z "$SIZE" ] || [ "$SIZE" -lt 0 ] || [ "$SIZE" == 0 ]; then
+	echo "Please enter valid swap size."
+	exit 1
+fi
 
 sudo fallocate -l "$size" /"$NAME"
 sudo chmod 600 /"$NAME"
 sudo mkswap /"$NAME"
 sudo swapon /"$NAME"
+echo 'vm.swappiness=10' >/etc/sysctl.d/99-swappiness.conf
 
-echo
+# echo 'vm.swappiness=0' >/etc/sysctl.d/99-swappiness.conf
+
 echo Append the following line /etc/fstab to make change permanent:
 echo /"$NAME" swap swap defaults 0 0
 echo
