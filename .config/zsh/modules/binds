@@ -51,23 +51,18 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 
 bindkey '^r' history-incremental-search-backward # [Ctrl-r] - Search backward incrementally for a specified string. The string may begin with ^ to anchor the search to the beginning of the line.
 bindkey -s '^z' 'zi^M'
-bindkey "^j" down-line-or-beginning-search # Down
-bindkey "^k" up-line-or-beginning-search # Up
+bindkey "^J" down-line-or-beginning-search # Down
+bindkey "^K" up-line-or-beginning-search # Up
 # bindkey ' ' magic-space  # [Space] - don't do history expansion
 bindkey '^U' autosuggest-execute
 bindkey '^H' autosuggest-accept
-# bindkey '^j' autosuggest-clear
+bindkey '^Q' autosuggest-clear
 bindkey '^]' clear-screen
 
-# Edit line in vim with v whilst in normal mod in vi mode
-autoload -Uz edit-command-line;
-zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
-
 # Edit the current command line in $EDITOR
-autoload -U edit-command-line
+autoload -Uz edit-command-line
 zle -N edit-command-line
-bindkey '\C-e' edit-command-line
+bindkey -M vicmd "^E" edit-command-line
 
 bindkey -M menuselect '^x' clear-screen
 
