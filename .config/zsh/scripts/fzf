@@ -49,9 +49,9 @@ txd() {
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
 fs() {
-	session=$(tmux -L Dev list-sessions -F "#{session_name}" |
-		fzf --query="$1" --select-1 --exit-0) &&
-		tmux -L Dev switch-client -t "$session"
+	session=$(tmux -L Dev list-sessions -F "#{session_name}" | fzf --query="$1" --select-1 --exit-0)
+  echo "$session"
+	tmux -L Dev switch-client -t "$session"
 }
 
 # fe [FUZZY PATTERN] - Open the selected file with the default editor
@@ -59,29 +59,29 @@ fs() {
 #   - Exit if there's no match (--exit-0)
 
 fe() {
-	IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview 'bat --theme="OneHalfDark" --color "always" {}' --preview-window=right:60%))
+	IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview 'bat --color "always" {}' --preview-window=right:60%))
 	[[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
 fn() {
   pushd "$HOME/notes/src" > /dev/null || return
-	IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview 'bat --theme="OneHalfDark" --color "always" {}' --preview-window=right:60%))
+	IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview 'bat --color "always" {}' --preview-window=right:60%))
 	[[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
 fr() {
   pushd "$HOME/.config/rvim" > /dev/null || return
-	IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview 'bat --theme="OneHalfDark" --color "always" {}' --preview-window=right:60%))
+	IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview 'bat --color "always" {}' --preview-window=right:60%))
 	[[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
 fu() {
-	IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview 'bat --theme="OneHalfDark" --color "always" {}' --preview-window=right:60%))
+	IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview 'bat --color "always" {}' --preview-window=right:60%))
 	[[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
 fz() {
   pushd "$ZDOTDIR" > /dev/null || return
-	IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview 'bat --theme="OneHalfDark" --color "always" {}' --preview-window=right:60%))
+	IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview 'bat --color "always" {}' --preview-window=right:60%))
 	[[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
