@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 installGolang() {
 	asdf plugin-add golang https://github.com/kennyp/asdf-golang.git
@@ -7,10 +7,10 @@ installGolang() {
 }
 
 installFnm() {
-  fnm list
+	fnm list
 	fnm install v18.0.0
 	fnm install v16.13.0
-  fnm default v16.13.0
+	fnm default v16.13.0
 }
 
 configDocker() {
@@ -53,7 +53,7 @@ configPostgres() {
 }
 
 configRedis() {
-  cd "$HOME"/Downloads/redis-stable || exit
+	pushd "$HOME"/Downloads/redis-stable || exit
 	sudo cp src/redis-server /usr/local/bin/
 	sudo cp src/redis-cli /usr/local/bin/
 
@@ -88,12 +88,13 @@ configRedis() {
 }
 
 configFirefox() {
-  # Setup Firefox Profiles
-  if [ ! -d "$HOME/.dots/firefox-user.js" ]; then
-    git clone https://github.com/razak17/firefox-user.js "$HOME/.dots"
-  fi
-  pushd "$HOME/.dots/firefox-user.js"
-  sh ./setup.sh -all
+	# Setup Firefox Profiles
+	dir="$HOME/.dots/firefox-user.js"
+	if [ ! -d "$dir" ]; then
+		git clone https://github.com/razak17/firefox-user.js "$HOME/.dots"
+	fi
+	pushd "$dir" || exit
+	sh ./setup.sh -all
 }
 
 ZshCompletions() {
@@ -101,7 +102,7 @@ ZshCompletions() {
 	git_dir="$HOME/.config/zsh/plugins/git"
 	if [ ! -e "$git_dir" ]; then
 		mkdir -p "$git_dir"
-		pushd "$git_dir" || exit
+		cd "$git_dir" || exit
 		curl -fsSL $OH_MY_ZSH/git/git.plugin.zsh --output git.plugin.zsh
 		curl -fsSL $OH_MY_ZSH/git/README.md --output README.md
 	fi
@@ -117,9 +118,9 @@ ZshCompletions() {
 	if [ ! -e "$fnm_dir/_fnm" ]; then
 		mkdir -p "$fnm_dir"
 		pushd "$fnm_dir" || exit
-    fnm completions --shell zsh > _fnm
+		fnm completions --shell zsh >_fnm
 	fi
-  echo "DONE"
+	echo "DONE"
 }
 
 while [[ "$#" -gt 0 ]]; do
@@ -127,33 +128,19 @@ while [[ "$#" -gt 0 ]]; do
 	shift
 
 	case "$curr" in
-	"-go")
-		installGolang
-		;;
-	"-fnm")
-		installFnm
-		;;
-	"-docker")
-		configDocker
-		;;
-	"-postgres")
-		configPostgres
-		;;
-	"-redis")
-		configRedis
-		;;
-	"-firefox")
-		configFirefox
-		;;
-	"-zshc")
-		ZshCompletions
-		;;
+	"-go") installGolang ;;
+	"-fnm") installFnm ;;
+	"-docker") configDocker ;;
+	"-postgres") configPostgres ;;
+	"-redis") configRedis ;;
+	"-firefox") configFirefox ;;
+	"-zshc") ZshCompletions ;;
 	"-all")
 		installGolang
 		configDocker
 		configPostgres
 		configRedis
-    configFirefox
+		configFirefox
 		installFnm
 		;;
 	*) echo "Unavailable command... $curr" ;;

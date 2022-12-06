@@ -1,22 +1,21 @@
 #!/bin/bash
 
 installAurPackage() {
-	# notion-app \
-	# vscodium-bin \
-	pikaur -S insomnia autokey-gtk libxft-bgra bibata-cursor-theme devour toilet ttf-joypixels \
-    ttf-ancient-fonts mongodb-compass prisma-studio paru
+	# notion-app vscodium-bin autokey-gtk devour paru
+	pikaur -S insomnia libxft-bgra-git bibata-cursor-theme toilet ttf-joypixels \
+		ttf-ancient-fonts mongodb-compass prisma-studio
 }
 
 installPacmanPackages() {
-  sudo pacman -S xorg-server xorg-xinit xorg-xkill xorg-xsetroot xorg-xbacklight xorg-xprop xorg-xinput \
-    artix-archlinux-support pamixer zsh git curl wget unzip cmake picom dunst mpv xclip ranger \
-    pipewire pipewire-pulse pipewire-media-session maim lazygit github-cli ninja wireless_tools \
-    zathura zathura-ps zathura-pdf-poppler zathura-djvu zathura-cb imagemagick python-pywal \
-    tar libnotify aria2 cowsay arc-gtk-theme rsync ncmpcpp mpd libconfig bluez bluez-utils \
-    cmatrix mtools timeshift dosfstools openvpn unrar exa plocate fd ripgrep ctags strace \
-    fd btop screenkey exa elinks bat baobab bmon gvfs xf86-input-libinput android-tools \
-    android-file-transfer htop lolcat thunderbird postgresql docker bottom tmux sxiv zoxide \
-    jq brightnessctl kitty alacritty xwallpaper python-pip slock firefox ueberzug --noconfirm
+	sudo pacman -S xorg-server xorg-xinit xorg-xkill xorg-xsetroot xorg-xbacklight xorg-xprop xorg-xinput \
+		artix-archlinux-support pamixer zsh git curl wget unzip cmake picom dunst mpv xclip ranger redis \
+		pipewire pipewire-pulse wireplumber maim lazygit ninja python-pywal wireless_tools fd sxiv bat \
+		zathura zathura-ps zathura-pdf-poppler zathura-djvu zathura-cb imagemagick bluez bluez-utils \
+		tar libnotify aria2 cowsay arc-gtk-theme rsync ncmpcpp mpd libconfig fd ctags strace tmux \
+		cmatrix mtools timeshift dosfstools openvpn unrar plocate github-cli tmux android-tools \
+		btop screenkey exa elinks baobab bmon gvfs xf86-input-libinput ripgrep bottom zoxide \
+		android-file-transfer htop lolcat thunderbird postgresql docker jq slock firefox \
+		brightnessctl kitty alacritty xwallpaper python-pip ueberzug --noconfirm
 }
 
 while [[ "$#" -gt 0 ]]; do
@@ -24,12 +23,8 @@ while [[ "$#" -gt 0 ]]; do
 	shift
 
 	case "$curr" in
-	-pk | --pikaur)
-		installAurPackage
-		;;
-	-pac | --pacman)
-		installPacmanPackages
-		;;
+	-pk | --pikaur) installAurPackage ;;
+	-pac | --pacman) installPacmanPackages ;;
 	-a | --all)
 		installAurPackage
 		installPacmanPackages

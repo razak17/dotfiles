@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 installZshPlugins() {
-	mkdir -p "$HOME"/.config/zsh/plugins
 	plugins=(
 		'esc/conda-zsh-completion'
 		# 'djui/alias-tips'
@@ -28,50 +27,46 @@ installZshPlugins() {
 }
 
 installTmuxPlugins() {
-	git clone https://github.com/tmux-plugins/tpm "$HOME"/.config/tmux/plugins/tpm
+	if [ ! -d "$HOME/.config/tmux/plugins" ]; then
+		git clone https://github.com/tmux-plugins/tpm "$HOME/.config/tmux/plugins/tpm"
+	fi
 }
 
 installFnm() {
-	curl -fsSL https://fnm.vercel.app/install | bash
+	if [ ! -d "$HOME/.fnm" ]; then
+		curl -fsSL https://fnm.vercel.app/install | bash
+	fi
 }
 
 installAsdf() {
-	git clone https://github.com/asdf-vm/asdf.git "$HOME"/.asdf --branch v0.10.2
+	if [ ! -d "$HOME/.asdf" ]; then
+		git clone https://github.com/asdf-vm/asdf.git "$HOME"/.asdf --branch v0.10.2
+	fi
 }
 
 installFzf() {
-	git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME"/.fzf && "$HOME"/.fzf/install
+	if [ ! -d "$HOME/.fzf" ]; then
+		git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME"/.fzf
+		"$HOME"/.fzf/install --key-bindings --completion --no-bash --no-zsh --no-fish
+	fi
 }
 
 installSuckless() {
-	mkdir -p "$HOME"/.dots
-	pushd "$HOME"/.dots || exit
-	git clone https://github.com/razak17/suckless
-	pushd "$HOME"/.dots/suckless/dwm || exit
-	sudo make clean install
-	pushd "$HOME"/.dots/suckless/dmenu || exit
-	sudo make clean install
-	pushd "$HOME"/.dots/suckless/dwmblocks || exit
-	sudo make clean install
-	pushd "$HOME"/.dots/suckless/st || exit
-	sudo make clean install
-}
-
-installRedis() {
-	mkdir -p "$HOME"/.dots
-	pushd "$HOME"/.dots || exit
-	wget http://download.redis.io/redis-stable.tar.gz
-	tar xvzf redis-stable.tar.gz
-	pushd redis-stable || exit
-	make
+	root_dir="$HOME/.dots/suckless"
+	if [ ! -d "$root_dir" ]; then
+		git clone https://github.com/razak17/suckless "$root_dir"
+		sudo make -C "$root_dir/dwm" install
+		sudo make -C "$root_dir/dmenu" install
+		sudo make -C "$root_dir/dwmblocks" install
+		sudo make -C "$root_dir/st" install
+		echo "Done."
+	fi
 }
 
 installPikaur() {
-	mkdir -p "$HOME"/.dots
-	pushd "$HOME"/.dots || exit
-	git clone https://aur.archlinux.org/pikaur.git
+	git clone https://aur.archlinux.org/pikaur.git "$HOME"/.dots/pikaur
 	pushd "$HOME"/.dots/pikaur || exit
-  makepkg -fsri
+	makepkg -fsri
 }
 
 while [[ "$#" -gt 0 ]]; do
@@ -79,47 +74,20 @@ while [[ "$#" -gt 0 ]]; do
 	shift
 
 	case "$curr" in
-	"-suck")
-		installSuckless
-		;;
-	"-pikaur")
-		installPikaur
-		;;
-	"-fnm")
-		installFnm
-		;;
-	"-asdf")
-		installAsdf
-		;;
-	"-fzf")
-		installFzf
-		;;
-	"-zsh")
-		installZshPlugins
-		;;
-	"-tmux")
-		installTmuxPlugins
-		;;
-	"-redis")
-		installRedis
-		;;
-	"-ess")
+	"-suck") installSuckless ;;
+	"-pikaur") installPikaur ;;
+	"-fnm") installFnm ;;
+	"-asdf") installAsdf ;;
+	"-fzf") installFzf ;;
+	"-zsh") installZshPlugins ;;
+	"-tmux") installTmuxPlugins ;;
+	-a | --all)
 		installZshPlugins
 		installTmuxPlugins
 		installFnm
 		installAsdf
 		installFzf
 		installSuckless
-		installPikaur
-		;;
-	"-all")
-		installZshPlugins
-		installTmuxPlugins
-		installFnm
-		installAsdf
-		installFzf
-		installSuckless
-		installRedis
 		installPikaur
 		;;
 	*) echo "Unavailable command... $curr" ;;
