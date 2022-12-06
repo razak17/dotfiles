@@ -24,6 +24,3 @@ echo . "$HOME"/.config/zsh/modules/aliases >~/.zshrc
 
 # Install aur packages
 "$HOME/.local/bin/onboard/ipac" -pk
-
-# Install go
-"$HOME/.local/bin/onboard/iconfig" -go
