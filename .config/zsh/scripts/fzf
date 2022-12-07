@@ -69,6 +69,13 @@ fn() {
 	[[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
+scr() {
+  pushd "$HOME/Pictures/screenshots" > /dev/null || return
+  if [[ $+commands[ranger] ]]; then
+    ranger
+  fi
+}
+
 fr() {
   pushd "$HOME/.config/rvim" > /dev/null || return
 	IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview 'bat --color "always" {}' --preview-window=right:60%))

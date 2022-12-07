@@ -6,14 +6,14 @@ installAurPackages() {
 }
 
 installPacmanPackages() {
-	sudo pacman -S xorg-server xorg-xinit xorg-xkill xorg-xsetroot xorg-xbacklight xorg-xprop xorg-xinput \
-		zsh git curl wget unzip cmake picom dunst mpv xclip ranger redis pipewire pipewire-pulse docker jq \
-		wireplumber maim ninja python-pywal wireless_tools imagemagick bluez bluez-utils tar openvpn fd mpd \
-		libnotify aria2 arc-gtk-theme rsync libconfig ctags strace tmux mtools slock baobab sxiv exa gvfs \
-		timeshift dosfstools unrar plocate elinks zoxide lolcat firefox xf86-input-libinput bmon ueberzug \
-		bat zathura zathura-ps zathura-pdf-poppler zathura-djvu zathura-cb cowsay postgresql bottom htop \
-		ncmpcpp cmatrix github-cli android-tools btop screenkey kitty ripgrep pamixer lazygit git-delta \
-		android-file-transfer alacritty thunderbird brightnessctl xwallpaper python-pip opendoas --noconfirm
+	sudo pacman -S xorg-server xorg-xinit xorg-xkill xorg-xsetroot xorg-xbacklight xorg-xprop xorg-xinput jq \
+		zsh git curl wget unzip cmake picom dunst mpv xclip ranger redis pipewire pipewire-pulse docker expac \
+		wireplumber maim ninja python-pywal wireless_tools imagemagick bluez bluez-utils tar openvpn fd htop \
+		libnotify aria2 arc-gtk-theme rsync libconfig ctags strace tmux mtools slock baobab sxiv hwinfo exa \
+		timeshift dosfstools unrar plocate elinks zoxide lolcat bottom xf86-input-libinput cowsay mpd gvfs \
+		bat zathura zathura-ps zathura-pdf-poppler zathura-djvu zathura-cb ueberzug postgresql btop kitty \
+		ncmpcpp cmatrix github-cli android-tools screenkey mpd ripgrep pamixer lazygit firefox git-delta \
+		android-file-transfer alacritty thunderbird brightnessctl xwallpaper python-pip opendoas reflector --noconfirm
 }
 
 while [[ "$#" -gt 0 ]]; do

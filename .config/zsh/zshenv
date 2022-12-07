@@ -20,8 +20,12 @@ export ZDOTDIR=$HOME/.config/zsh
 
 export TEXT_EDITOR="vi"
 
-if [ -e "$HOME/.local/bin/pvim" ]; then
+if [[ $+commands[pvim] ]]; then
   export TEXT_EDITOR="pvim"
+elif [[ $+commands[nvim] ]]; then
+  export TEXT_EDITOR="nvim"
+elif [[ $+commands[vim] ]]; then
+  export TEXT_EDITOR="vim"
 fi
 
 if which $TEXT_EDITOR >/dev/null; then

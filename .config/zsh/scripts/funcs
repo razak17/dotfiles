@@ -50,15 +50,15 @@ function activate() {
 
 prof="${XDG_CACHE_HOME:-$HOME/.cache}/rvim/prof.log"
 function rvimProfiling() {
-  rvim "$@" --startuptime "$prof"
+  if [[ $+commands[rvim] ]]; then
+    rvim "$@" --startuptime "$prof"
+  fi
 }
 
 prof_raw="${XDG_CACHE_HOME:-$HOME/.cache}/rvim/prof_raw.log"
 function nvimProfiling() {
-  if [[ -e "$HOME/.config/nvim/raw.lua" ]]; then
-    nvim -u "$HOME/.config/nvim/raw.lua" "$@" --startuptime "$prof_raw"
-  else
-    nvim "$@"
+  if [[ $+commands[nvim] ]]; then
+    nvim "$@" --startuptime "$prof_raw"
   fi
 }
 

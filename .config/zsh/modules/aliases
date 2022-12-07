@@ -1,8 +1,7 @@
 #!/bin/zsh
 
 alias v="$EDITOR ./"
-alias -s {js,html,js,ts,css,md}=nvim
-alias sl=ls lsbkl=lsblk dcos=docs
+alias -s {js,html,js,ts,css,md,lua,sh,conf}=$TEXT_EDITOR
 
 safe_alias() {
   lhs=$1
@@ -11,22 +10,35 @@ safe_alias() {
   if [[ $+commands["$cmd"] ]]; then
     if [ -z "$rhs" ]; then
       alias "$lhs"="$cmd"
-      return 1
+    else
+      alias "$lhs"="$rhs"
     fi
-    alias "$lhs"="$rhs"
   fi
 }
 
-safe_alias rv rvim 
+safe_alias rv rvim
 safe_alias pv pvim
 safe_alias rvlog rvimProfiling
 safe_alias nvlog nvimProfiling
-safe_alias wl 'iwctl station list' iwctl
 safe_alias cm connmanctl
 safe_alias py python
 safe_alias xi tuxi
 safe_alias ew toilet
 safe_alias vsc "vscodium ." vscodium
+safe_alias wl 'iwctl station list' iwctl
+
+if [[ $+commands[exa] ]]; then
+  alias ls='exa'
+  alias ll="exa --long --all --git --color=always --group-directories-first --icons $@"
+  alias lt="exa --icons --all --color=always -T $@"
+else
+  alias ls='ls --color=auto'
+  alias l='ls -lFh'     # size,show type,human readable
+  alias l.="ls -A | egrep '^\.'"
+fi
+alias ...="cd ../../.."
+alias ....="cd ../../../.."
+alias ipadd="curl icanhazip.com/"
 
 # shell
 alias b="bash"
@@ -34,13 +46,12 @@ alias d="dirs -v"
 for index ({1..17}) alias "$index"="cd +${index}"; unset index
 alias so="source"
 alias cl='clear'
-alias c='clear'
 alias wd="pwd"
-alias loc="locate"
 alias cdd="cd -"
 alias zs='source $HOME/.config/zsh/.zshrc'
 alias e="touch"
 alias m="mkdir"
+alias loc="locate"
 alias cmd='command -V'
 
 # confirm before overwriting something
@@ -54,8 +65,6 @@ alias notes='fn'
 
 # system
 alias obd="objdump -d"
-alias rcs="sudo rc-service"
-alias rcu="sudo rc-update"
 alias wsc="iwlist scanning"
 alias iws="sudo vi /etc/wpa_supplicant/wpa_supplicant.conf"
 alias swap="cat /proc/sys/vm/swappiness"
@@ -138,19 +147,6 @@ alias grep="grep --color=auto"
 alias iredis="sudo /etc/init.d/redis_6379 start"
 alias codium="sudo vi /usr/share/vscodium-bin/resources/app/product.json"
 
-# Others
-alias ...="cd ../../.."
-alias ....="cd ../../../.."
-if [[ $+commands[exa] ]]; then
-  alias ll="exa --long --all --git --color=always --group-directories-first --icons $@"
-  alias lt="exa --icons --all --color=always -T $@"
-  alias ls='exa'
-else
-  alias ls='ls --color=auto'
-  alias l='ls -lFh'     # size,show type,human readable
-  alias l.="ls -A | egrep '^\.'"
-fi
-
 # editor
 alias a="$TEXT_EDITOR $HOME/.config/zsh/modules/aliases"
 alias icl="$TEXT_EDITOR $HOME/.dots/clip/clip_hist.txt"
@@ -195,17 +191,6 @@ alias cps="iconf -cp"
 alias cst="iconf -cs"
 alias cstb="conf status -sb"
 
-alias gs="git status"
-alias gI="git init"
-
-# nord vpn
-alias inord="systemctl start nordvpnd.service"
-alias vpn="nordvpn"
-alias cvn="nordvpn connect"
-alias dvn="nordvpn disconnect"
-alias svn="nordvpn status"
-alias me="curl icanhazip.com/"
-
 # ranger
 alias f="ranger"
 alias rc='ranger $HOME/.config'
@@ -233,7 +218,6 @@ alias yarnreact='yarn add -D eslint-plugin-jsx-a11y slint-plugin-import eslint-p
 alias rfonts='fc-cache -vf ~/.local/share/fonts/'
 alias plague='curl https://corona-stats.online/states/us'
 alias lg='lazygit'
-alias scr='cd $HOME/Pictures/screenshots'
 alias aria='aria2c --max-connection-per-server=12'
 alias cf="find -type f | sed 's/^..//g' | fzf | tr -d '\n' | xclip -sel c"
 alias cff="find | fzf | sed 's/^..//g' | tr -d '\n' | xclip -sel c"
