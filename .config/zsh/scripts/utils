@@ -40,12 +40,12 @@ zshcomp() {
   done | sort
 }
 
-ires() {
-  xdpyinfo | awk '/dimnsions/{print $2}'
+scrdim() {
+  xdpyinfo | awk '/dimensions/{print $2}'
 }
 
-irecentNote() {
-  ls -r ~/notes/src/* | head -n1 | xargs rvim -u ~/docs/raw.lua
+lastNote() {
+  ls -r ~/notes/src/* | head -n1 | xargs $TEXT_EDITOR
 }
 
 ivpn() {
