@@ -55,19 +55,6 @@ ivpn() {
 
 mc() {
   mkdir -p "$@" && cd "$@"
-}
-
-#look up synonym - (word)
-# slow and buggy
-syn() {
-  curl -s "https://api.dictionaryapi.dev/api/v2/entries/en/$1" | jq '.[].meanings[].definitions[].synonyms[]'
-}
-
-# take, npm init and git init and ignore node_modules
-tng() {
-  take $1 && npm init -y && git init && echo "node_modules" >> .gitignore
-}
-
 buildnvim() {
   neovim_dir="$HOME/.dots/nvim/neovim"
   bin_dir="$HOME/.local/bin"
@@ -88,23 +75,6 @@ buildnvim() {
   cp $HOME/neovim/bin/nvim $bin_dir
 
   popd
-}
-
-wifi_cconnect() {
-  (iwlist scanning | awk '/ESSID/{print $1}' | grep ESSID)
-}
-
-wifiadd() {
-  # bssid=$(nmcli device wifi list | sed -n '1!p' | cut -b 9- | dmenu -p "Select wifi: " -l 20 | cut -d' ' -f1)
-  # pass=$(echo "" | dmenu -p "Enter password: ")
-  # nmcli device wifi connect $bssid password $pass
-
-  wpa_passphrase $1 $2 | sudo -A tee -a /etc/wpa_supplicant/wpa_supplicant.conf
-}
-
-wifirestart() {
-  sudo rm /var/run/wpa_supplicant/wlan0
-  sudo rc-service net.wlan0 restart
 }
 
 fix() {

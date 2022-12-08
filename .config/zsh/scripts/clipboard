@@ -31,4 +31,3 @@ function detect-clipboard() {
 # (for example, perhaps the user has now installed xclip) and then either print an error
 # or proceed successfully.
 detect-clipboard || true
-
