@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# https://github.com/prinixOZ/dotfiles/blob/main/scripts/.local/bin/linkhandler
+
+[ -z "$1" ] && {
+	"$BROWSER"
+	exit
+}
+
+case "$1" in
+*torrent)
+	deluge-console add "$1" >/dev/null 2>&1 &
+	;;
+*mkv | *webm | *mp4 | *youtube.com/watch* | *vid.puffyan.us/watch* | *youtube.com/playlist* | *youtu.be* | *piped.kavin.rocks* | *hooktube.com* | *bitchute.com* | *videos.lukesmith.xyz* | *videoproxy* | *mp3 | *flac | *opus | *mp3?source*)
+	setsid -f mpv --ytdl-format="best" -quiet "$1" >/dev/null 2>&1
+	;;
+*png | *jpg | *jpe | *jpeg | *imageproxy* | *gif | *nitter.snopyta.org/pic*)
+	curl -sL "$1" >"/tmp/nsxiv-tmpimg" && nsxiv -a "/tmp/nsxiv-tmpimg" >/dev/null 2>&1 &
+	;;
+*pdf | *cbz | *cbr)
+	curl -sL "$1" >"/tmp/$(echo "$1" | sed "s/.*\///;s/%20/ /g")" && zathura "/tmp/$(echo "$1" | sed "s/.*\///;s/%20/ /g")" >/dev/null 2>&1 &
+	;;
+*)
+	[ -f "$1" ] && setsid -f "$TERMINAL" -e "$EDITOR" "$1" >/dev/null 2>&1 || setsid -f librewolf -P default "$1" >/dev/null 2>&1
+	;;
+esac
