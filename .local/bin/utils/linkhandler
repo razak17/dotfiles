@@ -21,6 +21,6 @@ case "$1" in
 	curl -sL "$1" >"/tmp/$(echo "$1" | sed "s/.*\///;s/%20/ /g")" && zathura "/tmp/$(echo "$1" | sed "s/.*\///;s/%20/ /g")" >/dev/null 2>&1 &
 	;;
 *)
-	[ -f "$1" ] && setsid -f "$TERMINAL" -e "$EDITOR" "$1" >/dev/null 2>&1 || setsid -f librewolf -P default "$1" >/dev/null 2>&1
+	[ -f "$1" ] && setsid -f "$TERMINAL" -e "$EDITOR" "$1" >/dev/null 2>&1 || setsid -f firefox -P Main "$1" >/dev/null 2>&1
 	;;
 esac
