@@ -79,15 +79,6 @@ function colours() {
   done
 }
 
-function alive() {
-  if ping -c 2 google.com; then
-    # echo "It appears you have a working internet connection"
-    notify-send "📶 Internet Status " "\- You are connected." -t 2000
-  else
-    notify-send "❎ Internet Status " "\- No internet connection." -t 2000
-  fi
-}
-
 function old() {
   if grep -q $@ ~/.cache/zsh/.zsh_history; then
     echo "You appear to have typed '$@' in the past."

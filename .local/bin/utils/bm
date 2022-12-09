@@ -2,7 +2,6 @@
 
 file="$HOME/.config/bm/bm"
 
-bg=$(cat ~/.cache/wal/colors | sed -n '11p')
 content=$(sort "$file" | sed -e '/^\s*#/d' | column -ts "|" -o "$(printf "%100s")|" | dmenu -l 8 -p "Choose :")
 
 link=$(echo "$content" | awk -F "|" '{print $2}')
