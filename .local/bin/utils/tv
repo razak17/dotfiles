@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+dir=$(find "$HOME/Downloads/TV Shows/" -type d -not -path "*/Course/*" | sort | dmenu -i -l 30 -p "Choose :")
+
+if [ "$1" == "-d" ]; then
+	mpv "$dir"
+else
+	vid() {
+		file=$(find "$dir" | dmenu -i -l 17 -p "Play :")
+		[ -f "$file" ] && mpv "$file"
+	}
+	vid
+	while [ -f "$file" ]; do
+		vid
+	done
+fi
