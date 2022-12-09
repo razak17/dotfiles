@@ -1,0 +1,24 @@
+0 | about:newtab
+#basic
+searx | https://searx.be
+yandex | https://yandex.com
+
+#github
+gr | https://github.com/razak17?tab=repositories | firefox -P Dev
+gh | https://github.com/razak17 | firefox -P Dev
+
+### Privacy
+firewalldontstopdragon | https://firewallsdontstopdragons.com
+
+### Torrent
+wallpaper | https://wall.alphacoders.com
+
+### Weeb
+invidious | https://vid.puffyan.us/ | firefox -P Dev
+piped | https://piped.kavin.rocks | firefox -P Dev
+
+### Games
+schulte | https://drafterleo.github.io/schulte
+
+### Torrent
+1337x | https://1337x.to/
