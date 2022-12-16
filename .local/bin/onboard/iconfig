@@ -141,7 +141,7 @@ while [[ "$#" -gt 0 ]]; do
 	"-postgres") configPostgres ;;
 	"-redis") configRedis ;;
 	"-firefox") configFirefox ;;
-	"-zshc") ZshCompletions ;;
+	"-zsh") ZshCompletions ;;
 	"-libx") libxftSetup ;;
 	"-all")
 		installGolang

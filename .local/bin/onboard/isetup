@@ -12,16 +12,20 @@ installZshPlugins() {
 		'hlissner/zsh-autopair'
 		'MichaelAquilina/zsh-auto-notify'
 		'baliestri/pnpm.plugin.zsh'
+		'MenkeTechnologies/zsh-cargo-completion'
 	)
 	for i in "${plugins[@]}"; do
 		name=$(echo "${i}" | sed 's|.*/||')
 		if [ "$name" == 'pnpm.plugin.zsh' ]; then
 			name="pnpm"
 		fi
+		if [ "$name" == 'zsh-cargo-completion' ]; then
+			name="cargo"
+		fi
 		if [[ -d "$HOME/.config/zsh/plugins/${name}" ]]; then
 			echo "dir ${name} already exists."
 		else
-			git clone https://github.com/"$i" ~/.config/zsh/plugins/"$name"
+			git clone --depth 1 https://github.com/"$i" ~/.config/zsh/plugins/"$name"
 		fi
 	done
 }
@@ -72,6 +76,7 @@ installParu() {
 }
 
 # NOTE: enter root shell before running i.e. su
+# ./isetup -doas "razak"
 doasSetup() {
 	username="$1"
 	[ -e "/usr/bin/sudo" ] && rm /usr/bin/sudo
