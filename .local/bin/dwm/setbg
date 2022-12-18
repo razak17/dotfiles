@@ -1,11 +1,19 @@
 #!/bin/sh
 
 DIR="$HOME/pics/distro/main"
-# FAV="/home/razak/pics/distro/main/night-glow-5839x3893.jpg"
+FAV="$HOME/pics/distro/main/cat_leaves.png"
 wall=$(find "$DIR" -type f | shuf -n 1)
 
-if [ "$#" -gt 0 ]; then
-	xwallpaper --zoom "$@"
-else
+case $1 in
+--fav)
+	wall="$FAV"
 	xwallpaper --zoom "$wall"
-fi
+	;;
+--pick)
+	xwallpaper --zoom "$wall"
+	;;
+*)
+	echo 'Must pass an option.'
+	exit 1
+	;;
+esac
