@@ -13,7 +13,7 @@ fi
 [ -f "$HOME/.config/zsh/zshenv" ] && . "$HOME/.config/zsh/zshenv"
 
 dwmblocks &
-~/.local/bin/dwm/setbg &
+~/.local/bin/dwm/setbg --fav &
 ~/.local/bin/startup/itouch &
 ~/.local/bin/startup/ikeyboard &
 ~/.local/bin/startup/ibrightness &
