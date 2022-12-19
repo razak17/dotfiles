@@ -53,15 +53,6 @@ if [ -d "$ASDF_INSTALLS/golang/$V" ]; then
   )
 fi
 
-# Codelldb for use in neovim
-local CODELLDB_DIR="$HOME/.vscode-oss/extensions/vadimcn.vscode-lldb-1.8.1"
-if [ -d $CODELLDB_DIR ]; then
-  export CODELLDB=$CODELLDB_DIR
-  path+=(
-    "$CODELLDB/adapter"
-  )
-fi
-
 # Deta cli
 if [ -e "$HOME/.deta/bin/deta" ]; then
   export DETA_HOME="$HOME/.deta"
