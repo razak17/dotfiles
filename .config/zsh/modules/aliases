@@ -215,6 +215,7 @@ alias yarnnode='yarn add -D typescript eslint_d @fsouza/prettierd  eslint-config
 alias yarnreact='yarn add -D eslint-plugin-jsx-a11y slint-plugin-import eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-react'
 
 # Misc
+alias rustbook='rustup docs --book'
 alias rfonts='fc-cache -vf ~/.local/share/fonts/'
 alias plague='curl https://corona-stats.online/states/us'
 alias lg='lazygit'
