@@ -17,7 +17,8 @@ chsh --shell /bin/zsh "$user"
 
 # Add aliases to zshrc
 touch -f ~/.zshrc
-echo . "$HOME"/.config/zsh/modules/aliases >~/.zshrc
+echo . "$HOME/.config/zsh/modules/aliases" >~/.zshrc
+cat "$HOME/.config/x11/xresources" >~/.Xresources
 
 # Setup Essentials
 "$HOME/.local/bin/onboard/isetup" -a
