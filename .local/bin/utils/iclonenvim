@@ -19,6 +19,14 @@ clone_config() {
 		branch="master"
 	fi
 
+	if [ "$arg" == "-fk" ]; then
+		upstream="https://github.com/folke/dot"
+		dir="$HOME/.dots/fk-dotfiles"
+		nvim_dir="$HOME/.dots/fk-dotfiles/config/nvim"
+		nvim_local="$HOME/.dots/nvim/nvim-fk"
+		branch="master"
+	fi
+
 	[ ! -d "$dir" ] && git clone $upstream "$dir"
 	[ -d "$nvim_local" ] && sudo rm -r "$nvim_local"
 	pushd "$dir" || exit
@@ -34,6 +42,7 @@ while [ "$#" -gt 0 ]; do
 	case "$curr" in
 	-ak) clone_config "$curr" ;;
 	-tj) clone_config "$curr" ;;
+	-fk) clone_config "$curr" ;;
 	*) echo "Unavailable command... $curr" ;;
 	esac
 done
