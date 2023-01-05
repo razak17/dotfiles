@@ -19,11 +19,13 @@ export COLORTERM="truecolor"
 export OPENER="xdg-open"
 export PAGER="less"
 export MANPAGER="less"
-export EDITOR="rvim"
-export VISUAL="rvim"
+export EDITOR="vi"
+export VISUAL="vi"
 export TEXT_EDITOR="vi"
 
-if [[ $+commands[pvim] ]]; then
+if [[ $+commands[rvim] ]]; then
+  export TEXT_EDITOR="rvim"
+elif [[ $+commands[pvim] ]]; then
   export TEXT_EDITOR="pvim"
 elif [[ $+commands[nvim] ]]; then
   export TEXT_EDITOR="nvim"

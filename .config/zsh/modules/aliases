@@ -207,12 +207,6 @@ alias dm='dmenumount'
 alias du='dmenuumount'
 
 alias ywa="yarn watch"
-alias yarndev='yarn add -D eslint_d @fsouza/prettierd  eslint-config-prettier @typescript-eslint/parser  @typescript-eslint/eslint-plugin'
-alias yarndevb='yarn add -D @babel/eslint-parser @babel/preset-env @babel/core'
-alias reactwebpack='yarn add @babel/core @babel/preset-env @babel/preset-react @babel/preset-typescript babel-loader cross-env html-webpack-plugin serve terser-webpack-plugin webpack webpack-cli webpack-dev-server -D'
-
-alias yarnnode='yarn add -D typescript eslint_d @fsouza/prettierd  eslint-config-prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin'
-alias yarnreact='yarn add -D eslint-plugin-jsx-a11y slint-plugin-import eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-react'
 
 # Misc
 alias rustbook='rustup docs --book'
@@ -231,11 +225,9 @@ docs=~/docs
 dots=~/.dots
 dw=~/Downloads
 co=~/.config
-tuts=/run/media/razak/C6A86A1BA86A09EF/Users/Admin/Coding/Tuts/
 
 alias nca='cd "$rca"'
 alias dw='cd "$dw"'
-alias tuts='cd "$tuts"'
 alias co='cd "$XDG_CONFIG_HOME"'
 alias nsh='cd "$XDG_DATA_HOME/rvim"'
 alias rsh='cd "$XDG_DATA_HOME/rvim"'
@@ -247,5 +239,3 @@ alias ws='cd "$HOME/personal/workspace"'
 alias cdcc='cd "$HOME/personal/workspace/coding"'
 alias cdnv='cd "$XDG_CONFIG_HOME/nvim"'
 alias cdrv='cd "$XDG_CONFIG_HOME/rvim"'
-alias cdusb1=' cd /run/media/razak/22B6-E52C/'
-alias cdvt=' cd /run/media/razak/Ventoy/'
