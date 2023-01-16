@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-installGolang() {
-	gvm install go1.19 -B
-	gvm use go1.9 [--default]
-}
-
 installFnm() {
 	fnm list
 	fnm install v18.0.0
@@ -134,7 +129,6 @@ while [[ "$#" -gt 0 ]]; do
 	shift
 
 	case "$curr" in
-	"-go") installGolang ;;
 	"-fnm") installFnm ;;
 	"-docker") configDocker ;;
 	"-postgres") configPostgres ;;
@@ -143,7 +137,6 @@ while [[ "$#" -gt 0 ]]; do
 	"-zsh") ZshCompletions ;;
 	"-libx") libxftSetup ;;
 	"-all")
-		installGolang
 		configDocker
 		configPostgres
 		configRedis
