@@ -78,7 +78,7 @@ schemes:
 colors: *light
 
 font:
-  size: 10
+  size: 8
   normal:
     family: 'Cascadia Code'
     # family: 'JetBrains Mono Nerd Font'

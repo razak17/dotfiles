@@ -42,9 +42,9 @@ installFnm() {
 	fi
 }
 
-installAsdf() {
-	if [ ! -d "$HOME/.asdf" ]; then
-		git clone https://github.com/asdf-vm/asdf.git "$HOME"/.asdf --branch v0.10.2
+installG() {
+	if [ ! -e "$HOME/go/bin/g" ]; then
+		curl -sSL https://git.io/g-install | sh -s
 	fi
 }
 
@@ -97,7 +97,7 @@ while [[ "$#" -gt 0 ]]; do
 	"-suck") installSuckless ;;
 	"-paru") installParu ;;
 	"-fnm") installFnm ;;
-	"-asdf") installAsdf ;;
+	"-g") installG ;;
 	"-fzf") installFzf ;;
 	"-zsh") installZshPlugins ;;
 	"-tmux") installTmuxPlugins ;;
@@ -110,7 +110,7 @@ while [[ "$#" -gt 0 ]]; do
 		installZshPlugins
 		installTmuxPlugins
 		installFnm
-		installAsdf
+		installG
 		installFzf
 		installSuckless
 		installParu
