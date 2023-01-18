@@ -10,7 +10,7 @@ fi
 
 editor="nvim"
 if [[ $+commands[pvim] ]]; then
-  editor="pvim"
+	editor="pvim"
 fi
 
 # rvim -c "norm Go" -c "norm Go## $(date +%H:%M:%S)" -c "norm G2o" -c "startinsert" "$noteFilename"

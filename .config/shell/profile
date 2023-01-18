@@ -23,6 +23,18 @@ path+=(
   "$GOPATH/bin"
 )
 
+# fnm
+if [ -e "$HOME/.fnm/fnm" ]; then
+  version="v16.13.0"
+  export FNMDIR="$HOME/.fnm"
+  FNM_PREFIX="$HOME/.fnm/node-versions/$version/installation"
+  export FNMPATH="$FNM_PREFIX/bin"
+  path+=(
+    "$FNMDIR"
+    "$FNMPATH"
+  )
+fi
+
 # YARN
 if [ -d "$HOME/.yarn/bin" ]; then
   export YARNPATH="$HOME/.yarn/bin"
