@@ -146,6 +146,7 @@ alias die="sudo -A openrc-shutdown -pq now"
 alias grep="grep --color=auto"
 alias iredis="sudo /etc/init.d/redis_6379 start"
 alias codium="sudo vi /usr/share/vscodium-bin/resources/app/product.json"
+alias gvm="$GOPATH/bin/g"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
 
 # editor
 alias a="$TEXT_EDITOR $HOME/.config/zsh/modules/aliases"
