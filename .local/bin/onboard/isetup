@@ -43,6 +43,7 @@ installFnm() {
 }
 
 installG() {
+	# https://github.com/stefanmaric/g
 	if [ ! -e "$HOME/go/bin/g" ]; then
 		curl -sSL https://git.io/g-install | sh -s
 	fi
