@@ -194,9 +194,7 @@ alias cst="iconf -cs"
 alias cstb="conf status -sb"
 
 # ranger
-alias f="ranger"
-alias rc='ranger $HOME/.config'
-alias rnv='ranger $HOME/.config/nvim'
+alias f="lf"
 
 # tmux
 alias xd="tmuxd first"
