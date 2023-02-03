@@ -28,12 +28,6 @@ else
 fi
 unset _comp_path
 
-# Completion for kitty
-if [[ "$TERM" == "xterm-kitty" ]]; then
-  kitty + complete setup zsh | source /dev/stdin
-fi
-
-
 #-------------------------------------------------------------------------------
 #               Styling & Stuff
 #-------------------------------------------------------------------------------
