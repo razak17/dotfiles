@@ -33,6 +33,7 @@ clone_config() {
 	git checkout "$branch"
 	git pull
 	cp -r "$nvim_dir" "$nvim_local"
+	pushd "$nvim_local" && git init || exit
 }
 
 while [ "$#" -gt 0 ]; do
