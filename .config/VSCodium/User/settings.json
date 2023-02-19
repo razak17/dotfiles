@@ -2741,5 +2741,14 @@
   },
   "marquee.configuration.name": "Razak Mo",
   "workbench.colorTheme": "One Dark Pro",
-  "window.zoomLevel": -1,
+  "totalTypeScript.hiddenTips": [
+    "array-type",
+    "typing-function-parameters",
+    "basic-types",
+    "function-return-type"
+  ],
+  "totalTypeScript.hideAllTips": false,
+  "totalTypeScript.hideBasicTips": false,
+  "workbench.activityBar.visible": false,
+  "workbench.statusBar.visible": false,
 }

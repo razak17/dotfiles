@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 alias v="$EDITOR ./"
-alias -s {js,html,js,ts,css,md,lua,sh,conf}=$TEXT_EDITOR
+# alias -s {js,html,js,ts,css,md,lua,sh,conf}=$TEXT_EDITOR
 
 safe_alias() {
   lhs=$1
