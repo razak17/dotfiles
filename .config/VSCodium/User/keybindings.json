@@ -32,7 +32,7 @@
     "when": "editor.textFocus"
   },
   {
-    "key": "ctrl+e",
+    "key": "ctrl+n",
     "command": "workbench.view.explorer"
   },
   {
@@ -231,12 +231,13 @@
   },
   {
     "key": "ctrl+n",
-    "command": "explorer.newFile",
+    // "command": "explorer.newFile",
+    "command": "workbench.action.toggleSidebarVisibility",
     "when": "filesExplorerFocus && !inputFocus"
   },
   {
     "key": "a",
-    "command": "-explorer.newFile",
+    "command": "explorer.newFile",
     "when": "filesExplorerFocus && !inputFocus"
   },
   {
@@ -246,7 +247,7 @@
   },
   {
     "key": "shift+a",
-    "command": "-explorer.newFolder",
+    "command": "explorer.newFolder",
     "when": "filesExplorerFocus && !inputFocus"
   },
 ]

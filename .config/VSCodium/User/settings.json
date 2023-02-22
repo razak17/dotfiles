@@ -283,13 +283,6 @@
       "command": "workbench.action.showCommands"
     },
     {
-      "key": "/",
-      "name": "comment",
-      "type": "command",
-      "command": "vscode-neovim.send",
-      "args": "<C-/>"
-    },
-    {
       "key": "?",
       "name": "View All References",
       "type": "command",
@@ -455,16 +448,9 @@
     },
     {
       "key": "c",
-      "name": "Controls...",
-      "type": "bindings",
-      "bindings": [
-        {
-          "key": "v",
-          "name": "Toggle side bar visibility",
-          "type": "command",
-          "command": "workbench.action.toggleSidebarVisibility"
-        }
-      ]
+      "name": "Close current buffer",
+      "type": "command",
+      "command": "workbench.action.closeActiveEditor"
     },
     {
       "key": "d",
@@ -899,17 +885,24 @@
           "when": "editorHasImplementationProvider && editorTextFocus && !isInEmbeddedEditor"
         },
         {
-          "key": "l",
-          "name": "Code Lens",
-          "type": "command",
-          "command": "codelens.showLensesInCurrentLine"
-        },
-        {
-          "key": "n",
+          "key": "j",
           "name": "Next Problem",
           "type": "command",
           "command": "editor.action.marker.next",
           "when": "editorFocus"
+        },
+        {
+          "key": "k",
+          "name": "Prev Problem",
+          "type": "command",
+          "command": "editor.action.marker.prevInFiles",
+          "when": "editorFocus"
+        },
+        {
+          "key": "l",
+          "name": "Code Lens",
+          "type": "command",
+          "command": "codelens.showLensesInCurrentLine"
         },
         {
           "key": "N",
@@ -923,13 +916,6 @@
           "name": "Outline",
           "type": "command",
           "command": "outline.focus"
-        },
-        {
-          "key": "p",
-          "name": "Prev Problem",
-          "type": "command",
-          "command": "editor.action.marker.prevInFiles",
-          "when": "editorFocus"
         },
         {
           "key": "P",
