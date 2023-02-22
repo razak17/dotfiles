@@ -27,7 +27,7 @@ while true; do
 	elif [ "$battery_level" -lt 25 ]; then
 		sleep 120
 	elif [ "$battery_level" -lt 35 ]; then
-		sleep 180
+		sleep 500
 	else
 		sleep 200
 	fi
