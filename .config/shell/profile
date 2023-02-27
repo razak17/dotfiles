@@ -51,4 +51,14 @@ if [ -e "$HOME/.deta/bin/deta" ]; then
   )
 fi
 
+
+# bun
+
+if [ -d "$HOME/.bun" ]; then
+  export BUN_INSTALL="$HOME/.bun"
+  path+=(
+  "$BUN_INSTALL/bin"
+  )
+fi
+
 export PATH
