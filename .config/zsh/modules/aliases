@@ -167,7 +167,7 @@ alias xR="$TEXT_EDITOR $HOME/.Xresources"
 alias xn="$TEXT_EDITOR $HOME/.config/x11/xinitrc"
 alias nvi="rv init.lua"
 alias rvi="rv init.lua"
-alias nvz="$TEXT_EDITOR $HOME/.cache/zsh/.zsh_history"
+alias h="$TEXT_EDITOR $HOME/.cache/zsh/.zsh_history"
 alias rvz="$TEXT_EDITOR $HOME/.zsh_history"
 
 # Docker and Docker Compose
