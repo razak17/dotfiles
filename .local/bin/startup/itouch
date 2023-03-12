@@ -11,7 +11,7 @@ matrix="Coordinate Transformation Matrix"
 
 echo "cmd: $cmd"
 xinput set-prop "$touchId" "$tappingEnabledId" 1
-xinput set-prop "$mouseId" "$matrix" $mainVal, 0.000000, 0.000000, 0.000000, $mainVal, 0.000000, 0.000000, 0.000000, 1.000000
+# xinput set-prop "$mouseId" "$matrix" $mainVal, 0.000000, 0.000000, 0.000000, $mainVal, 0.000000, 0.000000, 0.000000, 1.000000
 
 # sed -i '/xinput/d' ~/.config/x11/xprofile
 # echo "Removing old line from xprofile..."
