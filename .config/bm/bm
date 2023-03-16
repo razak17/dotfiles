@@ -12,21 +12,21 @@ r |  https://www.reddit.com | firefox -P Main
 rn |  https://www.reddit.com/r/neovim | firefox -P Main
 
 #github
-gr | https://github.com/razak17?tab=repositories | firefox -P coding
-gh | https://github.com/razak17 | firefox -P coding
+gr | https://github.com/razak17?tab=repositories | firefox -P Coding
+gh | https://github.com/razak17 | firefox -P Coding
 
 #privacy
 firewalldontstopdragon | https://firewallsdontstopdragons.com
 
 ### Skill
-typingclub | https://www.edclub.com/sportal/ | librewolf -P typing
-monkeytype | https://monkeytype.com/  | librewolf -P typing
-keybr      | https://www.keybr.com/  | librewolf -P typing
-tryhackme  | https://tryhackme.com/ | librewolf -P skills
+typingclub | https://www.edclub.com/sportal/ | firefox -P typing
+monkeytype | https://monkeytype.com/  | firefox -P typing
+keybr      | https://www.keybr.com/  | firefox -P typing
+tryhackme  | https://tryhackme.com/ | firefox -P skills
 
 ## Google
-gmail | https://mail.google.com | librewolf -P google
-drive | drive.google.com | librewolf -P google
+gmail | https://mail.google.com | firefox -P google
+drive | drive.google.com | firefox -P google
 
 ### Web
 pd | https://piped.kavin.rocks | firefox -P Dev
