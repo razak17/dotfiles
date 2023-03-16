@@ -1,24 +1,43 @@
-0 | about:newtab
+0 | about:newtab | firefox -P Coding --new-window
+sp | https://www.startpage.com/ | firefox -ProfileManager
+
 #basic
-searx | https://searx.be
-yandex | https://yandex.com
+sx | https://searx.be
+yx | https://yandex.com
+
+#socials
+w | https://web.whatsapp.com | firefox -P Dev
+t | https://web.telegram.org/k | firefox -P Dev
+r |  https://www.reddit.com | firefox -P Main
+rn |  https://www.reddit.com/r/neovim | firefox -P Main
 
 #github
-gr | https://github.com/razak17?tab=repositories | firefox -P Dev
-gh | https://github.com/razak17 | firefox -P Dev
+gr | https://github.com/razak17?tab=repositories | firefox -P coding
+gh | https://github.com/razak17 | firefox -P coding
 
-### Privacy
+#privacy
 firewalldontstopdragon | https://firewallsdontstopdragons.com
 
-### Torrent
-wallpaper | https://wall.alphacoders.com
+### Skill
+typingclub | https://www.edclub.com/sportal/ | librewolf -P typing
+monkeytype | https://monkeytype.com/  | librewolf -P typing
+keybr      | https://www.keybr.com/  | librewolf -P typing
+tryhackme  | https://tryhackme.com/ | librewolf -P skills
 
-### Weeb
-invidious | https://vid.puffyan.us/ | firefox -P Dev
-piped | https://piped.kavin.rocks | firefox -P Dev
+## Google
+gmail | https://mail.google.com | librewolf -P google
+drive | drive.google.com | librewolf -P google
+
+### Web
+pd | https://piped.kavin.rocks | firefox -P Dev
 
 ### Games
 schulte | https://drafterleo.github.io/schulte
 
 ### Torrent
+1337x | https://1337x.to/
+nyaa | https://nyaa.si/
+subsplease | https://subsplease.org/
+thepiratebay | https://thepiratebay.org/index.html
+hacknation  | https://hacksnation.com/
 1337x | https://1337x.to/
