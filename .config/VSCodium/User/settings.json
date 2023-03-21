@@ -8,7 +8,7 @@
   "code-runner.executorMap": {
     "python": "python"
   },
-  "editor.fontSize": 12,
+  "editor.fontSize": 13,
   "editor.lineHeight": 19,
   "editor.tabSize": 2,
   "editor.wordWrap": "off",
@@ -2736,5 +2736,5 @@
   "totalTypeScript.hideAllTips": false,
   "totalTypeScript.hideBasicTips": false,
   "workbench.activityBar.visible": false,
-  "workbench.statusBar.visible": false,
+  "window.zoomLevel": -1,
 }

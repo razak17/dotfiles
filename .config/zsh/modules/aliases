@@ -194,7 +194,8 @@ alias cst="iconf -cs"
 alias cstb="conf status -sb"
 
 # ranger
-alias f="lf"
+alias f="lfub"
+alias lf='lfub'
 
 # tmux
 alias xd="tmuxd first"
