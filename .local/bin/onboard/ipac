@@ -7,9 +7,9 @@ installAurPackages() {
 
 installPacmanPackages() {
 	sudo pacman -S xorg-server xorg-xinit xorg-xkill xorg-xsetroot xorg-xbacklight xorg-xprop xorg-xinput xorg-xdpyinfo jq \
-		zsh git curl wget unzip cmake picom dunst mpv xclip ranger redis pipewire pipewire-pulse docker expac \
-		wireplumber maim ninja python-pywal wireless_tools imagemagick bluez bluez-utils tar openvpn fd htop \
-		libnotify aria2 arc-gtk-theme rsync libconfig ctags strace tmux mtools slock baobab sxiv hwinfo exa \
+		zsh git curl wget unzip cmake picom dunst mpv xclip ranger redis pipewire pipewire-pulse docker expac mediainfo \
+		wireplumber maim ninja python-pywal wireless_tools imagemagick bluez bluez-utils tar openvpn fd htop hyperfine \
+		libnotify aria2 arc-gtk-theme rsync libconfig ctags strace tmux mtools slock baobab sxiv hwinfo exa xsel \
 		timeshift dosfstools unrar plocate elinks zoxide lolcat bottom xf86-input-libinput cowsay mpd gvfs \
 		bat zathura zathura-ps zathura-pdf-poppler zathura-djvu zathura-cb ueberzug postgresql btop kitty \
 		ncmpcpp cmatrix github-cli android-tools screenkey mpd ripgrep pamixer lazygit firefox git-delta \
