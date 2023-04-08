@@ -51,15 +51,26 @@ export SUDO_ASKPASS="$HOME/.local/bin/dmenu/dmenupass"
 export ZDOTDIR=$HOME/.config/zsh
 
 # Enable a better reverse search experience.
+export FZF_TMUX_OPTS='-p80%,60%'
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
-export FZF_DEFAULT_OPTS="--reverse
---cycle
---bind=esc:abort
+export FZF_DEFAULT_OPTS="--reverse \
+--cycle \
+--keep-right \
+--bind=esc:abort \
 --height 60% \
 --border sharp \
 --prompt '∷ ' \
 --pointer ▶ "
-export FZF_TMUX_OPTS='-p80%,60%'
+
+# CTRL-/ to toggle small preview window to see the full command
+# CTRL-Y to copy the command into clipboard using pbcopy
+export FZF_CTRL_R_OPTS="
+  --preview 'echo {}' --preview-window up:3:hidden:wrap
+  --bind 'ctrl-/:toggle-preview'
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'"
+
 # History
 export HIST_STAMPS="mm/dd/yyyy"
 export HISTFILE=$ZSH_CACHE_DIR/.zsh_history
