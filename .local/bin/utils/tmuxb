@@ -1,6 +1,6 @@
 #!/bin/sh
 
-config_file="$HOME/.config/tmux/xb.tmux.conf"
+config_file="$HOME/.config/tmux/archive/xb.tmux.conf"
 session_name="$@"
 tmux -L Dull has-session -t "$session_name" &> /dev/null
 
