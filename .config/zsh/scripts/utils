@@ -18,11 +18,6 @@ ch() {
   sudo chmod -R 777 "$@"
 }
 
-# fix permissions
-chf() {
-  sudo compaudit | xargs chmod g-w,o-w "$@"
-}
-
 # chown a directory
 cho() {
   sudo chown -R www:www "$@"
