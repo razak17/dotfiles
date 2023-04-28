@@ -7,6 +7,11 @@ content=$(sort "$file" | sed -e '/^\s*#/d' | column -ts "|" -o "$(printf "%100s"
 link=$(echo "$content" | awk -F "|" '{print $2}')
 command=$(echo "$content" | awk -F "|" '{print $3}')
 
+if [ -z "$link" ]; then
+	notify-send -t 700 "nothing selected!"
+	exit 0
+fi
+
 if [ -z "$command" ]; then
 	linkhandler "$link"
 else

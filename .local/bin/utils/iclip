@@ -3,18 +3,36 @@
 mkdir -p ~/.dots/clip
 clip_history=~/.dots/clip/clip_hist.txt
 
+if [ ! -f $clip_history ]; then
+	touch $clip_history
+fi
+
+save() {
+	item=$(xclip -o -selection c)
+	if [ -z "$item" ]; then
+		notify-send -t 700 "nothing to save!"
+		exit 0
+	fi
+	echo "$item" >>$clip_history
+	notify-send -t 700 "saved!"
+}
+
+load() {
+	clip=$(cat $clip_history | dmenu -l 10 -p "Choose :" | tr -d '\n')
+	if [ -z "$clip" ]; then
+		notify-send -t 700 "nothing selected!"
+		exit 0
+	fi
+	echo "$clip" | xclip -sel c
+	notify-send -t 700 "${clip} copied!"
+}
+
 while [ "$#" -gt 0 ]; do
 	curr=$1
 	shift
 
 	case "$curr" in
-	-s)
-		item=$(xclip -o -selection c)
-		echo "$item" >>$clip_history
-		notify-send -t 700 "saved!"
-		;;
-	-l)
-		cat $clip_history | dmenu -l 10 | tr -d '\n' | xclip -sel c && notify-send -t 700 "copied!"
-		;;
+	-s) save ;;
+	-l) load ;;
 	esac
 done
