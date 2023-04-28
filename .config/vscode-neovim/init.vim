@@ -1,5 +1,10 @@
 " execute 'luafile ' . '~/.config/rvim' . '/lua/core/opts.lua'
 "
+:lua  << EOF
+vim.opt.rtp:remove(vim.env.HOME  .. '/.config/rvim')
+vim.opt.rtp:remove(vim.env.HOME  .. '/.config/rvim/after')
+EOF
+
 set mouse+=a
 
 function! s:manageEditorSize(...)
