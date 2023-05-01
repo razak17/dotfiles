@@ -20,10 +20,11 @@ fi
 for p in "${profiles[@]}"; do
 	if [ "$choice" = "$p" ]; then
 		profile=$(capitalize "$p")
-		notify-send -t 2000 "Firefox profiles" "Opening $profile profile..."
+		notify-send -t 2000 "Firefox profiles" "Opening $choice profile..."
 		firefox -P "$profile"
-	else
-		notify-send -u critical -t 2000 "Firefox Profiles" "That profile does not exist"
 		exit 0
 	fi
 done
+
+notify-send -u critical -t 2000 "Firefox Profiles" "That profile does not exist"
+exit 0
