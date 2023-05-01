@@ -1,15 +1,29 @@
 #!/usr/bin/env bash
 
-cd /home/razak/.mozilla/firefox/profiles || exit
-choices="$(dir | xargs -n 1 -P 1 echo "$0" | awk '{print $2}' | dmenu -l 10)" || exit 1
-# echo $choices
+profiles=("coding" "dev" "main" "rec" "test" "userjs")
+profiles_path="$HOME/.mozilla/firefox/profiles"
 
-# capitalize: Eg. main -> Main
-profile="$(tr '[:lower:]' '[:upper:]' <<<"${choices:0:1}")${choices:1}"
+capitalize() {
+	word="$1"
+	echo "$(tr '[:lower:]' '[:upper:]' <<<"${word:0:1}")${word:1}"
+}
 
-if [[ ! $profile ]]; then
-	notify-send -u critical -t 2000 "Firefox Profiles" "Profile does not exist"
-	exit 1
-else
-	firefox -P "$profile"
+cd "$profiles_path" || exit
+choice="$(dir | xargs -n 1 -P 1 echo "$0" | awk '{print $2}' | dmenu -l 10)"
+echo "$choice"
+
+if [ -z "$choice" ]; then
+	notify-send -u critical -t 2000 "Firefox Profiles" "nothing selected!"
+	exit 0
 fi
+
+for p in "${profiles[@]}"; do
+	if [ "$choice" = "$p" ]; then
+		profile=$(capitalize "$p")
+		notify-send -t 2000 "Firefox profiles" "Opening $profile profile..."
+		firefox -P "$profile"
+	else
+		notify-send -u critical -t 2000 "Firefox Profiles" "That profile does not exist"
+		exit 0
+	fi
+done
