@@ -9,7 +9,7 @@ capitalize() {
 }
 
 cd "$profiles_path" || exit
-choice="$(dir | xargs -n 1 -P 1 echo "$0" | awk '{print $2}' | dmenu -l 10)"
+choice="$(dir | xargs -n 1 -P 1 echo "$0" | awk '{print $2}' | dmenu -l 10 -p 'Choose :')"
 echo "$choice"
 
 if [ -z "$choice" ]; then
