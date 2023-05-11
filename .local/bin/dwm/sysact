@@ -31,7 +31,7 @@ cmds="\
 📺 display off	${off:-xset dpms force off}"
 
 # choices="$(echo "$cmds" | cut -d'	' -f 1)" || exit 1
-choices="$(echo "$cmds" | cut -d'	' -f 1 | dmenu -l 10)" || exit 1
+choices=$(echo "$cmds" | cut -d'	' -f 1 | dmenu -l 10 -p "Choose :") || exit 1
 
 # echo $choices
 eval "$(echo "$cmds" | grep "^$choices	" | cut -d '	' -f2-)"

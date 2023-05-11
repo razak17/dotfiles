@@ -23,6 +23,14 @@ path+=(
   "$GOPATH/bin"
 )
 
+# fnm
+if [ -e "$HOME/.fnm/fnm" ]; then
+  export FNMDIR="$HOME/.fnm"
+  path+=(
+    "$FNMDIR"
+  )
+fi
+
 # YARN
 if [ -d "$HOME/.yarn/bin" ]; then
   export YARNPATH="$HOME/.yarn/bin"
