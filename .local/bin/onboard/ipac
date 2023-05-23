@@ -2,7 +2,7 @@
 
 installAurPackages() {
 	# notion-app vscodium-bin autokey-gtk devour
-	paru -S insomnia-bin prisma-studio-appimage bibata-cursor-theme toilet ttf-joypixels ttf-ancient-fonts mongodb-compass
+	paru -S insomnia-bin prisma-studio-appimage bibata-cursor-theme toilet ttf-joypixels ttf-ancient-fonts mongodb-compass buildx
 }
 
 installPacmanPackages() {
@@ -24,7 +24,7 @@ while [[ "$#" -gt 0 ]]; do
 	-pr | --paru) installAurPackages ;;
 	-pac | --pacman) installPacmanPackages ;;
 	-a | --all)
-		installAurPackage
+		installAurPackages
 		installPacmanPackages
 		;;
 	*) echo "Unavailable command... $curr" ;;

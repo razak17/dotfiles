@@ -18,7 +18,7 @@ sudo fallocate -l "$size" /"$NAME"
 sudo chmod 600 /"$NAME"
 sudo mkswap /"$NAME"
 sudo swapon /"$NAME"
-echo 'vm.swappiness=10' >/etc/sysctl.d/99-swappiness.conf
+# echo 'vm.swappiness=40' >/etc/sysctl.d/99-swappiness.conf
 
 # echo 'vm.swappiness=0' >/etc/sysctl.d/99-swappiness.conf
 

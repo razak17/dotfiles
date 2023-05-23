@@ -22,7 +22,7 @@ clone_config() {
 	if [ "$arg" == "-fk" ]; then
 		upstream="https://github.com/folke/dot"
 		dir="$HOME/.dots/fk-dotfiles"
-		nvim_dir="$HOME/.dots/fk-dotfiles/config/nvim"
+		nvim_dir="$HOME/.dots/fk-dotfiles/nvim"
 		nvim_local="$HOME/.dots/nvim/nvim-fk"
 		branch="master"
 	fi
