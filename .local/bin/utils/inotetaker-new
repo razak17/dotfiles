@@ -1,0 +1,24 @@
+#!/bin/sh
+
+dir="$HOME/notes/neorg/notes"
+mkdir -p "$dir"
+
+editor="rvim"
+if [[ ! -x "$(command -v $editor)" ]]; then
+	notify-send -u critical -t 2000 "Note Take" "please install rVim"
+	exit 0
+fi
+
+notify-send -u critical -t 2000 "Note Take" "please install rVim"
+
+noteFilename="$HOME/notes/neorg/notes/note-$(date +%Y-%m-%d).norg"
+
+if [ ! -f "$noteFilename" ]; then
+	echo "* Notes for $(date +%B-%d-%Y)" >"$noteFilename"
+fi
+
+# rvim -c "norm Go" -c "norm Go## $(date +%H:%M:%S)" -c "norm G2o" -c "startinsert" "$noteFilename"
+$editor --no-lsp -c "norm Go" \
+	-c "norm Go* $(date +%H:%M:%S)" \
+	-c "norm Go- ( ) " \
+	-c "startinsert" "$noteFilename"

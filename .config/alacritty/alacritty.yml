@@ -109,7 +109,7 @@ font:
 
 window:
   decorations: none
-  opacity: 0.72
+  opacity: 1
   padding:
     x: 0
     y: 0
