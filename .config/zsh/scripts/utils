@@ -18,11 +18,6 @@ ch() {
   sudo chmod -R 777 "$@"
 }
 
-# chown a directory
-cho() {
-  sudo chown -R www:www "$@"
-}
-
 # chmod executable
 cx() {
   sudo chmod +x "$@"
@@ -37,10 +32,6 @@ zshcomp() {
 
 scrdim() {
   xdpyinfo | awk '/dimensions/{print $2}'
-}
-
-lastNote() {
-  ls -r ~/notes/src/* | head -n1 | xargs $TEXT_EDITOR
 }
 
 ivpn() {

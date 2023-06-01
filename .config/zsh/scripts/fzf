@@ -24,14 +24,6 @@ envs() {
 	printenv | fzf
 }
 
-# search notes and open it in nvim
-vn() {
-	note=$(fd . '/home/razak/notes/src' | fzf)
-	if [[ -n $note ]]; then
-		rvim $note
-	fi
-}
-
 # tm irc it will attach to the irc session (if it exists), else it will create it.
 # tm with one session open, it will attach to that session.
 # tm with more than one session open it will let you select the session via fzf.
@@ -54,41 +46,9 @@ fs() {
 	tmux -L Dev switch-client -t "$session"
 }
 
-# fe [FUZZY PATTERN] - Open the selected file with the default editor
-#   - Bypass fuzzy finder if there's only one match (--select-1)
-#   - Exit if there's no match (--exit-0)
-
-fe() {
-	IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview 'bat --color "always" {}' --preview-window=right:60%))
-	[[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
-}
-
-fn() {
-  pushd "$HOME/notes/src" > /dev/null || return
-	IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview 'bat --color "always" {}' --preview-window=right:60%))
-	[[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
-}
-
 scr() {
   pushd "$HOME/Pictures/screenshots" > /dev/null || return
   if [[ $+commands[ranger] ]]; then
     ranger
   fi
-}
-
-fr() {
-  pushd "$HOME/.config/rvim" > /dev/null || return
-	IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview 'bat --color "always" {}' --preview-window=right:60%))
-	[[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
-}
-
-fu() {
-	IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview 'bat --color "always" {}' --preview-window=right:60%))
-	[[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
-}
-
-fz() {
-  pushd "$ZDOTDIR" > /dev/null || return
-	IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview 'bat --color "always" {}' --preview-window=right:60%))
-	[[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
