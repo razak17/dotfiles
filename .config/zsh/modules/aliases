@@ -1,13 +1,7 @@
 #!/bin/zsh
 
 alias v="$EDITOR ./"
-# alias -s {js,html,js,ts,css,md,lua,sh,conf}=$custom_editor
-
-custom_editor="$TEXT_EDITOR"
-if [[ "$custom_editor" == 'rvim' ]]; then
-  custom_editor="rvim --no-lsp --no-ai"
-fi
-
+# alias -s {js,html,js,ts,css,md,lua,sh,conf}=$TEXT_EDITOR
 
 safe_alias() {
   lhs=$1
@@ -115,7 +109,7 @@ alias i='sudo'
 alias ir='sudo rm -r'
 alias ic="sudo cp -r"
 alias im="sudo mv"
-alias ie='sudo nvim'
+alias ie='sudo vi'
 alias iv='sudo -v'
 alias imi="sudo make install"
 alias imci="sudo make clean install"
@@ -155,25 +149,24 @@ alias codium="sudo vi /usr/share/vscodium-bin/resources/app/product.json"
 alias gvm="$GOPATH/bin/g"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
 
 # editor
-alias a="$custom_editor $HOME/.config/zsh/modules/aliases"
-alias icl="$custom_editor $HOME/.dots/clip/clip_hist.txt"
-alias rvc='rv ${RVIM_CONFIG_PATH:-$HOME/.config}/rvim/init.lua'
-alias nvc="$custom_editor config.h"
+alias a="$TEXT_EDITOR $HOME/.config/zsh/modules/aliases"
+alias icl="$TEXT_EDITOR $HOME/.dots/clip/clip_hist.txt"
+alias nvc="$TEXT_EDITOR config.h"
 alias ivc="sudo vi /etc/xdg/nvim/sysinit.vim"
-alias al="$custom_editor $HOME/.config/alacritty/alacritty.yml"
-alias zc="$custom_editor $HOME/.config/zsh/.zshrc"
-alias ze="$custom_editor $HOME/.config/zsh/.zshenv"
-alias zp="$custom_editor $HOME/.config/shell/profile"
-alias xp="$custom_editor $HOME/.config/x11/xprofile"
-alias xc="$custom_editor $HOME/.config/tmux/tmux.conf"
-alias kc="$custom_editor $HOME/.config/kitty/kitty.conf"
-alias xr="$custom_editor $HOME/.config/x11/xresources"
-alias xR="$custom_editor $HOME/.Xresources"
-alias xn="$custom_editor $HOME/.config/x11/xinitrc"
-alias nvi="rv init.lua"
-alias rvi="rv init.lua"
-alias h="$custom_editor $HOME/.cache/zsh/.zsh_history"
-alias rvz="$custom_editor $HOME/.zsh_history"
+alias al="$TEXT_EDITOR $HOME/.config/alacritty/alacritty.yml"
+alias zc="$TEXT_EDITOR $HOME/.config/zsh/.zshrc"
+alias ze="$TEXT_EDITOR $HOME/.config/zsh/.zshenv"
+alias zp="$TEXT_EDITOR $HOME/.config/shell/profile"
+alias xp="$TEXT_EDITOR $HOME/.config/x11/xprofile"
+alias xc="$TEXT_EDITOR $HOME/.config/tmux/tmux.conf"
+alias kc="$TEXT_EDITOR $HOME/.config/kitty/kitty.conf"
+alias xr="$TEXT_EDITOR $HOME/.config/x11/xresources"
+alias xR="$TEXT_EDITOR $HOME/.Xresources"
+alias xn="$TEXT_EDITOR $HOME/.config/x11/xinitrc"
+alias nvi="$TEXT_EDITOR init.lua"
+alias rvi="$TEXT_EDITOR init.lua"
+alias h="$TEXT_EDITOR $HOME/.cache/zsh/.zsh_history"
+alias rvz="$TEXT_EDITOR $HOME/.zsh_history"
 
 # Docker and Docker Compose
 # alias idocker="systemctl start docker.service"
