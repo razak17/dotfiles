@@ -5,7 +5,7 @@ alias v="$EDITOR ./"
 
 custom_editor="$TEXT_EDITOR"
 if [[ "$custom_editor" == 'rvim' ]]; then
-  custom_editor="rvim --no-lsp"
+  custom_editor="rvim --no-lsp --no-ai"
 fi
 
 
@@ -115,7 +115,7 @@ alias i='sudo'
 alias ir='sudo rm -r'
 alias ic="sudo cp -r"
 alias im="sudo mv"
-alias ie='sudo vi'
+alias ie='sudo nvim'
 alias iv='sudo -v'
 alias imi="sudo make install"
 alias imci="sudo make clean install"
