@@ -20,5 +20,4 @@ dwmblocks &
 ~/.local/bin/startup/ibattery-notify &
 ~/.local/bin/startup/imem-notify &
 ~/.local/bin/startup/ipipewire &
-redshift -O 3500k &
 picom &
