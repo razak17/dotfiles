@@ -3,7 +3,7 @@
 installZshPlugins() {
 	plugins=(
 		'esc/conda-zsh-completion'
-		# 'djui/alias-tips'
+		'djui/alias-tips'
 		# 'agkozak/zsh-z'
 		'zsh-users/zsh-autosuggestions'
 		'zsh-users/zsh-completions'
