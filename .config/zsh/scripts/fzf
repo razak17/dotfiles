@@ -14,7 +14,7 @@ zd() {
 	dir=$(zoxide query -l | fzf)
 
 	if [[ -n $dir ]]; then
-		cde $dir || exit
+		cd $dir || exit
 	fi
 }
 

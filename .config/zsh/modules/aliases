@@ -68,7 +68,7 @@ alias obd="objdump -d"
 alias wsc="iwlist scanning"
 alias iws="sudo vi /etc/wpa_supplicant/wpa_supplicant.conf"
 alias swap="cat /proc/sys/vm/swappiness"
-alias brx='xrandr --output eDP-1 --brightness'
+alias brx='xrandr --output eDP --brightness'
 alias br='brightnessctl -'
 # easier to read disk
 alias df='df -h'

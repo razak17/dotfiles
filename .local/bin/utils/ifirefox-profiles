@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-profiles=("coding" "dev" "main" "rec" "test" "userjs")
+profiles=("coding" "dev" "main" "rgt" "rec" "test" "userjs")
 profiles_path="$HOME/.mozilla/firefox/profiles"
 
 capitalize() {
