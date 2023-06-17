@@ -29,27 +29,27 @@ while [[ "$#" -gt 0 ]]; do
 		echo "help"
 		;;
 	"-a")
-		deleteDir $brave
-		deleteDir $conda
-		deleteDir $moz
-		deleteDir $pip
-		deleteDir $yarn
-		deleteDir $yay
-		deleteDir $pkg
-		deleteDir $npm
-		deleteDir $paru
+		deleteDir $brave/*
+		deleteDir $conda/*
+		deleteDir $moz/*
+		deleteDir $pip/*
+		deleteDir $yarn/*
+		deleteDir $yay/*
+		deleteDir $pkg/*
+		deleteDir $npm/*
+		deleteDir $paru/*
 		;;
 	"-b")
-		deleteDir $brave
+		deleteDir $brave/*
 		;;
 	"-c")
-		deleteDir $conda
+		deleteDir $conda/*
 		;;
 	"-m")
-		deleteDir $moz
+		deleteDir $moz/*
 		;;
 	"-y")
-		deleteDir $yarn
+		deleteDir $yarn/*
 		;;
 	*) echo "Unavailable command... $curr" ;;
 	esac

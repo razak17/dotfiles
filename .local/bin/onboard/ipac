@@ -1,19 +1,19 @@
 #!/bin/bash
 
 installAurPackages() {
-	# notion-app vscodium-bin autokey-gtk devour
-	paru -S insomnia-bin prisma-studio-appimage bibata-cursor-theme toilet ttf-joypixels ttf-ancient-fonts mongodb-compass buildx
+	# notion-app autokey-gtk devour
+	paru -S insomnia-bin prisma-studio-appimage bibata-cursor-theme toilet ttf-joypixels ttf-ancient-fonts mongodb-compass buildx vscodium-bin
 }
 
 installPacmanPackages() {
 	sudo pacman -S xorg-server xorg-xinit xorg-xkill xorg-xsetroot xorg-xbacklight xorg-xprop xorg-xinput xorg-xdpyinfo jq \
+    timeshift dosfstools unrar plocate elinks zoxide lolcat bottom xf86-input-libinput cowsay docker-compose mpd gvfs \
 		zsh git curl wget unzip cmake picom dunst mpv xclip ranger redis pipewire pipewire-pulse docker expac mediainfo \
-		wireplumber maim ninja python-pywal wireless_tools imagemagick bluez bluez-utils tar openvpn fd htop hyperfine \
+		wireplumber maim ninja python-pywal wireless_tools imagemagick bluez bluez-utils openvpn fd htop hyperfine \
 		libnotify aria2 arc-gtk-theme rsync libconfig ctags strace tmux mtools slock baobab sxiv hwinfo exa xsel \
-		timeshift dosfstools unrar plocate elinks zoxide lolcat bottom xf86-input-libinput cowsay mpd gvfs \
-		bat zathura zathura-ps zathura-pdf-poppler zathura-djvu zathura-cb ueberzug postgresql btop kitty \
+		bat alacritty zathura-ps zathura-pdf-poppler zathura-djvu zathura-cb ueberzug postgresql tar btop kitty \
 		ncmpcpp cmatrix github-cli android-tools screenkey mpd ripgrep pamixer lazygit firefox git-delta \
-		android-file-transfer alacritty thunderbird brightnessctl xwallpaper python-pip opendoas reflector --noconfirm
+		android-file-transfer zathura thunderbird brightnessctl xwallpaper python-pip opendoas reflector --noconfirm
 }
 
 while [[ "$#" -gt 0 ]]; do
