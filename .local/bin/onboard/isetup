@@ -52,7 +52,7 @@ installG() {
 installFzf() {
 	if [ ! -d "$HOME/.fzf" ]; then
 		git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME"/.fzf
-		"$HOME"/.fzf/install --key-bindings --completion --no-bash --no-zsh --no-fish
+		"$HOME"/.fzf/install
 	fi
 }
 

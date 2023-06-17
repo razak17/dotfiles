@@ -24,8 +24,8 @@ path+=(
 )
 
 # fnm
-if [ -e "$HOME/.fnm/fnm" ]; then
-  export FNMDIR="$HOME/.fnm"
+if [ -e "$HOME/.local/share/fnm/fnm" ]; then
+  export FNMDIR="$HOME/.local/share/fnm"
   path+=(
     "$FNMDIR"
   )

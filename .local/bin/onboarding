@@ -24,4 +24,4 @@ cat "$HOME/.config/x11/xresources" >~/.Xresources
 "$HOME/.local/bin/onboard/isetup" -a
 
 # Install aur packages
-"$HOME/.local/bin/onboard/ipac" -pk
+"$HOME/.local/bin/onboard/ipac" -pr
