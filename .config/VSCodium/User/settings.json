@@ -75,7 +75,7 @@
   "liveSassCompile.settings.autoprefix": [],
   "editor.smoothScrolling": true,
   "workbench.list.smoothScrolling": true,
-  "editor.cursorSmoothCaretAnimation": true,
+  "editor.cursorSmoothCaretAnimation": "on",
   "js/ts.implicitProjectConfig.checkJs": true,
   "telemetry.telemetryLevel": "off",
   "terminal.integrated.inheritEnv": false,
@@ -2735,6 +2735,7 @@
   ],
   "totalTypeScript.hideAllTips": false,
   "totalTypeScript.hideBasicTips": false,
-  "workbench.activityBar.visible": false,
   "terminal.integrated.env.linux": {},
+  "workbench.activityBar.visible": false,
+  "workbench.statusBar.visible": false,
 }
