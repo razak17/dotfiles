@@ -2,18 +2,19 @@
 
 installAurPackages() {
 	# notion-app autokey-gtk devour
-	paru -S insomnia-bin prisma-studio-appimage bibata-cursor-theme toilet ttf-joypixels ttf-ancient-fonts mongodb-compass buildx vscodium-bin
+	paru -S insomnia-bin prisma-studio-appimage bibata-cursor-theme toilet ttf-joypixels ttf-ancient-fonts \
+    mongodb-compass buildx vscodium-bin slack-desktop
 }
 
 installPacmanPackages() {
 	sudo pacman -S xorg-server xorg-xinit xorg-xkill xorg-xsetroot xorg-xbacklight xorg-xprop xorg-xinput xorg-xdpyinfo jq \
+    bat alacritty zathura-ps zathura-pdf-poppler zathura-djvu zathura-cb ueberzug postgresql aspell-en tar btop kitty \
+    wireplumber maim ninja python-pywal wireless_tools imagemagick bluez bluez-utils openvpn fd htop aspell hyperfine \
     timeshift dosfstools unrar plocate elinks zoxide lolcat bottom xf86-input-libinput cowsay docker-compose mpd gvfs \
     libnotify aria2 arc-gtk-theme rsync libconfig ctags strace redshift tmux mtools slock baobab sxiv hwinfo exa xsel \
 		zsh git curl wget unzip cmake picom dunst mpv xclip ranger redis pipewire pipewire-pulse docker expac mediainfo \
-		wireplumber maim ninja python-pywal wireless_tools imagemagick bluez bluez-utils openvpn fd htop hyperfine \
-		bat alacritty zathura-ps zathura-pdf-poppler zathura-djvu zathura-cb ueberzug postgresql tar btop kitty \
-		ncmpcpp cmatrix github-cli android-tools screenkey mpd ripgrep pamixer lazygit firefox git-delta lf \
-		android-file-transfer zathura thunderbird brightnessctl xwallpaper python-pip opendoas reflector --noconfirm
+		ncmpcpp cmatrix github-cli android-tools screenkey mpd ripgrep pamixer lazygit firefox git-delta lf tor zathura \
+		android-file-transfer thunderbird brightnessctl xwallpaper python-pip opendoas reflector python-virtualenv --noconfirm
 }
 
 while [[ "$#" -gt 0 ]]; do

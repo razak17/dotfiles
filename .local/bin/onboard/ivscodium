@@ -18,7 +18,7 @@ extensions=(
 	# pnp.polacode
 	# wallabyjs.quokka-vscode
 	# wallabyjs.console-ninja
-	jakob101.relativepath
+	# jakob101.relativepath
 	genieai.chatgpt-vscode
   danielsanmedium.dscodegpt
 	atishay-jain.all-autocomplete
@@ -38,7 +38,7 @@ extensions=(
 	christian-kohler.path-intellisense
 	esbenp.prettier-vscode
 	wayou.vscode-todo-highlight
-	chakrounanas.turbo-console-log
+	# chakrounanas.turbo-console-log
 	asvetliakov.vscode-neovim
 	vspacecode.whichkey
 	pranaygp.vscode-css-peek
@@ -46,7 +46,7 @@ extensions=(
 	github.copilot
 	ecmel.vscode-html-css
 	ms-toolsai.jupyter
-	toolsai.jupyter-keymap
+	# toolsai.jupyter-keymap
 	ms-toolsai.jupyter-renderers
 	ritwickdey.liveserver
 	cardinal90.multi-cursor-case-preserve

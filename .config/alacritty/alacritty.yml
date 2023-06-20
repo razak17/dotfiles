@@ -78,31 +78,22 @@ schemes:
 colors: *light
 
 font:
-  size: 8
   normal:
-    family: "Cascadia Code"
-    # family: 'JetBrains Mono Nerd Font'
-    # family: "FiraCode Nerd Font"
-    # family: 'Operator Mono Lig Book'
-    # family: 'Hurmit Nerd Font'
-    # family: 'Cartograph CF Light'
-    # family: "Dank Mono Nerd Font"
-    style: Retina
+    family: "Victor Mono Nerd Font Mono"
+    style: Regular
   bold:
-    family: "Cascadia Code"
-    # family: 'Operator Mono Lig'
-    style: Medium
+    family: "Victor Mono Nerd Font Mono"
+    style: Bold
   italic:
-    family: "Cascadia Code"
-    # family: 'Operator Mono Lig Book'
+    family: "Victor Mono Nerd Font Mono"
     style: Italic
   bold_italic:
-    family: "Cascadia Code"
-    # family: 'Operator Mono Lig'
-    style: Medium Italic
+    family: "Victor Mono Nerd Font Mono"
+    style: Bold Italic
+  size: 10
   offset:
     x: 0
-    y: 0
+    y: 2
   glyph_offset:
     x: 0
     y: 0

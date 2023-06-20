@@ -2736,6 +2736,5 @@
   "totalTypeScript.hideAllTips": false,
   "totalTypeScript.hideBasicTips": false,
   "terminal.integrated.env.linux": {},
-  "workbench.activityBar.visible": false,
   "workbench.statusBar.visible": false,
 }
