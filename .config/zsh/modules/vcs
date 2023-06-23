@@ -55,7 +55,7 @@ function +vi-git-stash() {
   emulate -L zsh
   if __in_git; then
     if [[ -n $(git rev-list --walk-reflogs --count refs/stash 2> /dev/null) ]]; then
-      hook_com[unstaged]+=" %F{yellow}%f"
+      hook_com[unstaged]+=" %F{yellow}󰋻%f"
     fi
   fi
 }

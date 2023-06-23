@@ -182,7 +182,7 @@ alias dce="docker-compose exec"
 alias dci="docker-compose up"
 alias dcd="docker-compose down -v"
 alias juiceshop='docker run --rm -p 3000:3000 bkimminich/juice-shop'
-
+alias swagger='docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env GOPATH):/go -v $HOME:$HOME -w "$(pwd)" quay.io/goswagger/swagger'
 # git
 alias gcma="git commit -a -v"
 
