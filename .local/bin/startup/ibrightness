@@ -1,6 +1,5 @@
 #!/bin/sh
 
-brightnessctl set 200
+brightnessctl set 70
 xrandr --output eDP --brightness 0.8
-redshift -O 5900K
-# redshift -O 3500k &
+redshift -O 3500k
