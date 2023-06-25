@@ -21,3 +21,4 @@ dwmblocks &
 ~/.local/bin/startup/imem-notify &
 ~/.local/bin/startup/ipipewire &
 picom &
+syncthing serve --no-browser &

@@ -21,7 +21,7 @@ export VISUAL="vi"
 export TEXT_EDITOR="vi"
 
 if [[ $+commands[rvim] ]]; then
-  export TEXT_EDITOR="rvim --no-lsp --no-ai"
+  export TEXT_EDITOR="rvim --no-lsp --plugins-minimal"
 elif [[ $+commands[pvim] ]]; then
   export TEXT_EDITOR="pvim"
 elif [[ $+commands[nvim] ]]; then
