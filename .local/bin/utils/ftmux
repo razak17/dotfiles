@@ -52,8 +52,8 @@ splitPane() {
 	shift
 	cmd="$X splitw"
 	case "$split" in
-	-v) cmd="$cmd -h $@" ;;
-	-h) cmd="$cmd -v $@" ;;
+	-v) cmd="$cmd -h $*" ;;
+	-h) cmd="$cmd -v $*" ;;
 	*) echo "Unavailable command... $curr" ;;
 	esac
 	eval "$cmd"
@@ -144,7 +144,7 @@ createSession() {
 	# printf "hasSession: %s.\n" "$hasSession"
 	# printf "session: %s, window: %s.\n" "$session" "$window"
 	if [ "$#" -gt 0 ]; then
-		cmd="$X new -s $session -d -c$@ -n $window > /dev/null 2>&1"
+		cmd="$X new -s $session -d -c$* -n $window > /dev/null 2>&1"
 	else
 		cmd="$X new -s $session -d -n $window > /dev/null 2>&1"
 	fi
@@ -398,7 +398,7 @@ while [ "$#" -gt 0 ]; do
 		;;
 	-k | --kill)
 		if [ "$#" -gt 0 ]; then
-			arg="$@"
+			arg="$*"
 		else
 			read -rp "Enter session name: " arg
 		fi
@@ -407,7 +407,7 @@ while [ "$#" -gt 0 ]; do
 		;;
 	-s | --session)
 		if [ "$#" -gt 0 ]; then
-			arg="$@"
+			arg="$*"
 		else
 			read -rp "Enter session name: " arg
 		fi
