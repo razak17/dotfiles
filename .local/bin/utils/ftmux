@@ -100,24 +100,33 @@ resizePane() {
 }
 
 breakPane() {
-	($X break-pane -P -F '#{session_name}:#{window_index}.#{pane_index}' -n 'break')
+	$X break-pane -P -F '#{session_name}:#{window_index}.#{pane_index}' -n 'break'
 }
 
 breakIntoSession() {
 	paneIdx=$($X display -p '#{pane_index}')
 	window_name=$($X display -p '#{window_name}')
 	createSession "$window_name"
-	($X kill-pane -t "$paneIdx")
+	$X kill-pane -t "$paneIdx"
 }
 
 hasSession() {
 	session=$1
-	hasSession=$($X list-sessions -F \#S | grep "$session")
-	if [ "$session" == "$hasSession" ]; then
+
+	cmd=$($X has-session -t "$session" &>/dev/null && echo "true" || echo "false")
+
+	if [ "$cmd" == "true" ]; then
 		echo "true"
 	else
 		echo "false"
 	fi
+
+	# sessionExists=$($X list-sessions -F \#S | grep "$session")
+	# if [ "$session" == "$sessionExists" ]; then
+	# 	echo "true"
+	# else
+	# 	echo "false"
+	# fi
 }
 
 createSession() {
@@ -130,6 +139,7 @@ createSession() {
 	if [ "$sessionExists" == "true" ]; then
 		echo "Session '$session' already exists. Aborting ..." && exit 1
 	fi
+
 	# ($X list-sessions -F \#S | awk '{print $1}')
 	# printf "hasSession: %s.\n" "$hasSession"
 	# printf "session: %s, window: %s.\n" "$session" "$window"
@@ -140,6 +150,10 @@ createSession() {
 	fi
 	printf "session '%s' has been created.\n" "$session"
 	eval "$cmd"
+
+	# printf "session '%s' has been created.\n" "$session"
+	# $X attach-session -t "$session" 2>/dev/null || $X new -s "$session" -d -n "$window"
+	# $X attach-session -t "$session" 2>/dev/null || echo "lalal"
 }
 
 killSession() {
@@ -249,11 +263,18 @@ simpleCommands() {
 	esac
 }
 
+testSession() {
+	session="test"
+
+	createSession $session "new" "$HOME/.config/rvim"
+	# createWindow "$session" "config" -c "$HOME/Downloads"
+}
+
 firstSession() {
 	session="rvim"
 
 	createSession $session "new" "$HOME/.config/rvim"
-	createWindow "$session" "config" -c "$HOME/.local/share/rvim"
+	createWindow "$session" "config" -c "$HOME/Downloads"
 
 	# Get first window
 	firstWindow=$(getSessionWindowId "$session" 0)
@@ -263,7 +284,7 @@ firstSession() {
 	# Get second window
 	secondWindow=$(getSessionWindowId "$session" 1)
 	firstPane=$(getWindowPaneId "$secondWindow" 0)
-	splitPane -v -c "$HOME/.cache/rvim" -t "$firstPane"
+	splitPane -v -c "$HOME/.local/bin" -t "$firstPane"
 }
 
 originMedia() {
@@ -328,7 +349,8 @@ while [ "$#" -gt 0 ]; do
 	-b | --break) breakPane ;;
 	-B | --break-into-session) breakIntoSession ;;
 	-z) zTest "$@" ;;
-	--new) firstSession ;;
+	--test) testSession ;;
+	--first) firstSession ;;
 	--om) originMedia ;;
 	--coa) coaNodejsApi ;;
 	-c | --command)

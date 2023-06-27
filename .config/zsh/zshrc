@@ -47,11 +47,6 @@ add_plugin 'git' # Needs to be here b/c it requires compdef (compe)
 #   PATH
 #-------------------------------------------------------------------------------
 
-# asdf
-if exists asdf; then
-  fpath+="$ASDF_DIR/completions/"
-fi
-
 # fnm
 if exists fnm; then
   eval "$(fnm env --use-on-cd)"
