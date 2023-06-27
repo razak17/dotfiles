@@ -1,16 +1,9 @@
 #!/usr/bin/env bash
 
 SERVER="Dev"
-HOME="/home/razak"
-DEV=$HOME/personal/workspace
 X="tmux -L ${SERVER}"
-MONEYPORTAL=$DEV/coding/projects/money-portal
-DOC=$HOME/docs
-NVIM=$HOME/.config/nvim
-C_NVIM=$HOME/.cache/nvim
-SH_NVIM=$HOME/.local/share/nvim
 
-getPaneId() {
+getPanesIds() {
 	tag=$1
 	sessionOrWindowId=$2
 	case "$tag" in
@@ -23,7 +16,7 @@ getPaneId() {
 	echo "$paneId"
 }
 
-getWindowId() {
+getWindowsIds() {
 	tag=$1
 	session=$2
 	case "$tag" in
@@ -65,20 +58,30 @@ splitPane() {
 	eval "$cmd"
 }
 
-getTarget() {
-	target=$1
-	id=$2
+getSessionWindowId() {
+	session=$1
+	windowIndex=$2
 	shift
 	shift
-	if [ $# -gt 0 ]; then
-		if [ "$@" == "-w" ]; then
-			cmd=$(getWindowId -s "$target")
-		elif [ "$@" == "-p" ]; then
-			cmd=$(getPaneId -w "$target")
-		fi
+	if [ $# -gt 0 ] || [ "$session" == '' ] || [ "$windowIndex" == '' ]; then
+		echo "error: getSessionWindowId requires two arguments" && exit 1
 	fi
+	cmd=$(getWindowsIds -s "$session" | awk '{ printf "%s ", $0 }')
 	IFS=' ' read -ra ids <<<"$cmd"
-	echo "${ids[$id]}"
+	echo "${ids[$windowIndex]}"
+}
+
+getWindowPaneId() {
+	window=$1
+	paneIndex=$2
+	shift
+	shift
+	if [ $# -gt 0 ] || [ "$window" == '' ] || [ "$paneIndex" == '' ]; then
+		echo "error: getWindowPaneId requires two arguments" && exit 1
+	fi
+	panesIds=$(getPanesIds -w "$window" | awk '{ printf "%s ", $0 }')
+	IFS=' ' read -ra ids <<<"$panesIds"
+	echo "${ids[$paneIndex]}"
 }
 
 sessionNumber() {
@@ -99,12 +102,11 @@ breakPane() {
 	($X break-pane -P -F '#{session_name}:#{window_index}.#{pane_index}' -n 'break')
 }
 
-# TODO: Implement break a pane into a new session
 breakIntoSession() {
 	paneIdx=$($X display -p '#{pane_index}')
 	window_name=$($X display -p '#{window_name}')
 	createSession "$window_name"
-	# ($X break-pane -P -F '#{session_name}:#{window_index}.#{pane_index}' -n 'break')
+	($X kill-pane -t "$paneIdx")
 }
 
 createSession() {
@@ -239,70 +241,51 @@ simpleCommands() {
 }
 
 firstSession() {
-	session="first"
-	$X has-session -t "$session" &>/dev/null
+	session="news"
 
-	(("$?" != 0)) && createSession $session "main" $NVIM
+	if [ ! "$($X has-session -t $session &>/dev/null)" ]; then
+		createSession $session "news" "$HOME/.local/share/news"
+	fi
 
-	createWindow $session "config" -c $SH_NVIM
+	createWindow "$session" "config" -c "$HOME/.local/share/rvim"
 
-	tw=$(getTarget $session 0 -w)
-	first=$(getTarget "$tw" 0 -p)
-	splitPane -v -c $DOC -t "$first"
+	# Get first window
+	firstWindow=$(getSessionWindowId "$session" 0)
+	firstPane=$(getWindowPaneId "$firstWindow" 0)
+	splitPane -v -c "$HOME/docs" -t "$firstPane"
 
-	tw=$(getTarget "$session" 1 -w)
-	first=$(getTarget "$tw" 0 -p)
-	splitPane -v -c "$C_NVIM" -t "$first"
+	# Get second window
+	secondWindow=$(getSessionWindowId "$session" 1)
+	firstPane=$(getWindowPaneId "$secondWindow" 0)
+	splitPane -v -c "$HOME/.cache/rvim" -t "$firstPane"
 }
 
-finalSession() {
-	session="ml"
-	createSession $session "main" $DEV/Code/py/ml
-	createWindow $session "run" -c $DEV/Code/py/ml/getting-started
-	tw=$(getTarget $session 0 -w)
-	tw2=$(getTarget $session 1 -w)
-	second=$(getTarget "$tw2" 0 -p)
-	$X send-keys -t "$(getTarget "$tw" 0 -p)" "conda activate project-work" "C-m"
-	$X send-keys -t "$second" "conda activate project-work" "C-m"
-	$X send-keys -t "$second" "jupyter lab" "C-m"
-}
+originMedia() {
+	session="origin-media"
+	repo="$HOME/personal/workspace/rgt/Origin-Media"
 
-moneyportalSession() {
-	session="money-portal"
-	createSession $session "code" $MONEYPORTAL
-	createWindow $session "run" -c $MONEYPORTAL/web
-	createWindow $session "psql-redis" -c $MONEYPORTAL/server
-	createWindow $session "docker-azure" -c $MONEYPORTAL/server
+	createSession $session "admin" "$repo/om-admin"
+	createWindow "$session" "api" -c "$repo/om-api"
+	createWindow "$session" "core" -c "$repo/om-core"
 
-	# First Window
-	tw=$(getTarget $session 0 -w)
-	$X send-keys -t "$(getTarget "$tw" 0 -p)" "nvim" "C-m"
+	# admin
+	firstWindow=$(getSessionWindowId "$session" 0)
+	firstPane=$(getWindowPaneId "$firstWindow" 0)
+	splitPane -v -c "$repo/om-admin" -t "$firstPane"
+	secondPane=$(getWindowPaneId "$firstWindow" 1)
+	$X send-keys -t "$secondPane" "yarn dev" "C-m"
 
-	# Second Window
-	tw=$(getTarget $session 1 -w)
-	first=$(getTarget "$tw" 0 -p)
-	$X send-keys -t "$first" "yarn dev" "C-m"
-	splitPane -v -c $MONEYPORTAL/server -t "$first"
-	second=$(getTarget "$tw" 1 -p)
-	$X send-keys -t "$second" "yarn watch" "C-m"
-	splitPane -h -c $MONEYPORTAL/server -t "$second"
-	third=$(getTarget "$tw" 2 -p)
-	$X send-keys -t "$third" "yarn dev" "C-m"
+	# api
+	secondWindow=$(getSessionWindowId "$session" 1)
+	firstPane=$(getWindowPaneId "$secondWindow" 0)
+	splitPane -v -c "$repo/om-api" -t "$firstPane"
+	secondPane=$(getWindowPaneId "$secondWindow" 1)
+	$X send-keys -t "$secondPane" "go run main.go local_dev" "C-m"
 
-	# Third Window
-	tw=$(getTarget $session 2 -w)
-	first=$(getTarget "$tw" 0 -p)
-	$X send-keys -t "$first" "psql -U postgres" "C-m"
-	splitPane -v -c $MONEYPORTAL/server -t "$first"
-	second=$(getTarget "$tw" -1 -p)
-	$X send-keys -t "$second" "redis-cli ping" "C-m"
-
-	# Fourth Window
-	tw=$(getTarget $session 3 -w)
-	first=$(getTarget "$tw" 0 -p)
-	$X send-keys -t "$first" "docker info" "C-m"
-	splitPane -v -c $MONEYPORTAL/server -t "$first"
-	$X send-keys -t "$(getTarget "$tw" -1 -p)" "az --h" "C-m"
+	# core
+	thirdWindow=$(getSessionWindowId "$session" 2)
+	firstPane=$(getWindowPaneId "$thirdWindow" 0)
+	splitPane -v -c "$repo/om-core" -t "$firstPane"
 }
 
 while [ "$#" -gt 0 ]; do
@@ -319,9 +302,8 @@ while [ "$#" -gt 0 ]; do
 	-b | --break) breakPane ;;
 	-B | --break-into-session) breakIntoSession ;;
 	-z) zTest "$@" ;;
-	-m) moneyportalSession ;;
 	--first) firstSession ;;
-	--final) finalSession ;;
+	--om) originMedia ;;
 	-c | --command)
 		arg=$1
 		checkEmpty "$arg"
