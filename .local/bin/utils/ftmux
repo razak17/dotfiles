@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 SERVER="Dev"
+WORKSPACE="$HOME/personal/workspace"
 X="tmux -L ${SERVER}"
 
 getPanesIds() {
@@ -109,28 +110,36 @@ breakIntoSession() {
 	($X kill-pane -t "$paneIdx")
 }
 
+hasSession() {
+	session=$1
+	hasSession=$($X list-sessions -F \#S | grep "$session")
+	if [ "$session" == "$hasSession" ]; then
+		echo "true"
+	else
+		echo "false"
+	fi
+}
+
 createSession() {
 	session=$1
 	window=$2
-	hasSession=$($X list-sessions -F \#S | grep "$session")
 	shift
 	shift
 
+	sessionExists=$(hasSession "$session")
+	if [ "$sessionExists" == "true" ]; then
+		echo "Session '$session' already exists. Aborting ..." && exit 1
+	fi
 	# ($X list-sessions -F \#S | awk '{print $1}')
 	# printf "hasSession: %s.\n" "$hasSession"
 	# printf "session: %s, window: %s.\n" "$session" "$window"
-	if [ "$session" == "$hasSession" ]; then
-		printf "duplicate session '%s'. Available sessions:\n" "$session"
-		($X list-sessions)
+	if [ "$#" -gt 0 ]; then
+		cmd="$X new -s $session -d -c$@ -n $window > /dev/null 2>&1"
 	else
-		if [ "$#" -gt 0 ]; then
-			cmd="$X new -s $session -d -c$@ -n $window > /dev/null 2>&1"
-		else
-			cmd="$X new -s $session -d -n $window > /dev/null 2>&1"
-		fi
-		printf "session '%s' has been created.\n" "$session"
-		eval "$cmd"
+		cmd="$X new -s $session -d -n $window > /dev/null 2>&1"
 	fi
+	printf "session '%s' has been created.\n" "$session"
+	eval "$cmd"
 }
 
 killSession() {
@@ -241,12 +250,9 @@ simpleCommands() {
 }
 
 firstSession() {
-	session="news"
+	session="rvim"
 
-	if [ ! "$($X has-session -t $session &>/dev/null)" ]; then
-		createSession $session "news" "$HOME/.local/share/news"
-	fi
-
+	createSession $session "new" "$HOME/.config/rvim"
 	createWindow "$session" "config" -c "$HOME/.local/share/rvim"
 
 	# Get first window
@@ -288,6 +294,26 @@ originMedia() {
 	splitPane -v -c "$repo/om-core" -t "$firstPane"
 }
 
+coaNodejsApi() {
+	session="coa-nodejs-api"
+	repo="$HOME/personal/workspace/coding/interview/coa/nodejs-api-app"
+
+	createSession $session "api" "$repo"
+	createWindow "$session" "run" -c "$repo"
+
+	# api
+	firstWindow=$(getSessionWindowId "$session" 0)
+	firstPane=$(getWindowPaneId "$firstWindow" 0)
+	splitPane -v -c "$WORKSPACE/coding/portfolio/youtube-clone/youtube-clone-backend" -t "$firstPane"
+
+	# run
+	secondWindow=$(getSessionWindowId "$session" 1)
+	firstPane=$(getWindowPaneId "$secondWindow" 0)
+	splitPane -v -c "$repo" -t "$firstPane"
+	$X send-keys -t "$firstPane" "yarn dev" "C-m"
+
+}
+
 while [ "$#" -gt 0 ]; do
 	curr=$1
 	shift
@@ -302,8 +328,9 @@ while [ "$#" -gt 0 ]; do
 	-b | --break) breakPane ;;
 	-B | --break-into-session) breakIntoSession ;;
 	-z) zTest "$@" ;;
-	--first) firstSession ;;
+	--new) firstSession ;;
 	--om) originMedia ;;
+	--coa) coaNodejsApi ;;
 	-c | --command)
 		arg=$1
 		checkEmpty "$arg"
