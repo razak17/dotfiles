@@ -4,7 +4,7 @@
 if [[ $# -eq 1 ]]; then
 	selected=$1
 else
-  selected=$(find "$HOME"/personal/workspace/* -maxdepth 2 -type d | while read -r p; do zoxide query -l -s "$p/"; done | sort -rnk1 | fzf --no-sort | awk '{print $2}')
+  selected=$(find "$HOME"/personal/workspace/* "$HOME"/.dots/* -maxdepth 2 -type d | while read -r p; do zoxide query -l -s "$p/"; done | sort -rnk1 | fzf --no-sort | awk '{print $2}')
 fi
 
 if [[ -z "$selected" ]]; then
