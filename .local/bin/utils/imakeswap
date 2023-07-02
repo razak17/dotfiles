@@ -18,9 +18,9 @@ sudo fallocate -l "$size" /"$NAME"
 sudo chmod 600 /"$NAME"
 sudo mkswap /"$NAME"
 sudo swapon /"$NAME"
-# echo 'vm.swappiness=40' >/etc/sysctl.d/99-swappiness.conf
 
-# echo 'vm.swappiness=0' >/etc/sysctl.d/99-swappiness.conf
+# sudo sysctl vm.swappiness=80
+# echo 'vm.swappiness=70' >/etc/sysctl.d/99-swappiness.conf
 
 echo Append the following line /etc/fstab to make change permanent:
 echo /"$NAME" swap swap defaults 0 0

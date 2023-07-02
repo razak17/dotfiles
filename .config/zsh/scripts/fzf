@@ -2,10 +2,17 @@
 
 # find files
 ff() {
-	file=$(fd . | fzf)
+  file="$(find . -type f | sort | fzf)"
 	if [[ -n $file ]]; then
-		rvim $file
+		rvim --minimal $file
 	fi
+}
+
+# Only show files which have $1 present in contents
+fw() {
+  local line
+  line=$(rg "$1" | fzf) &&
+    $EDITOR $(cut -d':' -f1 <<<"$line") +$(cut -d':' -f2 <<<"$line")
 }
 
 # zd - use zoxide & FZF to find and go to directory
@@ -37,13 +44,11 @@ txd() {
 	session=$(tmux -L $server list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) && tmux -L $server $change -t "$session" || echo "No sessions found."
 }
 
-# fs [FUZZY PATTERN] - Select selected tmux session
-#   - Bypass fuzzy finder if there's only one match (--select-1)
-#   - Exit if there's no match (--exit-0)
-fs() {
-	session=$(tmux -L Dev list-sessions -F "#{session_name}" | fzf --query="$1" --select-1 --exit-0)
-  echo "$session"
-	tmux -L Dev switch-client -t "$session"
+txkall() {
+	server="Dev"
+  tmux -L $server list-sessions | grep -E -v '\(attached\)$' | while IFS='\n' read line; do
+    tmux -L $server kill-session -t "${line%%:*}"
+  done
 }
 
 scr() {
@@ -51,4 +56,14 @@ scr() {
   if [[ $+commands[ranger] ]]; then
     ranger
   fi
+  cd - || return
+}
+
+todos() {
+  cd "$HOME/notes/neorg" || return
+  file="$(find . -type f | sort | fzf)"
+	if [[ -n $file ]]; then
+		rvim --minimal $file
+	fi
+  cd - || return
 }
