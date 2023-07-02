@@ -203,12 +203,8 @@ alias f="ranger"
 alias lf='lfub'
 
 # tmux
-alias xd="tmuxd first"
-alias xb="tmuxb first"
 alias xsp="tmux display -p '#{socket_path}'"
 alias xls="tmux ls"
-alias ftn='ftmux -s'
-alias ftk='ftmux -k'
 alias dm='dmenumount'
 alias du='dmenuumount'
 

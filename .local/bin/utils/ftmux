@@ -103,13 +103,6 @@ breakPane() {
 	$X break-pane -P -F '#{session_name}:#{window_index}.#{pane_index}' -n 'break'
 }
 
-breakIntoSession() {
-	paneIdx=$($X display -p '#{pane_index}')
-	window_name=$($X display -p '#{window_name}')
-	createSession "$window_name"
-	$X kill-pane -t "$paneIdx"
-}
-
 hasSession() {
 	session=$1
 
@@ -145,6 +138,8 @@ createSession() {
 	# printf "session: %s, window: %s.\n" "$session" "$window"
 	if [ "$#" -gt 0 ]; then
 		cmd="$X new -s $session -d -c$* -n $window > /dev/null 2>&1"
+	elif [ -z "$window" ]; then
+		cmd="$X new -d -s $session > /dev/null 2>&1"
 	else
 		cmd="$X new -s $session -d -n $window > /dev/null 2>&1"
 	fi
@@ -177,6 +172,25 @@ killSession() {
 	exit 1
 }
 
+breakIntoSession() {
+	paneIdx=$($X display -p '#{pane_index}')
+	window_name=$($X display -p '#{window_name}')
+	createSession "$window_name"
+	$X kill-pane -t "$paneIdx"
+}
+
+# will attach to (if it exists), else it will create it.
+# with one session open, it will attach to that session.
+# with more than one session open it will let you select the session via fzf.
+listSessions() {
+	[[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
+	if [ "$1" ]; then
+		$X "$change" -t "$1" 2>/dev/null || ($X new-session -d -s "$1" && $X "$change" -t "$1")
+		return
+	fi
+	session=$($X list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) && $X "$change" -t "$session" || return
+}
+
 createWindow() {
 	session=$1
 	window=$2
@@ -200,28 +214,18 @@ helpMenu() {
 	echo "-b: break active pane to new window"
 	echo "-s: create session. Followed by <session-name>"
 	echo "-k: kill session. Followed by <session-name> (cannot be attached session)"
-	echo "-s: create new session"
+	echo "-n: create new session"
+	echo "-s: list / create new session"
 	echo "-c: send command to each pane. Followed by <arg>"
 	echo "        -arg: -a | -w | -s. Followed by actual command. eg 'ls'"
 	echo "            -a: all session panes"
 	echo "            -w: window panes"
 	echo "            -s: session panes"
 	echo "-t: echo simple tmux commands. Followed by <arg>"
-	echo "        -arg: -p | -pt | -"
+	echo "        -arg: -p | -pt | -w"
 	echo "            -p: pane id"
 	echo "            -pt: pane title"
 	echo "            -w: window name"
-}
-
-zTest() {
-	if [ -z "$*" ]; then
-		echo "-n should have the next argument contain actual session"
-		exit 1
-	else
-		arg="$*"
-		echo YAY "$arg"
-		exit 1
-	fi
 }
 
 checkEmpty() {
@@ -261,13 +265,6 @@ simpleCommands() {
 	"-w") $X run-shell -b 'echo window name is #{window_name}' ;;
 	*) echo "Unavailables ... $cmd" ;;
 	esac
-}
-
-testSession() {
-	session="test"
-
-	createSession $session "new" "$HOME/.config/rvim"
-	# createWindow "$session" "config" -c "$HOME/Downloads"
 }
 
 firstSession() {
@@ -348,8 +345,6 @@ while [ "$#" -gt 0 ]; do
 	-name) sessionName ;;
 	-b | --break) breakPane ;;
 	-B | --break-into-session) breakIntoSession ;;
-	-z) zTest "$@" ;;
-	--test) testSession ;;
 	--first) firstSession ;;
 	--om) originMedia ;;
 	--coa) coaNodejsApi ;;
@@ -405,14 +400,15 @@ while [ "$#" -gt 0 ]; do
 		checkEmpty "$arg"
 		killSession "$arg"
 		;;
-	-s | --session)
+	-s | --list-sessions) listSessions "$@" ;;
+	-n | --new-session)
 		if [ "$#" -gt 0 ]; then
 			arg="$*"
 		else
 			read -rp "Enter session name: " arg
 		fi
 		checkEmpty "$arg"
-		createSession "$arg" "main"
+		createSession "$arg"
 		exit 1
 		;;
 	*) echo "Unavailable command... $curr" ;;

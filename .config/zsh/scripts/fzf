@@ -31,19 +31,6 @@ envs() {
 	printenv | fzf
 }
 
-# tm irc it will attach to the irc session (if it exists), else it will create it.
-# tm with one session open, it will attach to that session.
-# tm with more than one session open it will let you select the session via fzf.
-txd() {
-	server="Dev"
-	[[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
-	if [ $1 ]; then
-		tmux -L $server $change -t "$1" 2>/dev/null || (tmux -L $server new-session -d -s $1 && tmux -L $server $change -t "$1")
-		return
-	fi
-	session=$(tmux -L $server list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) && tmux -L $server $change -t "$session" || echo "No sessions found."
-}
-
 txkall() {
 	server="Dev"
   tmux -L $server list-sessions | grep -E -v '\(attached\)$' | while IFS='\n' read line; do
