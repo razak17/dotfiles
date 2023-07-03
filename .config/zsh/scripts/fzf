@@ -31,13 +31,6 @@ envs() {
 	printenv | fzf
 }
 
-txkall() {
-	server="Dev"
-  tmux -L $server list-sessions | grep -E -v '\(attached\)$' | while IFS='\n' read line; do
-    tmux -L $server kill-session -t "${line%%:*}"
-  done
-}
-
 scr() {
   pushd "$HOME/Pictures/screenshots" > /dev/null || return
   if [[ $+commands[ranger] ]]; then
