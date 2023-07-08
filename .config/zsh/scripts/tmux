@@ -7,6 +7,7 @@ WORKSPACE="$HOME/personal/workspace"
 checkSession() {
 	if [[ $(ftmux -has $1) == true ]]; then
 		notify-send -u critical "Session '$1' already exists." "Aborting ..." -t 2000
+    exit
   fi
 }
 
