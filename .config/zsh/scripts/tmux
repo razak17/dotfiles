@@ -4,8 +4,16 @@
 
 WORKSPACE="$HOME/personal/workspace"
 
-fs() {
+checkSession() {
+	if [[ $(ftmux -has $1) == true ]]; then
+		notify-send -u critical "Session '$1' already exists." "Aborting ..." -t 2000
+  fi
+}
+
+xrv() {
 	session="rvim"
+
+  checkSession "$session"
 
 	ftmux -n "$session" "new" "$HOME/.config/rvim"
 	ftmux -w "$session" "config" -c "$HOME/Downloads"
@@ -25,6 +33,8 @@ om() {
 	session="origin-media"
 	repo="$WORKSPACE/rgt/Origin-Media"
 
+  checkSession "$session"
+
 	ftmux -n "$session" "admin" "$repo/om-admin"
 	ftmux -w "$session" "api" -c "$repo/om-api"
 	ftmux -w "$session" "core" -c "$repo/om-core"
@@ -34,6 +44,7 @@ om() {
 	firstPane=$(ftmux --window-pane-id "$firstWindow" 0)
 	ftmux --split-pane -v -c "$repo/om-admin" -t "$firstPane"
 	secondPane=$(ftmux --window-pane-id "$firstWindow" 1)
+	ftmux --send-keys "$firstPane" "rvim" "C-m"
 	ftmux --send-keys "$secondPane" "yarn dev" "C-m"
 
 	# api
@@ -41,17 +52,21 @@ om() {
 	firstPane=$(ftmux --window-pane-id "$secondWindow" 0)
 	ftmux --split-pane -v -c "$repo/om-api" -t "$firstPane"
 	secondPane=$(ftmux --window-pane-id "$secondWindow" 1)
+	# ftmux --send-keys "$firstPane" "rvim --no-lsp" "C-m"
 	ftmux --send-keys "$secondPane" "go run main.go local_dev" "C-m"
 
 	# core
 	thirdWindow=$(ftmux --session-win-id "$session" 2)
 	firstPane=$(ftmux --window-pane-id "$thirdWindow" 0)
 	ftmux --split-pane -v -c "$repo/om-core" -t "$firstPane"
+	# ftmux --send-keys "$firstPane" "rvim --no-lsp" "C-m"
 }
 
 coa() {
 	session="coa-nodejs-api"
 	repo="$WORKSPACE/coding/interview/coa/nodejs-api-app"
+
+  checkSession "$session"
 
 	ftmux -n "$session" "api" "$repo"
 	ftmux -w "$session" "run" -c "$repo"

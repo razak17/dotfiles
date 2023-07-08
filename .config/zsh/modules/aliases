@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-alias v="$EDITOR ./"
+alias v="rvim"
 # alias -s {js,html,js,ts,css,md,lua,sh,conf}=$TEXT_EDITOR
 
 safe_alias() {
@@ -205,6 +205,10 @@ alias lf='lfub'
 # tmux
 alias xsp="tmux display -p '#{socket_path}'"
 alias xls="tmux ls"
+alias fx="ftmux"
+alias fn="ftmux -n"
+alias fk="ftmux -k"
+alias fs="ftmux -s"
 alias dm='dmenumount'
 alias du='dmenuumount'
 
