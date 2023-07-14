@@ -61,7 +61,6 @@ alias rm='rm -i'
 alias rm='rm -i'
 alias rmf='rm -f'
 alias ccat='cat'
-alias notes='fn'
 
 # system
 alias obd="objdump -d"
@@ -92,6 +91,7 @@ alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
 alias ulist="cut -d: -f1 /etc/passwd"
 #merge new settings
 alias merge="xrdb -merge ~/.Xresources"
+alias rec="ffmpeg -f x11grab -r 30 -s 1366x768 -i :0.0 $HOME/Recordings/$(date +%F_%H%M%S_%N).mp4"
 
 #youtube-dl
 alias yta-aac="youtube-dl --extract-audio --audio-format aac "
@@ -238,3 +238,4 @@ alias cdmo='cd "$HOME/.mozilla/firefox/profiles"'
 alias dw='cd "$HOME/Downloads"'
 alias ws='cd "$ws"'
 alias cdcc='cd "$ws/coding"'
+alias notes='cd "$HOME/notes"'
