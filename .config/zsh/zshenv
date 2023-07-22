@@ -6,6 +6,10 @@ export DEV_HOME="$HOME/personal/workspace/coding"
 export DOTFILES="$HOME/.dots"
 export ZSH_CACHE_DIR="$XDG_CACHE_HOME/zsh"
 
+# zsh config dir
+export ZDOTDIR=$HOME/.config/zsh
+export SYNC_DIR=${HOME}/Sync
+
 export SUDO_EDITOR="nvim"
 export BROWSER="firefox"
 export TERMINAL="kitty"
@@ -44,9 +48,6 @@ export USE_EDITOR=$EDITOR
 export GPG_TTY=$(tty)
 export CLICOLOR=1
 export SUDO_ASKPASS="$HOME/.local/bin/dmenu/dmenupass"
-
-# zsh config dir
-export ZDOTDIR=$HOME/.config/zsh
 
 # Enable a better reverse search experience.
 export FZF_TMUX_OPTS='-p80%,60%'

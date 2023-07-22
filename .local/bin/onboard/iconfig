@@ -7,6 +7,10 @@ installFnm() {
 	fnm default v16.13.0
 }
 
+installDeno() {
+  curl -fsSL https://deno.land/x/install/install.sh | sh
+}
+
 configDocker() {
 	pacman -S docker docker-openrc
 	sudo groupadd docker
@@ -136,12 +140,14 @@ while [[ "$#" -gt 0 ]]; do
 	"-firefox") configFirefox ;;
 	"-zsh") ZshCompletions ;;
 	"-libx") libxftSetup ;;
+	"-deno") installDeno ;;
 	"-all")
 		configDocker
 		configPostgres
 		configRedis
 		configFirefox
 		installFnm
+    installDeno
 		;;
 	*) echo "Unavailable command... $curr" ;;
 	esac

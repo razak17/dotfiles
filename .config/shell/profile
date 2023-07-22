@@ -39,6 +39,14 @@ if [ -d "$HOME/.yarn/bin" ]; then
   )
 fi
 
+# DENO
+if [ -e "$HOME/.deno/bin/deno" ]; then
+  export DENO_INSTALL="/home/razak/.deno"
+  path+=(
+    "$DENO_INSTALL/bin"
+  )
+fi
+
 # Deta cli
 if [ -e "$HOME/.deta/bin/deta" ]; then
   export DETA_HOME="$HOME/.deta"
