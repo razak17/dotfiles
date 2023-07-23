@@ -13,7 +13,7 @@ while true; do
 	done
 
 	if [ $power_connected = 'false' ]; then
-		if [ "$battery_level" -lt 35 ]; then
+		if [ "$battery_level" -lt 30 ]; then
 			notify-send -u critical "You may want to connect your charger" "Battery level is below $((battery_level + 1))%" -i battery-low -t 2000
 		fi
 	elif [ $power_connected = 'true' ]; then
@@ -23,12 +23,12 @@ while true; do
 	fi
 
 	if [ "$battery_level" -lt 15 ]; then
-		sleep 30
+		sleep 50
+	elif [ "$battery_level" -lt 20 ]; then
+		sleep 150
 	elif [ "$battery_level" -lt 25 ]; then
-		sleep 120
-	elif [ "$battery_level" -lt 35 ]; then
-		sleep 500
+		sleep 300
 	else
-		sleep 200
+		sleep 250
 	fi
 done

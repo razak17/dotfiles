@@ -8,7 +8,7 @@ while true; do
 		usage=$(echo "scale=4; $usage*0.1" | bc)
 	fi
 	int_usage=${usage%.*}
-	if [ "$int_usage" -gt 85 ]; then
+	if [ "$int_usage" -gt 90 ]; then
 		notify-send -u critical "High Memory Usage Detected" "You are using more than $((int_usage))% of available memory" -i battery-low -t 2000
 	fi
 
