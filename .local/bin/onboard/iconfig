@@ -1,17 +1,13 @@
 #!/usr/bin/env bash
 
-installFnm() {
+fnmConfig() {
 	fnm list
 	fnm install v18.0.0
 	fnm install v16.13.0
 	fnm default v16.13.0
 }
 
-installDeno() {
-  curl -fsSL https://deno.land/x/install/install.sh | sh
-}
-
-configDocker() {
+dockerConfig() {
 	pacman -S docker docker-openrc
 	sudo groupadd docker
 	sudo usermod -aG docker "$USER"
@@ -27,7 +23,7 @@ configDocker() {
 	# sudo systemctl start containerd.service
 }
 
-configPostgres() {
+psqlConfig() {
 	pacman -S postgresql postgresql-openrc
 	sudo -iu postgres
 
@@ -50,7 +46,7 @@ configPostgres() {
 
 }
 
-configRedis() {
+redisConfig() {
 	pushd "$HOME"/Downloads/redis-stable || exit
 	sudo cp src/redis-server /usr/local/bin/
 	sudo cp src/redis-cli /usr/local/bin/
@@ -85,7 +81,7 @@ configRedis() {
 	# Check that your Redis instance is correctly logging in the log file.
 }
 
-configFirefox() {
+firefoxConfig() {
 	# Setup Firefox Profiles
 	dir="$HOME/.dots/firefox-user.js"
 	if [ ! -d "$dir" ]; then
@@ -128,26 +124,38 @@ libxftSetup() {
 	sudo make install
 }
 
+mpvConfig() {
+	if [ ! -e "$HOME/.dots/mpv-config-linux.zip" ]; then
+		curl -L https://github.com/noelsimbolon/mpv-config/releases/download/v1.0.5/mpv-config-linux.zip >~/.dots/mpv-config-linux.zip
+	fi
+	time=$(date +%F_%H%M%S_%N)
+	if [ -e "$HOME/.config/mpv" ]; then
+		mv ~/.config/mpv ~/.config/mpv-backup-"$time"
+	fi
+	unzip ~/.dots/mpv-config-linux.zip -d ~/.dots/mpv-"$time"
+  mv ~/.dots/mpv-"$time"/mpv-config-linux ~/.config/mpv
+  rm -rf ~/.dots/mpv-"$time"
+}
+
 while [[ "$#" -gt 0 ]]; do
 	curr=$1
 	shift
 
 	case "$curr" in
-	"-fnm") installFnm ;;
-	"-docker") configDocker ;;
-	"-postgres") configPostgres ;;
-	"-redis") configRedis ;;
-	"-firefox") configFirefox ;;
+	"-mpv") mpvConfig ;;
+	"-fnm") fnmConfig ;;
+	"-docker") dockerConfig ;;
+	"-postgres") psqlConfig ;;
+	"-redis") redisConfig ;;
+	"-firefox") firefoxConfig ;;
 	"-zsh") ZshCompletions ;;
 	"-libx") libxftSetup ;;
-	"-deno") installDeno ;;
 	"-all")
-		configDocker
-		configPostgres
-		configRedis
-		configFirefox
-		installFnm
-    installDeno
+		dockerConfig
+		psqlConfig
+		redisConfig
+		firefoxConfig
+		fnmConfig
 		;;
 	*) echo "Unavailable command... $curr" ;;
 	esac

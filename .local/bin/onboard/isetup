@@ -90,11 +90,16 @@ doasSetup() {
 	ln -s /usr/bin/doas /usr/bin/sudo
 }
 
+installDeno() {
+  curl -fsSL https://deno.land/x/install/install.sh | sh
+}
+
 while [[ "$#" -gt 0 ]]; do
 	curr=$1
 	shift
 
 	case "$curr" in
+	"-deno") installDeno ;;
 	"-suck") installSuckless ;;
 	"-paru") installParu ;;
 	"-fnm") installFnm ;;
@@ -114,6 +119,7 @@ while [[ "$#" -gt 0 ]]; do
 		installG
 		installFzf
 		installSuckless
+    installDeno
 		installParu
 		;;
 	*) echo "Unavailable command... $curr" ;;
