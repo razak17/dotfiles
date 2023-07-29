@@ -1,7 +1,7 @@
 lastupdatecheck: 0
 recentrepos:
-- /home/razak/.dots/nvim/nvim-ak
 - /home/razak/.config/rvim
+- /home/razak/.dots/nvim/nvim-ak
 - /home/razak/personal/workspace/coding/plugins/smartcolumn.nvim
 - /home/razak/.dots/nvim/init.lua
 - /home/razak/personal/workspace/coding/portfolio/v1
