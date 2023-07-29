@@ -1,7 +1,7 @@
 #!/bin/sh
 
-DIR="$HOME/pics/distro/main"
-FAV="$HOME/pics/distro/main/cat_leaves.png"
+DIR="$HOME/Pictures/distro/main"
+FAV="$HOME/Pictures/distro/main/cat_leaves.png"
 wall=$(find "$DIR" -type f | shuf -n 1)
 
 case $1 in
