@@ -6,7 +6,7 @@ ws="$HOME/personal/workspace"
 if [[ $# -eq 1 ]]; then
 	selected=$1
 else
-	selected=$(find "$ws"/coding "$ws"/rgt ~/.dots ~/.config -mindepth 1 -maxdepth 2 -type d | fzf --no-sort)
+	selected=$(find "$ws"/coding "$ws"/rgt ~/.dots ~/.config ~/.local/share/rvim/lazy -mindepth 1 -maxdepth 2 -type d | fzf --no-sort)
 fi
 
 if [[ -z "$selected" ]]; then
