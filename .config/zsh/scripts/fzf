@@ -2,10 +2,15 @@
 
 # find files
 ff() {
-  file="$(find . -type f | sort | fzf)"
-	if [[ -n $file ]]; then
-		rvim --minimal $file
-	fi
+  ws="$HOME/personal/workspace"
+  selected=$(find "$ws"/coding "$ws"/rgt ~/.dots ~/.config ~/.local/share/rvim/lazy -mindepth 1 -maxdepth 2 -type d | fzf --no-sort)
+  if [ -z "$selected" ]; then
+    exit 0
+  fi
+  # selected_name="$(basename "$selected" | tr . _)"
+  pushd "$selected"
+  rvim --no-lsp --no-treesitter
+  cd - || return
 }
 
 # Only show files which have $1 present in contents
@@ -20,8 +25,8 @@ fw() {
 zd() {
 	dir=$(zoxide query -l | fzf)
 
-	if [[ -n $dir ]]; then
-		cd $dir || exit
+	if [ -n "$dir" ]; then
+		cd "$dir" || exit
 	fi
 }
 
@@ -33,7 +38,7 @@ envs() {
 
 scr() {
   pushd "$HOME/Pictures/screenshots" > /dev/null || return
-  if [[ $+commands[ranger] ]]; then
+  if [ $+commands[ranger] ]; then
     ranger
   fi
   cd - || return
@@ -42,8 +47,8 @@ scr() {
 todos() {
   cd "$HOME/notes/neorg" || return
   file="$(find . -type f | sort | fzf)"
-	if [[ -n $file ]]; then
-		rvim --minimal $file
+	if [ -n $file ]; then
+		rvim --minimal "$file"
 	fi
   cd - || return
 }
