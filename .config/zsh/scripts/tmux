@@ -43,6 +43,41 @@ om() {
 
 	checkSession "$session"
 
+	ftmux -n "$session" "main" "$repo/om-admin"
+	ftmux -w "$session" "api & core" -c "$repo/om-core"
+
+	# admin
+	firstWindow=$(ftmux --session-win-id "$session" 0)
+	firstPane=$(ftmux --window-pane-id "$firstWindow" 0)
+	ftmux --split-pane -v -c "$repo/om-admin" -t "$firstPane"
+	secondPane=$(ftmux --window-pane-id "$firstWindow" 1)
+	ftmux --split-pane -h -c "$repo/om-api" -t "$secondPane"
+  thirdPane=$(ftmux --window-pane-id "$firstWindow" 2)
+	if [[ $send_keys == true ]]; then
+		ftmux --send-keys "$firstPane" "rvim" "C-m"
+		ftmux --send-keys "$secondPane" "yarn dev" "C-m"
+		ftmux --send-keys "$thirdPane" "go run main.go local_dev" "C-m"
+	fi
+
+	# api
+	secondWindow=$(ftmux --session-win-id "$session" 1)
+	firstPane=$(ftmux --window-pane-id "$secondWindow" 0)
+	ftmux --split-pane -v -c "$repo/om-api" -t "$firstPane"
+}
+
+om-old() {
+	session="origin-media"
+	repo="$WORKSPACE/rgt/Origin-Media"
+
+	args="$*"
+	send_keys=true
+
+	if [[ $args == '--no-run' ]]; then
+		send_keys=false
+	fi
+
+	checkSession "$session"
+
 	ftmux -n "$session" "admin" "$repo/om-admin"
 	ftmux -w "$session" "api" -c "$repo/om-api"
 	ftmux -w "$session" "core" -c "$repo/om-core"
