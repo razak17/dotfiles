@@ -1,23 +1,22 @@
-#!/bin/sh
+#!/bin/bash
 
 # find files
 ff() {
-  ws="$HOME/personal/workspace"
-  selected=$(find "$ws"/coding "$ws"/rgt ~/.dots ~/.config ~/.local/share/rvim/lazy -mindepth 1 -maxdepth 2 -type d | fzf --no-sort)
-  if [ -z "$selected" ]; then
-    exit 0
-  fi
-  # selected_name="$(basename "$selected" | tr . _)"
-  pushd "$selected"
-  rvim --no-lsp --no-treesitter
-  cd - || return
+	ws="$HOME/personal/workspace"
+	selected=$(find "$ws"/coding "$ws"/rgt ~/.dots ~/.config ~/.local/share/rvim/lazy -mindepth 1 -maxdepth 2 -type d | fzf --no-sort)
+	if [ -z "$selected" ]; then
+		return
+	fi
+	# selected_name="$(basename "$selected" | tr . _)"
+	cd "$selected" || exit
+	rvim --no-lsp --no-treesitter
+	cd - || return
 }
 
 # Only show files which have $1 present in contents
 fw() {
-  local line
-  line=$(rg "$1" | fzf) &&
-    $EDITOR $(cut -d':' -f1 <<<"$line") +$(cut -d':' -f2 <<<"$line")
+	line=$(rg "$1" | fzf) &&
+		v --minimal $(cut -d':' -f1 <<<"$line") +$(cut -d':' -f2 <<<"$line")
 }
 
 # zd - use zoxide & FZF to find and go to directory
@@ -37,18 +36,18 @@ envs() {
 }
 
 scr() {
-  pushd "$HOME/Pictures/screenshots" > /dev/null || return
-  if [ $+commands[ranger] ]; then
-    ranger
-  fi
-  cd - || return
+	pushd "$HOME/Pictures/screenshots" >/dev/null || return
+	if exists ranger; then
+		ranger
+	fi
+	cd - || return
 }
 
-todos() {
-  cd "$HOME/notes/neorg" || return
-  file="$(find . -type f | sort | fzf)"
-	if [ -n $file ]; then
-		rvim --minimal "$file"
-	fi
-  cd - || return
-}
+# todos() {
+#   cd "$HOME/notes/neorg" || return
+#   file="$(find . -type f | sort | fzf)"
+# 	if [ -n $file ]; then
+# 		rvim --minimal "$file"
+# 	fi
+#   cd - || return
+# }
