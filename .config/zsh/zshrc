@@ -52,6 +52,11 @@ if exists fnm; then
   eval "$(fnm env --use-on-cd)"
 fi
 
+# ngrok
+if exists ngrok; then
+  eval "$(ngrok completion)"
+fi
+
 # zoxide
 if exists zoxide; then
   eval "$(zoxide init zsh)"
