@@ -100,6 +100,13 @@ ZshCompletions() {
 		curl -fsSL $OH_MY_ZSH/git/git.plugin.zsh --output git.plugin.zsh
 		curl -fsSL $OH_MY_ZSH/git/README.md --output README.md
 	fi
+	npm_dir="$HOME/.config/zsh/plugins/npm"
+	if [ ! -e "$npm_dir" ]; then
+		mkdir -p "$npm_dir"
+		pushd "$npm_dir" || exit
+		curl -fsSL $OH_MY_ZSH/npm/npm.plugin.zsh --output npm.plugin.zsh
+		curl -fsSL $OH_MY_ZSH/npm/README.md --output README.md
+	fi
 	yarn_dir="$HOME/.config/zsh/plugins/yarn"
 	if [ ! -e "$yarn_dir" ]; then
 		mkdir -p "$yarn_dir"
