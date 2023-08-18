@@ -214,6 +214,7 @@ alias dm='dmenumount'
 alias du='dmenuumount'
 
 alias ywa="yarn watch"
+alias esft="eslint_d --fix"
 
 # Misc
 alias rustbook='rustup docs --book'
