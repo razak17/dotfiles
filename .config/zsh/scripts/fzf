@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # find files
+#   fd -t file --hidden --exclude .git --exclude .github --search-path . | fzf --reverse --border=rounded --height 20 | xargs -r nvim
 ff() {
 	ws="$HOME/personal/workspace"
 	selected=$(find "$ws"/coding "$ws"/rgt ~/.dots ~/.config ~/.local/share/rvim/lazy -mindepth 1 -maxdepth 2 -type d | fzf --no-sort)

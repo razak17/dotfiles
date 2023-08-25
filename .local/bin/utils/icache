@@ -6,7 +6,7 @@ moz=~/.cache/mozilla/firefox/profiles/default/cache2
 pip=~/.cache/pip
 yarn=~/.cache/yarn
 yay=~/.cache/yay
-pkg=/var/cache/pacman/pkg
+pkg=/var/cache/pacman/pkg/
 npm=~/.npm/_cacache/content-v2/sha512/
 paru=~/.cache/paru/clone
 
