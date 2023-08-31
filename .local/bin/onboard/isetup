@@ -91,7 +91,17 @@ doasSetup() {
 }
 
 installDeno() {
-  curl -fsSL https://deno.land/x/install/install.sh | sh
+	curl -fsSL https://deno.land/x/install/install.sh | sh
+}
+
+installLuarocks() {
+	mkdir -p "$HOME/.dots"
+	pushd "$HOME/.dots" || exit
+	wget https://luarocks.org/releases/luarocks-3.9.2.tar.gz
+	tar zxpf luarocks-3.9.2.tar.gz
+	cd luarocks-3.9.2 || exit
+	./configure && make && sudo make install
+	sudo luarocks install luasocket
 }
 
 while [[ "$#" -gt 0 ]]; do
@@ -107,6 +117,7 @@ while [[ "$#" -gt 0 ]]; do
 	"-fzf") installFzf ;;
 	"-zsh") installZshPlugins ;;
 	"-tmux") installTmuxPlugins ;;
+	"-rocks") installLuarocks ;;
 	"-doas")
 		arg="$@"
 		doasSetup "$arg"
@@ -119,8 +130,9 @@ while [[ "$#" -gt 0 ]]; do
 		installG
 		installFzf
 		installSuckless
-    installDeno
+		installDeno
 		installParu
+		installLuarocks
 		;;
 	*) echo "Unavailable command... $curr" ;;
 	esac
