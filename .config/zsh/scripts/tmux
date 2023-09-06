@@ -89,7 +89,7 @@ om-old() {
 	secondPane=$(ftmux --window-pane-id "$firstWindow" 1)
 	if [[ $send_keys == true ]]; then
 		ftmux --send-keys "$firstPane" "rvim" "C-m"
-		ftmux --send-keys "$secondPane" "yarn dev" "C-m"
+		ftmux --send-keys "$secondPane" "npm run dev" "C-m"
 	fi
 
 	# api

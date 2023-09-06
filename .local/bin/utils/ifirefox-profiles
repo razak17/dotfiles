@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-profiles=("coding" "dev" "main" "rgt" "rec" "test" "userjs")
 profiles_path="$HOME/.mozilla/firefox/profiles"
 
 capitalize() {
@@ -17,14 +16,12 @@ if [ -z "$choice" ]; then
 	exit 0
 fi
 
-for p in "${profiles[@]}"; do
-	if [ "$choice" = "$p" ]; then
-		profile=$(capitalize "$p")
-		notify-send -t 2000 "Firefox profiles" "Opening $choice profile..."
-		firefox -P "$profile"
-		exit 0
-	fi
-done
+if [ -n "$choice" ]; then
+	profile=$(capitalize "$choice")
+	notify-send -t 2000 "Firefox profiles" "Opening $choice profile..."
+	firefox -P "$profile"
+	exit 0
+fi
 
 notify-send -u critical -t 2000 "Firefox Profiles" "That profile does not exist"
 exit 0

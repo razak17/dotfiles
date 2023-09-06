@@ -1,5 +1,6 @@
 lastupdatecheck: 0
 recentrepos:
+- /home/razak/.dots/firefox-user.js
 - /home/razak/.config/rvim
 - /home/razak/docs
 - /home/razak/.dots/nvim/nvim-ak
@@ -13,7 +14,6 @@ recentrepos:
 - /home/razak/.dots/artix-install-script
 - /home/razak/personal/workspace/coding/plugins/onedark.nvim
 - /home/razak/personal/workspace/coding/web/role-based-access-control
-- /home/razak/.dots/firefox-user.js
 - /home/razak/.dots/nvim/astrocommunity
 - /home/razak/personal/workspace/coding/plugins/tailwind-fold.nvim
 - /home/razak/.local/share/rvim/lazy/mini.ai
