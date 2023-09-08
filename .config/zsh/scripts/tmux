@@ -55,7 +55,7 @@ om() {
   thirdPane=$(ftmux --window-pane-id "$firstWindow" 2)
 	if [[ $send_keys == true ]]; then
 		ftmux --send-keys "$firstPane" "rvim" "C-m"
-		ftmux --send-keys "$secondPane" "yarn dev" "C-m"
+		ftmux --send-keys "$secondPane" "npm run dev" "C-m"
 		ftmux --send-keys "$thirdPane" "go run main.go local_dev" "C-m"
 	fi
 
