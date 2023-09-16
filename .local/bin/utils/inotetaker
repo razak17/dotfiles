@@ -9,8 +9,8 @@ if [ ! -f "$noteFilename" ]; then
 fi
 
 editor="nvim"
-if [[ $+commands[pvim] ]]; then
-	editor="pvim"
+if [[ $+commands[rvim] ]]; then
+	editor="rvim --minimal"
 fi
 
 # rvim -c "norm Go" -c "norm Go## $(date +%H:%M:%S)" -c "norm G2o" -c "startinsert" "$noteFilename"
