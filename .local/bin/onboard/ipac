@@ -3,7 +3,7 @@
 installAurPackages() {
 	# notion-app autokey-gtk devour
 	paru -S insomnia-bin prisma-studio-appimage bibata-cursor-theme toilet ttf-joypixels ttf-ancient-fonts \
-    mongodb-compass buildx vscodium-bin slack-desktop
+    mongodb-compass buildx vscodium-bin slack-desktop rmtrash
 }
 
 installPacmanPackages() {

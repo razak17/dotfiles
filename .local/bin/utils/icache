@@ -10,6 +10,8 @@ pkg=/var/cache/pacman/pkg/
 npm=~/.npm/_cacache/content-v2/sha512/
 paru=~/.cache/paru/clone
 
+## npm cache clean --force
+
 deleteDir() {
 	dir=$1
 	if [[ -d $dir ]]; then

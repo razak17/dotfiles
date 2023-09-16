@@ -12,6 +12,10 @@ fi
 
 [ -f "$HOME/.config/zsh/zshenv" ] && . "$HOME/.config/zsh/zshenv"
 
+# Steam fix 🤞
+# exec /usr/lib/xdg-desktop-portal-gtk
+# exec /usr/lib/xdg-desktop-portal
+
 dwmblocks &
 ~/.local/bin/dwm/setbg --fav &
 ~/.local/bin/startup/itouch &
