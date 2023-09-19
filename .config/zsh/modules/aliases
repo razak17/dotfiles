@@ -27,10 +27,10 @@ safe_alias ew toilet
 safe_alias vsc "vscodium ." vscodium
 safe_alias wl 'iwctl station list' iwctl
 
-if [[ $+commands[exa] ]]; then
-  alias ls='exa'
-  alias ll="exa --long --all --git --color=always --group-directories-first --icons $@"
-  alias lt="exa --icons --all --color=always -T $@"
+if [[ $+commands[eza] ]]; then
+  alias ls='eza'
+  alias ll="eza --long --all --git --color=always --group-directories-first --icons $@"
+  alias lt="eza --icons --all --color=always -T $@"
 else
   alias ls='ls --color=auto'
   alias l='ls -lFh'     # size,show type,human readable
