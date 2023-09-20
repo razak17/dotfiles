@@ -1,0 +1,17 @@
+#!/bin/sh
+
+arg="$*"
+arg_count="$#"
+
+if [ "$arg_count" -gt 1 ]; then
+	echo "too many arguments"
+	exit 1
+fi
+
+if [ -z "$arg" ]; then
+	echo "some argument(s) are missing."
+	exit 1
+fi
+
+echo >&2 "Uploading ${arg}..."
+curl -F"file=@$1" 0x0.st
