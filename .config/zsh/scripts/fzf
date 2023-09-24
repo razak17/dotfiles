@@ -16,8 +16,8 @@ ff() {
 
 # Only show files which have $1 present in contents
 fw() {
-	line=$(rg "$1" | fzf) &&
-		v --minimal $(cut -d':' -f1 <<<"$line") +$(cut -d':' -f2 <<<"$line")
+	line=$(rg "$1" | fzf)
+	v --minimal $(cut -d':' -f1 <<<"$line") +$(cut -d':' -f2 <<<"$line")
 }
 
 # zd - use zoxide & FZF to find and go to directory
