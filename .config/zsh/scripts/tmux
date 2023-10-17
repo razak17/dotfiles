@@ -134,7 +134,7 @@ coa() {
 
 jesse() {
 	session="jesse"
-	repo="$WORKSPACE/rgt/proj-jesse-ai-agent"
+	repo="$WORKSPACE/rgt/jesse"
 
 	args="$*"
 	send_keys=true
@@ -146,22 +146,28 @@ jesse() {
 	checkSession "$session"
 
 	ftmux -n "$session" "code" "$repo"
-	ftmux -w "$session" "run" -c "$repo"
+	ftmux -w "$session" "run" -c "$repo/proj-jesse-ai-agent"
 
 	# admin
 	firstWindow=$(ftmux --session-win-id "$session" 0)
 	firstPane=$(ftmux --window-pane-id "$firstWindow" 0)
 	if [[ $send_keys == true ]]; then
-		ftmux --send-keys "$firstPane" "source env/bin/activate" "C-m" "rvim" "C-m"
+		ftmux --send-keys "$firstPane" "source proj-jesse-ai-agent/env/bin/activate" "C-m" "rvim" "C-m"
 	fi
 
 	secondWindow=$(ftmux --session-win-id "$session" 1)
 	firstPane=$(ftmux --window-pane-id "$secondWindow" 0)
-	ftmux --split-pane -v -c "$WORKSPACE/rgt/chroma" -t "$firstPane"
+	ftmux --split-pane -v -c "$WORKSPACE/rgt/jesse/chroma" -t "$firstPane"
+	ftmux --split-pane -h -c "$WORKSPACE/rgt/jesse/special-project/client" -t "$firstPane"
 	secondPane=$(ftmux --window-pane-id "$secondWindow" 1)
+	thirdPane=$(ftmux --window-pane-id "$secondWindow" 2)
+	ftmux --split-pane -h -c "$WORKSPACE/rgt/jesse/special-project/server" -t "$thirdPane"
+	fourthPane=$(ftmux --window-pane-id "$secondWindow" 3)
 	if [[ $send_keys == true ]]; then
-		ftmux --send-keys "$firstPane" "source env/bin/activate" "C-m" "python api/main.py" "C-m"
-		ftmux --send-keys "$secondPane" "source env/bin/activate" "C-m" "docker-compose up --build" "C-m"
+		# ftmux --send-keys "$firstPane" "source env/bin/activate" "C-m" "python api/main.py" "C-m"
+		ftmux --send-keys "$secondPane" "npm start" "C-m"
+    # ftmux --send-keys "$thirdPane" "source env/bin/activate" "C-m" "docker-compose up --build" "C-m"
+		ftmux --send-keys "$fourthPane" "source env/bin/activate" "C-m" "uvicorn api.main:app --reload" "C-m"
 	fi
 
 }

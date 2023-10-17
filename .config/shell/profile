@@ -41,7 +41,7 @@ fi
 
 # DENO
 if [ -e "$HOME/.deno/bin/deno" ]; then
-  export DENO_INSTALL="/home/razak/.deno"
+  export DENO_INSTALL="$HOME/.deno"
   path+=(
     "$DENO_INSTALL/bin"
   )
@@ -65,9 +65,26 @@ if [ -d "$HOME/.bun" ]; then
 fi
 
 # pnpm
-export PNPM_HOME="/home/razak/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 path+=(
 "$PNPM_HOME"
 )
+
+
+# Fly
+if [ -e "$HOME/.fly/bin/fly" ]; then
+  export FLYCTL_INSTALL="$HOME/.fly"
+  path+=(
+  "$FLYCTL_INSTALL/bin"
+  )
+fi
+
+# Turso
+if [ -e "$HOME/.turso/turso" ]; then
+  export TURSO_INSTALL="$HOME/.turso/"
+  path+=(
+  "$TURSO_INSTALL"
+  )
+fi
 
 export PATH
