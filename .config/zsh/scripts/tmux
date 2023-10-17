@@ -5,10 +5,20 @@
 WORKSPACE="$HOME/personal/workspace"
 
 checkSession() {
-	if [[ $(ftmux -has $1) == true ]]; then
-		notify-send -u critical "Session '$1' already exists." "Aborting ..." -t 2000
+	if [[ $(ftmux -has "$1") == true ]]; then
+		showWarning "$session"
+		attachSession "$session"
 		exit
 	fi
+}
+
+showWarning() {
+	notify-send "Session '$1' already exists." "Attaching ..." -t 1000
+	# notify-send -u critical "Session '$@' already exists." "Aborting ..." -t 1000
+}
+
+attachSession() {
+	tmux -L Dev attach-session -t "$session" 2>/dev/null
 }
 
 xrv() {
@@ -166,7 +176,7 @@ jesse() {
 	if [[ $send_keys == true ]]; then
 		# ftmux --send-keys "$firstPane" "source env/bin/activate" "C-m" "python api/main.py" "C-m"
 		ftmux --send-keys "$secondPane" "npm start" "C-m"
-    # ftmux --send-keys "$thirdPane" "source env/bin/activate" "C-m" "docker-compose up --build" "C-m"
+		# ftmux --send-keys "$thirdPane" "source env/bin/activate" "C-m" "docker-compose up --build" "C-m"
 		ftmux --send-keys "$fourthPane" "source env/bin/activate" "C-m" "uvicorn api.main:app --reload" "C-m"
 	fi
 
