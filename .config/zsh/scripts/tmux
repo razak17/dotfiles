@@ -38,6 +38,8 @@ xrv() {
 	secondWindow=$(ftmux --session-win-id "$session" 1)
 	firstPane=$(ftmux --window-pane-id "$secondWindow" 0)
 	ftmux --split-pane -v -c "$HOME/.local/bin" -t "$firstPane"
+
+	attachSession "$session"
 }
 
 om() {
@@ -143,6 +145,40 @@ coa() {
 }
 
 jesse() {
+	session="jesse"
+	repo="$WORKSPACE/rgt/jesse/proj-jesse-ai-agent"
+
+	args="$*"
+	send_keys=true
+
+	if [[ $args == '--no-run' ]]; then
+		send_keys=false
+	fi
+
+	checkSession "$session"
+
+	ftmux -n "$session" "code" "$repo"
+	ftmux -w "$session" "run" -c "$repo"
+
+	# admin
+	firstWindow=$(ftmux --session-win-id "$session" 0)
+	firstPane=$(ftmux --window-pane-id "$firstWindow" 0)
+	if [[ $send_keys == true ]]; then
+		ftmux --send-keys "$firstPane" "source env/bin/activate" "C-m" "rvim" "C-m"
+	fi
+
+	secondWindow=$(ftmux --session-win-id "$session" 1)
+	firstPane=$(ftmux --window-pane-id "$secondWindow" 0)
+	ftmux --split-pane -v -c "$repo" -t "$firstPane"
+	secondPane=$(ftmux --window-pane-id "$secondWindow" 1)
+	if [[ $send_keys == true ]]; then
+		ftmux --send-keys "$firstPane" "source env/bin/activate" "C-m" "python api/main.py" "C-m"
+	fi
+
+  attachSession "$session"
+}
+
+jesse-old() {
 	session="jesse"
 	repo="$WORKSPACE/rgt/jesse"
 

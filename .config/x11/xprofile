@@ -26,3 +26,4 @@ dwmblocks &
 ~/.local/bin/startup/ipipewire &
 picom &
 syncthing serve --no-browser &
+a2ln &
