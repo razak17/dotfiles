@@ -66,7 +66,8 @@ alias ccat='cat'
 alias obd="objdump -d"
 alias wsc="iwlist scanning"
 alias iws="sudo vi /etc/wpa_supplicant/wpa_supplicant.conf"
-alias swap="cat /proc/sys/vm/swappiness"
+alias cswap="cat /proc/sys/vm/swappiness"
+alias swap="sudo sysctl vm.swappiness=95"
 alias brx='xrandr --output eDP --brightness'
 alias br='brightnessctl -'
 # easier to read disk
@@ -171,6 +172,8 @@ alias nvi="$TEXT_EDITOR init.lua"
 alias rvi="$TEXT_EDITOR init.lua"
 alias h="$TEXT_EDITOR $HOME/.cache/zsh/.zsh_history"
 alias rvz="$TEXT_EDITOR $HOME/.zsh_history"
+alias sec="$TEXT_EDITOR $HOME/.dots/sensitive/secrets"
+alias clip="$TEXT_EDITOR $HOME/.dots/clip/clip_hist.txt"
 
 # Docker and Docker Compose
 # alias idocker="systemctl start docker.service"

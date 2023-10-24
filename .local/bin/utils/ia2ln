@@ -1,0 +1,22 @@
+#!/bin/sh
+
+arg="$*"
+arg_count="$#"
+
+if [ "$arg_count" -gt 1 ]; then
+	echo "too many arguments"
+	exit 1
+fi
+
+if [ -z "$arg" ]; then
+	echo "some argument(s) are missing."
+	exit 1
+fi
+
+if [ "$arg" = "-home" ]; then
+	a2ln --pairing-ip 192.168.90.176 --pairing-port 23045
+fi
+
+if [ "$arg" = "-rgt" ]; then
+	a2ln --pairing-ip 192.168.64.6 --pairing-port 23045
+fi
