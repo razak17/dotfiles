@@ -11,7 +11,7 @@ save() {
 	item=$(xclip -o -selection c)
 	if [ -z "$item" ]; then
 		notify-send -u critical -t 2000 "Clipboard" "nothing to save!"
-		exit 0
+		exit 1
 	fi
 	echo "$item" >>$clip_history
 	notify-send -t 2000 "Clipboard" "saved!"
@@ -20,7 +20,7 @@ save() {
 load() {
 	clip=$(cat $clip_history | dmenu -l 10 -p "Choose :" | tr -d '\n')
 	if [ -z "$clip" ]; then
-		notify-send -u critical -t 2000 "Clipboard" "nothing selected!"
+		# notify-send -u critical -t 2000 "Clipboard" "nothing selected!"
 		exit 0
 	fi
 	echo "$clip" | xclip -sel c

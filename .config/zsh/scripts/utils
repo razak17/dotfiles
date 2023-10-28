@@ -30,6 +30,10 @@ zshcomp() {
   done | sort
 }
 
+pacov() {
+  sudo pacman -S "$@" --overwrite '*'
+}
+
 scrdim() {
   xdpyinfo | awk '/dimensions/{print $2}'
 }

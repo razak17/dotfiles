@@ -3,7 +3,7 @@
 installAurPackages() {
 	# notion-app autokey-gtk devour
 	paru -S insomnia-bin prisma-studio-appimage bibata-cursor-theme toilet ttf-joypixels ttf-ancient-fonts \
-    mongodb-compass buildx vscodium-bin slack-desktop rmtrash bruno  yazi
+    mongodb-compass buildx vscodium-bin slack-desktop rmtrash bruno yazi thorium mercury
 }
 
 installPacmanPackages() {
@@ -14,7 +14,7 @@ installPacmanPackages() {
     zsh git curl wget unzip cmake picom dunst mpv xclip ranger redis pipewire pipewire-pulse docker expac mediainfo glow \
     wireplumber maim ninja python-pywal wireless_tools imagemagick bluez bluez-utils openvpn htop btop aspell hyperfine \
     libnotify aria2 arc-gtk-theme rsync libconfig ctags strace redshift tmux mtools slock baobab sxiv hwinfo eza xsel zip \
-		android-file-transfer thunderbird brightnessctl xwallpaper python-pip opendoas reflector python-virtualenv --noconfirm
+    android-file-transfer thunderbird brightnessctl xwallpaper python-pip opendoas reflector python-virtualenv --noconfirm --overwrite '*'
 }
 
 while [[ "$#" -gt 0 ]]; do

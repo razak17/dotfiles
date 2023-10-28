@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+browsers="\
+firefox"
+
+if [ -x "$(command -v mercury-browser)" ]; then
+	browsers="$browsers
+mercury-browser"
+fi
+
+if [ -x "$(command -v thorium-browser-sse3)" ]; then
+	browsers="$browsers
+thorium-browser-sse3"
+fi
+
+choice=$(echo "$browsers" | cut -d'	' -f2- | dmenu -l 10 -p "Choose browser") || exit 1
+
+if [ -z "$choice" ]; then
+	# notify-send -u critical -t 2000 "Browsers" "nothing selected!"
+	exit 1
+fi
+
+if [ "$choice" = "firefox" ]; then
+	firefox
+elif [ "$choice" = "thorium-browser-sse3" ]; then
+	thorium-browser-sse3
+elif [ "$choice" = "mercury-browser" ]; then
+	mercury-browser
+else
+	notify-send -u critical -t 2000 "Browsers" "That browser does not exist"
+fi

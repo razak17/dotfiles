@@ -230,6 +230,7 @@ alias cff="find | fzf | sed 's/^..//g' | tr -d '\n' | xclip -sel c"
 alias thequickbrownfoxjumpsoverthelazydog="echo hellooooo"
 
 ws=~/personal/workspace
+vt=/run/media/razak/Ventoy
 
 alias nca='cd "$XDG_CACHE_HOME/nvim"'
 alias rca='cd "$XDG_CACHE_HOME/rvim"'
@@ -244,5 +245,6 @@ alias dw='cd "$HOME/Downloads"'
 alias dnv='cd "$HOME/.dots/nvim"'
 alias vids='cd "$HOME/Videos"'
 alias ws='cd "$ws"'
+alias vt='cd "$vt"'
 alias cdcc='cd "$ws/coding"'
 alias notes='cd "$HOME/notes"'
