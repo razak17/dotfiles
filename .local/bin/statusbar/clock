@@ -24,3 +24,4 @@ esac
 dte="$(date +"%a %b %d %y %H:%M:%S"| sed 's/  / /g')"
 # date '+%a, %b %d %H:%M '
 echo -e "$icon $dte"
+
