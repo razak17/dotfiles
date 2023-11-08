@@ -121,6 +121,13 @@ ZshCompletions() {
 		pushd "$fnm_dir" || exit
 		fnm completions --shell zsh >_fnm
 	fi
+	pass_dir="$HOME/.config/zsh/plugins/pass"
+	if [ ! -e "$pass_dir" ]; then
+		mkdir -p "$pass_dir"
+		pushd "$pass_dir" || exit
+		curl -fsSL $OH_MY_ZSH/pass/README.md --output README.md
+		curl -fsSL $OH_MY_ZSH/pass/_pass --output _pass
+	fi
 	echo "DONE"
 }
 
