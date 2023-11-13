@@ -21,7 +21,9 @@ esac
 # date "+%Y %b %d (%a) $icon%I:%M%p"
 
 # dte="$(date +"%a, %B %d %l:%M%p"| sed 's/  / /g')"
-dte="$(date +"%a %b %d %y %H:%M:%S"| sed 's/  / /g')"
 # date '+%a, %b %d %H:%M '
-echo -e "$icon $dte"
 
+date="$(date +"%a %d %b %Y"| sed 's/  / /g')"
+time="$(date +"%H:%M:%S"| sed 's/  / /g')"
+
+echo -e " $date $icon $time"
