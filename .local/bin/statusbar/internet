@@ -12,6 +12,7 @@ case $BLOCK_BUTTON in
 📶: wifi connection with quality
 ❎: no ethernet
 🌐: ethernet working
+󰄡 : usb connected
 🔒: vpn is active
 " ;;
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
@@ -31,6 +32,6 @@ fi
 [ -n "$(cat /sys/class/net/tun*/operstate 2>/dev/null)" ] && tunicon=" 🔒"
 
 # USB
-[ -n "$(cat /sys/class/net/u*/operstate 2>/dev/null)" ] && tunicon=" 💻"
+[ -n "$(cat /sys/class/net/u*/operstate 2>/dev/null)" ] && tunicon=" 󰄡" # 💻
 
 printf "%s%s%s\n" "$wifiicon" "$ethericon" "$tunicon"
