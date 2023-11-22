@@ -147,7 +147,7 @@ coa() {
 jesse() {
 	session="jesse"
 	repo="$WORKSPACE/rgt/jesse/proj-jesse-ai-agent"
-
+	ui="$WORKSPACE/rgt/jesse/jesse-dashboard"
 	args="$*"
 	send_keys=true
 
@@ -157,25 +157,28 @@ jesse() {
 
 	checkSession "$session"
 
-	ftmux -n "$session" "code" "$repo"
-	ftmux -w "$session" "run" -c "$repo"
+	ftmux -n "$session" "services" "$repo"
+	ftmux -w "$session" "ui" -c "$ui"
 
 	# admin
 	firstWindow=$(ftmux --session-win-id "$session" 0)
 	firstPane=$(ftmux --window-pane-id "$firstWindow" 0)
 	ftmux --send-keys "$firstPane" "source env/bin/activate" "C-m"
+	ftmux --split-pane -v -c "$repo" -t "$firstPane"
+	secondPane=$(ftmux --window-pane-id "$firstWindow" 1)
+	ftmux --send-keys "$secondPane" "source env/bin/activate" "C-m"
 	if [[ $send_keys == true ]]; then
 		ftmux --send-keys "$firstPane" "rvim" "C-m"
+	  ftmux --send-keys "$secondPane" "uvicorn api.main:app --reload" "C-m"
 	fi
 
 	secondWindow=$(ftmux --session-win-id "$session" 1)
 	firstPane=$(ftmux --window-pane-id "$secondWindow" 0)
-	ftmux --send-keys "$firstPane" "source env/bin/activate" "C-m"
-	ftmux --split-pane -v -c "$repo" -t "$firstPane"
+	ftmux --split-pane -v -c "$ui" -t "$firstPane"
 	secondPane=$(ftmux --window-pane-id "$secondWindow" 1)
-	ftmux --send-keys "$secondPane" "source env/bin/activate" "C-m"
 	if [[ $send_keys == true ]]; then
-		ftmux --send-keys "$firstPane" "python api/main.py" "C-m"
+	  ftmux --send-keys "$firstPane" "rvim" "C-m"
+	  ftmux --send-keys "$secondPane" "npm run dev" "C-m"
 	fi
 
 	attachSession "$session"
