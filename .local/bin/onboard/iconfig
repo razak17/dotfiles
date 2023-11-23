@@ -84,8 +84,9 @@ redisConfig() {
 firefoxConfig() {
 	# Setup Firefox Profiles
 	dir="$HOME/.dots/firefox-user.js"
+  pushd "$HOME/.dots"
 	if [ ! -d "$dir" ]; then
-		git clone https://github.com/razak17/firefox-user.js "$HOME/.dots"
+		git clone https://github.com/razak17/firefox-user.js
 	fi
 	pushd "$dir" || exit
 	sh ./setup.sh -all
