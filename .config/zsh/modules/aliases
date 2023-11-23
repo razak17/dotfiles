@@ -234,8 +234,8 @@ ws=~/personal/workspace
 vt=/run/media/razak/Ventoy
 sd=/run/media/razak/C05F-21AF
 tv=$sd/Video/TV
-tvs=$sd/Video/TV\ Shows
-mov=$sd/Video/Movies
+tvs=$sd/Video/TV/TV\ Shows
+mov=$sd/Video/TV/Movies
 
 alias nca='cd "$XDG_CACHE_HOME/nvim"'
 alias rca='cd "$XDG_CACHE_HOME/rvim"'

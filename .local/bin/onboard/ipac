@@ -2,21 +2,26 @@
 
 installAurPackages() {
 	# notion-app autokey-gtk devour
-	paru -S insomnia-bin prisma-studio-appimage bibata-cursor-theme toilet ttf-joypixels ttf-ancient-fonts \
-    mongodb-compass buildx vscodium-bin slack-desktop rmtrash bruno yazi thorium mercury crow-translate \
+	paru -S insomnia-bin prisma-studio-appimage bibata-cursor-theme toilet \
+    ttf-joypixels ttf-ancient-fonts mongodb-compass buildx vscodium-bin \
+    slack-desktop rmtrash bruno yazi thorium mercury crow-translate \
     neovide onlyoffice-bin linux-wifi-hotspot
 }
 
 installPacmanPackages() {
-	sudo pacman -S xorg-server xorg-xinit xorg-xkill xorg-xsetroot xorg-xbacklight xorg-xprop fd xorg-xinput xorg-xdpyinfo jq hyperfine \
-    wireplumber maim ninja python-pywal wireless_tools imagemagick bluez bluez-utils blueman openvpn htop btop gcc aspell \
-    timeshift dosfstools unrar plocate elinks zoxide lolcat bottom xf86-input-libinput cowsay docker-compose tor mpd gvfs \
-    bat alacritty zathura-ps zathura-pdf-poppler zathura-djvu zathura-cb ueberzug postgresql aspell-en tar gparted kitty \
-    ncmpcpp cmatrix github-cli android-tools screenkey mpd ripgrep pamixer lazygit firefox git-delta lf zathura pngquant \
-    zsh git curl wget unzip cmake picom dunst mpv xclip ranger redis pipewire pipewire-pulse docker expac mediainfo glow \
-    libnotify aria2 arc-gtk-theme rsync libconfig ctags strace redshift tmux mtools slock baobab sxiv hwinfo eza xsel zip \
-    android-file-transfer thunderbird brightnessctl xwallpaper python-pip opendoas reflector python-virtualenv --noconfirm \
-    ntfs-3g grub-customizer --overwrite '*'
+	sudo pacman -S xorg-server xorg-xinit xorg-xkill xorg-xsetroot xorg-xbacklight \
+    wireless_tools imagemagick bluez bluez-utils blueman openvpn htop btop aspell \
+    ncmpcpp cmatrix github-cli android-tools screenkey mpd ripgrep pamixerfirefox \
+    git-delta zathura pngquant git curl wget unzip cmake picom dunst xclip ranger \
+    redis pipewire pipewire-pulse docker expac mediainfo glow mpv libnotify aria2 \
+    arc-gtk-theme rsync libconfig ctags strace redshift tmux mtools slock baobab \
+    sxiv hwinfo xsel jq hyperfine ntfs-3g grub-customizer base-devel gcc tor tar \
+    xorg-xprop xorg-xinput xorg-xdpyinfo wireplumber maim ninja python-pywalzip \
+    timeshift dosfstools unrar plocate elinks zoxide bottom xf86-input-libinput \
+    cowsay docker-compose mpd gvfs bat alacritty zathura-ps zathura-pdf-poppler \
+    zathura-djvu zathura-cb ueberzug postgresql aspell-en gparted kitty lazygit \
+    lf eza zsh reflector opendoas python-virtualenv android-file-transfer fd \
+    thunderbird brightnessctl xwallpaper python-pip lolcat --noconfirm
 }
 
 while [[ "$#" -gt 0 ]]; do
