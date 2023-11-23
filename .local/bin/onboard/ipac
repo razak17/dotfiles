@@ -15,13 +15,13 @@ installPacmanPackages() {
     git-delta zathura pngquant git curl wget unzip cmake picom dunst xclip ranger \
     redis pipewire pipewire-pulse docker expac mediainfo glow mpv libnotify aria2 \
     arc-gtk-theme rsync libconfig ctags strace redshift tmux mtools slock baobab \
-    sxiv hwinfo xsel jq hyperfine ntfs-3g grub-customizer base-devel gcc tor tar \
+    sxiv hwinfo xsel jq hyperfine ntfs-3g grub-customizer base-devel gcc fd tar \
     xorg-xprop xorg-xinput xorg-xdpyinfo wireplumber maim ninja python-pywalzip \
     timeshift dosfstools unrar plocate elinks zoxide bottom xf86-input-libinput \
     cowsay docker-compose mpd gvfs bat alacritty zathura-ps zathura-pdf-poppler \
     zathura-djvu zathura-cb ueberzug postgresql aspell-en gparted kitty lazygit \
-    lf eza zsh reflector opendoas python-virtualenv android-file-transfer fd \
-    thunderbird brightnessctl xwallpaper python-pip lolcat --noconfirm
+    lf eza zsh reflector opendoas python-virtualenv android-file-transfer tor \
+    thunderbird brightnessctl xwallpaper python-pip lolcat syncthing --noconfirm
 }
 
 while [[ "$#" -gt 0 ]]; do
