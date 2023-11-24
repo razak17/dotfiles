@@ -3,9 +3,9 @@
 installAurPackages() {
 	# notion-app autokey-gtk devour
 	paru -S insomnia-bin prisma-studio-appimage bibata-cursor-theme toilet \
-    ttf-joypixels ttf-ancient-fonts mongodb-compass buildx vscodium-bin \
-    slack-desktop rmtrash bruno yazi thorium mercury crow-translate \
-    neovide onlyoffice-bin linux-wifi-hotspot
+    ttf-joypixels ttf-ancient-fonts mongodb-compass docker-buildx mercury \
+    slack-desktop rmtrash bruno thorium-browser-bin crow-translate yazi \
+    neovide onlyoffice-bin linux-wifi-hotspot vscodium-bin --overwrite '*'
 }
 
 installPacmanPackages() {
@@ -21,7 +21,7 @@ installPacmanPackages() {
     cowsay docker-compose mpd gvfs bat alacritty zathura-ps zathura-pdf-poppler \
     zathura-djvu zathura-cb ueberzug postgresql aspell-en gparted kitty lazygit \
     lf eza zsh reflector opendoas python-virtualenv android-file-transfer tor \
-    thunderbird brightnessctl xwallpaper python-pip lolcat syncthing --noconfirm
+    thunderbird brightnessctl xwallpaper python-pip lolcat syncthing --noconfirm --overwrite '*'
 }
 
 while [[ "$#" -gt 0 ]]; do
