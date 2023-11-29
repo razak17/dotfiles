@@ -1,0 +1,13 @@
+#!/bin/sh
+
+connected=$(bluetoothctl info | grep 'Connected: yes' | wc -l)
+
+if [ $connected -eq 1 ]; then
+  icon=""
+  device=$(bluetoothctl info | grep 'Name' | cut -d ' ' -f 2-)
+else
+  icon="󰂲"
+  device="None"
+fi
+
+printf "%s - %s\n" "$icon" "$device"

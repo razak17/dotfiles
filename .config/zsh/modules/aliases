@@ -232,10 +232,10 @@ alias thequickbrownfoxjumpsoverthelazydog="echo hellooooo"
 
 ws=~/personal/workspace
 vt=/run/media/razak/Ventoy
-sd=/run/media/razak/C05F-21AF
-tv=$sd/Video/TV
-tvs=$sd/Video/TV/TV\ Shows
-mov=$sd/Video/TV/Movies
+usb=/run/media/razak/C05F-21AF
+tv=$usb/Video/TV
+tvs=$usb/Video/TV/TV\ Shows
+mov=$usb/Video/TV/Movies
 
 alias nca='cd "$XDG_CACHE_HOME/nvim"'
 alias rca='cd "$XDG_CACHE_HOME/rvim"'
@@ -251,7 +251,7 @@ alias dnv='cd "$HOME/.dots/nvim"'
 alias vids='cd "$HOME/Videos"'
 alias ws='cd "$ws"'
 alias vt='cd "$vt"'
-alias sd='cd "$sd"'
+alias usb='cd "$usb"'
 alias tv='cd "$tv"'
 alias tvs='cd "$tvs"'
 alias movies='cd "$movies"'

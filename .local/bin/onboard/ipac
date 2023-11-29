@@ -5,7 +5,7 @@ installAurPackages() {
 	paru -S insomnia-bin prisma-studio-appimage bibata-cursor-theme toilet \
     ttf-joypixels ttf-ancient-fonts mongodb-compass docker-buildx mercury \
     slack-desktop rmtrash bruno thorium-browser-bin crow-translate yazi \
-    neovide onlyoffice-bin linux-wifi-hotspot vscodium-bin --overwrite '*'
+    neovide onlyoffice-bin linux-wifi-hotspot vscodium-bin fastfetch --overwrite '*'
 }
 
 installPacmanPackages() {
