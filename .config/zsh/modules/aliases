@@ -219,6 +219,8 @@ alias du='dmenuumount'
 
 alias ywa="yarn watch"
 alias esft="eslint_d --fix"
+alias nprf="npm run format"
+alias nprl="npm run lint"
 
 # Misc
 alias rustbook='rustup docs --book'
