@@ -8,18 +8,31 @@ capitalize() {
 }
 
 cd "$profiles_path" || exit
-choice="$(dir | xargs -n 1 -P 1 echo "$0" | awk '{print $2}' | dmenu -l 10 -p 'Choose :')"
-echo "$choice"
+options=$(dir | xargs -n 1 -P 1 echo "$0" | awk '{print $2}')
+choice="$(echo "$options" | dmenu -l 10 -p 'Choose :')"
+# echo "$choice"
 
 if [ -z "$choice" ]; then
 	# notify-send -u critical -t 2000 "Firefox Profiles" "nothing selected!"
 	exit 1
 fi
 
-if [ -n "$choice" ]; then
-	profile=$(capitalize "$choice")
-	notify-send -t 2000 "Firefox profiles" "Opening $choice profile..."
-	firefox -P "$profile"
-else
+# Use a for loop to iterate over the space-separated elements
+profile_exists=false
+for element in $options; do
+	if [ "$element" = "$choice" ]; then
+		# echo "Found $element"
+		profile_exists=true
+		break
+	fi
+
+done
+
+if [ "$profile_exists" = false ]; then
 	notify-send -u critical -t 2000 "Firefox Profiles" "That profile does not exist"
+	exit 1
 fi
+
+notify-send -t 2000 "Firefox profiles" "Opening $choice profile..."
+profile=$(capitalize "$choice")
+firefox -P "$profile"
