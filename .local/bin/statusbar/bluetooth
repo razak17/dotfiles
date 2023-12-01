@@ -6,8 +6,8 @@ if [ $connected -eq 1 ]; then
   icon=""
   device=$(bluetoothctl info | grep 'Name' | cut -d ' ' -f 2-)
 else
-  icon="󰂲"
-  device="None"
+  icon=""
+  device="No Device"
 fi
 
 printf "%s - %s\n" "$icon" "$device"
