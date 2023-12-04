@@ -26,6 +26,8 @@ safe_alias xi tuxi
 safe_alias ew toilet
 safe_alias vsc "vscodium ." vscodium
 safe_alias wl 'iwctl station list' iwctl
+alias vc="rvim --no-niceties --no-lsp"
+alias vn="rvim --no-niceties"
 
 if [[ $+commands[eza] ]]; then
   alias ls='eza'
@@ -221,6 +223,7 @@ alias ywa="yarn watch"
 alias esft="eslint_d --fix"
 alias npmrf="npm run format"
 alias npmrl="npm run lint"
+alias npmrb="npm run build"
 
 # Misc
 alias rustbook='rustup docs --book'

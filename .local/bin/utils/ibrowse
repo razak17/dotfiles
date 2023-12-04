@@ -21,7 +21,7 @@ if [ -z "$choice" ]; then
 fi
 
 if [ "$choice" = "firefox" ]; then
-	firefox
+	firefox -P "Main"
 elif [ "$choice" = "thorium-browser-sse3" ]; then
 	thorium-browser-sse3
 elif [ "$choice" = "mercury-browser" ]; then

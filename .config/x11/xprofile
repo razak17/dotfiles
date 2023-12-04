@@ -12,6 +12,8 @@ fi
 
 [ -f "$HOME/.config/zsh/zshenv" ] && . "$HOME/.config/zsh/zshenv"
 
+[ ! -s ~/.config/mpd/pid ] && mpd
+
 # Steam fix 🤞
 # exec /usr/lib/xdg-desktop-portal-gtk
 # exec /usr/lib/xdg-desktop-portal

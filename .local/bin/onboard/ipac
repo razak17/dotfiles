@@ -1,17 +1,17 @@
 #!/bin/bash
 
 installAurPackages() {
-	# notion-app autokey-gtk devour
-	paru -S insomnia-bin prisma-studio-appimage bibata-cursor-theme toilet \
+	# notion-app autokey-gtk devour figma-linux onlyoffice-bin insomnia-bin prisma-studio-appimage
+	paru -S bibata-cursor-theme toilet neovide linux-wifi-hotspot fastfetch \
     ttf-joypixels ttf-ancient-fonts mongodb-compass docker-buildx mercury \
     slack-desktop rmtrash bruno thorium-browser-bin crow-translate yazi \
-    neovide onlyoffice-bin linux-wifi-hotspot vscodium-bin fastfetch --overwrite '*'
+    vscodium-bin --overwrite '*'
 }
 
 installPacmanPackages() {
 	sudo pacman -S xorg-server xorg-xinit xorg-xkill xorg-xsetroot xorg-xbacklight \
     wireless_tools imagemagick bluez bluez-utils blueman openvpn htop btop aspell \
-    ncmpcpp cmatrix github-cli android-tools screenkey mpd ripgrep pamixerfirefox \
+    reflector opendoas cmatrix tor github-cli android-tools ripgrep pamixerfirefox \
     git-delta zathura pngquant git curl wget unzip cmake picom dunst xclip ranger \
     redis pipewire pipewire-pulse docker expac mediainfo glow mpv libnotify aria2 \
     arc-gtk-theme rsync libconfig ctags strace redshift tmux mtools slock baobab \
@@ -20,7 +20,7 @@ installPacmanPackages() {
     timeshift dosfstools unrar plocate elinks zoxide bottom xf86-input-libinput \
     cowsay docker-compose mpd gvfs bat alacritty zathura-ps zathura-pdf-poppler \
     zathura-djvu zathura-cb ueberzug postgresql aspell-en gparted kitty lazygit \
-    lf eza zsh reflector opendoas python-virtualenv android-file-transfer tor \
+    ncmpcpp mpd mpc lf eza zsh python-virtualenv android-file-transferscreenkey \
     thunderbird brightnessctl xwallpaper python-pip lolcat syncthing --noconfirm --overwrite '*'
 }
 
