@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ $# -gt 5 ]; then
+	killall "$1"
+else
+	pid=$(ps -u "$USER" -o pid,%cpu,%mem,comm | sed -n '1!p' | sort -b -k3 -r | fzf | awk '{print $1}')
+
+	if [ -n "$pid" ]; then
+		kill "$pid"
+	fi
+fi

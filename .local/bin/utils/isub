@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# extract subtitles from mkv files in directory
+
+# ffmpeg -i The\ Thundermans\ S02E22\ One\ Hit\ Thunder.mkv -map 0:s:0 output_subtitle_file.srt
+
+dir=$1
+
+if [ -z "$dir" ]; then
+	echo "Usage: $0 <directory>"
+	exit 1
+fi
+
+for file in "$dir"/*.mkv; do
+	echo "Processing $file"
+	ffmpeg -i "$file" -map 0:s:0 "${file%.*}.srt"
+done
