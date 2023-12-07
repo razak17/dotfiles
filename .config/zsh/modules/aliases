@@ -238,9 +238,9 @@ alias thequickbrownfoxjumpsoverthelazydog="echo hellooooo"
 ws=~/personal/workspace
 vt=/run/media/razak/Ventoy
 usb=/run/media/razak/C05F-21AF
-tv=$usb/Video/TV
-tvs=$usb/Video/TV/TV\ Shows
-mov=$usb/Video/TV/Movies
+tv=$usb/TV
+tvs=$usb/TV/TV\ Shows
+mov=$usb/TV/Movies
 
 alias nca='cd "$XDG_CACHE_HOME/nvim"'
 alias rca='cd "$XDG_CACHE_HOME/rvim"'
