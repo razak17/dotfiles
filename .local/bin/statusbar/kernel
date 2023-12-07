@@ -2,8 +2,9 @@
 
 kern="$(uname -r)"
 version=$(echo -e "$kern " | cut -d '-' -f 1)
-echo " $version"
+echo " $version"
 
+# 
 case $BLOCK_BUTTON in
 	3) notify-send "🖥 Kernel module " "\- Shows current running kernel."
   ;;

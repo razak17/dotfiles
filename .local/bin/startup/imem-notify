@@ -14,7 +14,7 @@ while true; do
 		pid=$(echo "$target" | awk '{print $1}')
 		name=$(echo "$target" | awk '{print $3}')
 
-		if [ "$name" = "Xorg" ]; then
+		if [ "$name" != "Xorg" ]; then
 			kill -9 "$pid"
 		  notify-send -u critical "process ${name} killed!" -i battery-low -t 2000
 			exit
