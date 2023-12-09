@@ -26,7 +26,8 @@ safe_alias xi tuxi
 safe_alias ew toilet
 safe_alias vsc "vscodium ." vscodium
 safe_alias wl 'iwctl station list' iwctl
-alias vc="rvim --no-niceties --no-lsp"
+alias vai="rvim --no-lsp --no-treesitter --no-niceties --no-completion"
+alias vc="rvim --no-lsp --no-treesitter --no-niceties --no-completion --no-ai"
 alias vn="rvim --no-niceties"
 
 if [[ $+commands[eza] ]]; then
