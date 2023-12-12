@@ -23,6 +23,18 @@ cx() {
   sudo chmod +x "$@"
 }
 
+rcs() {
+  sudo rc-service "$1" restart
+}
+
+rcadd() {
+  sudo rc-update add "$1" default
+}
+
+rcdel() {
+  sudo rc-update del "$1" default
+}
+
 zshcomp() {
   for command completion in ${(kv)_comps:#-*(-|-,*)}
   do
