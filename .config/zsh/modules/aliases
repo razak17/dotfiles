@@ -26,9 +26,11 @@ safe_alias xi tuxi
 safe_alias ew toilet
 safe_alias vsc "vscodium ." vscodium
 safe_alias wl 'iwctl station list' iwctl
-alias vai="rvim --no-lsp --no-treesitter --no-niceties --no-completion"
 alias vc="rvim --no-lsp --no-treesitter --no-niceties --no-completion --no-ai"
+alias vai="rvim --no-lsp --no-treesitter --no-niceties --no-completion"
+alias vts="rvim --no-lsp --no-niceties --no-completion --no-ai"
 alias vn="rvim --no-niceties"
+alias vl="rvim leetcode.nvim"
 
 if [[ $+commands[eza] ]]; then
   alias ls='eza'
@@ -136,6 +138,11 @@ alias upd='sudo pacman -Syu --noconfirm'
 alias rcache="sudo pacman -Sc"
 alias pkgs="pacman -Q | fzf"
 alias p='paru -S'
+
+pov () {
+  pacman -S "$1" --noconfirm --overwrite '*'
+}
+
 #maintenance
 alias clean='sudo pacman -Rns $(pacman -Qtdq)'
 # get fastest mirrors

@@ -2,6 +2,7 @@
 
 DIR="$HOME/Pictures/distro/main"
 FAV="$HOME/Pictures/distro/main/cat_leaves.png"
+# FAV="$HOME/Pictures/distro/main/14918.jpg"
 wall=$(find "$DIR" -type f | shuf -n 1)
 
 case $1 in

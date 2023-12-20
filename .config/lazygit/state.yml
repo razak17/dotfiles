@@ -1,7 +1,7 @@
 lastupdatecheck: 0
 recentrepos:
-- /home/razak/personal/workspace/rgt/jesse/jesse-dashboard
 - /home/razak/.config/rvim
+- /home/razak/personal/workspace/rgt/jesse/jesse-dashboard
 - /home/razak/docs
 - /home/razak/.dots/firefox-user.js
 - /home/razak/.dots/nvim/nvim-ak
@@ -19,7 +19,6 @@ recentrepos:
 - /home/razak/personal/workspace/coding/plugins/tailwind-fold.nvim
 - /home/razak/.local/share/rvim/lazy/mini.ai
 - /home/razak/personal/workspace/coding/portfolio/algo-visualizer
-- /home/razak/personal/workspace/coding/go/go-fiber-mongo
 - /home/razak/.dots/nvim/neovim
 - /home/razak/.config/nvim
 - /home/razak/personal/workspace/coding/plugins/buffer_manager.nvim
@@ -42,7 +41,6 @@ recentrepos:
 - /home/razak/personal/workspace/coding/js/tile-highlights
 - /home/razak/personal/workspace/coding/portfolio/mern-social/client
 - /home/razak/personal/workspace/coding/plugins/yanky.nvim
-- /home/razak/personal/workspace/coding/go/go-poke-api
 - /home/razak/personal/workspace/coding/rust/demystified
 - /home/razak/personal/workspace/coding/rust/rust-book/fibonacci
 - /home/razak/personal/workspace/coding/plugins/mason.nvim

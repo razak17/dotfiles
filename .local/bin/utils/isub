@@ -15,3 +15,5 @@ for file in "$dir"/*.mkv; do
 	echo "Processing $file"
 	ffmpeg -i "$file" -map 0:s:0 "${file%.*}.srt"
 done
+
+# ffmpeg -i hello.mp4 -i hello.vtt -c:v copy -c:a copy -c:s mov_text output.mp4
