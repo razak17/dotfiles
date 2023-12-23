@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+base_dir=$HOME/.mozilla/firefox/profiles
+coding=$base_dir/coding
+dev=$base_dir/dev
+main=$base_dir/main
+rec=$base_dir/rec
+
+update_config() {
+  profile="$1"
+  pushd "$profile"|| exit
+  "$profile"/updater.sh -d -s -o "$profile/user.js-overrides"
+  "$profile"/prefsCleaner.sh
+}
+
+while [ "$#" -gt 0 ]; do
+	curr=$1
+	shift
+
+	case "$curr" in
+	-main) update_config "$main" ;;
+	-dev) update_config "$dev" ;;
+	-coding) update_config "$coding" ;;
+	-rec) update_config "$rec" ;;
+	-all)
+		update_config "$main"
+		update_config "$dev"
+		update_config "$coding"
+		update_config "$rec"
+		;;
+	*) echo "Unavailable command... $curr" ;;
+	esac
+done

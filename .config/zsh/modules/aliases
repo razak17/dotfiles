@@ -202,14 +202,14 @@ alias gcma="git commit -a -v"
 
 # git bare (nvim, dotfiles)
 alias conf='/usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME'
-alias ca="iconf -csa"
-alias ccms="iconf -ccoms"
-alias ccm="iconf -ccom"
-alias ccma="iconf -ccma"
-alias ccm="iconf -ccomall"
-alias cpl="iconf -ce"
-alias cps="iconf -cp"
-alias cst="iconf -cs"
+alias ca="cconf -csa"
+alias ccms="cconf -ccoms"
+alias ccm="cconf -ccom"
+alias ccma="cconf -ccma"
+alias ccm="cconf -ccomall"
+alias cpl="cconf -ce"
+alias cps="cconf -cp"
+alias cst="cconf -cs"
 alias cstb="conf status -sb"
 
 # ranger

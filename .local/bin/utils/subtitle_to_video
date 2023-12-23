@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# extract subtitles from mkv files in directory
+
+# ffmpeg -i The\ Thundermans\ S02E22\ One\ Hit\ Thunder.mkv -map 0:s:0 output_subtitle_file.srt
+
+video="$1"
+subtitle="$2"
+
+ffmpeg -i "$video" -i "$subtitle" -c:v copy -c:a copy -c:s mov_text "${video%.*}.mp4"
