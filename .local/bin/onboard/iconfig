@@ -25,6 +25,11 @@ dockerConfig() {
 
 psqlConfig() {
 	pacman -S postgresql postgresql-openrc
+
+  sudo mkdir -p /var/lib/postgres
+  sudo chmod 775 /var/lib/postgres
+  sudo chown postgres /var/lib/postgres
+
 	sudo -iu postgres
 
 	# initdb -D /var/lib/postgres/data

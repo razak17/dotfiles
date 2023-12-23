@@ -14,7 +14,7 @@ installZshPlugins() {
 		'baliestri/pnpm.plugin.zsh'
 		'MenkeTechnologies/zsh-cargo-completion'
 	)
-	for i in "${plugins[@]}"; do
+	v14.0.0v14.0.0for i in "${plugins[@]}"; do
 		name=$(echo "${i}" | sed 's|.*/||')
 		if [ "$name" == 'pnpm.plugin.zsh' ]; then
 			name="pnpm"

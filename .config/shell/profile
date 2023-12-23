@@ -48,8 +48,8 @@ if [ -e "$HOME/.deno/bin/deno" ]; then
 fi
 
 # Deta cli
-if [ -e "$HOME/.deta/bin/deta" ]; then
-  export DETA_HOME="$HOME/.deta"
+if [ -e "$HOME/.detaspace/bin" ]; then
+  export DETA_HOME="$HOME/.detaspace"
   path+=(
   "$DETA_HOME/bin"
   )

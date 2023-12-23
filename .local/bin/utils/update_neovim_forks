@@ -1,0 +1,16 @@
+#!/bin/sh
+
+forks_dir="$DEV_HOME/plugins"
+
+cd "$forks_dir" || exit
+options=$(dir | xargs -n 1 -P 1 echo "$0" | awk '{print $2}')
+
+for plugin in $options; do
+	if [ -d "$forks_dir/$plugin" ]; then
+		echo "Updating $plugin"
+    cd "$forks_dir/$plugin" || exit
+		git pull
+	fi
+done
+
+notify-send -t 2000 "Forks" "All plugins updated"
