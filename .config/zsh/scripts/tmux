@@ -169,7 +169,7 @@ jesse() {
 	ftmux --send-keys "$secondPane" "source env/bin/activate" "C-m"
 	if [[ $send_keys == true ]]; then
 		ftmux --send-keys "$firstPane" "rvim" "C-m"
-	  ftmux --send-keys "$secondPane" "uvicorn api.main:app --reload" "C-m"
+		ftmux --send-keys "$secondPane" "uvicorn api.main:app --reload" "C-m"
 	fi
 
 	secondWindow=$(ftmux --session-win-id "$session" 1)
@@ -177,8 +177,8 @@ jesse() {
 	ftmux --split-pane -v -c "$ui" -t "$firstPane"
 	secondPane=$(ftmux --window-pane-id "$secondWindow" 1)
 	if [[ $send_keys == true ]]; then
-	  ftmux --send-keys "$firstPane" "rvim" "C-m"
-	  ftmux --send-keys "$secondPane" "npm run dev" "C-m"
+		ftmux --send-keys "$firstPane" "rvim" "C-m"
+		ftmux --send-keys "$secondPane" "npm run dev" "C-m"
 	fi
 
 	attachSession "$session"
@@ -203,17 +203,18 @@ mediboard() {
 	firstWindow=$(ftmux --session-win-id "$session" 0)
 	firstPane=$(ftmux --window-pane-id "$firstWindow" 0)
 	if [[ $send_keys == true ]]; then
-		ftmux --send-keys "$firstPane" "vc" # "C-m"
+		ftmux --send-keys "$firstPane" "vc" "C-m"
 	fi
 
 	secondWindow=$(ftmux --session-win-id "$session" 1)
 	firstPane=$(ftmux --window-pane-id "$secondWindow" 0)
 	ftmux --split-pane -v -c "$repo" -t "$firstPane"
 	secondPane=$(ftmux --window-pane-id "$secondWindow" 1)
+	ftmux --send-keys "$firstPane" "psql -U postgres" "C-m"
+	ftmux --send-keys "$firstPane" "\c mediboard" "C-m"
+	ftmux --send-keys "$secondPane" "fnm use v14.0.0" "C-m"
 	if [[ $send_keys == true ]]; then
-	  ftmux --send-keys "$firstPane" "psql -U postgres" "C-m"
-	  ftmux --send-keys "$firstPane" "\c mediboard" "C-m"
-	  ftmux --send-keys "$secondPane" "npm run start" # "C-m"
+		ftmux --send-keys "$secondPane" "npm run start" # "C-m"
 	fi
 
 	attachSession "$session"
