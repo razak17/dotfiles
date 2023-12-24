@@ -197,26 +197,24 @@ mediboard() {
 	checkSession "$session"
 
 	ftmux -n "$session" "code" "$repo"
-	ftmux -w "$session" "db" -c "$repo"
+	ftmux -w "$session" "run" -c "$repo"
 
 	# admin
 	firstWindow=$(ftmux --session-win-id "$session" 0)
 	firstPane=$(ftmux --window-pane-id "$firstWindow" 0)
-	ftmux --split-pane -v -c "$repo" -t "$firstPane"
-	secondPane=$(ftmux --window-pane-id "$firstWindow" 1)
 	if [[ $send_keys == true ]]; then
-		ftmux --send-keys "$firstPane" "rvim" "C-m"
-	  ftmux --send-keys "$secondPane" "npm start" "C-m"
+		ftmux --send-keys "$firstPane" "vc" # "C-m"
 	fi
 
 	secondWindow=$(ftmux --session-win-id "$session" 1)
 	firstPane=$(ftmux --window-pane-id "$secondWindow" 0)
-	ftmux --split-pane -v -c "$ui" -t "$firstPane"
+	ftmux --split-pane -v -c "$repo" -t "$firstPane"
 	secondPane=$(ftmux --window-pane-id "$secondWindow" 1)
-	# if [[ $send_keys == true ]]; then
-	#   ftmux --send-keys "$firstPane" "rvim" "C-m"
-	#   ftmux --send-keys "$secondPane" "npm run dev" "C-m"
-	# fi
+	if [[ $send_keys == true ]]; then
+	  ftmux --send-keys "$firstPane" "psql -U postgres" "C-m"
+	  ftmux --send-keys "$firstPane" "\c mediboard" "C-m"
+	  ftmux --send-keys "$secondPane" "npm run start" # "C-m"
+	fi
 
 	attachSession "$session"
 }
