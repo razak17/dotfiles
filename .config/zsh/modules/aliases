@@ -30,6 +30,7 @@ alias vc="rvim --no-lsp --no-treesitter --no-niceties --no-completion --no-ai"
 alias vai="rvim --no-lsp --no-treesitter --no-niceties --no-completion"
 alias vts="rvim --no-lsp --no-niceties --no-completion --no-ai"
 alias vn="rvim --no-niceties"
+alias vmin="rvim --minimal"
 alias vl="rvim leetcode.nvim"
 
 if [[ $+commands[eza] ]]; then
@@ -245,6 +246,7 @@ alias thequickbrownfoxjumpsoverthelazydog="echo hellooooo"
 
 ws=~/personal/workspace
 vt=/run/media/razak/Ventoy
+usb=/run/media/razak/E48F-B0EB
 
 alias nca='cd "$XDG_CACHE_HOME/nvim"'
 alias rca='cd "$XDG_CACHE_HOME/rvim"'
@@ -259,6 +261,7 @@ alias dw='cd "$HOME/Downloads"'
 alias dnv='cd "$HOME/.dots/nvim"'
 alias vids='cd "$HOME/Videos"'
 alias ws='cd "$ws"'
+alias usb='cd "$usb"'
 alias vt='cd "$vt"'
 alias cdcc='cd "$ws/coding"'
 alias notes='cd "$HOME/notes"'
