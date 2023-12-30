@@ -7,4 +7,4 @@
 video="$1"
 subtitle="$2"
 
-ffmpeg -i "$video" -i "$subtitle" -c:v copy -c:a copy -c:s mov_text "${video%.*}.mp4"
+ffmpeg -i "$video" -i "$subtitle" -c:v copy -c:a copy -c:s mov_text "${video%.*}-sub.mp4"
