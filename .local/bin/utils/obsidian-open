@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [[ ! $+commands[rvim] ]]; then
+  exit 1
+fi
+
+rvim --minimal -c ObsidianFind
