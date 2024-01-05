@@ -32,6 +32,7 @@ alias vts="rvim --no-lsp --no-niceties --no-completion --no-ai"
 alias vn="rvim --no-niceties"
 alias vmin="rvim --minimal"
 alias vl="rvim leetcode.nvim"
+alias oo="obsidian-open"
 
 if [[ $+commands[eza] ]]; then
   alias ls='eza'
