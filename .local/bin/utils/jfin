@@ -1,0 +1,9 @@
+#!/bin/bash
+FFMPEGDIR="/usr/lib/jellyfin-ffmpeg"
+
+if [ ! -d "$FFMPEGDIR" ]; then
+	notify-send -u critical -t 2000 "Jellyfin" "jellyfin-ffmpeg not found!
+  exit 0
+fi
+
+/usr/bin/jellyfin --ffmpeg $FFMPEGDIR/ffmpeg
