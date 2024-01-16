@@ -202,19 +202,23 @@ mediboard() {
 	# admin
 	firstWindow=$(ftmux --session-win-id "$session" 0)
 	firstPane=$(ftmux --window-pane-id "$firstWindow" 0)
+	ftmux --split-pane -v -c "$repo" -t "$firstPane"
 	if [[ $send_keys == true ]]; then
 		ftmux --send-keys "$firstPane" "vc" "C-m"
 	fi
+	secondPane=$(ftmux --window-pane-id "$firstWindow" 1)
+	ftmux --send-keys "$secondPane" "psql -U postgres" "C-m"
+	ftmux --send-keys "$secondPane" "\c mediboard3" "C-m"
 
 	secondWindow=$(ftmux --session-win-id "$session" 1)
 	firstPane=$(ftmux --window-pane-id "$secondWindow" 0)
 	ftmux --split-pane -v -c "$repo" -t "$firstPane"
 	secondPane=$(ftmux --window-pane-id "$secondWindow" 1)
-	ftmux --send-keys "$firstPane" "psql -U postgres" "C-m"
-	ftmux --send-keys "$firstPane" "\c mediboard" "C-m"
-	ftmux --send-keys "$secondPane" "fnm use v14.0.0" "C-m"
+	ftmux --send-keys "$firstPane" "fnm use v21.5.0" "C-m"
+	ftmux --send-keys "$secondPane" "fnm use v21.5.0" "C-m"
 	if [[ $send_keys == true ]]; then
-		ftmux --send-keys "$secondPane" "npm run start" # "C-m"
+		ftmux --send-keys "$secondPane" "yarn start:server" # "C-m"
+		ftmux --send-keys "$firstPane" "yarn start:client" # "C-m"
 	fi
 
 	attachSession "$session"

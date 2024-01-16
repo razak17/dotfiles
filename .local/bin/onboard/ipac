@@ -5,7 +5,7 @@ installAurPackages() {
 	paru -S bibata-cursor-theme toilet neovide linux-wifi-hotspot fastfetch \
     ttf-joypixels ttf-ancient-fonts mongodb-compass docker-buildx mercury \
     slack-desktop rmtrash bruno thorium-browser-bin crow-translate yazi \
-    vscodium-bin --overwrite '*'
+    vscodium-bin jellyfin-server jellyfin-web jellyfin-ffmpeg floorp-bin --overwrite '*'
 }
 
 installPacmanPackages() {

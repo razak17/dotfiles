@@ -3,6 +3,11 @@
 browsers="\
 firefox"
 
+if [ -x "$(command -v floorp)" ]; then
+	browsers="$browsers
+floorp"
+fi
+
 if [ -x "$(command -v mercury-browser)" ]; then
 	browsers="$browsers
 mercury-browser"
@@ -22,6 +27,8 @@ fi
 
 if [ "$choice" = "firefox" ]; then
 	firefox -P "Main"
+elif [ "$choice" = "floorp" ]; then
+  floorp	
 elif [ "$choice" = "thorium-browser-sse3" ]; then
 	thorium-browser-sse3
 elif [ "$choice" = "mercury-browser" ]; then
