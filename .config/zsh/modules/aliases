@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-alias v="rvim"
+alias v="rvim -no-min"
 # alias -s {js,html,js,ts,css,md,lua,sh,conf}=$TEXT_EDITOR
 
 safe_alias() {
