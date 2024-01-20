@@ -1,4 +1,4 @@
 #!/bin/sh
 
-# cd "/home/razak/.wine/drive_c/Program Files/Football Manager 2023" || exit
-# wine ./fm.exe
+cd "/home/razak/Games/fm23/drive_c/Program Files/Football Manager 2023" || exit
+wine ./fm.exe
