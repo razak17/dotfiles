@@ -24,7 +24,8 @@ load() {
 		exit 0
 	fi
 	echo "$clip" | xclip -sel c
-	notify-send -t 2000 "Clipboard" "${clip} copied!"
+	# notify-send -t 2000 "Clipboard" "${clip} copied!"
+	notify-send -t 2000 "Clipboard" "copied!"
 }
 
 while [ "$#" -gt 0 ]; do
