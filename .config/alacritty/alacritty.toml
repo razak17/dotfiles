@@ -1,0 +1,321 @@
+live_config_reload = true
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "#888c94"
+blue = "#6cb0ff"
+cyan = "#14ffff"
+green = "#23fd00"
+magenta = "#fd28ff"
+red = "#f92648"
+white = "#c3eeff"
+yellow = "#f4f719"
+
+[colors.cursor]
+cursor = "#7ec0ee"
+text = "#030303"
+unfocused_hollow = true
+
+[colors.cursor.style]
+blinking = "Never"
+shape = "Block"
+vi_mode_style = "None"
+
+[colors.normal]
+black = "#282c34"
+blue = "#51afef"
+cyan = "#0dcdcd"
+green = "#19cb00"
+magenta = "#cb1ed1"
+red = "#e95678"
+white = "#b3deef"
+yellow = "#cecb00"
+
+[colors.primary]
+background = "#1e2127"
+foreground = "#7ec0ee"
+
+[colors.search."colors.footer_bar"]
+background = "#7685b1"
+foreground = "#030303"
+
+[colors.search.focused_match]
+background = "#7685b1"
+foreground = "#030303"
+
+[colors.search.line_indicator]
+background = "#7685b1"
+foreground = "#202328"
+
+[colors.search.matches]
+background = "#7685b1"
+foreground = "#030303"
+
+[colors.vi_mode_cursor]
+cursor = "#7685b1"
+text = "#030303"
+
+[font]
+size = 10
+
+[font.bold]
+family = "Victor Mono Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "Victor Mono Nerd Font Mono"
+style = "Bold Italic"
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.italic]
+family = "Victor Mono Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+family = "Victor Mono Nerd Font Mono"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 2
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "Y"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "Down"
+key = "N"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "Space"
+mode = "~Search"
+mods = "Shift|Control"
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "C"
+mode = "Vi|~Search"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "Return"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mode = "~Vi"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ClearSelection"
+key = "C"
+mode = "Vi|~Search"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "SearchForward"
+key = "F"
+mode = "~Search"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "SearchBackward"
+key = "B"
+mode = "~Search"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "PasteSelection"
+key = "Insert"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ResetFontSize"
+key = "Key0"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Key9"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Equals"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Plus"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "NumpadAdd"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "Key8"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "Minus"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "NumpadSubtract"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "shift+up pressed"
+key = "Up"
+mods = "Shift"
+
+[[keyboard.bindings]]
+chars = "shift+down pressed"
+key = "Down"
+mods = "Shift"
+
+[[keyboard.bindings]]
+chars = "alt+shift+left pressed"
+key = "Left"
+mods = "Alt|Shift"
+
+[[keyboard.bindings]]
+chars = "alt+shift+right pressed"
+key = "Right"
+mods = "Alt|Shift"
+
+[mouse]
+hide_when_typing = true
+
+[mouse.double_click]
+threshold = 300
+
+[mouse.hints]
+modifiers = "Shift"
+
+[mouse.hints.launcher]
+program = "xdg-open"
+
+[mouse.triple_click]
+threshold = 300
+
+[schemes.spacemacs_dark.bright]
+black = "#42444a"
+blue = "#3980C2"
+cyan = "#6B3062"
+green = "#29A0AD"
+magenta = "#2C9473"
+red = "#DF201C"
+white = "#686868"
+yellow = "#DB742E"
+
+[schemes.spacemacs_dark.normal]
+black = "#0a0814"
+blue = "#3a81c3"
+cyan = "#21b8c7"
+green = "#67b11d"
+magenta = "#a31db1"
+red = "#f2241f"
+white = "#b2b2b2"
+yellow = "#b1951d"
+
+[schemes.spacemacs_dark.primary]
+background = "#292b2e"
+foreground = "#828482"
+
+[schemes.spacemacs_light.bright]
+black = "#888c94"
+blue = "#6cb0ff"
+cyan = "#14ffff"
+green = "#23fd00"
+magenta = "#fd28ff"
+red = "#f92648"
+white = "#c3eeff"
+yellow = "#f4f719"
+
+[schemes.spacemacs_light.cursor]
+cursor = "#7ec0ee"
+text = "#030303"
+unfocused_hollow = true
+
+[schemes.spacemacs_light.cursor.style]
+blinking = "Never"
+shape = "Block"
+vi_mode_style = "None"
+
+[schemes.spacemacs_light.normal]
+black = "#282c34"
+blue = "#51afef"
+cyan = "#0dcdcd"
+green = "#19cb00"
+magenta = "#cb1ed1"
+red = "#e95678"
+white = "#b3deef"
+yellow = "#cecb00"
+
+[schemes.spacemacs_light.primary]
+background = "#1e2127"
+foreground = "#7ec0ee"
+
+[schemes.spacemacs_light.search."colors.footer_bar"]
+background = "#7685b1"
+foreground = "#030303"
+
+[schemes.spacemacs_light.search.focused_match]
+background = "#7685b1"
+foreground = "#030303"
+
+[schemes.spacemacs_light.search.line_indicator]
+background = "#7685b1"
+foreground = "#202328"
+
+[schemes.spacemacs_light.search.matches]
+background = "#7685b1"
+foreground = "#030303"
+
+[schemes.spacemacs_light.vi_mode_cursor]
+cursor = "#7685b1"
+text = "#030303"
+
+[scrolling]
+history = 10000
+multiplier = 10
+
+[selection]
+save_to_clipboard = false
+semantic_escape_chars = ",│`|:\"' ()[]{}<>"
+
+[window]
+decorations = "none"
+dynamic_title = true
+opacity = 0.8
+startup_mode = "Maximized"
+
+[window.dimensions]
+columns = 80
+lines = 24
+
+[window.padding]
+x = 0
+y = 0
