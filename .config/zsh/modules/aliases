@@ -214,6 +214,7 @@ alias cpl="cconf -ce"
 alias cps="cconf -cp"
 alias cst="cconf -cs"
 alias cstb="conf status -sb"
+alias ccv="conf commit -v"
 
 # ranger
 alias f="ranger"
