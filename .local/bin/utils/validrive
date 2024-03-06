@@ -1,0 +1,3 @@
+#!/bin/sh
+
+wine ~/.dots/exe/validrive.exe
