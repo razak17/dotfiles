@@ -236,6 +236,8 @@ alias esft="eslint_d --fix"
 alias npmrf="npm run format"
 alias npmrl="npm run lint"
 alias npmrb="npm run build"
+alias pf="prettier --write"
+alias clocc="cloc . --exclude-dir=node_modules,.next,dist,.turbo,.git --exclude-ext=yaml,json,svg"
 
 # Misc
 alias rustbook='rustup docs --book'
