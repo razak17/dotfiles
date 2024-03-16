@@ -1,0 +1,24 @@
+#!/bin/sh
+
+dir="$1"
+
+if [ -z "$dir" ]; then
+  echo "Directory is missing"
+  exit 1
+fi
+
+cd "$dir"
+dirs=$(dir | xargs -n 1 -P 1 echo "$0" | awk '{print $2}')
+# Loop through each directory and zip its contents
+
+for d in */; do
+  echo "Zipping $d"
+  if [ ! -e "${d%/}.zip" ]; then
+    zip -r "${d%/}.zip" "$d"
+  fi
+done
+
+
+# if [ ! -e "$dir".zip ]; then
+#   zip -r "${dir}".zip "$dir"
+# end

@@ -1,0 +1,17 @@
+#!/bin/sh
+
+name="$1"
+
+if [ -z "$name" ]; then
+  notify-send -u critical -t 2000 "Kill Process" "process name was not provided"
+  exit 1
+fi
+
+# Get the list of PIDs for processes named "nvim"
+pids=$(pgrep "$name")
+
+# Iterate over the list and kill each process
+for pid in $pids
+do
+  kill "$pid"
+done

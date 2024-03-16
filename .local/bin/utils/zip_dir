@@ -1,0 +1,12 @@
+#!/bin/sh
+
+dir="$1"
+
+if [ -z "$dir" ]; then
+  echo "Directory is missing"
+  exit 1
+fi
+
+if [ ! -e "$dir".zip ]; then
+  zip -r "${dir}".zip "$dir"
+end
