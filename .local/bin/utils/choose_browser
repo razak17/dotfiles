@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 
-browsers="\
+if [ -x "$(command -v brave)" ]; then
+	browsers="\
+brave
 firefox"
+else
+  browsers="\
+firefox"
+fi
 
 if [ -x "$(command -v floorp)" ]; then
 	browsers="$browsers
@@ -25,7 +31,9 @@ if [ -z "$choice" ]; then
 	exit 1
 fi
 
-if [ "$choice" = "firefox" ]; then
+if [ "$choice" = "brave" ]; then
+  brave
+elif [ "$choice" = "firefox" ]; then
 	firefox -P "Main"
 elif [ "$choice" = "floorp" ]; then
   floorp -p "Main"
