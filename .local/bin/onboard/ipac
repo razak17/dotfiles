@@ -10,8 +10,8 @@ installAurPackages() {
 }
 
 installPacmanPackages() {
-	sudo pacman -S xorg-server xorg-xinit xorg-xkill xorg-xsetroot xorg-xbacklight \
-    wireless_tools imagemagick bluez bluez-utils blueman openvpn htop btop aspell \
+	sudo pacman -S xorg-server xorg-xinit xorg-xkill xorg-xsetroot xorg-xbacklight global \
+    wireless_tools imagemagick bluez bluez-utils blueman openvpn htop btop aspell freeze \
     reflector opendoas cmatrix tor github-cli android-tools ripgrep pamixerfirefox \
     git-delta zathura pngquant git curl wget unzip cmake picom dunst xclip ranger \
     redis pipewire pipewire-pulse docker expac mediainfo glow mpv libnotify aria2 \
