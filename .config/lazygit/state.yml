@@ -1,20 +1,19 @@
 lastupdatecheck: 0
 recentrepos:
 - /home/razak/.config/rvim
-- /home/razak/personal/workspace/rgt/jesse/jesse-dashboard
+- /home/razak/personal/workspace/rgt/mediboard
 - /home/razak/docs
+- /home/razak/personal/workspace/rgt/jesse/jesse-dashboard
 - /home/razak/.dots/firefox-user.js
 - /home/razak/.dots/nvim/nvim-ak
 - /home/razak/personal/workspace/rgt/Origin-Media/om-admin
 - /home/razak/personal/workspace/coding/plugins/smartcolumn.nvim
-- /home/razak/.dots/nvim/init.lua
 - /home/razak/personal/workspace/coding/portfolio/v1
 - /home/razak/.config/rvim2
 - /home/razak/.dots/suckless
 - /home/razak/personal/workspace/coding/portfolio/next-airbnb
 - /home/razak/.dots/artix-install-script
 - /home/razak/personal/workspace/coding/plugins/onedark.nvim
-- /home/razak/.dots/nvim/astrocommunity
 - /home/razak/personal/workspace/coding/plugins/tailwind-fold.nvim
 - /home/razak/.local/share/rvim/lazy/mini.ai
 - /home/razak/personal/workspace/coding/portfolio/algo-visualizer
@@ -30,12 +29,8 @@ recentrepos:
 - /home/razak/personal/workspace/coding/plugins/glance.nvim
 - /home/razak/personal/workspace/coding/plugins/harpoon
 - /home/razak/personal/workspace/coding/portfolio/howdy
-- /home/razak/personal/workspace/coding/rust/rustlings
-- /home/razak/personal/workspace/coding/rust/some_aoc
 - /home/razak/personal/workspace/coding/js/tile-highlights
 - /home/razak/personal/workspace/coding/portfolio/mern-social/client
-- /home/razak/personal/workspace/coding/rust/demystified
-- /home/razak/personal/workspace/coding/rust/rust-book/fibonacci
 - /home/razak/personal/workspace/coding/plugins/mason.nvim
 - /home/razak/personal/workspace/coding/plugins/package-info.nvim
 - /home/razak/personal/workspace/coding/interview/kata-machine
