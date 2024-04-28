@@ -37,7 +37,7 @@ xrv() {
 	# Get second window
 	secondWindow=$(ftmux --session-win-id "$session" 1)
 	firstPane=$(ftmux --window-pane-id "$secondWindow" 0)
-	ftmux --split-pane -v -c "$HOME/.local/bin" -t "$firstPane"
+	ftmux --split-pane -v -c "$HOME/Sync" -t "$firstPane"
 
 	attachSession "$session"
 }
