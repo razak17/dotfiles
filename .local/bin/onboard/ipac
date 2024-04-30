@@ -10,8 +10,8 @@ installAurPackages() {
 }
 
 installPacmanPackages() {
-	sudo pacman -S xorg-server xorg-xinit xorg-xkill xorg-xsetroot xorg-xbacklight global \
-    wireless_tools imagemagick bluez bluez-utils blueman openvpn htop btop aspell freeze \
+	sudo pacman -S xorg-server xorg-xinit xorg-xkill xorg-xsetroot xorg-xbacklight \
+    wireless_tools imagemagick bluez bluez-utils blueman openvpn htop btop aspell \
     reflector opendoas cmatrix tor github-cli android-tools ripgrep pamixerfirefox \
     git-delta zathura pngquant git curl wget unzip cmake picom dunst xclip ranger \
     redis pipewire pipewire-pulse docker expac mediainfo glow mpv libnotify aria2 \
@@ -21,7 +21,8 @@ installPacmanPackages() {
     timeshift dosfstools unrar plocate elinks zoxide bottom xf86-input-libinput \
     cowsay docker-compose mpd gvfs bat alacritty zathura-ps zathura-pdf-poppler \
     zathura-djvu zathura-cb ueberzug postgresql aspell-en gparted kitty lazygit \
-    ncmpcpp mpd mpc lf eza zsh python-virtualenv android-file-transferscreenkey entr \
+    ncmpcpp mpd mpc lf eza zsh python-virtualenv android-file-transferscreenkey \
+    freeze global entr \
     thunderbird brightnessctl xwallpaper python-pip lolcat syncthing --noconfirm --overwrite '*'
 }
 
