@@ -1,6 +1,7 @@
 lastupdatecheck: 0
 recentrepos:
 - /home/razak/.config/rvim
+- /home/razak/personal/workspace/coding/portfolio/algo-visualizer
 - /home/razak/personal/workspace/rgt/mediboard
 - /home/razak/docs
 - /home/razak/personal/workspace/rgt/jesse/jesse-dashboard
@@ -16,7 +17,6 @@ recentrepos:
 - /home/razak/personal/workspace/coding/plugins/onedark.nvim
 - /home/razak/personal/workspace/coding/plugins/tailwind-fold.nvim
 - /home/razak/.local/share/rvim/lazy/mini.ai
-- /home/razak/personal/workspace/coding/portfolio/algo-visualizer
 - /home/razak/.dots/nvim/neovim
 - /home/razak/.config/nvim
 - /home/razak/personal/workspace/coding/plugins/buffer_manager.nvim
