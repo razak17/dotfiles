@@ -87,4 +87,12 @@ if [ -e "$HOME/.turso/turso" ]; then
   )
 fi
 
+# Cargo
+if [ -e "$HOME/.cargo" ]; then
+  export CARGO_PATH="$HOME/.cargo/"
+  path+=(
+  "$CARGO_PATH/bin"
+  )
+fi
+
 export PATH
