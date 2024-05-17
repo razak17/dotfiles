@@ -119,3 +119,8 @@ zstyle ':completion:*:*:cdr:*:*' menu selection
 zstyle ':chpwd:*' recent-dirs-file $ZSH_CACHE_DIR/.chpwd-recent-dirs-${WINDOWID##*/} +
 zstyle ':completion:*' recent-dirs-insert always
 zstyle ':chpwd:*' recent-dirs-default yes
+
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+
+zstyle ':completion:*' menu no

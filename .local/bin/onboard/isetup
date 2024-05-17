@@ -13,8 +13,9 @@ installZshPlugins() {
 		'MichaelAquilina/zsh-auto-notify'
 		'baliestri/pnpm.plugin.zsh'
 		'MenkeTechnologies/zsh-cargo-completion'
+		'Aloxaf/fzf-tab'
 	)
-	v14.0.0v14.0.0for i in "${plugins[@]}"; do
+	for i in "${plugins[@]}"; do
 		name=$(echo "${i}" | sed 's|.*/||')
 		if [ "$name" == 'pnpm.plugin.zsh' ]; then
 			name="pnpm"

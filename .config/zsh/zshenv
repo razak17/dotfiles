@@ -76,6 +76,7 @@ export HIST_STAMPS="mm/dd/yyyy"
 export HISTFILE=$ZSH_CACHE_DIR/.zsh_history
 export HISTSIZE=500000
 export SAVEHIST=500000
+export HISTDUP=erase
 
 # Plugin Options & Configurations
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)

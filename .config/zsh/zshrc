@@ -10,7 +10,7 @@ zmodload zsh/zprof
 # colors
 autoload -U colors && colors
 
-# DO not highligh& pasted text
+# Do not highligh& pasted text
 zle_highlight=('paste:none')
 #-------------------------------------------------------------------------------
 #           LOCAL SCRIPTS
@@ -48,6 +48,12 @@ add_plugin 'npm'
 #-------------------------------------------------------------------------------
 #   PATH
 #-------------------------------------------------------------------------------
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if exists fzf; then
+  source <(fzf --zsh)
+  add_plugin 'fzf-tab'
+fi
 
 # fnm
 if exists fnm; then
