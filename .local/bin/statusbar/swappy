@@ -2,10 +2,10 @@
 
 case $BLOCK_BUTTON in
 1) notify-send "🔁 Swap hogs" "$(ps axch -o cmd:15,%mem --sort=-%mem | head)" ;;
-2) setsid -f "$TERMINAL" -e bpytop ;;
+2) setsid -f "$TERMINAL" -e btop ;;
 3) notify-send "🔁 Swap module" "\- Shows Swap Space Used/Total.
 - Click to show swap hogs.
-- Middle click to open bpytop." ;;
+- Middle click to open btop." ;;
 6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
