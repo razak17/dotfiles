@@ -1,0 +1,12 @@
+#!/bin/sh
+
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+
+# /home/razak/.local/bin/startup
+
+# Set keyboard repeat rate
+xset r rate 150 50
+
+# Set mouse acceleration
+itouch

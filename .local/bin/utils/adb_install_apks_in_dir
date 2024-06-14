@@ -1,0 +1,6 @@
+#!/bin/sh
+
+for file in *.apk
+do
+    adb install $file
+done

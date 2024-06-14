@@ -29,8 +29,7 @@ safe_alias wl 'iwctl station list' iwctl
 alias vc="rvim -no-min --no-lsp --no-treesitter --no-niceties --no-ai"
 alias vm="rvim -no-min --no-lsp --no-treesitter --no-niceties --no-completion --no-ai"
 alias vai="rvim -no-min --no-lsp --no-treesitter --no-niceties"
-alias vts="rvim -no-min --no-lsp --no-niceties --no-completion --no-ai"
-alias vni="rvim -no-min --no-niceties"
+alias vts="rvim -no-min --no-lsp --no-niceties --no-ai"
 alias vl="rvim -no-min --no-niceties"
 alias vL="rvim leetcode.nvim"
 alias vn="rvim --neovide"
@@ -190,6 +189,7 @@ alias h="$TEXT_EDITOR $HOME/.cache/zsh/.zsh_history"
 alias rvz="$TEXT_EDITOR $HOME/.zsh_history"
 alias sec="$TEXT_EDITOR $HOME/.dots/sensitive/secrets"
 alias clip="$TEXT_EDITOR $HOME/.dots/clip/clip_hist.txt"
+alias links="$TEXT_EDITOR $HOME/Sync/Links.txt"
 
 # Docker and Docker Compose
 # alias idocker="systemctl start docker.service"
@@ -252,6 +252,7 @@ alias aria='aria2c --max-connection-per-server=12'
 alias cf="find -type f | sed 's/^..//g' | fzf | tr -d '\n' | xclip -sel c"
 alias cff="find | fzf | sed 's/^..//g' | tr -d '\n' | xclip -sel c"
 alias thequickbrownfoxjumpsoverthelazydog="echo hellooooo"
+alias reld="reload_drivers"
 
 ws=~/personal/workspace
 vt=/run/media/razak/Ventoy
