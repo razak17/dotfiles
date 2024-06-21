@@ -26,10 +26,10 @@ safe_alias xi tuxi
 safe_alias ew toilet
 safe_alias vsc "vscodium ." vscodium
 safe_alias wl 'iwctl station list' iwctl
-alias vc="rvim -no-min --no-lsp --no-treesitter --no-niceties --no-ai"
-alias vm="rvim -no-min --no-lsp --no-treesitter --no-niceties --no-completion --no-ai"
-alias vai="rvim -no-min --no-lsp --no-treesitter --no-niceties"
-alias vts="rvim -no-min --no-lsp --no-niceties --no-ai"
+alias vm="rvim -no-min --no-niceties --no-lsp --no-treesitter --no-ai --no-completion"
+alias vc="rvim -no-min --no-niceties --no-lsp --no-treesitter --no-ai"
+alias vai="rvim -no-min --no-niceties --no-lsp --no-treesitter"
+alias vts="rvim -no-min --no-niceties --no-lsp --no-ai"
 alias vl="rvim -no-min --no-niceties"
 alias vL="rvim leetcode.nvim"
 alias vn="rvim --neovide"
@@ -218,6 +218,7 @@ alias cps="cconf -cp"
 alias cst="cconf -cs"
 alias cstb="conf status -sb"
 alias ccv="conf commit -v"
+alias cadd="conf add"
 
 # ranger
 alias f="ranger"
