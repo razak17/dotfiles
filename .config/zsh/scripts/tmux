@@ -204,12 +204,12 @@ mediboard() {
 	firstPane=$(ftmux --window-pane-id "$firstWindow" 0)
 	ftmux --split-pane -v -c "$repo" -t "$firstPane"
 	if [[ $send_keys == true ]]; then
-		ftmux --send-keys "$firstPane" "v --no-lsp" "C-m"
+		ftmux --send-keys "$firstPane" "vai" "C-m"
 	fi
-	secondPane=$(ftmux --window-pane-id "$firstWindow" 1)
-	if [[ $send_keys == true ]]; then
-		ftmux --send-keys "$secondPane" "v --no-lsp" "C-m"
-	fi
+	# secondPane=$(ftmux --window-pane-id "$firstWindow" 1)
+	# if [[ $send_keys == true ]]; then
+	# 	ftmux --send-keys "$secondPane" "v --no-lsp" "C-m"
+	# fi
 	# ftmux --send-keys "$secondPane" "\c mediboard3" "C-m"
 
 	secondWindow=$(ftmux --session-win-id "$session" 1)
