@@ -1,0 +1,14 @@
+#!/bin/sh
+
+cd "$HOME/Sync"
+pushd "$HOME/Sync"
+
+for file in *.apk
+do
+    mv "$file" `echo $file | tr ' ' '_'`
+done
+
+for file in *.apk
+do
+  adb install --user 0 $file
+done
