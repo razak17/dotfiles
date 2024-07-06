@@ -29,7 +29,7 @@ safe_alias wl 'iwctl station list' iwctl
 alias vm="rvim -no-min --no-niceties --no-lsp --no-treesitter --no-ai --no-completion"
 alias vc="rvim -no-min --no-niceties --no-lsp --no-treesitter --no-ai"
 alias vai="rvim -no-min --no-niceties --no-lsp --no-treesitter"
-alias vts="rvim -no-min --no-niceties --no-lsp --no-ai"
+alias vts="rvim -no-min --no-niceties --no-lsp"
 alias vl="rvim -no-min --no-niceties"
 alias vL="rvim leetcode.nvim"
 alias vn="rvim --neovide"
@@ -221,8 +221,8 @@ alias ccv="conf commit -v"
 alias cadd="conf add"
 
 # ranger
-alias f="ranger"
-alias lf='lfub'
+alias rr="ranger"
+alias f='lfub'
 alias yz='yazi'
 
 # tmux
