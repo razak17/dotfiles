@@ -27,7 +27,7 @@
   "editor.wrappingIndent": "indent",
   "editor.scrollBeyondLastColumn": 5,
   "editor.suggestSelection": "first",
-  "editor.wordBasedSuggestions": true,
+  "editor.wordBasedSuggestions": "matchingDocuments",
   "editor.wrappingStrategy": "simple",
   "editor.scrollBeyondLastLine": false,
   "editor.autoClosingQuotes": "always",
@@ -90,8 +90,8 @@
   "terminal.integrated.rendererType": "dom",
   "vscode-neovim.neovimExecutablePaths.linux": "/home/razak/.local/bin/nvim",
   "vscode-neovim.neovimExecutablePaths.darwin": "/home/razak/.local/bin/nvim",
-  "vscode-neovim.neovimInitVimPaths.linux": "$HOME/.config/vscode-neovim/init.vim",
-  "vscode-neovim.neovimInitVimPaths.darwin": "$HOME/.config/vscode-neovim/init.vim",
+  // "vscode-neovim.neovimInitVimPaths.linux": "/home/razak/.config/rvim/init.lua",
+  // "vscode-neovim.neovimInitVimPaths.darwin": "/home/razak/.config/rvim/init.lua",
   "window.menuBarVisibility": "toggle",
   "workbench.activityBar.iconClickBehavior": "toggle",
   "workbench.panel.defaultLocation": "left",
@@ -311,13 +311,6 @@
           "name": "Split Horizontal",
           "type": "command",
           "command": "workbench.action.splitEditorDown"
-        },
-        {
-          "key": "n",
-          "name": "No Highlight",
-          "type": "command",
-          "command": "vscode-neovim.send",
-          "args": ":noh<CR>"
         },
         {
           "key": "r",
@@ -968,10 +961,16 @@
     },
     {
       "key": "n",
-      "name": "No Highlight",
-      "type": "command",
-      "command": "vscode-neovim.send",
-      "args": ":noh<CR>"
+      "name": "New",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "f",
+          "name": "New file",
+          "type": "command",
+          "command": "workbench.action.files.newUntitledFile"
+        }
+      ]
     },
     {
       "key": "o",
@@ -1301,7 +1300,6 @@
       "command": "workbench.action.toggleZenMode"
     }
   ],
-  "workbench.editor.untitled.hint": "hidden",
   "marquee.configuration.proxy": "",
   "marquee.configuration.workspaceLaunch": false,
   "marquee.widgets.projects.workspaceFilter": "",
@@ -2736,4 +2734,8 @@
   "totalTypeScript.hideAllTips": false,
   "totalTypeScript.hideBasicTips": false,
   "terminal.integrated.env.linux": {},
+  "workbench.editor.empty.hint": "hidden",
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
 }
