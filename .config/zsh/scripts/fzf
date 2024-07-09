@@ -108,8 +108,8 @@ envs() {
 
 scr() {
 	pushd "$HOME/Pictures/screenshots" >/dev/null || return
-	if exists ranger; then
-		ranger
+	if exists lf; then
+		lf
 	fi
 	cd - || return
 }
