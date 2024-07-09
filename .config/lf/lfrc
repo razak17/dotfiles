@@ -22,9 +22,17 @@ set scrolloff 10
 # set icons
 set period 1
 set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
-set cleaner '~/.config/lf/cleaner'
-set previewer '~/.config/lf/scope'
+
+# Comment out ueberzug setup, see lfub in ~/.local/bin/utils/lfub
+# set cleaner '~/.config/lf/cleaner'
+# set previewer '~/.config/lf/scope'
 set autoquit true
+
+# https://github.com/gokcehan/lf/wiki/Previews
+set previewer stpv
+set cleaner stpvimgclr
+&stpvimg --listen $id
+cmd on-quit $stpvimg --end $id
 
 # cmds/functions
 cmd open ${{
