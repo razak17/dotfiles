@@ -49,7 +49,6 @@ add_plugin 'npm'
 #   PATH
 #-------------------------------------------------------------------------------
 # fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 if exists fzf; then
   source <(fzf --zsh)
   add_plugin 'fzf-tab'

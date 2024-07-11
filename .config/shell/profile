@@ -23,6 +23,12 @@ path+=(
   "$GOPATH/bin"
 )
 
+# asdf
+if [ -f "$HOME/.asdf/asdf.sh" ]; then
+  . "$HOME/.asdf/asdf.sh"
+  fpath=(${ASDF_DIR}/completions $fpath)
+fi
+
 # fnm
 if [ -e "$HOME/.local/share/fnm/fnm" ]; then
   export FNMDIR="$HOME/.local/share/fnm"

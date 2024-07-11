@@ -37,6 +37,12 @@ installTmuxPlugins() {
 	fi
 }
 
+installAsdf() {
+	if [ ! -d "$HOME/.asdf" ]; then
+    git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.14.0
+	fi
+}
+
 installFnm() {
 	if [ ! -d "$HOME/.fnm" ]; then
 		curl -fsSL https://fnm.vercel.app/install | bash
@@ -113,6 +119,7 @@ while [[ "$#" -gt 0 ]]; do
 	"-deno") installDeno ;;
 	"-suck") installSuckless ;;
 	"-paru") installParu ;;
+	"-asdf") installAsdf ;;
 	"-fnm") installFnm ;;
 	"-g") installG ;;
 	"-fzf") installFzf ;;
@@ -127,6 +134,7 @@ while [[ "$#" -gt 0 ]]; do
 	-a | --all)
 		installZshPlugins
 		installTmuxPlugins
+    installAsdf
 		installFnm
 		installG
 		installFzf
