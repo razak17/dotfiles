@@ -36,9 +36,9 @@ alias vn="rvim --neovide"
 alias oo="obsidian-open"
 
 if [[ $+commands[eza] ]]; then
-  alias ls='eza'
-  alias ll="eza --long --all --git --color=always --group-directories-first --icons $@"
-  alias lt="eza --icons --all --color=always -T $@"
+  alias ls='eza --icons'
+  alias ll="eza --long --all --git --color=always --group-directories-first --icons"
+  alias lt="eza --icons --all --color=always -T"
 else
   alias ls='ls --color=auto'
   alias l='ls -lFh'     # size,show type,human readable
