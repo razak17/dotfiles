@@ -33,7 +33,8 @@ alias vts="rvim -no-min --no-niceties --no-lsp"
 alias vl="rvim -no-min --no-niceties"
 alias vL="rvim leetcode.nvim"
 alias vn="rvim --neovide"
-alias oo="obsidian-open"
+alias onv="nvim_oldfiles"
+alias orv="rvim_oldfiles"
 
 if [[ $+commands[eza] ]]; then
   alias ls='eza --icons'

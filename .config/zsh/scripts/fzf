@@ -114,6 +114,20 @@ scr() {
 	cd - || return
 }
 
+# https://www.reddit.com/r/neovim/comments/1e33h69/is_there_a_way_to_access_oldfiles_from_outside_of/
+nvim_oldfiles() {
+	if exists nvim; then
+    nvim --headless -c 'oldfiles | q' 2>&1 | tr -d '\r' | cut -d ' ' -f 2- | fzf
+  fi
+}
+
+
+rvim_oldfiles() {
+	if exists rvim; then
+    rvim --headless -c 'oldfiles | q' 2>&1 | tr -d '\r' | cut -d ' ' -f 2- | fzf
+  fi
+}
+
 # todos() {
 #   cd "$HOME/notes/neorg" || return
 #   file="$(find . -type f | sort | fzf)"
