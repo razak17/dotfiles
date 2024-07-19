@@ -6,6 +6,7 @@
 	defaultBranch = main
 [core]
   pager = delta
+	editor = rvim
 
 [interactive]
   diffFilter = delta --color-only
@@ -18,3 +19,20 @@
 
 [diff]
   colorMoved = default
+
+[alias]
+  st = status -s
+  sta = status
+  conf = config --global --edit
+  cge = config --global --edit
+  ci = commit
+  co = checkout
+  cod = checkout .
+  rh = reset HEAD
+  aa = add -A
+  cdf = clean -df
+  br = branch
+  bra = branch -a
+  pr = pull --rebase
+  amend = commit -a --amend --no-edit
+  ciam = commit -a --amend --no-edit
