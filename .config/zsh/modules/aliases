@@ -1,6 +1,5 @@
 #!/bin/zsh
 
-alias v="rvim -no-min"
 # alias -s {js,html,js,ts,css,md,lua,sh,conf}=$TEXT_EDITOR
 
 safe_alias() {
@@ -26,13 +25,16 @@ safe_alias xi tuxi
 safe_alias ew toilet
 safe_alias vsc "vscodium ." vscodium
 safe_alias wl 'iwctl station list' iwctl
-alias vm="rvim -no-min --no-niceties --no-lsp --no-treesitter --no-ai --no-completion"
-alias vc="rvim -no-min --no-niceties --no-lsp --no-treesitter --no-ai"
-alias vai="rvim -no-min --no-niceties --no-lsp --no-treesitter"
-alias vts="rvim -no-min --no-niceties --no-lsp"
-alias vl="rvim -no-min --no-niceties"
+alias vm="rvim -no-cmp"
+alias vc="rvim -no-min"
+alias vai="rvim -no-min --ai"
+alias vts="rvim -no-min -ts"
+alias vl="rvim -no-min --lsp"
+alias v="rvim -no-min --lsp -ts --ai"
+alias vn="rvim -nice"
 alias vL="rvim leetcode.nvim"
-alias vn="rvim --neovide"
+alias vd="rvim --neovide"
+
 alias onv="nvim_oldfiles"
 alias orv="rvim_oldfiles"
 
