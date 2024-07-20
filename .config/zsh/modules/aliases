@@ -128,7 +128,7 @@ else
 fi
 alias iv='sudo -v'
 alias imi="sudo make install"
-alias imci="sudo make clean install"
+alias imci="sudo make install && sudo make clean install"
 alias crole='sudo -iu'
 alias uadd='sudo usermod -aG'
 
