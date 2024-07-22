@@ -16,12 +16,10 @@ yellow = "#f4f719"
 [colors.cursor]
 cursor = "#7ec0ee"
 text = "#030303"
-unfocused_hollow = true
 
-[colors.cursor.style]
+[cursor.style]
 blinking = "Never"
 shape = "Block"
-vi_mode_style = "None"
 
 [colors.normal]
 black = "#282c34"
@@ -37,17 +35,9 @@ yellow = "#cecb00"
 background = "#1e2127"
 foreground = "#7ec0ee"
 
-[colors.search."colors.footer_bar"]
-background = "#7685b1"
-foreground = "#030303"
-
 [colors.search.focused_match]
 background = "#7685b1"
 foreground = "#030303"
-
-[colors.search.line_indicator]
-background = "#7685b1"
-foreground = "#202328"
 
 [colors.search.matches]
 background = "#7685b1"
@@ -208,96 +198,6 @@ mods = "Alt|Shift"
 [mouse]
 hide_when_typing = true
 
-[mouse.double_click]
-threshold = 300
-
-[mouse.hints]
-modifiers = "Shift"
-
-[mouse.hints.launcher]
-program = "xdg-open"
-
-[mouse.triple_click]
-threshold = 300
-
-[schemes.spacemacs_dark.bright]
-black = "#42444a"
-blue = "#3980C2"
-cyan = "#6B3062"
-green = "#29A0AD"
-magenta = "#2C9473"
-red = "#DF201C"
-white = "#686868"
-yellow = "#DB742E"
-
-[schemes.spacemacs_dark.normal]
-black = "#0a0814"
-blue = "#3a81c3"
-cyan = "#21b8c7"
-green = "#67b11d"
-magenta = "#a31db1"
-red = "#f2241f"
-white = "#b2b2b2"
-yellow = "#b1951d"
-
-[schemes.spacemacs_dark.primary]
-background = "#292b2e"
-foreground = "#828482"
-
-[schemes.spacemacs_light.bright]
-black = "#888c94"
-blue = "#6cb0ff"
-cyan = "#14ffff"
-green = "#23fd00"
-magenta = "#fd28ff"
-red = "#f92648"
-white = "#c3eeff"
-yellow = "#f4f719"
-
-[schemes.spacemacs_light.cursor]
-cursor = "#7ec0ee"
-text = "#030303"
-unfocused_hollow = true
-
-[schemes.spacemacs_light.cursor.style]
-blinking = "Never"
-shape = "Block"
-vi_mode_style = "None"
-
-[schemes.spacemacs_light.normal]
-black = "#282c34"
-blue = "#51afef"
-cyan = "#0dcdcd"
-green = "#19cb00"
-magenta = "#cb1ed1"
-red = "#e95678"
-white = "#b3deef"
-yellow = "#cecb00"
-
-[schemes.spacemacs_light.primary]
-background = "#1e2127"
-foreground = "#7ec0ee"
-
-[schemes.spacemacs_light.search."colors.footer_bar"]
-background = "#7685b1"
-foreground = "#030303"
-
-[schemes.spacemacs_light.search.focused_match]
-background = "#7685b1"
-foreground = "#030303"
-
-[schemes.spacemacs_light.search.line_indicator]
-background = "#7685b1"
-foreground = "#202328"
-
-[schemes.spacemacs_light.search.matches]
-background = "#7685b1"
-foreground = "#030303"
-
-[schemes.spacemacs_light.vi_mode_cursor]
-cursor = "#7685b1"
-text = "#030303"
-
 [scrolling]
 history = 10000
 multiplier = 10
@@ -309,7 +209,7 @@ semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 [window]
 decorations = "none"
 dynamic_title = true
-opacity = 0.8
+opacity = 0.4
 startup_mode = "Maximized"
 
 [window.dimensions]
