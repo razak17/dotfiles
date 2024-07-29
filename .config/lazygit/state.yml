@@ -1,5 +1,6 @@
 lastupdatecheck: 0
 recentrepos:
+    - /home/razak
     - /home/razak/personal/workspace/coding/plugins/onedark.nvim
     - /home/razak/docs
     - /home/razak/personal/workspace/rgt/mediboard
@@ -39,13 +40,14 @@ recentrepos:
     - /home/razak/personal/workspace/coding/portfolio/mern-social/server
     - /home/razak/personal/workspace/coding/portfolio/youtube-clone/youtube-clone-backend
 startuppopupversion: 5
-lastversion: 0.42.0
+lastversion: 0.43.1
 customcommandshistory:
     - q
     - Q
 hidecommandlog: false
 ignorewhitespaceindiffview: false
 diffcontextsize: 3
+renamesimilaritythreshold: 50
 localbranchsortorder: recency
 remotebranchsortorder: alphabetical
 gitlogorder: topo-order

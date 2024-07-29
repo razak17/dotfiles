@@ -34,6 +34,7 @@ alias v="rvim -no-min --lsp -ts --ai"
 alias vn="rvim -nice"
 alias vL="rvim leetcode.nvim"
 alias vd="rvim --neovide"
+alias nn="NVIM_APPNAME=nativevim nvim"
 
 alias onv="nvim_oldfiles"
 alias orv="rvim_oldfiles"
