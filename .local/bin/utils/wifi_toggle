@@ -1,0 +1,23 @@
+#!/bin/sh
+
+toggle_network() {
+  action=$1
+  sudo wpa_cli list_networks
+  printf "Enter network id to %s: " "$action"
+  read -r ans
+  if [ -z "$ans" ]; then
+    echo "Network id was not provided!"
+  else
+    sudo wpa_cli "${action}_network" "$ans"
+  fi
+}
+
+while [ "$#" -gt 0 ]; do
+  curr=$1
+  shift
+
+  case "$curr" in
+  -e) toggle_network enable ;;
+  -d) toggle_network disable ;;
+  esac
+done
