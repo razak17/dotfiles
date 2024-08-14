@@ -36,3 +36,5 @@
   pr = pull --rebase
   amend = commit -a --amend --no-edit
   ciam = commit -a --amend --no-edit
+[submodule]
+	recurse = true
