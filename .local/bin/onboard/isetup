@@ -31,6 +31,39 @@ installZshPlugins() {
 	done
 }
 
+install_plugin() {
+  ohMyZsh="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins"
+  pluginsDir="$HOME/.config/zsh/plugins"
+  mkdir -p "$pluginsDir"
+
+  local plugin=$1
+  local files=("${@:2}")
+  mkdir -p "$pluginsDir/$plugin"
+  for file in "${files[@]}"; do
+    if [ ! -e "$pluginsDir/$plugin/$file" ]; then
+      curl -s -L "$ohMyZsh/$plugin/$file" -o "$pluginsDir/$plugin/$file"
+    fi
+  done
+  echo "$plugin plugin installed."
+}
+
+fnmCompletions() {
+  mkdir -p "$HOME/.config/zsh/plugins/fnm"
+  cd "$HOME/.config/zsh/plugins/fnm" || exit
+  if [ $(command -v fnm) ]; then
+    fnm completions --shell zsh > _fnm
+  else
+    echo "fnm not found."
+  fi
+}
+
+ohMyZshAliases() {
+  install_plugin "git" "git.plugin.zsh" "README.md"
+  install_plugin "npm" "npm.plugin.zsh" "README.md"
+  install_plugin "pass" "_pass" "README.md"
+  install_plugin "yarn" "yarn.plugin.zsh" "README.md"
+}
+
 installTmuxPlugins() {
 	if [ ! -d "$HOME/.config/tmux/plugins" ]; then
 		git clone https://github.com/tmux-plugins/tpm "$HOME/.config/tmux/plugins/tpm"
@@ -121,6 +154,8 @@ while [[ "$#" -gt 0 ]]; do
 	"-paru") installParu ;;
 	"-asdf") installAsdf ;;
 	"-fnm") installFnm ;;
+	"-fnm-compe") fnmCompletions ;;
+	"-oh") ohMyZshAliases ;;
 	"-g") installG ;;
 	"-fzf") installFzf ;;
 	"-zsh") installZshPlugins ;;
