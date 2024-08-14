@@ -1,0 +1,33 @@
+[submodule ".config/zsh/plugins/conda-zsh-completion"]
+	path = .config/zsh/plugins/conda-zsh-completion
+	url = https://github.com/esc/conda-zsh-completion
+[submodule ".config/zsh/plugins/alias-tips"]
+	path = .config/zsh/plugins/alias-tips
+	url = https://github.com/djui/alias-tips
+[submodule ".config/zsh/plugins/zsh-autosuggestions"]
+	path = .config/zsh/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule ".config/zsh/plugins/zsh-completions"]
+	path = .config/zsh/plugins/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions
+[submodule ".config/zsh/plugins/zsh-syntax-highlighting"]
+	path = .config/zsh/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule ".config/zsh/plugins/zsh-hist"]
+	path = .config/zsh/plugins/zsh-hist
+	url = https://github.com/marlonrichert/zsh-hist
+[submodule ".config/zsh/plugins/zsh-autopair"]
+	path = .config/zsh/plugins/zsh-autopair
+	url = https://github.com/hlissner/zsh-autopair
+[submodule ".config/zsh/plugins/zsh-auto-notify"]
+	path = .config/zsh/plugins/zsh-auto-notify
+	url = https://github.com/MichaelAquilina/zsh-auto-notify
+[submodule ".config/zsh/plugins/pnpm.plugin.zsh"]
+	path = .config/zsh/plugins/pnpm.plugin.zsh
+	url = https://github.com/baliestri/pnpm.plugin.zsh
+[submodule ".config/zsh/plugins/zsh-cargo-completion"]
+	path = .config/zsh/plugins/zsh-cargo-completion
+	url = https://github.com/MenkeTechnologies/zsh-cargo-completion
+[submodule ".config/zsh/plugins/fzf-tab"]
+	path = .config/zsh/plugins/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab
