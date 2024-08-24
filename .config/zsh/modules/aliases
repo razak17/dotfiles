@@ -193,7 +193,7 @@ alias h="$TEXT_EDITOR $HOME/.cache/zsh/.zsh_history"
 alias rvz="$TEXT_EDITOR $HOME/.zsh_history"
 alias sec="$TEXT_EDITOR $HOME/.dots/sensitive/secrets"
 alias clip="$TEXT_EDITOR $HOME/.dots/clip/clip_hist.txt"
-alias links="$TEXT_EDITOR $HOME/Sync/Links.txt"
+alias links="$TEXT_EDITOR $HOME/Sync/Android/MacroDroid/Links.txt"
 
 # Docker and Docker Compose
 # alias idocker="systemctl start docker.service"
