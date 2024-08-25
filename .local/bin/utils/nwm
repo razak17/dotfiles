@@ -1,5 +1,5 @@
 #!/bin/bash
 
 Xephyr -ac -br -noreset :99&
-env DISPLAY=:99 kitty -c NONE -o placement_strategy=top-left -e rvim -c 'lua require("nxwm").start()'
+env DISPLAY=:99 kitty -c NONE -o placement_strategy=top-left -e rvim -no-min -c 'lua require("nxwm").start()'
 jobs -p | xargs kill
