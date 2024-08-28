@@ -154,15 +154,6 @@ installAWSCli() {
   # aws configure
 }
 
-updateAWSCli() {
-  mkdir -p "$HOME/.dots"
-  pushd "$HOME/.dots" || exit
-  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-  unzip awscliv2.zip
-  rm awscliv2.zip
-  sudo ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update
-}
-
 while [[ "$#" -gt 0 ]]; do
 	curr=$1
 	shift
