@@ -151,6 +151,7 @@ installAWSCli() {
   unzip awscliv2.zip
   rm awscliv2.zip
   sudo ./aws/install
+  # aws configure
 }
 
 updateAWSCli() {

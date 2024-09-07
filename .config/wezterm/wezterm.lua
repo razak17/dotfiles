@@ -6,7 +6,7 @@ return {
 	font_size = 10,
 	cursor_blink_rate = 800,
   enable_tab_bar = false,
-  window_background_opacity = 1.0,
+  window_background_opacity = 0.4,
   window_decorations = 'RESIZE',
   window_padding = {
     left = 0,
