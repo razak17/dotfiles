@@ -318,27 +318,26 @@ freemind() {
 
 	checkSession "$session"
 
-	ftmux -n "$session" "server" "$repo/freemind-server"
-	ftmux -w "$session" "ui" -c "$repo/freemind-proj2-ui"
+	ftmux -n "$session" "code" "$repo/freemind-server"
+	ftmux -w "$session" "run" -c "$repo/freemind-server"
 
-	# admin
 	firstWindow=$(ftmux --session-win-id "$session" 0)
 	firstPane=$(ftmux --window-pane-id "$firstWindow" 0)
-	ftmux --split-pane -v -c "$repo/freemind-server" -t "$firstPane"
-	if [[ $send_keys == true ]]; then
-		ftmux --send-keys "$firstPane" "vai -ts" "C-m"
-	fi
+	ftmux --split-pane -v -c "$repo/freemind-proj2-ui" -t "$firstPane"
 	secondPane=$(ftmux --window-pane-id "$firstWindow" 1)
+  ftmux --send-keys "$firstPane" "source env/bin/activate" "C-m"
 	if [[ $send_keys == true ]]; then
-    ftmux --send-keys "$secondPane" "source env/bin/activate" "C-m"
-    ftmux --send-keys "$secondPane" "uvicorn api.main:app --reload" "C-m"
+		ftmux --send-keys "$firstPane"  "vai -ts" "C-m"
+		ftmux --send-keys "$secondPane" "vai -ts" "C-m"
 	fi
 
 	secondWindow=$(ftmux --session-win-id "$session" 1)
 	firstPane=$(ftmux --window-pane-id "$secondWindow" 0)
 	ftmux --split-pane -v -c "$repo/freemind-proj2-ui" -t "$firstPane"
 	secondPane=$(ftmux --window-pane-id "$secondWindow" 1)
+  ftmux --send-keys "$firstPane" "source env/bin/activate" "C-m"
 	if [[ $send_keys == true ]]; then
+    ftmux --send-keys "$firstPane" "uvicorn api.main:app --reload" "C-m"
     ftmux --send-keys "$firstPane" "vai -ts" "C-m"
     ftmux --send-keys "$secondPane" "npm run dev" "C-m"
 	fi
