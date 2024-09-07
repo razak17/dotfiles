@@ -2,6 +2,12 @@
 
 toggle_network() {
   action=$1
+  network_id=$2
+  if [[ -n "$network_id" ]]; then
+    sudo wpa_cli "${action}_network" "$network_id" || exit
+    sudo wpa_cli list_networks || exit
+    return
+  fi
   sudo wpa_cli list_networks || exit
   printf "Enter network id to %s: " "$action"
   read -r ans
@@ -17,7 +23,11 @@ while [ "$#" -gt 0 ]; do
   shift
 
   case "$curr" in
-  -e) toggle_network enable ;;
-  -d) toggle_network disable ;;
+  -e)
+    network_id=$1
+    toggle_network enable $network_id ;;
+  -d)
+    network_id=$1
+    toggle_network disable $network_id ;;
   esac
 done
