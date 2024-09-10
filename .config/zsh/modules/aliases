@@ -181,6 +181,7 @@ alias ze="$TEXT_EDITOR $HOME/.config/zsh/.zshenv"
 alias zp="$TEXT_EDITOR $HOME/.config/shell/profile"
 alias xp="$TEXT_EDITOR $HOME/.config/x11/xprofile"
 alias xc="$TEXT_EDITOR $HOME/.config/tmux/tmux.conf"
+alias yc="$TEXT_EDITOR $HOME/.config/yazi/yazi.toml"
 alias kc="$TEXT_EDITOR $HOME/.config/kitty/kitty.conf"
 alias wzc="$TEXT_EDITOR $HOME/.config/wezterm/wezterm.lua"
 alias alc="$TEXT_EDITOR $HOME/.config/alacritty/alacritty.yml"
@@ -226,7 +227,7 @@ alias cadd="conf add"
 
 # ranger
 alias rr="ranger"
-alias f='lf'
+alias f='yazi'
 alias yz='yazi'
 
 # tmux
