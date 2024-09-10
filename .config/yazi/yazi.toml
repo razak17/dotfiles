@@ -1,10 +1,10 @@
 [manager]
-layout         = [ 1, 3, 4 ]
-sort_by        = "modified"
+layout         = [ 2, 3, 3 ]
+sort_by        = "alphabetical"
 sort_sensitive = true
-sort_reverse   = true
+sort_reverse   = false
 sort_dir_first = true
-show_hidden    = false
+show_hidden    = true
 show_symlink   = true
 
 [preview]
@@ -15,30 +15,30 @@ cache_dir  = ""
 
 [opener]
 folder = [
-	{ exec = 'open -R "$@"', display_name = "Reveal in Finder" },
-	{ exec = '$EDITOR "$@"' },
+	{ run = 'thunar -R "$@"', name = "Reveal in Finder" },
+	{ run = '$EDITOR "$@"' },
 ]
 archive = [
-	{ exec = 'unar "$1"', display_name = "Extract here" },
+	{ run = 'thunar "$1"', name = "Extract here" },
 ]
 text = [
-	{ exec = '$EDITOR "$@"', block = true },
+	{ run = '$EDITOR "$@"', block = true },
 ]
 image = [
-	{ exec = 'open "$@"', display_name = "Open" },
-	{ exec = '''exiftool "$1"; echo "Press enter to exit"; read''', block = true, display_name = "Show EXIF" },
+	{ run = 'sxiv "$@"', name = "Open" },
+	{ run = '''exiftool "$1"; echo "Press enter to exit"; read''', block = true, name = "Show EXIF" },
 ]
 video = [
-	{ exec = 'mpv "$@"' },
-	{ exec = '''mediainfo "$1"; echo "Press enter to exit"; read''', block = true, display_name = "Show media info" },
+	{ run = 'mpv "$@"' },
+	{ run = '''mediainfo "$1"; echo "Press enter to exit"; read''', block = true, name = "Show media info" },
 ]
 audio = [
-	{ exec = 'mpv "$@"' },
-	{ exec = '''mediainfo "$1"; echo "Press enter to exit"; read''', block = true, display_name = "Show media info" },
+	{ run = 'mpv "$@"' },
+	{ run = '''mediainfo "$1"; echo "Press enter to exit"; read''', block = true, name = "Show media info" },
 ]
 fallback = [
-	{ exec = 'open "$@"', display_name = "Open" },
-	{ exec = 'open -R "$@"', display_name = "Reveal in Finder" },
+	{ run = 'thunar "$@"', name = "Open" },
+  { run = 'thunar -R "$@"', name = "Reveal in Finder" },
 ]
 
 [open]
