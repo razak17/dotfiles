@@ -82,3 +82,8 @@ fi
 
 # conda_init and pip
 conda_init false
+
+# Stay in VIRTAUL_ENV
+if [[ -n $VIRTUAL_ENV ]]; then
+  source $VIRTUAL_ENV/bin/activate
+fi
