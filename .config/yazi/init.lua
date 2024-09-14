@@ -1,3 +1,4 @@
+-- show symlink in status bar
 function Status:name()
 	local h = self._tab.current.hovered
 	if not h then
@@ -11,6 +12,7 @@ function Status:name()
 	return ui.Line(" " .. h.name .. linked)
 end
 
+-- show user group in status bar
 Status:children_add(function()
 	local h = cx.active.current.hovered
 	if h == nil or ya.target_family() ~= "unix" then
@@ -24,3 +26,11 @@ Status:children_add(function()
 		ui.Span(" "),
 	}
 end, 500, Status.RIGHT)
+
+-- show username and hostname in header
+Header:children_add(function()
+	if ya.target_family() ~= "unix" then
+		return ui.Line {}
+	end
+	return ui.Span(ya.user_name() .. "@" .. ya.host_name() .. ":"):fg("blue")
+end, 500, Header.LEFT)
