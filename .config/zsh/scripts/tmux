@@ -265,7 +265,6 @@ jesse-old() {
 	fi
 
 }
-<<<<<<< HEAD
 
 freemind() {
 	session="freemind"
