@@ -31,3 +31,6 @@
 [submodule ".config/zsh/plugins/fzf-tab"]
 	path = .config/zsh/plugins/fzf-tab
 	url = https://github.com/Aloxaf/fzf-tab
+[submodule ".config/zsh/plugins/pnpm"]
+	path = .config/zsh/plugins/pnpm
+	url = https://github.com/baliestri/pnpm.plugin.zsh
