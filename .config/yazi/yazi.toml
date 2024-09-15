@@ -1,8 +1,6 @@
 [manager]
 ratio         = [ 1, 2, 3 ]
 sort_by        = "alphabetical"
-layout         = [ 1, 3, 4 ]
-sort_by        = "modified"
 sort_sensitive = true
 sort_reverse   = false
 sort_dir_first = true
@@ -17,14 +15,14 @@ cache_dir  = ""
 
 [opener]
 folder = [
-	{ run = 'thunar -R "$@" &', name = "Reveal in Finder" },
+	{ run = 'thunar -R "$@"', name = "Reveal in Finder" },
 	{ run = '$EDITOR "$@"' },
 ]
 archive = [
-	{ run = 'thunar "$1"', name = "Extract here" },
+	{ run = 'thunar "$1" &', name = "Extract here" },
 ]
 text = [
-	{ run = '$EDITOR "$@"', block = true },
+	{ run = '$EDITOR "$@" &', block = true },
 ]
 image = [
 	{ run = 'sxiv "$@" &', name = "Open" },
