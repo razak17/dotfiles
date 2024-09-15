@@ -12,16 +12,25 @@ installGolang() {
 	asdf global golang 1.16.2
 }
 
+installPython() {
+	asdf plugin-add python
+	asdf install python 2.7.13
+	asdf install python 3.6.2
+	asdf install python 3.11.9
+	asdf global python 3.11.9
+}
+
+# Install before elixir
 installErlang() {
 	asdf plugin-add erlang
-	asdf install erlang 23.2.7
-	asdf global erlang 23.2.7
+	asdf install erlang 27.0.1
+	asdf global erlang 27.0.1
 }
 
 installElixir() {
 	asdf plugin-add elixir
-	asdf install elixir 1.11.3-otp-23
-	asdf global elixir 1.11.3-otp-23
+	asdf install elixir 1.17.2-otp-27
+	asdf global elixir 1.17.2-otp-27
 }
 
 while [[ "$#" -gt 0 ]]; do
@@ -41,11 +50,15 @@ while [[ "$#" -gt 0 ]]; do
 	"-ex")
 		installElixir
 		;;
+	"-py")
+		installPython
+		;;
 	"-all")
 		installLua
 		installGolang
 		installErlang
 		installElixir
+    installPython
 		installYarn
 		;;
 	*) echo "Unavailable command... $curr" ;;
