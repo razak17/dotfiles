@@ -19,10 +19,10 @@ folder = [
 	{ run = '$EDITOR "$@"' },
 ]
 archive = [
-	{ run = 'thunar "$1" &', name = "Extract here" },
+	{ run = 'thunar "$1"', name = "Extract here" },
 ]
 text = [
-	{ run = '$EDITOR "$@" &', block = true },
+	{ run = '$EDITOR "$@"', block = true },
 ]
 image = [
 	{ run = 'sxiv "$@" &', name = "Open" },
