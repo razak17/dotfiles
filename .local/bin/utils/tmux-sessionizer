@@ -1,28 +1,59 @@
 #!/usr/bin/env bash
 # ref: https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionize
 
+X="tmux"
 ws="$HOME/personal/workspace"
 
 if [[ $# -eq 1 ]]; then
-	selected=$1
+  selected=$1
 else
-	selected=$(find "$ws"/coding "$ws"/rgt ~/.dots ~/.config ~/.local/share/rvim/lazy ~/.local/bin -mindepth 1 -maxdepth 2 -type d | fzf --no-sort)
+  selected=$(find "$ws"/coding "$ws"/rgt ~/.dots ~/.config ~/.local/share/rvim/lazy ~/.local/bin -mindepth 1 -maxdepth 2 -type d | fzf --no-sort -m)
 fi
 
 if [[ -z "$selected" ]]; then
-	exit 0
+  exit 0
 fi
+
+socketName="$1"
+
+if [[ -n "$socketName" ]]; then
+  X="tmux -L $socketName"
+fi
+
+sessions=$($X list-sessions -F \#S)
 
 selected_name="$(basename "$selected" | tr . _)"
-tmux_running="$(pgrep tmux)"
 
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-	tmux new-session -s "$selected_name" -c "$selected"
-	exit 0
+if [[ -z $TMUX ]] && [[ -z $sessions ]]; then
+  $X new-session -s "$selected_name" -c "$selected"
+  exit 0
 fi
 
-if ! tmux has-session -t="$selected_name" 2>/dev/null; then
-	tmux new-session -ds "$selected_name" -c "$selected"
+# Way overkill. I know.
+if [[ -z $TMUX ]] && [[ -n $sessions ]]; then
+  hasSession=false
+  if [[ $(echo "$sessions" | wc -l) -gt 1 ]]; then
+    while IFS='\n' read -r line; do
+      if [[ "$line" == "$selected_name" ]]; then
+        hasSession=true
+        break
+      fi
+    done <<<"$sessions"
+  else
+    if [[ "$sessions" == "$selected_name" ]]; then
+      hasSession=true
+    fi
+  fi
+
+  if [[ "$hasSession" == "false" ]]; then
+    $X new-session -ds "$selected_name" -c "$selected"
+  fi
+  $X attach-session -t "$selected_name"
+  exit 0
 fi
 
-tmux switch-client -t "$selected_name"
+if [[ -n $TMUX ]] && ! $X has-session -t="$selected_name" 2>/dev/null; then
+  $X new-session -ds "$selected_name" -c "$selected"
+fi
+
+$X switch-client -t "$selected_name"
