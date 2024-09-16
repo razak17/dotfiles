@@ -5,19 +5,14 @@ X="tmux"
 ws="$HOME/personal/workspace"
 
 if [[ $# -eq 1 ]]; then
-  selected=$1
-else
-  selected=$(find "$ws"/coding "$ws"/rgt ~/.dots ~/.config ~/.local/share/rvim/lazy ~/.local/bin -mindepth 1 -maxdepth 2 -type d | fzf --no-sort -m)
+  socketName="$1"
+  X="tmux -L $socketName"
 fi
+
+selected=$(find "$ws"/coding "$ws"/rgt ~/.dots ~/.config ~/.local/share/rvim/lazy ~/.local/bin -mindepth 1 -maxdepth 2 -type d | fzf --no-sort -m)
 
 if [[ -z "$selected" ]]; then
   exit 0
-fi
-
-socketName="$1"
-
-if [[ -n "$socketName" ]]; then
-  X="tmux -L $socketName"
 fi
 
 sessions=$($X list-sessions -F \#S)
