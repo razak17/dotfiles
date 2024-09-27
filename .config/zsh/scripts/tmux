@@ -204,7 +204,7 @@ mediboard() {
 	firstPane=$(ftmux --window-pane-id "$firstWindow" 0)
 	ftmux --split-pane -v -c "$repo" -t "$firstPane"
 	if [[ $send_keys == true ]]; then
-		ftmux --send-keys "$firstPane" "vai" "C-m"
+		ftmux --send-keys "$firstPane" "vai -ts" "C-m"
 	fi
 	# secondPane=$(ftmux --window-pane-id "$firstWindow" 1)
 	# if [[ $send_keys == true ]]; then
@@ -219,8 +219,8 @@ mediboard() {
 	ftmux --send-keys "$firstPane" "fnm use v16.14.0" "C-m"
 	ftmux --send-keys "$secondPane" "fnm use v16.14.0" "C-m"
 	if [[ $send_keys == true ]]; then
-		ftmux --send-keys "$firstPane" "yarn start:server" "C-m"
-		ftmux --send-keys "$secondPane" "yarn start:client" "C-m"
+		ftmux --send-keys "$firstPane" "npm run start:server" "C-m"
+		ftmux --send-keys "$secondPane" "npm run start:client" "C-m"
 	fi
 
 	attachSession "$session"
