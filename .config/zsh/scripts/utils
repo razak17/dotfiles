@@ -100,3 +100,7 @@ buildnvim() {
 
   popd
 }
+
+zen_installer() {
+  bash <(curl https://updates.zen-browser.app/appimage.sh)
+}

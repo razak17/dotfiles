@@ -260,6 +260,7 @@ alias cf="find -type f | sed 's/^..//g' | fzf | tr -d '\n' | xclip -sel c"
 alias cff="find | fzf | sed 's/^..//g' | tr -d '\n' | xclip -sel c"
 alias thequickbrownfoxjumpsoverthelazydog="echo hellooooo"
 alias reld="reload_drivers"
+alias zin="zen_installer"
 
 ws=~/personal/workspace
 vt=/run/media/razak/Ventoy
