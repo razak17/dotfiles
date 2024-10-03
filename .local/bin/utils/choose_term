@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+terms=("alacritty" "kitty" "wezterm")
+
+available_terms=""
+
+for term in "${terms[@]}"; do
+  if [ -x "$(command -v $term)" ]; then
+    available_terms="$available_terms
+$term"
+  fi
+done
+
+available_terms=$(echo "$available_terms" | sed '/./,$!d')
+
+choice=$(echo "$available_terms" | dmenu -l 10 -p "Choose terminal") || exit 1
+
+if [ -z "$choice" ]; then
+  exit 1
+fi
+
+case "$choice" in
+  alacritty) alacritty ;;
+  kitty) kitty ;;
+  wezterm) wezterm ;;
+  *) notify-send -u critical -t 2000 "Terminals" "That terminal does not exist" ;;
+esac
