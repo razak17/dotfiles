@@ -112,4 +112,5 @@ zen_del() {
     rm -r firefox-*
   fi
 
+  cd -
 }
