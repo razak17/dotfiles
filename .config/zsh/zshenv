@@ -11,7 +11,7 @@ export ZDOTDIR=$HOME/.config/zsh
 export SYNC_DIR=${HOME}/Sync
 
 export SUDO_EDITOR="nvim"
-export BROWSER="firefox"
+export BROWSER="zen"
 export TERMINAL="kitty"
 export IMAGE="sxiv"
 export VIDEO="mpv"
