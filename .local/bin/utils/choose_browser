@@ -1,53 +1,37 @@
 #!/usr/bin/env bash
 
-if [ -x "$(command -v brave)" ]; then
-	browsers="\
-brave
-firefox"
-else
-  browsers="\
-firefox"
-fi
+# Define an array of browsers to check
+browsers=("brave" "firefox" "floorp" "mercury-browser" "thorium-browser-sse3" "zen")
 
-if [ -x "$(command -v floorp)" ]; then
-	browsers="$browsers
-floorp"
-fi
+# Initialize an empty string to hold available browsers
+available_browsers=""
 
-if [ -x "$(command -v mercury-browser)" ]; then
-	browsers="$browsers
-mercury-browser"
-fi
+# Loop through the browsers array and check if each browser is executable
+for browser in "${browsers[@]}"; do
+  if [ -x "$(command -v $browser)" ]; then
+    available_browsers="$available_browsers
+$browser"
+  fi
+done
 
-if [ -x "$(command -v thorium-browser-sse3)" ]; then
-	browsers="$browsers
-thorium-browser-sse3"
-fi
+# Trim leading newline character
+available_browsers=$(echo "$available_browsers" | sed '/./,$!d')
 
-if [ -x "$(command -v zen)" ]; then
-	browsers="$browsers
-zen"
-fi
+# Use dmenu to select a browser
+choice=$(echo "$available_browsers" | dmenu -l 10 -p "Choose browser") || exit 1
 
-choice=$(echo "$browsers" | cut -d'	' -f2- | dmenu -l 10 -p "Choose browser") || exit 1
-
+# Exit if no choice is made
 if [ -z "$choice" ]; then
-	# notify-send -u critical -t 2000 "Browsers" "nothing selected!"
-	exit 1
+  exit 1
 fi
 
-if [ "$choice" = "brave" ]; then
-  brave
-elif [ "$choice" = "firefox" ]; then
-	firefox -P "Main"
-elif [ "$choice" = "floorp" ]; then
-  floorp -p "Main"
-elif [ "$choice" = "thorium-browser-sse3" ]; then
-	thorium-browser-sse3
-elif [ "$choice" = "mercury-browser" ]; then
-	mercury-browser
-elif [ "$choice" = "zen" ]; then
-  zen
-else
-	notify-send -u critical -t 2000 "Browsers" "That browser does not exist"
-fi
+# Launch the selected browser with appropriate profile if needed
+case "$choice" in
+  brave) brave ;;
+  firefox) firefox -P "Main" ;;
+  floorp) floorp -p "Main" ;;
+  mercury-browser) mercury-browser ;;
+  thorium-browser-sse3) thorium-browser-sse3 ;;
+  zen) zen ;;
+  *) notify-send -u critical -t 2000 "Browsers" "That browser does not exist" ;;
+esac
