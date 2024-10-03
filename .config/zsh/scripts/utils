@@ -104,3 +104,12 @@ buildnvim() {
 zen_installer() {
   bash <(curl https://updates.zen-browser.app/appimage.sh)
 }
+
+zen_del() {
+  pushd "$HOME/.zen" || return
+
+  if ls -d firefox-* 1>/dev/null 2>&1; then
+    rm -r firefox-*
+  fi
+
+}
