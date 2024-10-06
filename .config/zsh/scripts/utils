@@ -114,3 +114,12 @@ zen_del() {
 
   cd -
 }
+
+zen_update() {
+  if [ -e "$HOME/.local/share/AppImage/ZenBrowser.AppImage" ] ; then
+    dd=$(date +%F_%H%M%S_%N)
+    oldzen="zen-$dd"
+    [ -e "$HOME/.local/bin/zen" ] && mv "$HOME/.local/bin/zen" "$HOME/.local/bin/$oldzen"
+    cp "$HOME/.local/share/AppImage/ZenBrowser.AppImage" "$HOME/.local/bin/zen"
+  fi
+}
