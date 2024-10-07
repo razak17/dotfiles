@@ -29,5 +29,8 @@ while [ "$#" -gt 0 ]; do
   -d)
     network_id=$1
     toggle_network disable $network_id ;;
+  -l)
+    sudo wpa_cli list_networks
+    ;;
   esac
 done

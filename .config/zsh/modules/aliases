@@ -263,6 +263,7 @@ alias reld="reload_drivers"
 alias zin="zen_installer"
 alias zdel="zen_del"
 alias zup="zen_update"
+alias wf="wifi_toggle"
 
 ws=~/personal/workspace
 vt=/run/media/razak/Ventoy
