@@ -264,6 +264,8 @@ alias zin="zen_installer"
 alias zdel="zen_del"
 alias zup="zen_update"
 alias wf="wifi_toggle"
+alias uv="uvicorn api.main:app"
+alias uvr="uvicorn api.main:app --reload"
 
 ws=~/personal/workspace
 vt=/run/media/razak/Ventoy
