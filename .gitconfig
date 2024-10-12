@@ -2,6 +2,7 @@
 	helper = store
 [user]
 	email = moabdulrazak17@gmail.com
+	name = Abdul Razak
 [init]
 	defaultBranch = main
 [core]
