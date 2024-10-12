@@ -123,3 +123,10 @@ zen_update() {
     cp "$HOME/.local/share/AppImage/ZenBrowser.AppImage" "$HOME/.local/bin/zen"
   fi
 }
+
+zip_ext() {
+  name=$1
+  pushd "./dist"
+  zip -1 -r $name * && mv $name ..
+  cd -
+}
