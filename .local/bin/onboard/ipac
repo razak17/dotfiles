@@ -6,7 +6,8 @@ installAurPackages() {
     ttf-joypixels ttf-ancient-fonts mongodb-compass docker-buildx mercury \
     slack-desktop rmtrash bruno thorium-browser-bin crow-translate yazi \
     vscodium-bin jellyfin-server jellyfin-web jellyfin-ffmpeg floorp-bin \
-    beekeeper cloc localsend-bin stpv w3m zen-browser --overwrite '*'
+    beekeeper cloc localsend-bin stpv w3m zen-browser firefox-nightly-bin \
+    brave-nighly-bin --overwrite '*'
 }
 
 installPacmanPackages() {
