@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Define an array of browsers to check
-browsers=("brave" "firefox" "floorp" "mercury-browser" "thorium-browser-sse3" "zen")
+browsers=("brave" "firefox" "firefox-nightly" "floorp" "mercury-browser" "thorium-browser-sse3" "zen")
 
 # Initialize an empty string to hold available browsers
 available_browsers=""
@@ -29,6 +29,7 @@ fi
 case "$choice" in
   brave) brave ;;
   firefox) firefox -P "Main" ;;
+  firefox-nightly) firefox-nightly -P "Main" ;;
   floorp) floorp -p "Main" ;;
   mercury-browser) mercury-browser ;;
   thorium-browser-sse3) thorium-browser-sse3 ;;
