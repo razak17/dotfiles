@@ -46,10 +46,12 @@ freemind() {
   session="freemind"
   repo="$WORKSPACE/rgt/freemind"
   args="$*"
-  send_keys=true
+  run=false
 
   if [[ $args == '--no-run' ]]; then
-    send_keys=false
+    run=false
+  elif [[ $args == '--run' ]]; then
+    run=true
   fi
 
   checkSession "$session"
@@ -64,7 +66,7 @@ freemind() {
   secondPane=$(ftmux --window-pane-id "$firstWindow" 1)
   ftmux --send-keys "$firstPane" "source env/bin/activate" "C-m"
   ftmux --send-keys "$secondPane" "source env/bin/activate" "C-m"
-  if [[ $send_keys == true ]]; then
+  if [[ $run == true ]]; then
     ftmux --send-keys "$firstPane" "vai -ts" "C-m"
   fi
 
@@ -73,7 +75,7 @@ freemind() {
   ftmux --split-pane -v -c "$repo/freemind-proj2-ui" -t "$firstPane"
   secondPane=$(ftmux --window-pane-id "$secondWindow" 1)
   ftmux --send-keys "$firstPane" "source env/bin/activate" "C-m"
-  if [[ $send_keys == true ]]; then
+  if [[ $run == true ]]; then
     ftmux --send-keys "$firstPane" "vai -ts" "C-m"
   fi
 
@@ -82,7 +84,7 @@ freemind() {
   ftmux --split-pane -v -c "$repo/freemind-proj2-ui" -t "$firstPane"
   secondPane=$(ftmux --window-pane-id "$thirdWindow" 1)
   ftmux --send-keys "$firstPane" "source env/bin/activate" "C-m"
-  if [[ $send_keys == true ]]; then
+  if [[ $run == true ]]; then
     ftmux --send-keys "$firstPane" "uvicorn api.main:app --reload" "C-m"
     ftmux --send-keys "$secondPane" "npm run dev" "C-m"
   fi
@@ -90,12 +92,62 @@ freemind() {
   attachSession "$session"
 }
 
+mediboard() {
+  session="mediboard"
+  repo="$WORKSPACE/rgt/mediboard"
+  args="$*"
+  run=true
+
+  if [[ $args == '--no-run' ]]; then
+    run=false
+  elif [[ $args == '--run' ]]; then
+    run=true
+  fi
+
+  checkSession "$session"
+
+  ftmux -n "$session" "code" "$repo"
+  ftmux -w "$session" "run" -c "$repo"
+
+  # admin
+  firstWindow=$(ftmux --session-win-id "$session" 0)
+  firstPane=$(ftmux --window-pane-id "$firstWindow" 0)
+  ftmux --split-pane -v -c "$repo" -t "$firstPane"
+  if [[ $run == true ]]; then
+    ftmux --send-keys "$firstPane" "vai -ts" "C-m"
+  fi
+  # secondPane=$(ftmux --window-pane-id "$firstWindow" 1)
+  # if [[ $send_keys == true ]]; then
+  # 	ftmux --send-keys "$secondPane" "v --no-lsp" "C-m"
+  # fi
+  # ftmux --send-keys "$secondPane" "\c mediboard3" "C-m"
+
+  secondWindow=$(ftmux --session-win-id "$session" 1)
+  firstPane=$(ftmux --window-pane-id "$secondWindow" 0)
+  ftmux --split-pane -v -c "$repo" -t "$firstPane"
+  secondPane=$(ftmux --window-pane-id "$secondWindow" 1)
+  ftmux --send-keys "$firstPane" "fnm use v16.14.0" "C-m"
+  ftmux --send-keys "$secondPane" "fnm use v16.14.0" "C-m"
+  if [[ $run == true ]]; then
+    ftmux --send-keys "$firstPane" "npm run start:server" "C-m"
+    ftmux --send-keys "$secondPane" "npm run start:client" "C-m"
+  fi
+
+  attachSession "$session"
+}
+
 while [ "$#" -gt 0 ]; do
   case "$1" in
-  -xrv) xrv ;;
-  -freemind)
+  xrv) xrv ;;
+  freemind)
     arg="$2"
+    shift
     freemind "$arg"
+    ;;
+  mediboard)
+    arg="$2"
+    shift
+    mediboard "$arg"
     ;;
   *) echo "Unknown option: $1" ;;
   esac
