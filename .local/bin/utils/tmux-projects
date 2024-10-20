@@ -1,0 +1,103 @@
+#!/usr/bin/env bash
+
+# requires: https://github.com/razak17/ftmux
+
+WORKSPACE="$HOME/personal/workspace"
+
+checkSession() {
+  if [[ $(ftmux -has "$1") == true ]]; then
+    showWarning "$session"
+    attachSession "$session"
+    exit
+  fi
+}
+
+showWarning() {
+  notify-send "Session '$1' already exists." "Attaching ..." -t 1000
+  # notify-send -u critical "Session '$@' already exists." "Aborting ..." -t 1000
+}
+
+attachSession() {
+  tmux -L Dev attach-session -t "$session" 2>/dev/null
+}
+
+xrv() {
+  session="rvim"
+
+  checkSession "$session"
+
+  ftmux -n "$session" "new" "$HOME/.config/rvim"
+  ftmux -w "$session" "config" -c "$HOME/Downloads"
+
+  # Get first window
+  firstWindow=$(ftmux --session-win-id "$session" 0)
+  firstPane=$(ftmux --window-pane-id "$firstWindow" 0)
+  ftmux --split-pane -v -c "$HOME/docs" -t "$firstPane"
+
+  # Get second window
+  secondWindow=$(ftmux --session-win-id "$session" 1)
+  firstPane=$(ftmux --window-pane-id "$secondWindow" 0)
+  ftmux --split-pane -v -c "$HOME/Sync" -t "$firstPane"
+
+  attachSession "$session"
+}
+
+freemind() {
+  session="freemind"
+  repo="$WORKSPACE/rgt/freemind"
+  args="$*"
+  send_keys=true
+
+  if [[ $args == '--no-run' ]]; then
+    send_keys=false
+  fi
+
+  checkSession "$session"
+
+  ftmux -n "$session" "server" "$repo/freemind-server"
+  ftmux -w "$session" "ui" -c "$repo/freemind-proj2-ui"
+  ftmux -w "$session" "run" -c "$repo/freemind-server"
+
+  firstWindow=$(ftmux --session-win-id "$session" 0)
+  firstPane=$(ftmux --window-pane-id "$firstWindow" 0)
+  ftmux --split-pane -v -c "$repo/freemind-server" -t "$firstPane"
+  secondPane=$(ftmux --window-pane-id "$firstWindow" 1)
+  ftmux --send-keys "$firstPane" "source env/bin/activate" "C-m"
+  ftmux --send-keys "$secondPane" "source env/bin/activate" "C-m"
+  if [[ $send_keys == true ]]; then
+    ftmux --send-keys "$firstPane" "vai -ts" "C-m"
+  fi
+
+  secondWindow=$(ftmux --session-win-id "$session" 1)
+  firstPane=$(ftmux --window-pane-id "$secondWindow" 0)
+  ftmux --split-pane -v -c "$repo/freemind-proj2-ui" -t "$firstPane"
+  secondPane=$(ftmux --window-pane-id "$secondWindow" 1)
+  ftmux --send-keys "$firstPane" "source env/bin/activate" "C-m"
+  if [[ $send_keys == true ]]; then
+    ftmux --send-keys "$firstPane" "vai -ts" "C-m"
+  fi
+
+  thirdWindow=$(ftmux --session-win-id "$session" 2)
+  firstPane=$(ftmux --window-pane-id "$thirdWindow" 0)
+  ftmux --split-pane -v -c "$repo/freemind-proj2-ui" -t "$firstPane"
+  secondPane=$(ftmux --window-pane-id "$thirdWindow" 1)
+  ftmux --send-keys "$firstPane" "source env/bin/activate" "C-m"
+  if [[ $send_keys == true ]]; then
+    ftmux --send-keys "$firstPane" "uvicorn api.main:app --reload" "C-m"
+    ftmux --send-keys "$secondPane" "npm run dev" "C-m"
+  fi
+
+  attachSession "$session"
+}
+
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+  -xrv) xrv ;;
+  -freemind)
+    arg="$2"
+    freemind "$arg"
+    ;;
+  *) echo "Unknown option: $1" ;;
+  esac
+  shift
+done
