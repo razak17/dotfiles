@@ -28,6 +28,7 @@ fi
 # Launch the selected browser with appropriate profile if needed
 case "$choice" in
   brave) brave ;;
+  brave-nightly) brave-nightly ;;
   firefox) firefox -P "Main" ;;
   firefox-nightly) firefox-nightly -P "Main" ;;
   floorp) floorp -p "Main" ;;
