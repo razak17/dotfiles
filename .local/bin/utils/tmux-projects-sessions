@@ -4,7 +4,7 @@
 
 fzf_tmux_options=${FZF_TMUX_OPTS:-"-p 90%"}
 
-dir_preview_cmd="eza -ahlT -L=2 -s=extension --group-directories-first --icons --git --git-ignore --no-user --color=always --color-scale=all --color-scale-mode=gradient"
+dir_preview_cmd="eza -ahlT -L=2 -s=extension --group-directories-first --icons --git --git-ignore --no-user --color=always --color-scale-mode=gradient"
 
 prompt='  '
 marker=''
