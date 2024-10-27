@@ -154,6 +154,16 @@ installAWSCli() {
   # aws configure
 }
 
+installViMongo() {
+	mkdir -p "$HOME/.dots"
+	pushd "$HOME/.dots" || exit
+  curl -LO https://github.com/kopecmaciej/vi-mongo/releases/download/v0.1.12/vi-mongo_Linux_x86_64.tar.gz
+  tar -xzf vi-mongo_Linux_x86_64.tar.gz
+  chmod +x vi-mongo
+  sudo mv vi-mongo ~/.local/bin
+  rm vi-mongo_Linux_x86_64.tar.gz
+}
+
 while [[ "$#" -gt 0 ]]; do
 	curr=$1
 	shift
@@ -172,6 +182,7 @@ while [[ "$#" -gt 0 ]]; do
 	"-zsh") installZshPlugins ;;
 	"-tmux") installTmuxPlugins ;;
 	"-rocks") installLuarocks ;;
+	"-vimongo") installViMongo ;;
 	"-doas")
 		arg="$@"
 		doasSetup "$arg"
@@ -189,6 +200,7 @@ while [[ "$#" -gt 0 ]]; do
 		installParu
 		installLuarocks
     installAWSCli
+    installViMongo
 		;;
 	*) echo "Unavailable command... $curr" ;;
 	esac
