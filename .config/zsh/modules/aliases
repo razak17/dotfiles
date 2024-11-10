@@ -27,10 +27,10 @@ safe_alias vsc "vscodium ." vscodium
 safe_alias wl 'iwctl station list' iwctl
 alias vm="rvim -no-cmp"
 alias vc="rvim -no-min"
-alias vai="rvim -no-min --ai"
 alias vts="rvim -no-min -ts"
-alias vl="rvim -no-min --lsp"
-alias v="rvim -no-min --lsp -ts --ai"
+alias vai="rvim -no-min -ts --ai"
+alias vl="rvim -no-min -ts --lsp"
+alias v="rvim -no-min -ts --lsp --ai"
 alias vn="rvim -nice"
 alias vL="rvim leetcode.nvim"
 alias vd="rvim --neovide"
@@ -141,7 +141,7 @@ alias pac='sudo pacman -S'
 alias rpac='sudo pacman -Rs'
 alias Rpac='sudo pacman -Rcns'
 alias U='sudo pacman -Qdtq'
-alias upd='sudo pacman -Syu --noconfirm'
+alias upd="sudo pacman -Syu --noconfirm --overwrite '*'"
 alias rcache="sudo pacman -Sc"
 alias pkgs="pacman -Q | fzf"
 alias p='paru -S'
