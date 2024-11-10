@@ -1,9 +1,9 @@
 lastupdatecheck: 0
 recentrepos:
-    - /home/razak/personal/workspace/rgt/freemind/freemind-proj2-ui
-    - /home/razak/.config/rvim
-    - /home/razak/personal/workspace/coding/plugins/onedark.nvim
     - /home/razak/docs
+    - /home/razak/.config/rvim
+    - /home/razak/personal/workspace/rgt/freemind/freemind-proj2-ui
+    - /home/razak/personal/workspace/coding/plugins/onedark.nvim
     - /home/razak/personal/workspace/rgt/mediboard
     - /home/razak/personal/workspace/coding/portfolio/algo-visualizer
     - /home/razak/personal/workspace/rgt/jesse/jesse-dashboard
