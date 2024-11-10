@@ -9,6 +9,7 @@ gui:
     skipStashWarning: true
     nerdFontsVersion: "3"
     sidePanelWidth: 0.3333
+    border: "single"
     theme:
         lightTheme: false
         activeBorderColor:
