@@ -7,7 +7,7 @@ installAurPackages() {
     slack-desktop rmtrash bruno thorium-browser-bin crow-translate yazi \
     vscodium-bin jellyfin-server jellyfin-web jellyfin-ffmpeg floorp-bin \
     beekeeper cloc localsend-bin stpv w3m zen-browser firefox-nightly-bin \
-    brave-nighly-bin --overwrite '*'
+    brave-nighly-bin autorandr --overwrite '*'
 }
 
 installPacmanPackages() {
@@ -23,7 +23,7 @@ installPacmanPackages() {
     cowsay docker-compose mpd gvfs bat alacritty zathura-ps zathura-pdf-poppler \
     zathura-djvu zathura-cb ueberzug postgresql aspell-en gparted kitty lazygit \
     ncmpcpp mpd mpc lf eza zsh python-virtualenv android-file-transferscreenkey \
-    freeze global entr pacman-contrib pandoc zsync firefox-nightly-bin \
+    freeze global entr pacman-contrib pandoc zsync firefox-nightly-bin nvidia-dkms \
     thunderbird brightnessctl xwallpaper python-pip lolcat syncthing --noconfirm --overwrite '*'
 }
 
