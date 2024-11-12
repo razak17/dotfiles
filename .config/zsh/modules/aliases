@@ -147,7 +147,7 @@ alias pkgs="pacman -Q | fzf"
 alias p='paru -S'
 
 pov () {
-  pacman -S "$1" --noconfirm --overwrite '*'
+  sudo pacman -S "$1" --noconfirm --overwrite '*'
 }
 
 #maintenance
@@ -282,6 +282,7 @@ alias cdrv='cd "$XDG_CONFIG_HOME/rvim"'
 alias cdco='cd "$XDG_CONFIG_HOME"'
 alias cdmo='cd "$HOME/.mozilla/firefox/profiles"'
 alias dw='cd "$HOME/Downloads"'
+alias sy='cd "$HOME/Sync"'
 alias dnv='cd "$HOME/.dots/nvim"'
 alias vids='cd "$HOME/Videos"'
 alias ws='cd "$ws"'
