@@ -4,6 +4,7 @@ if [ ! "$(command -v xrandr)" ] || [ ! "$(command -v autorandr)" ]; then
   echo "Please install xrandr and autorandr to use this script" && return 1
 fi
 
+xrandr
 xrandr --auto
-xrandr --output HDMI-1 --mode 1920x1080
+xrandr --output HDMI-A-0 --mode 1920x1080
 autorandr --save my-setup
