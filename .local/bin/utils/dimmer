@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Set the desired brightness level (e.g., 0.7 for 70% brightness)
+# BRIGHTNESS_LEVEL=0.6
+BRIGHTNESS_LEVEL=1.0
+
+# GAMMA=0.85:0.55:0.45
+GAMMA=1.0
+
+# Set the temperature for redshift (e.g., 4500K)
+TEMPERATURE=2500
+
+# Get the connected display name (e.g., eDP-1, HDMI-1)
+DISPLAY_NAME=$(xrandr --current | grep ' connected' | awk '{print $1}')
+
+# Set screen brightness
+if [ ! -z "$DISPLAY_NAME" ]; then
+  xrandr --output "$DISPLAY_NAME" --brightness "$BRIGHTNESS_LEVEL" --gamma "$GAMMA"
+else
+  echo "Could not detect any connected display."
+  exit 1
+fi
+
+# Adjust screen color temperature
+# redshift -O $TEMPERATURE
+
+echo "Adjusted brightness to $BRIGHTNESS_LEVEL and color temperature to $TEMPERATURE K."
