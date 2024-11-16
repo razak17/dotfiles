@@ -2,6 +2,7 @@ lastupdatecheck: 0
 recentrepos:
     - /home/razak/docs
     - /home/razak/.config/rvim
+    - /home/razak/.local/share/rvim/lazy/git-log.nvim
     - /home/razak/personal/workspace/rgt/freemind/freemind-proj2-ui
     - /home/razak/personal/workspace/coding/plugins/onedark.nvim
     - /home/razak/personal/workspace/rgt/mediboard

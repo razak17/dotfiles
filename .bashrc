@@ -8,3 +8,5 @@
 [ -f "$HOME/.config/sh/exports.sh" ] && source "$HOME/.config/sh/exports.sh"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+complete -C '/usr/local/bin/aws_completer' aws
