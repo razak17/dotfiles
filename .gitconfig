@@ -37,5 +37,6 @@
   pr = pull --rebase
   amend = commit -a --amend --no-edit
   ciam = commit -a --amend --no-edit
+  cp = cherry-pick
 [submodule]
 	recurse = true
