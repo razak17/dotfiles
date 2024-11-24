@@ -34,7 +34,7 @@ elif [[ $+commands[vim] ]]; then
 fi
 
 if which $TEXT_EDITOR >/dev/null; then
-  export MANPAGER='less'
+  export MANPAGER=$TEXT_EDITOR
 fi
 
 # you may need to manually set your language environment
