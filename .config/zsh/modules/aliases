@@ -25,6 +25,14 @@ safe_edit() {
   alias "$lhs"="$editor -no-min $rhs"
 }
 
+safe_cd () {
+  lhs=$1
+  rhs=$2
+  if [ -d "$rhs" ]; then
+    alias "$lhs"="cd $rhs"
+  fi
+}
+
 safe_alias rv rvim
 safe_alias pv pvim
 safe_alias rvlog rvimProfiling
@@ -282,21 +290,21 @@ ws=~/personal/workspace
 vt=/run/media/razak/Ventoy
 usb=/run/media/razak/E48F-B0EB
 
-alias nca='cd "$XDG_CACHE_HOME/nvim"'
-alias rca='cd "$XDG_CACHE_HOME/rvim"'
-alias nsh='cd "$XDG_DATA_HOME/nvim"'
-alias rsh='cd "$XDG_DATA_HOME/rvim"'
-alias co='cd "$XDG_CONFIG_HOME"'
-alias cdnv='cd "$XDG_CONFIG_HOME/nvim"'
-alias cdrv='cd "$XDG_CONFIG_HOME/rvim"'
-alias cdco='cd "$XDG_CONFIG_HOME"'
-alias cdmo='cd "$HOME/.mozilla/firefox/profiles"'
-alias dw='cd "$HOME/Downloads"'
-alias sy='cd "$HOME/Sync"'
-alias dnv='cd "$HOME/.dots/nvim"'
-alias vids='cd "$HOME/Videos"'
-alias ws='cd "$ws"'
-alias usb='cd "$usb"'
-alias vt='cd "$vt"'
-alias cdcc='cd "$ws/coding"'
-alias notes='cd "$HOME/notes"'
+safe_cd nca "$XDG_CACHE_HOME/nvim"
+safe_cd rca "$XDG_CACHE_HOME/rvim"
+safe_cd nsh "$XDG_DATA_HOME/nvim"
+safe_cd rsh "$XDG_DATA_HOME/rvim"
+safe_cd co "$XDG_CONFIG_HOME"
+safe_cd cdnv "$XDG_CONFIG_HOME/nvim"
+safe_cd cdrv "$XDG_CONFIG_HOME/rvim"
+safe_cd cdco "$XDG_CONFIG_HOME"
+safe_cd cdmo "$HOME/.mozilla/firefox/profiles"
+safe_cd dw "$HOME/Downloads"
+safe_cd sy "$HOME/Sync"
+safe_cd dnv "$HOME/.dots/nvim"
+safe_cd vids "$HOME/Videos"
+safe_cd ws "$ws"
+safe_cd usb "$usb"
+safe_cd vt "$vt"
+safe_cd cdcc "$ws/coding"
+safe_cd notes "$HOME/notes"
