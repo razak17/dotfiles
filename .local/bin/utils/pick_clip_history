@@ -18,6 +18,8 @@ save() {
 }
 
 load() {
+  # clip=$(cat $clip_history | tr 'A-Za-z' 'N-ZA-Mn-za-m' | dmenu -l 10 -p "Choose :" | tr 'N-ZA-Mn-za-m' 'A-Za-z' | tr -d '\n')
+  # clip=$(cat $clip_history | base64 | dmenu -l 10 -p "Choose :" | base64 -d | tr -d '\n')
 	clip=$(cat $clip_history | dmenu -l 10 -p "Choose :" | tr -d '\n')
 	if [ -z "$clip" ]; then
 		# notify-send -u critical -t 2000 "Clipboard" "nothing selected!"

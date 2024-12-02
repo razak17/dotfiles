@@ -40,3 +40,7 @@
   cp = cherry-pick
 [submodule]
 	recurse = true
+[url "https://"]
+	insteadOf = git://
+[url "https://github.com/"]
+	insteadOf = git@github.com:
