@@ -34,7 +34,8 @@ elif [[ $+commands[vim] ]]; then
 fi
 
 if which $TEXT_EDITOR >/dev/null; then
-  export MANPAGER=$TEXT_EDITOR
+  export PAGER="$TEXT_EDITOR -R -c 'set ft=man nomod nolist' +0 -"
+  export MANPAGER="$TEXT_EDITOR -R -c 'set ft=man nomod nolist' +0 -"
 fi
 
 # you may need to manually set your language environment
