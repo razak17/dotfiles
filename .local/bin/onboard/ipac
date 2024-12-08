@@ -23,8 +23,8 @@ installPacmanPackages() {
     cowsay docker-compose mpd gvfs bat alacritty zathura-ps zathura-pdf-poppler \
     zathura-djvu zathura-cb ueberzug postgresql aspell-en gparted kitty lazygit \
     ncmpcpp mpd mpc lf eza zsh python-virtualenv android-file-transferscreenkey \
-    freeze global entr pacman-contrib pandoc zsync firefox-nightly-bin nvidia-dkms python-pipx \
-    thunderbird brightnessctl xwallpaper python-pip lolcat syncthing --noconfirm --overwrite '*'
+    freeze global entr pacman-contrib pandoc zsync firefox-nightly-bin nvidia-dkms \
+    python-pipx thunderbird brightnessctl xwallpaper python-pip lolcat tokei syncthing --noconfirm --overwrite '*'
 }
 
 while [[ "$#" -gt 0 ]]; do
