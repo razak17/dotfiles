@@ -6,17 +6,17 @@
 [init]
 	defaultBranch = main
 [core]
-  pager = delta
+	pager = delta
 	editor = rvim
 
 [interactive]
-  diffFilter = delta --color-only
+	diffFilter = delta --color-only
 
 [delta]
-  navigate = true
+	navigate = true
 
 [merge]
-  conflictstyle = diff3
+	conflictStyle = zdiff3
 
 [diff]
   colorMoved = default
