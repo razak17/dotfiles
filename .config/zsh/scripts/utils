@@ -71,14 +71,6 @@ usb1() {
   cd /mnt/usb1/
 }
 
-tv() {
-  if [ ! -d "/mnt/usb1/TV" ]; then
-    sudo mkdir -p /mnt/usb1
-    sudo mount /dev/sda1 /mnt/usb1
-  fi
-  cd /mnt/usb1/TV
-}
-
 buildnvim() {
   neovim_dir="$HOME/.dots/neovim"
   bin_dir="$HOME/.local/bin"

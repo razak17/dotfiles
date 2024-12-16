@@ -1,0 +1,6 @@
+#!/bin/bash
+
+read -rp "Enter drive name: " drivename
+sudo mkdir -p /mnt/Seagate
+sudo mount /dev/$drivename /mnt/Seagate
+cd /mnt/Seagate/Stuff/TV
