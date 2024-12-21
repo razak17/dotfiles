@@ -17,4 +17,5 @@ local function entry(st)
 	ya.app_emit("resize", {})
 end
 
+--- @sync entry
 return { entry = entry }
