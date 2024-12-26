@@ -277,7 +277,7 @@ alias lg='lazygit'
 alias aria='aria2c --max-connection-per-server=12'
 alias cf="find -type f | sed 's/^..//g' | fzf | tr -d '\n' | xclip -sel c"
 alias cff="find | fzf | sed 's/^..//g' | tr -d '\n' | xclip -sel c"
-alias thequickbrownfoxjumpsoverthelazydog="echo hellooooo"
+alias thequickbrownfoxjumpsoverthelazydog="echo hellooooooooooooooooooooo"
 alias reld="reload_drivers"
 alias zin="zen_installer"
 alias zdel="zen_del"
@@ -286,6 +286,7 @@ alias wf="wifi_toggle"
 alias uv="uvicorn api.main:app"
 alias uvr="uvicorn api.main:app --reload"
 alias tp="tmux-project"
+alias msd="mount_drive"
 
 ws=~/personal/workspace
 vt=/run/media/razak/Ventoy
