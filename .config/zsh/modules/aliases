@@ -192,7 +192,7 @@ alias gvm="$GOPATH/bin/g"; # g-install: do NOT edit, see https://github.com/stef
 safe_edit a "$HOME/.config/zsh/modules/aliases"
 safe_edit icl "$HOME/.dots/clip/clip_hist.txt"
 safe_edit nvc "config.h"
-safe_edit ivc "sudo vi /etc/xdg/nvim/sysinit.vim"
+alias ivc="sudo vi /etc/xdg/nvim/sysinit.vim"
 safe_edit al "$HOME/.config/alacritty/alacritty.toml"
 safe_edit zc "$HOME/.config/zsh/.zshrc"
 alias zcdd="rm $HOME/.cache/zsh/zcompdump"
