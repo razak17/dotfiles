@@ -4,4 +4,4 @@ if [[ ! $+commands[rvim] ]]; then
   exit 1
 fi
 
-rvim --minimal -c ObsidianFind
+rvim -no-min -c ObsidianFind
