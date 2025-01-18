@@ -49,6 +49,19 @@ psqlConfig() {
 	# sudo systemctl enable postgresql.service
 	# sudo systemctl start postgresql.service
 
+  # NOTE: The data directory was initialized by PostgreSQL version issue
+  # https://wiki.archlinux.org/title/PostgreSQL#Upgrading_PostgreSQL
+
+  # sudo pacman -Syu postgresql postgresql-libs postgresql-old-upgrade
+
+  # mv /var/lib/postgres/data /var/lib/postgres/olddata
+  # mkdir /var/lib/postgres/data /var/lib/postgres/tmp
+  # chown postgres:postgres /var/lib/postgres/data /var/lib/postgres/tmp
+
+	# sudo -iu postgres
+	# initdb --locale=en_US.UTF-8 -E UTF8 -D /var/lib/postgres/data
+
+  # pg_upgrade -b /opt/pgsql-<PG_VERSION>/bin -B /usr/bin -d /var/lib/postgres/olddata -D /var/lib/postgres/data
 }
 
 redisConfig() {
