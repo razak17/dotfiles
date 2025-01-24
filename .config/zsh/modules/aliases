@@ -19,10 +19,10 @@ safe_edit() {
   lhs=$1
   rhs=$2
   editor="$TEXT_EDITOR"
-  if [ "$editor" == "rvim" ]; then
+  if [[ "$TEXT_EDITOR" == "rvim" ]]; then
     editor="$TEXT_EDITOR -no-min"
   fi
-  alias "$lhs"="$editor -no-min $rhs"
+  alias "$lhs"="$editor $rhs"
 }
 
 safe_cd () {
