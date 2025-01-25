@@ -23,8 +23,12 @@ cx() {
   sudo chmod +x "$@"
 }
 
-rcsr() {
+rcr() {
   sudo rc-service "$1" restart
+}
+
+rcs() {
+  sudo rc-service "$1" start
 }
 
 rcst() {
