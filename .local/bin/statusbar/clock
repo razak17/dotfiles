@@ -23,7 +23,8 @@ esac
 # dte="$(date +"%a, %B %d %l:%M%p"| sed 's/  / /g')"
 # date '+%a, %b %d %H:%M '
 # timedatectl set-time "2024-22-11 12:43:00"
-date="$(date +"%a %d %b %Y"| sed 's/  / /g')"
+# date="$(date +"%a %d %b %Y"| sed 's/  / /g')"
+date="$(date +"%a %b %d"| sed 's/  / /g')"
 time="$(date +"%H:%M:%S"| sed 's/  / /g')"
 
 echo -e " $date $icon $time"
