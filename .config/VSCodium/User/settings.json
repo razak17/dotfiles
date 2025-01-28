@@ -89,9 +89,7 @@
   "terminal.integrated.defaultProfile.linux": "zsh",
   "terminal.integrated.rendererType": "dom",
   "vscode-neovim.neovimExecutablePaths.linux": "/home/razak/.local/bin/nvim",
-  "vscode-neovim.neovimExecutablePaths.darwin": "/home/razak/.local/bin/nvim",
-  // "vscode-neovim.neovimInitVimPaths.linux": "/home/razak/.config/rvim/init.lua",
-  // "vscode-neovim.neovimInitVimPaths.darwin": "/home/razak/.config/rvim/init.lua",
+  "vscode-neovim.neovimInitVimPaths.linux": "/home/razak/.config/nvim/init.lua",
   "window.menuBarVisibility": "toggle",
   "workbench.activityBar.iconClickBehavior": "toggle",
   "workbench.panel.defaultLocation": "left",
@@ -2737,5 +2735,5 @@
   "workbench.editor.empty.hint": "hidden",
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
-  },
+  }
 }
