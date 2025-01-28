@@ -288,7 +288,7 @@ alias uv="uvicorn api.main:app"
 alias uvr="uvicorn api.main:app --reload"
 alias tp="tmux-project"
 alias msd="mount_drive"
-alias holding="cd /mnt/Seagate/Stuff/Holding"
+alias holding="cd /run/media/razak/Seagate/Stuff/Holding"
 
 ws=~/personal/workspace
 vt=/run/media/razak/Ventoy
