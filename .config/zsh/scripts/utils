@@ -110,7 +110,7 @@ zen_update() {
     oldzen="zen-tw-$dd"
     [ -e "$HOME/.local/bin/zen-tw" ] && mv "$HOME/.local/bin/zen-tw" "$HOME/.local/bin/$oldzen"
     cp "$HOME/.local/share/AppImage/ZenTwilight.AppImage" "$HOME/.local/bin/zen-tw"
-    exit 1
+    return
   fi
 
   if [ -e "$HOME/.local/share/AppImage/ZenBrowser.AppImage" ] ; then
