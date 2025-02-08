@@ -1,0 +1,84 @@
+[manager]
+cwd = { fg = "#19CB00" } # CWD text style..
+hovered = { fg = "#1E2031", bg = "#51AFEF" } # Hovered file style.
+preview_hovered = { fg = "#1E2031", bg = "#51AFEF" } # Hovered file style, in the preview pane.
+find_keyword = { fg = "#1E2031", bg = "#51AFEF" } # Style of the highlighted portion in the filename.
+find_position = { fg = "#1E2031", bg = "#51AFEF" } # Style of current file location in all found files to the right of the filename.
+marker_selected = { bg = "#CD9EFC", fg = "#CD9EFC" } # Selected file marker style.
+marker_copied = { bg = "#F3D398",  fg = "#F3D398" } # Copied file marker style.
+marker_cut = { bg = "#f2241F", fg = "#f2241F" } # Cut file marker style.
+tab_active = { fg = "#1E2031", bg = "#ff0000" } # Active tab style.
+tab_inactive = { fg = "#1E2031", bg = "#ff0000" } # Inactive tab style.
+tab_width = 2 # Tab maximum width.
+border_symbol = '' #Border symbol. e.g. "│".
+border_style = { fg = "#1E2031" } #order style.
+# syntect_theme = "" # For example, "~/Downloads/Dracula.tmTheme", not available after using a flavor, as flavors always use their own tmTheme files tmtheme.xml.
+
+[status]
+separator_open = '' # Opening separator symbol. e.g. "[".
+separator_close = '' # Closing separator symbol. e.g. "]".
+# separator_style = { fg = "#BBC2CF", bg = "#484D66" } # eparator style.
+mode_normal = { fg = "#1E2031", bg = "#97DC8D" } # Normal mode style.
+mode_select = { fg = "#1E2031", bg = "#FA7F94" } # Select mode style.
+mode_unset = { fg = "#1E2031", bg = "#97DC8D" } # Unset mode style.
+progress_label = { fg = "#1E2031", bg = "#19CB00" } # Progress label style.
+progress_normal = { fg = "#1E2031", bg = "#19CB00" } # Style of the progress bar when it is not in an error state.
+progress_error = { fg = "#1E2031", bg = "#f2241F" } # Style of the progress bar when an error occurs.
+# permissions_t = { fg = "#1E2031" } # File type.
+# permissions_r = { fg = "#1E2031" } # Read permission.
+# permissions_w = { fg = "#1E2031" } # Write permission.
+# permissions_x = { fg = "#1E2031" } # Execute permission.
+# permissions_s = { fg = "#1E2031" } # - separator.
+
+[select]
+border = { fg = "#80AEFA" } # Border style.
+active = { fg = "#FFA577" } # Selected item style.
+inactive = { fg = "#1E2031" } # Unselected item style.
+
+[input]
+border = { fg = "#51AFEF" } # Border style.
+title = { fg = "#C8D3F8" } # Title style.
+value = { fg = "#F3D398" } # Value style.
+selected = { bg = "#51AFEF" } # Selected value style.
+
+[completion]
+border = { fg = "#80AEFA" } # Border style.
+active = { fg = "#FFA577" } # Selected item style.
+inactive = { fg = "#1E2031" } # Unselected item style.
+
+[tasks]
+border = { fg = "#51AFEF" } # Border style.
+title = { fg = "#C8D3F8" } # Title style.
+hovered = { fg = "#1E2031", bg = "#51AFEF" } # Hovered item style.
+
+[which]
+cols = 3 # Number of columns. The value can be 1, 2, 3.
+mask = { fg = "#C8D3F8" } # Mask style.
+cand = { fg = "#C8D3F8" } # Candidate key style.
+rest = { fg = "#C8D3F8" } # Rest key style.
+desc = { fg = "#C8D3F8" } # Description style.
+separator = '==>' # Separator symbol. e.g. " -> ".
+separator_style = { fg = "#C8D3F8" } # Separator style.
+
+[filetype]
+rules = [
+	# Images
+	{ mime = "image/*", fg = "#7AD9E5" },
+
+	# Videos
+	{ mime = "video/*", fg = "#F3D398" },
+	{ mime = "audio/*", fg = "#F3D398" },
+
+	# Archives
+	{ mime = "application/zip", fg = "#CD9EFC" },
+	{ mime = "application/gzip", fg = "#CD9EFC" },
+	{ mime = "application/x-tar", fg = "#CD9EFC" },
+	{ mime = "application/x-bzip", fg = "#CD9EFC" },
+	{ mime = "application/x-bzip2", fg = "#CD9EFC" },
+	{ mime = "application/x-7z-compressed", fg = "#CD9EFC" },
+	{ mime = "application/x-rar", fg = "#CD9EFC" },
+
+	# Fallback
+	{ name = "*", fg = "#C8D3F8" },
+	{ name = "*/", fg = "#80AEFA" }
+]

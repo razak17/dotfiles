@@ -1,5 +1,6 @@
 # [flavor]
-# use = "me"
+dark = "me"
+light = "me"
 
 # : Manager {{{
 [manager]
@@ -32,7 +33,7 @@ count_selected = { fg = "#98C379", bg = "#282C34" }  # Green on Darkened backgro
 
 # Border
 border_symbol = ''
-border_style = { fg = "#1E2031" } #order style.
+border_style = { fg = "#1E2031" } # border style.
 
 # : }}}
 
