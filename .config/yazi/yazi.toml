@@ -14,53 +14,45 @@ max_height = 900
 cache_dir  = ""
 
 [opener]
-folder = [
-	{ run = 'thunar -R "$@"', name = "Reveal in Finder" },
-	{ run = '$EDITOR "$@"' },
+edit = [
+	{ run = '$EDITOR "$@"', block = true, for = "unix" },
 ]
-archive = [
-	{ run = 'thunar "$1"', name = "Extract here" },
+play = [
+	{ run = 'mpv "$@"', orphan = true, for = "unix" },
 ]
-text = [
-	{ run = '$EDITOR "$@"', block = true },
+pdf = [
+	{ run = 'zathura "$@"', orphan = true, for = "unix" },
 ]
 image = [
-	{ run = 'sxiv "$@" &', name = "Open" },
-	{ run = '''exiftool "$1"; echo "Press enter to exit"; read''', block = true, name = "Show EXIF" },
+	{ run = 'sxiv "$@" &', orphan = true, for = "unix" },
 ]
-video = [
-	{ run = 'mpv "$@"' },
-	{ run = '''mediainfo "$1"; echo "Press enter to exit"; read''', block = true, name = "Show media info" },
-]
-audio = [
-	{ run = 'mpv "$@" &' },
-	{ run = '''mediainfo "$1"; echo "Press enter to exit"; read''', block = true, name = "Show media info" },
+explorer = [
+	{ run = 'thunar "$@" &', orphan = true, for = "unix" },
 ]
 fallback = [
-	{ run = 'thunar "$@" &', name = "Open" },
-  { run = 'thunar -R "$@" &', name = "Reveal in Finder" },
+	{ run = 'xdg-open "$@"', orphan = true, for = "unix" },
 ]
 
 [open]
 rules = [
-	{ name = "*/", use = "folder" },
-
-	{ mime = "text/*", use = "text" },
+	{ mime = "text/*", use = "edit" },
 	{ mime = "image/*", use = "image" },
-	{ mime = "video/*", use = "video" },
-	{ mime = "audio/*", use = "audio" },
-	{ mime = "inode/x-empty", use = "text" },
+	{ mime = "video/*", use = "play" },
+	{ mime = "audio/*", use = "play" },
+	{ mime = "inode/x-empty", use = "edit" },
 
-	{ mime = "application/json", use = "text" },
-	{ mime = "*/javascript", use = "text" },
+	{ mime = "application/json", use = "edit" },
+	{ mime = "*/javascript", use = "edit" },
 
-	{ mime = "application/zip", use = "archive" },
-	{ mime = "application/gzip", use = "archive" },
-	{ mime = "application/x-tar", use = "archive" },
-	{ mime = "application/x-bzip", use = "archive" },
-	{ mime = "application/x-bzip2", use = "archive" },
-	{ mime = "application/x-7z-compressed", use = "archive" },
-	{ mime = "application/x-rar", use = "archive" },
+	{ mime = "application/zip", use = "explorer" },
+	{ mime = "application/gzip", use = "explorer" },
+	{ mime = "application/x-tar", use = "explorer" },
+	{ mime = "application/x-bzip", use = "explorer" },
+	{ mime = "application/x-bzip2", use = "explorer" },
+	{ mime = "application/x-7z-compressed", use = "explorer" },
+	{ mime = "application/x-rar", use = "explorer" },
+
+	{ mime = "application/pdf", use = "pdf" },
 
 	{ mime = "*", use = "fallback" },
 ]
