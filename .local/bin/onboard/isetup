@@ -116,6 +116,14 @@ installParu() {
 	makepkg -si
 }
 
+installUv() {
+	if [ ! -e "$HOME/.local/bin/uv" ]; then
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+	fi
+  # Update
+  uv self update
+}
+
 # NOTE: enter root shell before running i.e. su
 # ./isetup -doas "razak"
 doasSetup() {
@@ -196,11 +204,13 @@ while [[ "$#" -gt 0 ]]; do
 		installG
 		installFzf
 		installSuckless
-		installDeno
-		installParu
+    installParu
+    installUv
+
 		installLuarocks
     installAWSCli
     installViMongo
+		installDeno
 		;;
 	*) echo "Unavailable command... $curr" ;;
 	esac

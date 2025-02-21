@@ -13,6 +13,9 @@ path+=(
   "$LOCAL/utils"
 )
 
+# uv
+[ -f "$HOME/.local/share/../bin/env" ] && . "$HOME/.local/share/../bin/env"
+
 # fzf
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
