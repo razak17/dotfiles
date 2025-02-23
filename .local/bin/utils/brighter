@@ -7,7 +7,7 @@ GAMMA=0.95:0.75:0.15
 # GAMMA=1.0
 
 # Set the temperature for redshift (e.g., 4500K)
-TEMPERATURE=1500
+TEMPERATURE="1500K"
 
 # Get the connected display name (e.g., eDP-1, HDMI-1)
 DISPLAY_NAME=$(xrandr --current | grep ' connected' | awk '{print $1}')
@@ -20,7 +20,8 @@ else
   exit 1
 fi
 
-pkill redshift
+redshift -x
+# pkill redshift
 
 # Adjust screen color temperature
 redshift &>/dev/null
