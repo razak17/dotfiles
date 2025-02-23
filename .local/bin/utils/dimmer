@@ -20,7 +20,7 @@ else
   exit 1
 fi
 
-redshift -x
+pkill redshift
 
 # Adjust screen color temperature
 redshift -O $TEMPERATURE
