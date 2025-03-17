@@ -3,7 +3,7 @@
 #----------------------------------
 config-file = ghostty-theme
 adjust-underline-position = 6
-adjust-underline-thickness = 2
+adjust-underline-thickness = 1
 quick-terminal-animation-duration = 0.08
 confirm-close-surface = false
 window-padding-x = 0,0
@@ -15,6 +15,7 @@ background-opacity = 0.9
 #----------------------------------
 font-family = "Operator Mono SSm Lig Book"
 font-size = 8
+font-thicken = true
 # font-family = "Cartograph CF"
 #----------------------------------
 # MOUSE
