@@ -1,5 +1,6 @@
 background = #0D1116
-foreground = #ebfafa
+# foreground = #ebfafa
+foreground = #bbc2cf
 
 cursor-color = #1d7c78
 
