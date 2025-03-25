@@ -17,7 +17,10 @@ path+=(
 [ -f "$HOME/.local/share/../bin/env" ] && . "$HOME/.local/share/../bin/env"
 
 # fzf
-[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
+if [ -f $HOME/.fzf/bin/fzf ]; then
+  source $HOME/.fzf.zsh
+  source <(fzf --zsh)
+fi
 
 # g - go version manager
 export GOPATH="$HOME/go";
