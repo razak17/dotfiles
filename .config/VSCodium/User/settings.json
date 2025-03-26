@@ -2735,5 +2735,6 @@
   "workbench.editor.empty.hint": "hidden",
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
-  }
+  },
+  "vscode-neovim.neovimInitVimPaths.darwin": "/home/razak/.config/nvim/init.lua"
 }
