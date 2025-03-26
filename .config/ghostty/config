@@ -2,6 +2,7 @@
 # DISPLAY
 #----------------------------------
 config-file = ghostty-theme
+custom-shader = shaders/bloom025.glsl
 adjust-underline-position = 3
 adjust-underline-thickness = 1
 quick-terminal-animation-duration = 0.08
