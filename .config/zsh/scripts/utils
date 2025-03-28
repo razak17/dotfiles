@@ -135,3 +135,12 @@ function y() {
   fi
   rm -f -- "$tmp"
 }
+
+copilot_models() {
+  dd=$(date +%F_%H%M%S_%N)
+  token=$1
+  curl -L -H "Authorization: Bearer $token" -H "Copilot-Integration-Id: vscode-chat" -H "Editor-Plugin-Version: CopilotChat.nvim/*" -H "Editor-Version: Neovim/0.11.0" https://api.individual.githubcopilot.com/models -o "/tmp/models-$dd.json"
+  if [ -e "/tmp/models-$dd.json" ]; then
+    $TEXT_EDITOR "/tmp/models-$dd.json"
+  fi
+}
