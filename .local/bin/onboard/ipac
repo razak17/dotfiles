@@ -7,7 +7,7 @@ installAurPackages() {
     slack-desktop rmtrash bruno thorium-browser-bin crow-translate yazi \
     vscodium-bin jellyfin-server jellyfin-web jellyfin-ffmpeg floorp-bin \
     beekeeper cloc localsend-bin stpv w3m zen-browser firefox-nightly-bin \
-    brave-nighly-bin autorandr lrcget-bin --overwrite '*'
+    brave-nighly-bin autorandr lrcget-bin obsidian --overwrite '*'
 }
 
 installPacmanPackages() {
@@ -24,7 +24,8 @@ installPacmanPackages() {
     zathura-djvu zathura-cb ueberzug postgresql aspell-en gparted kitty lazygit \
     ncmpcpp mpd mpc lf eza zsh python-virtualenv android-file-transferscreenkey \
     freeze global entr pacman-contrib pandoc zsync firefox-nightly-bin nvidia-dkms \
-    python-pipx thunderbird brightnessctl xwallpaper python-pip lolcat tokei syncthing --noconfirm --overwrite '*'
+    python-pipx thunderbird brightnessctl xwallpaper python-pip lolcat tokei \
+    syncthing --noconfirm --overwrite '*'
 }
 
 while [[ "$#" -gt 0 ]]; do
