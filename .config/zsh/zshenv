@@ -35,7 +35,8 @@ fi
 
 if which $TEXT_EDITOR >/dev/null; then
   # export PAGER="$TEXT_EDITOR"
-  export MANPAGER="$TEXT_EDITOR -R -c 'set ft=man nomod nolist' +0 -"
+  # export MANPAGER="$TEXT_EDITOR -R -c 'set ft=man nomod nolist' +0 -"
+  export MANPAGER="$TEXT_EDITOR +Man!"
 fi
 
 # you may need to manually set your language environment
