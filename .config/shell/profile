@@ -107,4 +107,12 @@ if [ -e "$HOME/.cargo" ]; then
   )
 fi
 
+# duckdb
+if [ -f "$HOME/.duckdb/cli/latest/duckdb" ]; then
+  export DUCK_DB="$HOME/.duckdb/"
+  path+=(
+  "$DUCK_DB/cli/latest"
+  )
+fi
+
 export PATH

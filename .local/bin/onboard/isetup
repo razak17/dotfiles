@@ -172,6 +172,15 @@ installViMongo() {
   rm vi-mongo_Linux_x86_64.tar.gz
 }
 
+installDuckDB() {
+  if [ ! -f "$HOME/.local/bin/duckdb" ]; then
+    curl https://install.duckdb.org | sh
+  fi
+  if [ ! -f "$HOME/.duckdb/cli/latest/duckdb" ]; then
+    ln -s "$HOME/.local/bin/duckdb" "$HOME/.duckdb/cli/latest/duckdb"
+  fi
+}
+
 while [[ "$#" -gt 0 ]]; do
 	curr=$1
 	shift
@@ -206,6 +215,7 @@ while [[ "$#" -gt 0 ]]; do
 		installSuckless
     installParu
     installUv
+    installDuckDB
 
 		installLuarocks
     installAWSCli

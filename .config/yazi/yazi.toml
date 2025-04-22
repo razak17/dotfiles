@@ -1,5 +1,5 @@
 [manager]
-ratio         = [ 1, 2, 3 ]
+ratio         = [ 1, 2, 5 ]
 sort_by        = "alphabetical"
 sort_sensitive = true
 sort_reverse   = false
@@ -64,3 +64,24 @@ bizarre_retry = 5
 
 [log]
 enabled = false
+
+[plugin]
+prepend_previewers = [
+  { name = "*.csv", run = "duckdb" },
+  { name = "*.tsv", run = "duckdb" },
+  { name = "*.json", run = "duckdb" },
+  { name = "*.parquet", run = "duckdb" },
+  { name = "*.txt", run = "duckdb" },
+  { name = "*.xlsx", run = "duckdb" },
+  { name = "*.db", run = "duckdb" },
+  { name = "*.duckdb", run = "duckdb" }
+]
+
+prepend_preloaders = [
+  { name = "*.csv", run = "duckdb", multi = false },
+  { name = "*.tsv", run = "duckdb", multi = false },
+  { name = "*.json", run = "duckdb", multi = false },
+  { name = "*.parquet", run = "duckdb", multi = false },
+  { name = "*.txt", run = "duckdb", multi = false },
+  { name = "*.xlsx", run = "duckdb", multi = false }
+]
