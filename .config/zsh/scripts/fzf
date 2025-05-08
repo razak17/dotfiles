@@ -108,7 +108,9 @@ envs() {
 
 scr() {
 	pushd "$HOME/Pictures/screenshots" >/dev/null || return
-	if exists lf; then
+	if exists lfub; then
+		lfub
+	elif exists lf; then
 		lf
 	fi
 	cd - || return

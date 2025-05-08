@@ -23,16 +23,26 @@ set scrolloff 10
 set period 1
 set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
 
-# Comment out ueberzug setup, see lfub in ~/.local/bin/utils/lfub
-# set cleaner '~/.config/lf/cleaner'
-# set previewer '~/.config/lf/scope'
-set autoquit true
-
+# Previewer #
 # https://github.com/gokcehan/lf/wiki/Previews
-set previewer stpv
-set cleaner stpvimgclr
-&stpvimg --listen $id
-cmd on-quit $stpvimg --end $id
+
+# Uncomment to use ueberzug as file previewer
+# see lfub in ~/.local/bin/utils/lfub
+# NOTE: alias lf=lfub
+set previewer '~/.config/lf/ueberzug/scope'
+set cleaner '~/.config/lf/ueberzug/cleaner'
+
+# Uncomment to use kitty for file previewer,
+# set previewer '~/.config/lf/kitty/previewer'
+# set cleaner '~/.config/lf/kitty/cleaner'
+
+# Uncomment to use stpv for file previewer,
+# set previewer stpv
+# set cleaner stpvimgclr
+# &stpvimg --listen $id
+# cmd on-quit $stpvimg --end $id
+
+set autoquit true
 
 # cmds/functions
 cmd open ${{

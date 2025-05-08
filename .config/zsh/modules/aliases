@@ -250,6 +250,7 @@ alias cadd="conf add"
 # ranger
 alias rr="ranger"
 alias f='yazi'
+alias lf='lfub'
 alias yz='yazi'
 
 # tmux
