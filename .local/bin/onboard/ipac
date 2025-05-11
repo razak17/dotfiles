@@ -25,7 +25,7 @@ installPacmanPackages() {
     ncmpcpp mpd mpc lf eza zsh python-virtualenv android-file-transferscreenkey \
     freeze global entr pacman-contrib pandoc zsync firefox-nightly-bin nvidia-dkms \
     python-pipx thunderbird brightnessctl xwallpaper python-pip lolcat tokei \
-    syncthing gvfs-mtp nsxiv --noconfirm --overwrite '*'
+    syncthing gvfs-mtp nsxiv ttf-times-new-roman --noconfirm --overwrite '*'
 }
 
 while [[ "$#" -gt 0 ]]; do
