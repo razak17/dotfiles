@@ -7,7 +7,7 @@ installAurPackages() {
     slack-desktop rmtrash bruno thorium-browser-bin crow-translate yazi \
     vscodium-bin jellyfin-server jellyfin-web jellyfin-ffmpeg floorp-bin \
     beekeeper cloc localsend-bin stpv w3m zen-browser firefox-nightly-bin \
-    brave-nighly-bin autorandr lrcget-bin obsidian --overwrite '*'
+    brave-nighly-bin autorandr lrcget-bin obsidian dysk --overwrite '*'
 }
 
 installPacmanPackages() {
