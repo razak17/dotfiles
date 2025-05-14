@@ -29,12 +29,12 @@ set autoquit true
 # Uncomment to use ueberzug as file previewer
 # see lfub in ~/.local/bin/utils/lfub
 # NOTE: alias lf=lfub
-set previewer '~/.config/lf/ueberzug/scope'
-set cleaner '~/.config/lf/ueberzug/cleaner'
+# set previewer '~/.config/lf/ueberzug/scope'
+# set cleaner '~/.config/lf/ueberzug/cleaner'
 
 # Uncomment to use kitty for file previewer,
-# set previewer '~/.config/lf/kitty/previewer'
-# set cleaner '~/.config/lf/kitty/cleaner'
+set previewer '~/.config/lf/kitty/previewer'
+set cleaner '~/.config/lf/kitty/cleaner'
 
 # Uncomment to use stpv for file previewer,
 # set previewer stpv
