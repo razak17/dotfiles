@@ -166,6 +166,10 @@ alias pkgs="pacman -Q | fzf"
 alias p='paru -S'
 
 pov () {
+  sudo paru -S "$1" --noconfirm --overwrite '*'
+}
+
+pacov () {
   sudo pacman -S "$1" --noconfirm --overwrite '*'
 }
 
