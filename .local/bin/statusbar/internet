@@ -37,4 +37,4 @@ fi
 # USB
 [ -n "$(cat /sys/class/net/eth1/operstate 2>/dev/null)" ] && tunicon=" 󰄡" # 💻
 
-printf "%s%s%s \n" "$wifiicon" "$ethericon" "$tunicon"
+printf "%s%s%s\n" "$wifiicon" "$ethericon" "$tunicon"
