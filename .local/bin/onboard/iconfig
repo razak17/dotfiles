@@ -1,53 +1,53 @@
-#!/bin/sh
+#!/bin/env bash
 
 fnmConfig() {
-	fnm list
-	fnm install v18.0.0
-	fnm install v16.13.0
-	fnm default v16.13.0
+  fnm list
+  fnm install v18.0.0
+  fnm install v16.13.0
+  fnm default v16.13.0
 }
 
 dockerConfig() {
-	pacman -S docker docker-openrc
-	sudo groupadd docker
-	sudo usermod -aG docker "$USER"
+  pacman -S docker docker-openrc
+  sudo groupadd docker
+  sudo usermod -aG docker "$USER"
 
-	# openrc
-	sudo rc-update add docker default
-	sudo rc-service docker start
+  # openrc
+  sudo rc-update add docker default
+  sudo rc-service docker start
 
-	# sudo systemctl enable docker.service
-	# sudo systemctl enable containerd.service
+  # sudo systemctl enable docker.service
+  # sudo systemctl enable containerd.service
 
-	# sudo systemctl start docker.service
-	# sudo systemctl start containerd.service
+  # sudo systemctl start docker.service
+  # sudo systemctl start containerd.service
 }
 
 psqlConfig() {
-	pacman -S postgresql postgresql-openrc
+  pacman -S postgresql postgresql-openrc
 
   sudo mkdir -p /var/lib/postgres
   sudo chmod 775 /var/lib/postgres
   sudo chown postgres /var/lib/postgres
 
-	sudo -iu postgres
+  sudo -iu postgres
 
-	# initdb -D /var/lib/postgres/data
-	initdb --locale=en_US.UTF-8 -E UTF8 -D /var/lib/postgres/data
+  # initdb -D /var/lib/postgres/data
+  initdb --locale=en_US.UTF-8 -E UTF8 -D /var/lib/postgres/data
 
-	sudo touch /var/lib/postgres/.psql_history
+  sudo touch /var/lib/postgres/.psql_history
 
-	createuser --interactive
-	createdb myDatabaseName
+  createuser --interactive
+  createdb myDatabaseName
 
-	# openrc
-	sudo rc-update add postgresql default
-	sudo rc-service postgresql start
+  # openrc
+  sudo rc-update add postgresql default
+  sudo rc-service postgresql start
 
-	# SELECT rolname FROM pg_roles;
-	# normal mode
-	# sudo systemctl enable postgresql.service
-	# sudo systemctl start postgresql.service
+  # SELECT rolname FROM pg_roles;
+  # normal mode
+  # sudo systemctl enable postgresql.service
+  # sudo systemctl start postgresql.service
 
   # NOTE: The data directory was initialized by PostgreSQL version issue
   # https://wiki.archlinux.org/title/PostgreSQL#Upgrading_PostgreSQL
@@ -58,138 +58,110 @@ psqlConfig() {
   # mkdir /var/lib/postgres/data /var/lib/postgres/tmp
   # chown postgres:postgres /var/lib/postgres/data /var/lib/postgres/tmp
 
-	# sudo -iu postgres
-	# initdb --locale=en_US.UTF-8 -E UTF8 -D /var/lib/postgres/data
+  # sudo -iu postgres
+  # initdb --locale=en_US.UTF-8 -E UTF8 -D /var/lib/postgres/data
 
   # pg_upgrade -b /opt/pgsql-<PG_VERSION>/bin -B /usr/bin -d /var/lib/postgres/olddata -D /var/lib/postgres/data
 }
 
 redisConfig() {
-	pushd "$HOME"/Downloads/redis-stable || exit
-	sudo cp src/redis-server /usr/local/bin/
-	sudo cp src/redis-cli /usr/local/bin/
-
-	sudo mkdir /etc/redis
-	sudo mkdir /var/redis
-
-	sudo mkdir /etc/init.d
-	sudo cp utils/redis_init_script /etc/init.d/redis_6379
-
-	sudo nvim /etc/init.d/redis_6379
-
-	sudo cp redis.conf /etc/redis/6379.conf
-
-	# Working dir
-	sudo mkdir /var/redis/6379
-
-	# Edit the configuration file
-	sudo nvim /etc/redis/6379.conf
-	# Set daemonize to yes (by default it is set to no).
-	# Set the pidfile to /var/run/redis_6379.pid (modify the port if needed).
-	# Change the port accordingly. In our example it is not needed as the default port is already 6379.
-	# Set your preferred loglevel.
-	# Set the logfile to /var/log/redis_6379.log
-	# Set the dir to /var/redis/6379 (very important step!)
-
-	sudo update-rc.d redis_6379 defaults
-	sudo /etc/init.d/redis_6379 start
-
-	# Try pinging your instance with redis-cli.
-	# Do a test save with redis-cli save and check that the dump file is correctly stored into /var/redis/6379/ (you should find a file called dump.rdb).
-	# Check that your Redis instance is correctly logging in the log file.
+  sudo pacman -S redis valkey-openrc
+  sudo rc-update add valkey-sentinel default
+  sudo rc-update add valkey default
+  sudo rc-service valkey start
 }
 
 firefoxConfig() {
-	# Setup Firefox Profiles
-	dir="$HOME/.dots/firefox-user.js"
-  pushd "$HOME/.dots"
-	if [ ! -d "$dir" ]; then
-		git clone https://github.com/razak17/firefox-user.js
-	fi
-	pushd "$dir" || exit
-	sh ./setup.sh -all
+  # Setup Firefox Profiles
+  dir="$HOME/.dots/firefox-user.js"
+  cd "$HOME/.dots" || exit
+  if [ ! -d "$dir" ]; then
+    git clone https://github.com/razak17/firefox-user.js
+  fi
+  cd "$dir" || exit
+  sh ./setup.sh -all
 }
 
 ZshCompletions() {
-	OH_MY_ZSH="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins"
-	git_dir="$HOME/.config/zsh/plugins/git"
-	if [ ! -e "$git_dir" ]; then
-		mkdir -p "$git_dir"
-		cd "$git_dir" || exit
-		curl -fsSL $OH_MY_ZSH/git/git.plugin.zsh --output git.plugin.zsh
-		curl -fsSL $OH_MY_ZSH/git/README.md --output README.md
-	fi
-	npm_dir="$HOME/.config/zsh/plugins/npm"
-	if [ ! -e "$npm_dir" ]; then
-		mkdir -p "$npm_dir"
-		pushd "$npm_dir" || exit
-		curl -fsSL $OH_MY_ZSH/npm/npm.plugin.zsh --output npm.plugin.zsh
-		curl -fsSL $OH_MY_ZSH/npm/README.md --output README.md
-	fi
-	yarn_dir="$HOME/.config/zsh/plugins/yarn"
-	if [ ! -e "$yarn_dir" ]; then
-		mkdir -p "$yarn_dir"
-		pushd "$yarn_dir" || exit
-		curl -fsSL $OH_MY_ZSH/yarn/yarn.plugin.zsh --output yarn.plugin.zsh
-		curl -fsSL $OH_MY_ZSH/yarn/README.md --output README.md
-		curl -fsSL $OH_MY_ZSH/yarn/_yarn --output _yarn
-	fi
-	fnm_dir="$HOME/.config/zsh/plugins/fnm"
-	if [ ! -e "$fnm_dir/_fnm" ]; then
-		mkdir -p "$fnm_dir"
-		pushd "$fnm_dir" || exit
-		fnm completions --shell zsh >_fnm
-	fi
-	pass_dir="$HOME/.config/zsh/plugins/pass"
-	if [ ! -e "$pass_dir" ]; then
-		mkdir -p "$pass_dir"
-		pushd "$pass_dir" || exit
-		curl -fsSL $OH_MY_ZSH/pass/README.md --output README.md
-		curl -fsSL $OH_MY_ZSH/pass/_pass --output _pass
-	fi
-	echo "DONE"
+  OH_MY_ZSH="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins"
+  git_dir="$HOME/.config/zsh/plugins/git"
+  if [ ! -e "$git_dir" ]; then
+    mkdir -p "$git_dir"
+    cd "$git_dir" || exit
+    curl -fsSL $OH_MY_ZSH/git/git.plugin.zsh --output git.plugin.zsh
+    curl -fsSL $OH_MY_ZSH/git/README.md --output README.md
+  fi
+  npm_dir="$HOME/.config/zsh/plugins/npm"
+  if [ ! -e "$npm_dir" ]; then
+    mkdir -p "$npm_dir"
+    cd "$npm_dir" || exit
+    curl -fsSL $OH_MY_ZSH/npm/npm.plugin.zsh --output npm.plugin.zsh
+    curl -fsSL $OH_MY_ZSH/npm/README.md --output README.md
+  fi
+  yarn_dir="$HOME/.config/zsh/plugins/yarn"
+  if [ ! -e "$yarn_dir" ]; then
+    mkdir -p "$yarn_dir"
+    cd "$yarn_dir" || exit
+    curl -fsSL $OH_MY_ZSH/yarn/yarn.plugin.zsh --output yarn.plugin.zsh
+    curl -fsSL $OH_MY_ZSH/yarn/README.md --output README.md
+    curl -fsSL $OH_MY_ZSH/yarn/_yarn --output _yarn
+  fi
+  fnm_dir="$HOME/.config/zsh/plugins/fnm"
+  if [ ! -e "$fnm_dir/_fnm" ]; then
+    mkdir -p "$fnm_dir"
+    cd "$fnm_dir" || exit
+    fnm completions --shell zsh >_fnm
+  fi
+  pass_dir="$HOME/.config/zsh/plugins/pass"
+  if [ ! -e "$pass_dir" ]; then
+    mkdir -p "$pass_dir"
+    cd "$pass_dir" || exit
+    curl -fsSL $OH_MY_ZSH/pass/README.md --output README.md
+    curl -fsSL $OH_MY_ZSH/pass/_pass --output _pass
+  fi
+  echo "DONE"
 }
 
 libxftSetup() {
-	git clone https://github.com/uditkarode/libxft-bgra "$HOME/.dots/libxft-bgra"
-	cd "$HOME/.dots/libxft-bgra" || exit
-	sh autogen.sh --sysconfdir=/etc --prefix=/usr --mandir=/usr/share/man
-	sudo make install
+  git clone https://github.com/uditkarode/libxft-bgra "$HOME/.dots/libxft-bgra"
+  cd "$HOME/.dots/libxft-bgra" || exit
+  sh autogen.sh --sysconfdir=/etc --prefix=/usr --mandir=/usr/share/man
+  sudo make install
 }
 
 mpvConfig() {
-	if [ ! -e "$HOME/.dots/mpv-config-linux.zip" ]; then
-		curl -L https://github.com/noelsimbolon/mpv-config/releases/download/v1.0.5/mpv-config-linux.zip >~/.dots/mpv-config-linux.zip
-	fi
-	time=$(date +%F_%H%M%S_%N)
-	if [ -e "$HOME/.config/mpv" ]; then
-		mv ~/.config/mpv ~/.config/mpv-backup-"$time"
-	fi
-	unzip ~/.dots/mpv-config-linux.zip -d ~/.dots/mpv-"$time"
+  if [ ! -e "$HOME/.dots/mpv-config-linux.zip" ]; then
+    curl -L https://github.com/noelsimbolon/mpv-config/releases/download/v1.0.5/mpv-config-linux.zip >~/.dots/mpv-config-linux.zip
+  fi
+  time=$(date +%F_%H%M%S_%N)
+  if [ -e "$HOME/.config/mpv" ]; then
+    mv ~/.config/mpv ~/.config/mpv-backup-"$time"
+  fi
+  unzip ~/.dots/mpv-config-linux.zip -d ~/.dots/mpv-"$time"
   mv ~/.dots/mpv-"$time"/mpv-config-linux ~/.config/mpv
   rm -rf ~/.dots/mpv-"$time"
 }
 
 while [[ "$#" -gt 0 ]]; do
-	curr=$1
-	shift
+  curr=$1
+  shift
 
-	case "$curr" in
-	"-mpv") mpvConfig ;;
-	"-fnm") fnmConfig ;;
-	"-docker") dockerConfig ;;
-	"-postgres") psqlConfig ;;
-	"-redis") redisConfig ;;
-	"-firefox") firefoxConfig ;;
-	"-zsh") ZshCompletions ;;
-	"-libx") libxftSetup ;;
-	"-all")
-		dockerConfig
-		psqlConfig
-		redisConfig
-		firefoxConfig
-		fnmConfig
-		;;
-	*) echo "Unavailable command... $curr" ;;
-	esac
+  case "$curr" in
+  "-mpv") mpvConfig ;;
+  "-fnm") fnmConfig ;;
+  "-docker") dockerConfig ;;
+  "-postgres") psqlConfig ;;
+  "-redis") redisConfig ;;
+  "-firefox") firefoxConfig ;;
+  "-zsh") ZshCompletions ;;
+  "-libx") libxftSetup ;;
+  "-all")
+    dockerConfig
+    psqlConfig
+    redisConfig
+    firefoxConfig
+    fnmConfig
+    ;;
+  *) echo "Unavailable command... $curr" ;;
+  esac
 done
