@@ -2,6 +2,7 @@
 
 mkdir -p ~/.dots/clip
 clip_history=~/.dots/clip/clip_hist.txt
+pass_history=~/.dots/clip/pass.txt
 
 if [ ! -f $clip_history ]; then
 	touch $clip_history
@@ -30,6 +31,12 @@ load() {
 	notify-send -t 2000 "Clipboard" "copied!"
 }
 
+pass() {
+	clip=$(cat $pass_history | tr -d '\n')
+  echo "$clip" | xclip -sel c
+	notify-send -t 2000 "Password" "copied!"
+}
+
 while [ "$#" -gt 0 ]; do
 	curr=$1
 	shift
@@ -37,5 +44,6 @@ while [ "$#" -gt 0 ]; do
 	case "$curr" in
 	-s) save ;;
 	-l) load ;;
+	-p) pass ;;
 	esac
 done
