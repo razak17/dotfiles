@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-file=$(fd -e mp3 -e m4a "" ~/Sync/Music -p -t f | sort | sed "s|^/home/razak/Sync/Music/||" | dmenu -b -i -l 1) || exit 0
+file=$(fd -e mp3 -e m4a "" ~/Sync/Music -p -t f | sort | sed "s|^/home/razak/Sync/Music/||" | dmenu -l 10 -p "Choose song:") || exit 0
 
 notify-send "Playing $file" && mpc insert "$file" && mpc next >/dev/null && mpc play >/dev/null
