@@ -21,6 +21,7 @@ wmpid() { # This function is needed if there are multiple instances of the windo
 }
 
 cmds="\
+💢 kill		ps -u $USER -o pid,comm | dmenu -ij-l 10  -p Kill: | awk '{print $1}' | xargs -r kill
 🔒 lock		slock
 ♻ renew 	kill -HUP $(wmpid)
 🚪 leave	${kx:-killall xinit}
@@ -31,7 +32,7 @@ cmds="\
 📺 display off	${off:-xset dpms force off}"
 
 # choices="$(echo "$cmds" | cut -d'	' -f 1)" || exit 1
-choices=$(echo "$cmds" | cut -d'	' -f 1 | dmenu -l 10 -p "Choose :") || exit 1
+choices=$(echo "$cmds" | cut -d'	' -f 1 | dmenu -l 10 -p "Choose:") || exit 1
 
 # echo $choices
 eval "$(echo "$cmds" | grep "^$choices	" | cut -d '	' -f2-)"
