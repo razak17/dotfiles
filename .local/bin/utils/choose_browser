@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Define an array of browsers to check
-browsers=("brave" "brave-nightly" "firefox" "firefox-nightly" "floorp" "mercury-browser" "thorium-browser-sse3" "zen")
+browsers=("brave" "brave-nightly" "firefox" "firefox-nightly" "floorp" "mercury-browser" "thorium-browser-sse3" "waterfox" "zen")
 
 # Initialize an empty string to hold available browsers
 available_browsers=""
@@ -18,7 +18,7 @@ done
 available_browsers=$(echo "$available_browsers" | sed '/./,$!d')
 
 # Use dmenu to select a browser
-choice=$(echo "$available_browsers" | dmenu -l 10 -p "Choose browser") || exit 1
+choice=$(echo "$available_browsers" | dmenu -l 10 -p "Choose browser:") || exit 1
 
 # Exit if no choice is made
 if [ -z "$choice" ]; then
@@ -27,13 +27,14 @@ fi
 
 # Launch the selected browser with appropriate profile if needed
 case "$choice" in
-  brave) brave ;;
-  brave-nightly) brave-nightly ;;
-  firefox) firefox -P "Main" ;;
-  firefox-nightly) firefox-nightly -P "Main" ;;
-  floorp) floorp -p "Main" ;;
-  mercury-browser) mercury-browser ;;
-  thorium-browser-sse3) thorium-browser-sse3 ;;
-  zen) zen ;;
-  *) notify-send -u critical -t 2000 "Browsers" "That browser does not exist" ;;
+brave) brave ;;
+brave-nightly) brave-nightly ;;
+firefox) firefox ;;
+firefox-nightly) ;;
+floorp) floorp ;;
+mercury-browser) mercury-browser ;;
+thorium-browser-sse3) thorium-browser-sse3 ;;
+waterfox) waterfox ;;
+zen) zen ;;
+*) notify-send -u critical -t 2000 "Browsers" "That browser does not exist" ;;
 esac
