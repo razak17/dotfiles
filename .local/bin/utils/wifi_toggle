@@ -1,21 +1,55 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-toggle_network() {
+WHICH="NetworkManager" # NetworkManager or wpa_supplicant
+SCRIPT_NAME="$(basename "$0")"
+
+# Display usage information
+usage() {
+  cat <<EOF
+Usage: $SCRIPT_NAME [OPTION] [NETWORK_ID/SSID]
+
+Network management utility supporting NetworkManager and wpa_supplicant.
+
+OPTIONS:
+    -e [NETWORK]    Enable/connect to network
+    -d [NETWORK]    Disable/disconnect from network
+    -l              List available networks
+    -h              Show this help
+
+EXAMPLES:
+    $SCRIPT_NAME -l                   # List networks
+    $SCRIPT_NAME -e "MyWiFi"          # Connect to MyWiFi
+    $SCRIPT_NAME -d                   # Interactive disconnect
+
+EOF
+}
+
+network_manager() {
+  local action="$1"
+  local ssid="$2"
+
+  if [[ -z "$ssid" ]]; then
+    sudo nmcli device wifi list
+    printf "Enter SSID to %s: " "$action"
+    read -r ssid
+  fi
+
+  sudo nmcli connection "${action}" "$ssid" || exit
+  sudo nmcli device wifi list || exit
+}
+
+wpa_supplicant() {
   action=$1
   network_id=$2
-  if [[ -n "$network_id" ]]; then
+
+  if [[ -z "$ssid" ]]; then
     sudo wpa_cli "${action}_network" "$network_id" || exit
-    sudo wpa_cli list_networks || exit
-    return
+    printf "Enter network id to %s: " "$action"
+    read -r ssid
   fi
+
+  sudo wpa_cli "${action}_network" "$network_id" || exit
   sudo wpa_cli list_networks || exit
-  printf "Enter network id to %s: " "$action"
-  read -r ans
-  if [ -z "$ans" ]; then
-    echo "Network id was not provided!"
-  else
-    sudo wpa_cli "${action}_network" "$ans" || exit
-  fi
 }
 
 while [ "$#" -gt 0 ]; do
@@ -23,13 +57,29 @@ while [ "$#" -gt 0 ]; do
   shift
 
   case "$curr" in
+  -h | --help)
+    usage
+    exit 0
+    ;;
   -e)
-    network_id=$1
-    toggle_network enable $network_id ;;
+    if [[ "$WHICH" == "NetworkManager" ]]; then
+      network_manager up "$1"
+      exit
+    fi
+    wpa_supplicant enable "$1"
+    ;;
   -d)
-    network_id=$1
-    toggle_network disable $network_id ;;
+    if [[ "$WHICH" == "NetworkManager" ]]; then
+      network_manager down "$1"
+      exit
+    fi
+    wpa_supplicant disable "$1"
+    ;;
   -l)
+    if [[ "$WHICH" == "NetworkManager" ]]; then
+      sudo nmcli device wifi list || exit
+      exit
+    fi
     sudo wpa_cli list_networks
     ;;
   esac
