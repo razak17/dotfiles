@@ -22,6 +22,18 @@ if [ -f $HOME/.fzf/bin/fzf ]; then
   source <(fzf --zsh)
 fi
 
+# java
+export JAVA_HOME="/usr/lib/jvm/java-24-openjdk";
+
+# axis2
+export AXIS2_HOME="$HOME/axis2/core/axis2-2.0.0";
+path+=(
+  "$AXIS2_HOME/bin"
+)
+
+# tomcat
+export CATALINA_HOME="$HOME/tomcat/apache-tomcat-11.0.8/";
+
 # g - go version manager
 export GOPATH="$HOME/go";
 export GOROOT="$HOME/.go";
