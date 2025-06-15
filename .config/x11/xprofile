@@ -27,5 +27,5 @@ dwmblocks &
 ~/.local/bin/startup/imem-notify &
 ~/.local/bin/startup/ipipewire &
 picom &
-syncthing serve --no-browser &
+~/.local/bin/startup/isyncthing &
 # a2ln --pairing-ip 192.168.90.176 --pairing-port 23045 &
