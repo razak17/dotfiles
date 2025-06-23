@@ -38,17 +38,19 @@ zstyle ':vcs_info:git:*' formats "%{$fg[blue]%}%{$fg[red]%}%m%u%c%{$fg[blue]%} (
 
 function estyle-cfc() {
     local d
-    local -a cfc_dirs
-    cfc_dirs=(
-        ${HOME}/personal/workspace/*(/)
-        ${HOME}/docs/
+    local -a exclude_dirs
+    exclude_dirs=(
+        # ${HOME}/.dots/a_large_project/*(/)
+        ${HOME}/.dots/a_large_project/
+        ${HOME}/.dots/neovim/
+        # Add other directories you want to exclude from enhanced git info
     )
 
-    for d in ${cfc_dirs}; do
+    for d in ${exclude_dirs}; do
         d=${d%/##}
-        [[ $PWD == $d(|/*) ]] && return 0
+        [[ $PWD == $d(|/*) ]] && return 1
     done
-    return 1
+    return 0
 }
 
 __in_git() {
