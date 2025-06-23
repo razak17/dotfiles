@@ -55,6 +55,7 @@ alias vn="rvim -nice"
 alias vL="rvim leetcode.nvim"
 alias vd="rvim --neovide"
 alias nn="NVIM_APPNAME=nativevim nvim"
+alias rsha="rm -f ~/.local/state/rvim/shada/main.shada.tmp.x"
 
 alias onv="nvim_oldfiles"
 alias orv="rvim_oldfiles"
