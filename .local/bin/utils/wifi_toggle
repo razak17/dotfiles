@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-WHICH="NetworkManager" # NetworkManager or wpa_supplicant
+WHICH="wpa_supplicant" # NetworkManager or wpa_supplicant
 SCRIPT_NAME="$(basename "$0")"
 
 # Display usage information
@@ -42,10 +42,10 @@ wpa_supplicant() {
   action=$1
   network_id=$2
 
-  if [[ -z "$ssid" ]]; then
+  if [[ -z "$network_id" ]]; then
     sudo wpa_cli "${action}_network" "$network_id" || exit
     printf "Enter network id to %s: " "$action"
-    read -r ssid
+    read -r network_id
   fi
 
   sudo wpa_cli "${action}_network" "$network_id" || exit
