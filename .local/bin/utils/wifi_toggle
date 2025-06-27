@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
 
-WHICH="wpa_supplicant" # NetworkManager or wpa_supplicant
 SCRIPT_NAME="$(basename "$0")"
 
 # Display usage information
 usage() {
   cat <<EOF
-Usage: $SCRIPT_NAME [OPTION] [NETWORK_ID/SSID]
+Usage: $SCRIPT_NAME [BACKEND] [OPTION] [NETWORK_ID/SSID]
 
 Network management utility supporting NetworkManager and wpa_supplicant.
+
+BACKENDS:
+    nm              Use NetworkManager backend
+    wp              Use wpa_supplicant backend
 
 OPTIONS:
     -e [NETWORK]    Enable/connect to network
@@ -17,9 +20,11 @@ OPTIONS:
     -h              Show this help
 
 EXAMPLES:
-    $SCRIPT_NAME -l                   # List networks
-    $SCRIPT_NAME -e "MyWiFi"          # Connect to MyWiFi
-    $SCRIPT_NAME -d                   # Interactive disconnect
+    $SCRIPT_NAME nm -l                   # List networks (NetworkManager)
+    $SCRIPT_NAME nm -e "MyWiFi"          # Connect to MyWiFi (NetworkManager)
+    $SCRIPT_NAME wp -l                   # List networks (wpa_supplicant)
+    $SCRIPT_NAME wp -e 0                 # Connect to network_id 0 (wpa_supplicant)
+    $SCRIPT_NAME nm -d                   # Interactive disconnect (NetworkManager)
 
 EOF
 }
@@ -39,11 +44,11 @@ network_manager() {
 }
 
 wpa_supplicant() {
-  action=$1
-  network_id=$2
+  local action="$1"
+  local network_id="$2"
 
   if [[ -z "$network_id" ]]; then
-    sudo wpa_cli "${action}_network" "$network_id" || exit
+    sudo wpa_cli list_networks
     printf "Enter network id to %s: " "$action"
     read -r network_id
   fi
@@ -52,8 +57,39 @@ wpa_supplicant() {
   sudo wpa_cli list_networks || exit
 }
 
+# Check if we have at least one argument
+if [ "$#" -eq 0 ]; then
+  echo "Error: No backend specified"
+  usage
+  exit 1
+fi
+
+# Parse backend
+BACKEND="$1"
+shift
+
+case "$BACKEND" in
+nm)
+  WHICH="NetworkManager"
+  ;;
+wp)
+  WHICH="wpa_supplicant"
+  ;;
+-h | --help)
+  usage
+  exit 0
+  ;;
+*)
+  echo "Error: Unknown backend '$BACKEND'"
+  echo "Supported backends: nm, wp"
+  usage
+  exit 1
+  ;;
+esac
+
+# Parse remaining options
 while [ "$#" -gt 0 ]; do
-  curr=$1
+  curr="$1"
   shift
 
   case "$curr" in
@@ -64,16 +100,20 @@ while [ "$#" -gt 0 ]; do
   -e)
     if [[ "$WHICH" == "NetworkManager" ]]; then
       network_manager up "$1"
+    shift
       exit
     fi
     wpa_supplicant enable "$1"
+    shift
     ;;
   -d)
     if [[ "$WHICH" == "NetworkManager" ]]; then
       network_manager down "$1"
+    shift
       exit
     fi
     wpa_supplicant disable "$1"
+    shift
     ;;
   -l)
     if [[ "$WHICH" == "NetworkManager" ]]; then
@@ -81,6 +121,11 @@ while [ "$#" -gt 0 ]; do
       exit
     fi
     sudo wpa_cli list_networks
+    ;;
+  *)
+    echo "Error: Unknown option '$curr'"
+    usage
+    exit 1
     ;;
   esac
 done
