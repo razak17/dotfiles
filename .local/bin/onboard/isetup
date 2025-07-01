@@ -181,6 +181,10 @@ installDuckDB() {
   fi
 }
 
+installJackett() {
+  /opt && f=Jackett.Binaries.LinuxAMDx64.tar.gz && sudo wget -Nc https://github.com/Jackett/Jackett/releases/latest/download/"$f" && sudo tar -xzf "$f" && sudo rm -f "$f" && cd Jackett* && sudo chown $(whoami):$(id -g) -R "/opt/Jackett"
+}
+
 while [[ "$#" -gt 0 ]]; do
 	curr=$1
 	shift
@@ -200,6 +204,7 @@ while [[ "$#" -gt 0 ]]; do
 	"-tmux") installTmuxPlugins ;;
 	"-rocks") installLuarocks ;;
 	"-vimongo") installViMongo ;;
+	"-jackett") installJackett ;;
 	"-doas")
 		arg="$@"
 		doasSetup "$arg"
