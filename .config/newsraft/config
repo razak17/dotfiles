@@ -1,6 +1,22 @@
-bind m exec mpv "%l"
-bind M exec mpv --ytdl-format="best[height<=360]" "%l"
-bind W exec yw "%l"
-bind C exec cclip "%l"
-bind A exec mpv --ytdl-format="bestaudio" "%l"
-bind f exec nsxiv "%l"
+# https://newsraft.codeberg.page/#ACTIONS
+
+bind ? exec man newsraft
+bind m exec setsid mpv --ytdl-format="best[height<=360]" --terminal=no "%l" &
+bind M exec setsid mpv --terminal=no "%l" &
+bind a exec setsid mpv --ytdl-format="bestaudio" --terminal=no "%l" &
+bind f exec setsid nsxiv "%l"
+bind y copy-to-clipboard
+bind I mark-important
+bind U mark-unimportant
+bind n jump-to-next-unread
+bind p jump-to-prev-unread
+bind N jump-to-next-important
+bind P jump-to-prev-important
+bind t sort-by-time
+bind i sort-by-important
+bind a sort-by-alphabet
+bind u sort-by-unread
+bind d mark-read; jump-to-next
+bind D mark-unread; jump-to-next
+bind E toggle-explore-mode
+bind o open-in-browser
