@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+newsraft_history="~/.dots/clip/newsraft_hist.txt"
+
+text=$1
+
+if [ -z "$text" ]; then
+  printf "Enter text:\n"
+  read -r text
+fi
+
+if [ ! -z "$text" ]; then
+	echo "$text" >>$newsraft_history
+  echo "$text" | xclip -sel c
+  notify-send -t 2000 "'$text' has been copied to Clipboard"
+fi
