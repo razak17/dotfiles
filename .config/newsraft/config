@@ -1,4 +1,6 @@
 bind m exec mpv "%l"
 bind M exec mpv --ytdl-format="best[height<=360]" "%l"
+bind W exec yw "%l"
+bind C exec cclip "%l"
 bind A exec mpv --ytdl-format="bestaudio" "%l"
 bind f exec nsxiv "%l"
