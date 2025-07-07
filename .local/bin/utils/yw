@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+url=$1
+
+if [ -z "$url" ]; then
+  printf "Enter video url:\n"
+  read -r url
+fi
+
+if [ ! -z "$url" ]; then
+  nohup mpv --ytdl-format="best[height<=360]" "$url" > /dev/null 2>&1 &
+  disown
+  notify-send -t 2000 "Video will start playing soon."
+fi
