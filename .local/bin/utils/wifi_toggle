@@ -34,13 +34,13 @@ network_manager() {
   local ssid="$2"
 
   if [[ -z "$ssid" ]]; then
-    sudo nmcli device wifi list
+    nmcli device wifi list
     printf "Enter SSID to %s: " "$action"
     read -r ssid
   fi
 
   sudo nmcli connection "${action}" "$ssid" || exit
-  sudo nmcli device wifi list || exit
+  nmcli device wifi list || exit
 }
 
 wpa_supplicant() {
@@ -117,7 +117,7 @@ while [ "$#" -gt 0 ]; do
     ;;
   -l)
     if [[ "$WHICH" == "NetworkManager" ]]; then
-      sudo nmcli device wifi list || exit
+      nmcli device wifi list || exit
       exit
     fi
     sudo wpa_cli list_networks
