@@ -9,7 +9,7 @@ if [[ $# -eq 1 ]]; then
   X="tmux -L $socketName"
 fi
 
-selected=$(find "$ws"/coding "$ws"/rgt ~/.dots ~/.config ~/.local/share/rvim/lazy ~/.local/bin -mindepth 1 -maxdepth 2 -type d | fzf --no-sort -m)
+selected=$(find "$ws"/azubi "$ws"/coding "$ws"/rgt ~/.dots ~/.config ~/.local/share/rvim/lazy ~/.local/bin -mindepth 1 -maxdepth 4 -type d | fzf --no-sort -m)
 
 if [[ -z "$selected" ]]; then
   exit 0
