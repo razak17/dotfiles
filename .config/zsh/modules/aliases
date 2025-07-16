@@ -33,6 +33,11 @@ safe_cd () {
   fi
 }
 
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
+
 safe_alias rv rvim
 safe_alias pv pvim
 safe_alias rvlog rvimProfiling
@@ -69,8 +74,6 @@ else
   alias l='ls -lFh'     # size,show type,human readable
   alias l.="ls -A | egrep '^\.'"
 fi
-alias ...="cd ../../.."
-alias ....="cd ../../../.."
 alias ipadd="curl icanhazip.com/"
 
 # shell
