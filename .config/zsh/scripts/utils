@@ -97,6 +97,19 @@ buildnvim() {
   popd
 }
 
+function venv() {
+  if [ -z "$1" ]; then
+    echo "Usage: venv <name>"
+    return
+  fi
+
+  if ! [ -d "$1" ]; then
+    python3 -m venv "$1"
+  fi
+
+  source "$1/bin/activate"
+}
+
 zen_installer() {
   bash <(curl https://updates.zen-browser.app/appimage.sh) "$1"
 }
@@ -139,7 +152,7 @@ function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
   yazi "$@" --cwd-file="$tmp"
   if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-          builtin cd -- "$cwd"
+    builtin cd -- "$cwd"
   fi
   rm -f -- "$tmp"
 }
