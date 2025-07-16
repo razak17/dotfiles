@@ -67,6 +67,14 @@ usb1() {
   cd /mnt/usb1/
 }
 
+function gL() {
+  if command -v git-graph &>/dev/null; then
+    git-graph -s round
+  else
+    git log --oneline --graph --decorate --all
+  fi
+}
+
 buildnvim() {
   neovim_dir="$HOME/.dots/neovim"
   bin_dir="$HOME/.local/bin"
