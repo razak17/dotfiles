@@ -225,9 +225,9 @@ alias h="vm $HOME/.cache/zsh/.zsh_history"
 safe_edit rvz "$HOME/.zsh_history"
 safe_edit sec "$HOME/.dots/sensitive/secrets"
 safe_edit clip "$HOME/.dots/clip/clip_hist.txt"
-safe_edit links "$HOME/Sync/Android/MacroDroid/Text/Links.txt"
-safe_edit text "$HOME/Sync/Android/MacroDroid/Text/Text.txt"
-safe_edit apps "$HOME/Sync/Android/MacroDroid/Text/TopAndroidApps.txt"
+safe_edit links "$HOME/Sync/Backup/MacroDroid/Text/Links.txt"
+safe_edit text "$HOME/Sync/Backup/MacroDroid/Text/Text.txt"
+safe_edit apps "$HOME/Sync/Backup/MacroDroid/Text/TopAndroidApps.txt"
 
 # Docker and Docker Compose
 # alias idocker="systemctl start docker.service"
