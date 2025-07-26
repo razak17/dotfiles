@@ -1,38 +1,36 @@
 #!/bin/sh
 
 # A dmenu wrapper script for system functions.
-
-# For non-systemd init systems.
-# case "$(readlink -f /sbin/init)" in
-# 	*runit*) hib="sudo -A zzz" ;;
-# 	*openrc*) reb="sudo -A openrc-shutdown -r"; shut="sudo -A openrc-shutdown -p" ;;
-# esac
-
-# A dmenu wrapper script for system functions.
 export WM="dwm"
 case "$(readlink -f /sbin/init)" in
-*systemd*) ctl='systemctl' ;;
-*) ctl='loginctl' ;;
+	*systemd*) ctl='systemctl' ;;
+	*) ctl='loginctl' ;;
 esac
-wmpid() { # This function is needed if there are multiple instances of the window manager.
+
+wmpid(){ # This function is needed if there are multiple instances of the window manager.
 	tree="$(pstree -ps $$)"
 	tree="${tree#*$WM(}"
 	echo "${tree%%)*}"
 }
 
-cmds="\
-💢 kill		ps -u $USER -o pid,comm | dmenu -ij-l 10  -p Kill: | awk '{print $1}' | xargs -r kill
-🔒 lock		slock
-♻ renew 	kill -HUP $(wmpid)
-🚪 leave	${kx:-killall xinit}
-🐻 hibernate	${hib:-slock $ctl hibernate -i}
-💤 sleep	${sleep:-slock $ctl suspend -i}
-🔃 reboot	${reb:-sudo openrc-shutdown -rq now}
-🖥 shutdown	${die:-sudo openrc-shutdown -pq now}
-📺 display off	${off:-xset dpms force off}"
+lock(){
+    mpc pause
+    pauseallmpv
+    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+    kill -44 $(pidof dwmblocks)
+    slock
+    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+    kill -44 $(pidof dwmblocks)
+}
 
-# choices="$(echo "$cmds" | cut -d'	' -f 1)" || exit 1
-choices=$(echo "$cmds" | cut -d'	' -f 1 | dmenu -l 10 -p "Choose:") || exit 1
-
-# echo $choices
-eval "$(echo "$cmds" | grep "^$choices	" | cut -d '	' -f2-)"
+case "$(printf "🔒 lock\n🚪 leave $WM\n♻️ renew $WM\n🐻 hibernate\n🔃 reboot\n🖥️shutdown\n💤 sleep\n📺 display off" | dmenu -l 10 -p 'Choose: ')" in
+	'🔒 lock') lock ;;
+	"🚪 leave $WM") kill -TERM "$(wmpid)" ;;
+	"♻️ renew $WM") kill -HUP "$(wmpid)" ;;
+	'🐻 hibernate') slock $ctl hibernate -i ;;
+	'💤 sleep') slock $ctl suspend -i ;;
+	'🔃 reboot') $ctl reboot -i ;;
+	'🖥️shutdown') $ctl poweroff -i ;;
+	'📺 display off') xset dpms force off ;;
+	*) exit 1 ;;
+esac
