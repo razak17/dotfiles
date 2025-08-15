@@ -37,6 +37,7 @@ autoload zmv # builtin zsh rename command
 #-------------------------------------------------------------------------------
 add_completion 'conda-zsh-completion' false
 add_completion 'fnm'
+add_completion 'poetry'
 add_completion 'pass'
 add_completion 'pnpm'
 #-------------------------------------------------------------------------------
