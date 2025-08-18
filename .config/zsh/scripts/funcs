@@ -57,6 +57,16 @@ function comp() {
   tar cvzf "$DATE-$@.tar.gz" "$@"
 }
 
+# Used for ignoring changes to files tracked in git
+function ignore() {
+  git update-index --skip-worktree $1
+}
+
+
+function unignore() {
+  git update-index --no-skip-worktree $1
+}
+
 function colours() {
   for i in {0..255}; do
     printf "\x1b[38;5;${i}m colour${i}"
