@@ -1,4 +1,5 @@
 # https://newsraft.codeberg.page/#ACTIONS
+# https://codeberg.org/newsraft/newsraft
 
 bind ? exec man newsraft
 bind m exec setsid mpv --ytdl-format="best[height<=360]" --terminal=no "%l" &
