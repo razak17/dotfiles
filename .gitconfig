@@ -44,3 +44,5 @@
 	insteadOf = git://
 [url "https://github.com/"]
 	insteadOf = git@github.com:
+[credential "github.com"]
+	useHttpPath = true
