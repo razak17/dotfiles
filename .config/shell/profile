@@ -127,4 +127,12 @@ if [ -f "$HOME/.duckdb/cli/latest/duckdb" ]; then
   )
 fi
 
+# opencode
+if [ -e "$HOME/.opencode/bin/opencode" ]; then
+  export OPENCODE_PATH="$HOME/.opencode/"
+  path+=(
+  "$OPENCODE_PATH/bin"
+  )
+fi
+
 export PATH
