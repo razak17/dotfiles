@@ -2,7 +2,8 @@
 
 mkdir -p ~/.dots/clip
 clip_history=~/.dots/clip/clip_hist.txt
-pass_history=~/.dots/clip/pass.txt
+pass_bw=~/.dots/clip/pass.txt
+razak17_token=~/.dots/clip/github_razak17.txt
 
 if [ ! -f $clip_history ]; then
 	touch $clip_history
@@ -31,8 +32,14 @@ load() {
 	notify-send -t 2000 "Clipboard" "copied!"
 }
 
+gh_razak17() {
+	clip=$(cat $razak17_token | tr -d '\n')
+  echo "$clip" | xclip -sel c
+	notify-send -t 2000 "Token" "copied!"
+}
+
 pass() {
-	clip=$(cat $pass_history | tr -d '\n')
+	clip=$(cat $pass_bw | tr -d '\n')
   echo "$clip" | xclip -sel c
 	notify-send -t 2000 "Password" "copied!"
 }
@@ -45,5 +52,6 @@ while [ "$#" -gt 0 ]; do
 	-s) save ;;
 	-l) load ;;
 	-p) pass ;;
+  -g) gh_razak17 ;;
 	esac
 done
