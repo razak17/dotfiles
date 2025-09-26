@@ -273,7 +273,7 @@ alias fk="ftmux -kp"
 alias fkk="ftmux -k"
 alias fs="ftmux -s"
 alias dm='dmenumount'
-alias du='dmenuumount'
+alias dum='dmenuumount'
 
 alias ywa="yarn watch"
 alias esft="eslint_d --fix"
@@ -318,7 +318,7 @@ safe_cd cdco "$XDG_CONFIG_HOME"
 safe_cd cdmo "$HOME/.mozilla/firefox/profiles"
 safe_cd dw "$HOME/Downloads"
 safe_cd sy "$HOME/Sync"
-safe_cd res "$HOME/Sync/Docs/Resume"
+safe_cd res "$HOME/Sync/Docs/Work/Resume"
 safe_cd dnv "$HOME/.dots/nvim"
 safe_cd vids "$HOME/Videos"
 safe_cd ws "$ws"
