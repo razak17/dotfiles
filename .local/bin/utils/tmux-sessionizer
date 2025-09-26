@@ -4,16 +4,31 @@
 X="tmux"
 ws="$HOME/personal/workspace"
 
+DIRS=(
+"$ws/azubi"
+"$ws/coding"
+"$ws/rgt"
+"$ws/coding/code"
+"$ws/coding/me"
+"$HOME/.dots"
+"$HOME/.dots/dots"
+"$HOME/.config"
+"$HOME/.local/bin/"
+"$HOME/.local/share/rvim/lazy"
+)
+
 if [[ $# -eq 1 ]]; then
   socketName="$1"
   X="tmux -L $socketName"
 fi
 
-selected=$(find "$ws"/azubi "$ws"/coding "$ws"/rgt ~/.dots ~/.config ~/.local/share/rvim/lazy ~/.local/bin -mindepth 1 -maxdepth 4 -type d | fzf --no-sort -m)
+selected=$(find "${DIRS[@]}" -mindepth 1 -maxdepth 2 -type d | sed "s|^$HOME/||" | fzf --no-sort -m)
 
 if [[ -z "$selected" ]]; then
   exit 0
 fi
+
+selected="$HOME/$selected"
 
 sessions=$($X list-sessions -F \#S)
 
