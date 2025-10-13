@@ -6,11 +6,6 @@
     lyrics_dir: Some("~/Sync/Music/Lyrics"),
     password: None,
     theme: "catppuccin_mocha",
-
-
-
-
-
     on_song_change: ["~/.config/rmpc/increment_play_count"],
     volume_step: 5,
     max_fps: 30,
@@ -38,9 +33,10 @@
             "1":       SwitchToTab("Queue"),
             "2":       SwitchToTab("Artists"),
             "3":       SwitchToTab("Albums"),
-            "4":       SwitchToTab("Search"),
-            "5":       SwitchToTab("Directories"),
-            "6":       SwitchToTab("Lyrics"),
+            "4":       SwitchToTab("Playlists"),
+            "5":       SwitchToTab("Search"),
+            "6":       SwitchToTab("Directories"),
+            "7":       SwitchToTab("Lyrics"),
             "q":       Quit,
             ">":       NextTrack,
             "<":       PreviousTrack,
@@ -133,6 +129,10 @@
         (
             name: "Albums",
             pane: Pane(Albums),
+        ),
+        (
+            name: "Playlists",
+            pane: Pane(Playlists),
         ),
         (
             name: "Search",
