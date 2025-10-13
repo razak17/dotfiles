@@ -64,7 +64,7 @@ function +vi-git-untracked() {
   emulate -L zsh
   if __in_git; then
     if [[ -n $(git ls-files --directory --no-empty-directory --exclude-standard --others 2> /dev/null) ]]; then
-      hook_com[unstaged]+="%F{blue} %f"
+      hook_com[unstaged]+="%F{blue} ?%f" # 
     fi
   fi
 }
@@ -73,7 +73,7 @@ function +vi-git-stash() {
   emulate -L zsh
   if __in_git; then
     if [[ -n $(git rev-list --walk-reflogs --count refs/stash 2> /dev/null) ]]; then
-      hook_com[unstaged]+=" %F{yellow}󰋻%f"
+      hook_com[unstaged]+="%F{yellow} $%f" # 󰋻
     fi
   fi
 }
