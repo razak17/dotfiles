@@ -29,10 +29,10 @@ fi
 [ "$(cat /sys/class/net/e*/operstate 2>/dev/null)" = 'up' ] && ethericon="🌐" || ethericon=""
 
 # TUN
-[ -n "$(cat /sys/class/net/tun*/operstate 2>/dev/null)" ] && tunicon=" 🔒"
+# [ -n "$(cat /sys/class/net/tun*/operstate 2>/dev/null)" ] && tunicon=" 🔒"
 
 # USB
-# [ -n "$(cat /sys/class/net/u*/operstate 2>/dev/null)" ] && tunicon=" 󰄡" # 💻
+[ -n "$(cat /sys/class/net/u*/operstate 2>/dev/null)" ] && tunicon=" 󰄡" # 💻
 
 # USB
 [ -n "$(cat /sys/class/net/eth1/operstate 2>/dev/null)" ] && tunicon=" 󰄡" # 💻
