@@ -20,7 +20,7 @@ safe_edit() {
   rhs=$2
   editor="$TEXT_EDITOR"
   if [[ "$TEXT_EDITOR" == "rvim" ]]; then
-    editor="$TEXT_EDITOR -no-min"
+    editor="rvim --coding"
   fi
   alias "$lhs"="$editor $rhs"
 }
@@ -50,12 +50,12 @@ safe_alias vsc "vscodium ." vscodium
 safe_alias wl 'iwctl station list' iwctl
 alias vm="rvim -no-cmp --no-git"
 alias vg="rvim -no-cmp"
-alias vc="rvim -no-min"
+alias vc="rvim -no-min --coding"
 alias vts="rvim -no-min -ts-extra"
-alias vai="rvim -no-min -ts-extra --ai"
-alias vl="rvim -no-min -ts-extra --lsp"
-alias v="rvim -no-min -ts-extra --lsp --ai"
-alias vf="rvim -no-min -ts-extra --lsp --ai -nice"
+alias vai="rvim -no-min -ts-extra --coding --ai"
+alias vl="rvim -no-min -ts-extra --coding --lsp"
+alias v="rvim -no-min -ts-extra --coding --lsp --ai"
+alias vf="rvim -no-min -ts-extra --coding --lsp --ai -nice"
 alias vn="rvim -nice"
 alias vL="rvim leetcode.nvim"
 alias vd="rvim --neovide"
