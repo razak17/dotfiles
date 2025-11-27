@@ -49,11 +49,12 @@ safe_alias ew toilet
 safe_alias vsc "vscodium ." vscodium
 safe_alias wl 'iwctl station list' iwctl
 alias vm="rvim -no-cmp --no-git"
-alias vg="rvim -no-cmp"
+alias vmc="rvim --coding"
+alias vmai="rvim -ts-extra --coding --ai"
+alias vma="rvim -ts-extra --coding --lsp --ai"
 alias vc="rvim -no-min --coding"
 alias vts="rvim -no-min -ts-extra"
 alias vai="rvim -no-min -ts-extra --coding --ai"
-alias vl="rvim -no-min -ts-extra --coding --lsp"
 alias v="rvim -no-min -ts-extra --coding --lsp --ai"
 alias vf="rvim -no-min -ts-extra --coding --lsp --ai -nice"
 alias vn="rvim -nice"
