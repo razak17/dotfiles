@@ -34,7 +34,7 @@ load() {
 
 gh_razak17() {
 	clip=$(cat $razak17_token | tr -d '\n')
-  echo "$clip" | xclip -sel c
+	printf '%s' "$clip" | xclip -sel c
 	notify-send -t 2000 "Token" "copied!"
 }
 
