@@ -38,6 +38,7 @@ alias -g ....='../../..'
 alias -g .....='../../../..'
 alias -g ......='../../../../..'
 
+safe_alias v rvim
 safe_alias rv rvim
 safe_alias pv pvim
 safe_alias rvlog rvimProfiling
@@ -50,14 +51,17 @@ safe_alias vsc "vscodium ." vscodium
 safe_alias wl 'iwctl station list' iwctl
 alias vm="rvim -no-cmp --no-git"
 alias vmc="rvim --coding"
+alias vmts="rvim -ts-extra"
 alias vmai="rvim -ts-extra --coding --ai"
 alias vma="rvim -ts-extra --coding --lsp --ai"
+alias vmf="rvim -ts-extra --coding --lsp --ai -nice"
+alias vmn="rvim -nice"
 alias vc="rvim -no-min --coding"
 alias vts="rvim -no-min -ts-extra"
 alias vai="rvim -no-min -ts-extra --coding --ai"
-alias v="rvim -no-min -ts-extra --coding --lsp --ai"
+alias va="rvim -no-min -ts-extra --coding --lsp --ai"
 alias vf="rvim -no-min -ts-extra --coding --lsp --ai -nice"
-alias vn="rvim -nice"
+alias vn="rvim -no-min -nice"
 alias vL="rvim leetcode.nvim"
 alias vd="rvim --neovide"
 alias nn="NVIM_APPNAME=nativevim nvim"
@@ -328,5 +332,6 @@ safe_cd usb "$usb"
 safe_cd vt "$vt"
 safe_cd cdcc "$ws/coding"
 safe_cd notes "$HOME/notes"
+safe_cd ob "$HOME/Sync/Notes/obsidian"
 safe_cd docs "$HOME/docs"
 safe_cd dots "$HOME/.dots"
