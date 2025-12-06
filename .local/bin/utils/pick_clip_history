@@ -27,20 +27,20 @@ load() {
 		# notify-send -u critical -t 2000 "Clipboard" "nothing selected!"
 		exit 0
 	fi
-	echo "$clip" | xclip -sel c
+	# echo "$clip" | xclip -sel c
+	printf '%s' "$clip" | xclip -sel c
 	# notify-send -t 2000 "Clipboard" "${clip} copied!"
 	notify-send -t 2000 "Clipboard" "copied!"
 }
 
 gh_razak17() {
 	clip=$(cat $razak17_token | tr -d '\n')
-	printf '%s' "$clip" | xclip -sel c
 	notify-send -t 2000 "Token" "copied!"
 }
 
 pass() {
 	clip=$(cat $pass_bw | tr -d '\n')
-  echo "$clip" | xclip -sel c
+	printf '%s' "$clip" | xclip -sel c
 	notify-send -t 2000 "Password" "copied!"
 }
 
