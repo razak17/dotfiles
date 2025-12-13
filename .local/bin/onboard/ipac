@@ -4,7 +4,7 @@ installAurPackages() {
 	# notion-app autokey-gtk devour figma-linux onlyoffice-bin insomnia-bin prisma-studio-appimage
 	paru -S bibata-cursor-theme toilet neovide linux-wifi-hotspot fastfetch \
     ttf-joypixels ttf-ancient-fonts mongodb-compass docker-buildx mercury \
-    slack-desktop rmtrash bruno thorium-browser-bin crow-translate yazi \
+    slack-desktop rmtrash bruno helium-browser-bin crow-translate yazi \
     visual-studio-code-bin jellyfin-server jellyfin-web jellyfin-ffmpeg \
     beekeeper cloc localsend-bin stpv w3m zen-browser firefox-nightly-bin \
     floorp-bin newsraft brave-nighly-bin autorandr lrcget-bin obsidian dysk \

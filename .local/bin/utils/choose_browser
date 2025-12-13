@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Define an array of browsers to check
-browsers=("brave" "brave-nightly" "firefox" "firefox-nightly" "floorp" "mercury-browser" "qutebrowser" "thorium-browser-sse3" "waterfox" "zen")
+browsers=("brave" "brave-nightly" "firefox" "firefox-nightly" "floorp" "helium-browser" "mercury-browser" "qutebrowser" "thorium-browser-sse3" "waterfox" "zen")
 
 # Initialize an empty string to hold available browsers
 available_browsers=""
@@ -35,6 +35,7 @@ floorp) floorp ;;
 mercury-browser) mercury-browser ;;
 qutebrowser) qutebrowser ;;
 thorium-browser-sse3) thorium-browser-sse3 ;;
+helium-browser) helium-browser ;;
 waterfox) waterfox ;;
 zen) zen ;;
 *) notify-send -u critical -t 2000 "Browsers" "That browser does not exist" ;;
