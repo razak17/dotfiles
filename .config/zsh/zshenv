@@ -76,7 +76,7 @@ export FZF_CTRL_R_OPTS="
 # History
 export HIST_STAMPS="mm/dd/yyyy"
 export HISTFILE=$ZSH_CACHE_DIR/.zsh_history
-export HISTSIZE=500000
+export HISTSIZE=1500000
 export SAVEHIST=500000
 export HISTDUP=erase
 
