@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+folder=$HOME/Sync/Notes/obsidian
+
+file=$(fd -e md "" ~/Sync/Notes/obsidian -p -t f | sort | sed "s|^/home/razak/Sync/Notes/obsidian||" | dmenu -l 10 -p "Choose note:") || exit 0
+
+notify-send "Opening $file" && setsid -f "$TERMINAL" -e $TEXT_EDITOR "$folder$file" >/dev/null
