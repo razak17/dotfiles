@@ -1,7 +1,8 @@
 #!/bin/sh
 
-if [[ ! $+commands[rvim] ]]; then
+if [ "$TEXT_EDITOR" != 'rvim' ]; then
+  notify-send "Only works when rvim is set as TEXT_EDITOR. Current TEXT_EDITOR is $TEXT_EDITOR"
   exit 1
 fi
 
-rvim -no-min -c "Obsidian search"
+$TEXT_EDITOR -no-min -c "Obsidian search"
