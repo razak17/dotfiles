@@ -12,3 +12,10 @@ if [ ! -z "$url" ]; then
   disown
   notify-send -t 2000 "Video will start playing shortly."
 fi
+
+# https://www.youtube.com/watch?v=BwvSM40LJio&t=-780
+# https://www.youtube.com/watch?v=BwvSM40LJio&t=0
+# https://www.youtube.com/watch?v=VIDEO_ID&t=90
+# https://www.youtube.com/watch?v=VIDEO_ID&t=1m30s
+# https://www.youtube.com/watch?v=VIDEO_ID&t=1h2m30s
+# https://www.youtube.com/watch?v=VIDEO_ID&t=-3600

@@ -76,6 +76,14 @@ installAsdf() {
 	fi
 }
 
+installClipmenu() {
+	if [ ! -d "$HOME/.dots/clipmenu" ]; then
+    git clone https://github.com/cdown/clipmenu $HOME/.dots/clipmenu
+    pushd "$HOME"/.dots/clipmenu || exit
+    sudo make clean install
+	fi
+}
+
 installFnm() {
 	if [ ! -d "$HOME/.fnm" ]; then
 		curl -fsSL https://fnm.vercel.app/install | bash

@@ -19,6 +19,7 @@ fi
 # exec /usr/lib/xdg-desktop-portal
 
 dwmblocks &
+clipmenud &
 ~/.local/bin/dwm/setbg --fav &
 ~/.local/bin/startup/itouch &
 ~/.local/bin/startup/ikeyboard &
