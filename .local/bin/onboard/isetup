@@ -202,6 +202,7 @@ while [[ "$#" -gt 0 ]]; do
 	"-deno") installDeno ;;
 	"-suck") installSuckless ;;
 	"-paru") installParu ;;
+	"-clip") installClipmenu ;;
 	"-asdf") installAsdf ;;
 	"-fnm") installFnm ;;
 	"-fnm-compe") fnmCompletions ;;
@@ -222,6 +223,7 @@ while [[ "$#" -gt 0 ]]; do
 		installZshPlugins
 		installTmuxPlugins
     installAsdf
+    installClipmenu
 		installFnm
 		installG
 		installFzf
