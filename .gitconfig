@@ -22,6 +22,9 @@
 [diff]
   colorMoved = default
 
+[pull]
+  autoSetupRemote = true
+
 [alias]
   st = status -s
   sta = status

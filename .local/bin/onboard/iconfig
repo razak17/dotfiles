@@ -64,6 +64,38 @@ psqlConfig() {
   # pg_upgrade -b /opt/pgsql-<PG_VERSION>/bin -B /usr/bin -d /var/lib/postgres/olddata -D /var/lib/postgres/data
 }
 
+upgradePostgres() {
+  new=$1 # Just the number eg. 18
+  old=$2 # Just the number eg. 17
+
+  new_version="/var/lib/postgres/data-$new"
+  old_version="/var/lib/postgres/data-$old"
+
+  # 1. Install the old PostgreSQL 17 binaries (needed for pg_upgrade)
+  # sudo pacman -S postgresql-old-upgrade
+
+  # 2. Create a new data directory for PostgreSQL 18
+  sudo mkdir -p "$new_version"
+  sudo chown postgres:postgres "$new_version"
+
+  # 3. Initialize new data directory with PostgreSQL 18
+  sudo -u postgres initdb -D "$new_version"
+
+  # 4. Run pg_upgrade
+  sudo -u postgres pg_upgrade \
+    --old-datadir=/var/lib/postgres/data \
+    --new-datadir="$new_version" \
+    --old-bindir="/opt/pgsql-$old/bin" \  # adjust path to where pg17 binaries are
+    --new-bindir=/usr/bin
+
+  # 5. If successful, swap directories
+  sudo mv /var/lib/postgres/data "$old_version-backup"
+  sudo mv "$new_version" /var/lib/postgres/data
+
+  # 6. Start PostgreSQL
+  sudo rc-service postgresql start
+}
+
 redisConfig() {
   sudo pacman -S redis valkey-openrc
   sudo rc-update add valkey-sentinel default
@@ -151,6 +183,12 @@ while [[ "$#" -gt 0 ]]; do
   "-fnm") fnmConfig ;;
   "-docker") dockerConfig ;;
   "-postgres") psqlConfig ;;
+  "-pgupgrade")
+    new=$1
+    old=$2
+    shift
+    shift
+    upgradePostgres $new $old ;;
   "-redis") redisConfig ;;
   "-firefox") firefoxConfig ;;
   "-zsh") ZshCompletions ;;
