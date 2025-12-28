@@ -5,14 +5,14 @@
 
 ## Installation
 
-You will need `git`
+You will need `curl`
 
 Run the install script. Files are cloned to `~/.dots/dotfiles` by default.
 
 NOTE: Installation is done using a bare repo.
 
 ```bash
-curl -s https://raw.githubusercontent.com/razak17/dotfiles/main/install.sh | sh
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/razak17/dotfiles/refs/heads/main/.config/dot-manager/first_install.sh)"
 
 ```
 Old files are stored in `~/.config-backup`
