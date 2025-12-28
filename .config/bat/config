@@ -4,7 +4,8 @@
 
 #  Run `bat --list-themes` for examples
 # --theme="OneHalfDark"
---theme="base16"
+# --theme="base16"
+--theme="Catppuccin Macchiato"
 
 --italic-text=always
 
