@@ -24,7 +24,11 @@ function add_completion() {
   [ "$2" = false ] && return
   if [ -d "$ZDOTDIR/plugins/$1" ]; then
     dir="plugins"
-    file_path=$(ls $ZDOTDIR/$dir/$1/_*)
+    if [ ! -z "$2" ]; then
+     file_path=$(ls $ZDOTDIR/$dir/$1/$2/_*)
+    else
+      file_path=$(ls $ZDOTDIR/$dir/$1/_*)
+    fi
   elif [ -d "$ZDOTDIR/completion/$1" ]; then
     dir="completion"
     file_path=$(ls $ZDOTDIR/$dir/$1/_*)
