@@ -1,3 +1,5 @@
 [user]
 	name = Abdul Razak
 	email = moabdulrazak17@gmail.com
+[include]
+	path = /home/razak/.config/git/gitconfig
