@@ -39,7 +39,7 @@ add_completion 'conda-zsh-completion' false
 add_completion 'fnm'
 add_completion 'poetry'
 add_completion 'pass'
-add_completion 'pnpm'
+add_completion 'pnpm' 'completions'
 #-------------------------------------------------------------------------------
 #   Modules
 #-------------------------------------------------------------------------------
@@ -58,6 +58,7 @@ fi
 # fnm
 if exists fnm; then
   eval "$(fnm env --use-on-cd)"
+  mkdir -p $ZSH_CACHE_DIR/completions
   add_plugin 'pnpm' # Needs to be loaded after fnm
 fi
 

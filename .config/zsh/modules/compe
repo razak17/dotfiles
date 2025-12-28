@@ -124,3 +124,5 @@ zstyle ':chpwd:*' recent-dirs-default yes
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 
 zstyle ':completion:*' menu no
+
+zstyle ":empresslabs:pnpm:completion" legacy-completion yes
