@@ -76,7 +76,7 @@ function gL() {
 }
 
 buildnvim() {
-  neovim_dir="$HOME/.dots/neovim"
+  NEOVIM_DIR="$HOME/.DOTS/NEOVIM"
   bin_dir="$HOME/.local/bin"
   [ ! -d $neovim_dir ] && git clone https://github.com/neovim/neovim $neovim_dir
   pushd $neovim_dir
@@ -164,4 +164,50 @@ copilot_models() {
   if [ -e "/tmp/models-$dd.json" ]; then
     $TEXT_EDITOR "/tmp/models-$dd.json"
   fi
+}
+
+upgrade_pg() {
+  new=$1 # Just the number eg. 18
+  old=$2 # Just the number eg. 17
+
+  new_version="/var/lib/postgres/data-$new"
+  old_version="/var/lib/postgres/data-$old"
+
+  # 1. Install the old PostgreSQL 17 binaries (needed for pg_upgrade)
+  sudo pacman -S --noconfirm postgresql-old-upgrade
+
+  # 2. Create a new data directory for PostgreSQL 18
+  sudo mkdir -p "$new_version"
+  sudo chown postgres:postgres "$new_version"
+
+  # 3. Initialize new data directory with PostgreSQL 18
+  sudo -u postgres initdb -D "$new_version"
+
+  # 4. Run pg_upgrade
+  sudo -u postgres pg_upgrade \
+    --old-datadir=/var/lib/postgres/data \
+    --new-datadir="$new_version" \
+    --old-bindir="/opt/pgsql-$old/bin" \  # adjust path to where pg17 binaries are
+    --new-bindir=/usr/bin
+
+  # 5. If successful, swap directories
+  sudo mv /var/lib/postgres/data "$old_version-backup"
+  sudo mv "$new_version" /var/lib/postgres/data
+
+  # 6. Start PostgreSQL
+  sudo rc-service postgresql start
+
+  # NOTE: The data directory was initialized by PostgreSQL version issue
+  # https://wiki.archlinux.org/title/PostgreSQL#Upgrading_PostgreSQL
+
+  # sudo pacman -Syu postgresql postgresql-libs postgresql-old-upgrade
+
+  # mv /var/lib/postgres/data /var/lib/postgres/olddata
+  # mkdir /var/lib/postgres/data /var/lib/postgres/tmp
+  # chown postgres:postgres /var/lib/postgres/data /var/lib/postgres/tmp
+
+  # sudo -iu postgres
+  # initdb --locale=en_US.UTF-8 -E UTF8 -D /var/lib/postgres/data
+
+  # pg_upgrade -b /opt/pgsql-<PG_VERSION>/bin -B /usr/bin -d /var/lib/postgres/olddata -D /var/lib/postgres/data
 }
