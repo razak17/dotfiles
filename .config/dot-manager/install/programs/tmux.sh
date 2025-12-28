@@ -6,7 +6,7 @@ install_tmux() {
   print_step "Installing Tmux"
 
   log "info" "Installing tmux via pacman..."
-  sudo pacman -S --noconfirm tmux
+  __install_package_arch tmux
 
   log "info" "Installing tmux plugins manager"
   if ! [ -d "$HOME"/.config/tmux/plugins/tpm ]; then
