@@ -42,7 +42,8 @@ install_versions() {
   fnm list
   fnm install v18.0.0
   fnm install v16.13.0
-  fnm default v16.13.0
+  fnm install v25.0.0
+  fnm default v25.0.0
 }
 
 install_fnm "$@"
