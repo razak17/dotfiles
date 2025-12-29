@@ -36,7 +36,7 @@ install_zen() {
   fi
 
   [ -e "$HOME/.local/bin/$ZEN_BIN" ] && mv "$HOME/.local/bin/$ZEN_BIN" "$HOME/.local/bin/$ZEN_BIN-$(date +%F_%H%M%S_%N)"
-  cp "$HOME/.local/share/AppImage/$ZEN_APP_IMAGE.AppImage" "$HOME/.local/bin/$ZEN_BIN"
+  ln -s "$HOME/.local/share/AppImage/$ZEN_APP_IMAGE.AppImage" "$HOME/.local/bin/$ZEN_BIN"
 
   log "success" "Zen browser installed"
 }
@@ -51,8 +51,10 @@ firefox_userjs() {
   if [ -f "$HOME/.local/bin/fuj" ]; then
     log "Removing old firefox user.js symlink."
     rm "$HOME/.local/bin/fuj"
-    ln -s "$HOME"/.dots/firefox-user.js/setup.sh "$HOME/.local/bin/fuj"
   fi
+
+  log "info" "Creating firefox user.js symlink."
+  ln -s "$HOME"/.dots/firefox-user.js/setup.sh "$HOME/.local/bin/fuj"
 
   cd "$HOME/.dots/firefox-user.js" || return 1
 

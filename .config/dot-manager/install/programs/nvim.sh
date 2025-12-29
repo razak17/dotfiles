@@ -37,7 +37,7 @@ install_treesitter() {
 
   __install_package_release "https://github.com/tree-sitter/tree-sitter/releases/download/$TS_VERSION/tree-sitter-linux-x64.gz" "tree-sitter"
 
-  log "success" "treesitter installed.""
+  log "success" "treesitter installed."
 }
 
 install_neovide() {
@@ -71,7 +71,26 @@ install_nvim() {
   log "success" "Neovim installed."
 }
 
+install_rvim() {
+  print_step "Installing rVim.."
+
+  if [ ! -d "$HOME/.config/rvim" ]; then
+    git clone https://github.com/razak17/nvim "$HOME/.config/rvim"
+  fi
+
+  if [ -f "$HOME/.local/bin/rvim" ]; then
+    log "Removing old rVim symlink."
+    rm "$HOME/.local/bin/rvim"
+  fi
+
+  log "info" "Creating rVim symlink."
+  ln -s "$HOME/.config/rvim/bin/rvim" "$HOME/.local/bin/rvim"
+
+  log "success" "rVim installed."
+}
+
 install_luarocks
 install_treesitter
 install_neovide
 install_nvim "$@"
+install_rvim
