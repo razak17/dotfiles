@@ -30,6 +30,7 @@ DOT_MANAGER_COMPLETE_PROGRAMS=(
   "uv"
   "redis"
   "rmpc"
+  "stripe"
   "suckless"
   "tmux"
   "zsh"
