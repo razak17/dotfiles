@@ -16,4 +16,4 @@ install_valkey() {
   log "success" "Redis installed."
 }
 
-install_fd_find "$@"
+install_valkey "$@"
