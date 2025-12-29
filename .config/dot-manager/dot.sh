@@ -165,10 +165,6 @@ do_command() {
   "init") install_complete ;;
   "update") update_all ;;
   "docker") install_docker ;;
-  "terminal")
-    shift
-    source "$DOT_MANAGER_DIR/install/terminal.sh" "$@"
-    ;;
   "fonts")
     shift
     source "$DOT_MANAGER_DIR/install/fonts.sh" "$@"
