@@ -26,7 +26,6 @@ DOT_MANAGER_COMPLETE_PROGRAMS=(
   "mech"
   "nvim"
   "opencode"
-  "postgres"
   "uv"
   "redis"
   "rmpc"
