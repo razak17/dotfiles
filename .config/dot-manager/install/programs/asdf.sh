@@ -45,31 +45,11 @@ install_python() {
   log "info" "Installing Python via asdf"
 
   asdf plugin add python
-  asdf install python 2.7.13
-  asdf install python 3.6.2
   asdf install python 3.11.9
   asdf install python 3.14.2
   asdf set -u python 3.11.9
 }
 
-install_erlang() {
-  log "info" "Installing Erlang via asdf"
-
-  asdf plugin add erlang
-  asdf install erlang 27.0.1
-  asdf set -u erlang 27.0.1
-}
-
-install_elixir() {
-  log "info" "Installing Elixir via asdf"
-
-  asdf plugin add elixir
-  asdf install elixir 1.17.2-otp-27
-  asdf set elixir -u 1.17.2-otp-27
-}
-
 install_asdf "$@"
 install_lua
 install_python
-install_erlang
-install_elixir
