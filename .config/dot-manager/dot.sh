@@ -23,6 +23,7 @@ DOT_MANAGER_COMPLETE_PROGRAMS=(
   "golang"
   "jackett"
   "jellyfin"
+  "mech"
   "nvim"
   "opencode"
   "postgres"
