@@ -58,6 +58,7 @@ bindkey '^U' autosuggest-execute
 bindkey '^H' autosuggest-accept
 bindkey '^Q' autosuggest-clear
 bindkey '^]' clear-screen
+bindkey '^_' undo
 
 # Edit the current command line in $EDITOR
 autoload -Uz edit-command-line
