@@ -25,14 +25,6 @@ safe_edit() {
   alias "$lhs"="$editor $rhs"
 }
 
-safe_cd () {
-  lhs=$1
-  rhs=$2
-  if [ -d "$rhs" ]; then
-    alias "$lhs"="cd $rhs"
-  fi
-}
-
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
@@ -312,6 +304,14 @@ alias tp="tmux-project"
 alias msd="mount_drive"
 alias holding="cd /run/media/razak/Seagate/Stuff/Holding"
 
+safe_cd () {
+  lhs=$1
+  rhs=$2
+  if [ -d "$rhs" ]; then
+    alias "$lhs"="cd $rhs"
+  fi
+}
+
 ws=~/personal/workspace
 vt=/run/media/razak/Ventoy
 usb=/run/media/razak/E48F-B0EB
@@ -338,3 +338,5 @@ safe_cd notes "$HOME/notes"
 safe_cd ob "$HOME/Sync/Notes/obsidian"
 safe_cd docs "$HOME/docs"
 safe_cd dots "$HOME/.dots"
+
+# hash -d docs="$HOME/docs"
