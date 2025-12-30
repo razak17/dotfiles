@@ -5,6 +5,11 @@ source "$DOT_MANAGER_DIR/helper.sh"
 install_luarocks() {
   print_step "Installing LuaRocks..."
 
+  if command -v luarocks >/dev/null 2>&1; then
+    log "info" "LuaRocks is already installed."
+    return
+  fi
+
   ROCKS_VERSION=$(__get_latest_release "luarocks/luarocks")
   url="https://github.com/luarocks/luarocks/releases/download/$ROCKS_VERSION/luarocks-${ROCKS_VERSION#v}.tar.gz"
 
@@ -33,6 +38,11 @@ install_luarocks() {
 install_treesitter() {
   print_step "Installing treesitter..."
 
+  if command -v tree-sitter >/dev/null 2>&1; then
+    log "info" "treesitter is already installed."
+    return
+  fi
+
   TS_VERSION=$(__get_latest_release "tree-sitter/tree-sitter")
 
   __install_package_release "https://github.com/tree-sitter/tree-sitter/releases/download/$TS_VERSION/tree-sitter-linux-x64.gz" "tree-sitter"
@@ -46,11 +56,15 @@ install_neovide() {
   __install_package_arch neovide
 
   log "success" "Neovide installed."
-  end
 }
 
 install_nvim() {
   print_step "Installing Neovim..."
+
+  if command -v nvim >/dev/null 2>&1; then
+    log "info" "Neovim is already installed."
+    return
+  fi
 
   NEOVIM_DIR="$HOME/.dots/neovim"
 
@@ -74,6 +88,11 @@ install_nvim() {
 install_rvim() {
   print_step "Installing rVim.."
 
+  if command -v rvim >/dev/null 2>&1; then
+    log "info" "rVim is already installed."
+    return
+  fi
+
   if [ ! -d "$HOME/.config/rvim" ]; then
     git clone https://github.com/razak17/nvim "$HOME/.config/rvim"
   fi
@@ -89,8 +108,19 @@ install_rvim() {
   log "success" "rVim installed."
 }
 
+update_plugins() {
+  print_step "Updating Neovim plugins..."
+
+  nvim --headless "+Lazy! sync" "+qall" >/dev/null
+  log "success" "Neovim plugins updated."
+
+  rvim -no-min -ts-extra --coding --lsp --ai -nice --headless "+Lazy! sync" "+qall" >/dev/null
+  log "success" "rVim plugins updated."
+}
+
 install_luarocks
 install_treesitter
 install_neovide
 install_nvim "$@"
-install_rvim
+install_rvim "$@"
+update_plugins "$@"
