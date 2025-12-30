@@ -59,6 +59,8 @@ bindkey '^H' autosuggest-accept
 bindkey '^Q' autosuggest-clear
 bindkey '^]' clear-screen
 bindkey '^_' undo
+bindkey '^b' backward-char
+bindkey '^f' forward-char
 
 # Edit the current command line in $EDITOR
 autoload -Uz edit-command-line
