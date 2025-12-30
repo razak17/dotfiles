@@ -50,7 +50,6 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
 bindkey '^r' history-incremental-search-backward # [Ctrl-r] - Search backward incrementally for a specified string. The string may begin with ^ to anchor the search to the beginning of the line.
-bindkey -s '^z' 'zi^M'
 bindkey "^J" down-line-or-beginning-search # Down
 bindkey "^K" up-line-or-beginning-search # Up
 # bindkey ' ' magic-space  # [Space] - don't do history expansion
@@ -68,6 +67,7 @@ bindkey '^e' end-of-line
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd "^E" edit-command-line
+bindkey "^X^E" edit-command-line
 
 bindkey -M menuselect '^X' clear-screen
 
@@ -77,7 +77,7 @@ copybuffer() {
   printf "%s" "$BUFFER" | clipcopy
 }
 zle -N copybuffer
-bindkey "^o" copybuffer
+bindkey "^Xo" copybuffer
 
 # Copies the pathname of the current directory to the system or X Windows clipboard
 copydir() {
@@ -85,7 +85,7 @@ copydir() {
   print -n $PWD | clipcopy
 }
 zle -N copydir
-bindkey "^w" copydir
+bindkey "^Xd" copydir
 
 expand-or-complete-with-dots() {
   print -Pn "%F{red}…%f"
