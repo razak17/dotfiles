@@ -61,6 +61,8 @@ bindkey '^Xl' clear-screen
 bindkey '^_' undo
 bindkey '^b' backward-char
 bindkey '^f' forward-char
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
 
 # Edit the current command line in $EDITOR
 autoload -Uz edit-command-line
