@@ -26,6 +26,22 @@ command_not_found_handler() {
   return 127
 }
 
+# chpwd hook for python virtal environments
+chpwd_activate_venv() {
+  if [[ -d .env && -e .env/bin/activate ]]; then
+    source .env/bin/activate
+  elif [[ -d env && -e env/bin/activate ]]; then
+    source env/bin/activate
+  elif [[ -d .venv && -e .venv/bin/activate ]]; then
+    source .venv/bin/activate
+  elif [[ -d venv && -e venv/bin/activate ]]; then
+    source venv/bin/activate
+  elif [[ -n "$VIRTUAL_ENV" && ! -d .venv ]]; then
+    deactivate
+  fi
+}
+add-zsh-hook chpwd chpwd_activate_venv
+
 # cdr # Jump to the most recently used directory on startup
 
 # function __trap_exit_tmux() {
