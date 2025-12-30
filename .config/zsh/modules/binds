@@ -101,7 +101,7 @@ bindkey -M vicmd "^I" expand-or-complete-with-dots
 #   zle .spell-word
 #   zle .$WIDGET
 # }
-# zle -N accept-line autocorrect
+# # zle -N accept-line autocorrect # WARN: Very destructive, prevents enter key from working
 # zle -N magic-space autocorrect
 # bindkey ' ' magic-space
 
