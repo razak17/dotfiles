@@ -1,0 +1,5 @@
+# Enable EJS script downloads from npm
+--remote-components ejs:npm
+
+# Download livestreams from the start.
+# --live-from-start
