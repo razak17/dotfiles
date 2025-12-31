@@ -92,6 +92,7 @@ install_packages() {
     zip \
     tar \
     unrar \
+    7zip \
     ripgrep \
     alacritty \
     ghostty \
