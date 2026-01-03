@@ -32,50 +32,11 @@ path+=(
   "$GOPATH/bin"
 )
 
-# asdf
-if [ -f "$HOME/.asdf/asdf.sh" ]; then
-  . "$HOME/.asdf/asdf.sh"
-  fpath=(${ASDF_DIR}/completions $fpath)
-fi
-
 # fnm
 if [ -e "$HOME/.local/share/fnm/fnm" ]; then
   export FNMDIR="$HOME/.local/share/fnm"
   path+=(
     "$FNMDIR"
-  )
-fi
-
-# YARN
-if [ -d "$HOME/.yarn/bin" ]; then
-  export YARNPATH="$HOME/.yarn/bin"
-  path+=(
-    "$YARNPATH"
-  )
-fi
-
-# DENO
-if [ -e "$HOME/.deno/bin/deno" ]; then
-  export DENO_INSTALL="$HOME/.deno"
-  path+=(
-    "$DENO_INSTALL/bin"
-  )
-fi
-
-# Deta cli
-if [ -e "$HOME/.detaspace/bin" ]; then
-  export DETA_HOME="$HOME/.detaspace"
-  path+=(
-  "$DETA_HOME/bin"
-  )
-fi
-
-
-# bun
-if [ -d "$HOME/.bun" ]; then
-  export BUN_INSTALL="$HOME/.bun"
-  path+=(
-  "$BUN_INSTALL/bin"
   )
 fi
 

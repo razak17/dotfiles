@@ -35,11 +35,16 @@ autoload zmv # builtin zsh rename command
 #-------------------------------------------------------------------------------
 #   Completions
 #-------------------------------------------------------------------------------
+add_completion 'bun'
 add_completion 'conda-zsh-completion' false
+add_completion 'deno'
 add_completion 'fnm'
+add_completion 'mise'
 add_completion 'poetry'
 add_completion 'pass'
 add_completion 'pnpm' 'completions'
+add_completion 'uv'
+add_completion 'zig'
 #-------------------------------------------------------------------------------
 #   Modules
 #-------------------------------------------------------------------------------
@@ -49,6 +54,11 @@ add_plugin 'npm'
 #-------------------------------------------------------------------------------
 #   PATH
 #-------------------------------------------------------------------------------
+# mise
+if exists mise; then
+  eval "$(/home/razak/.local/bin/mise activate zsh)"
+fi
+
 # fzf
 if exists fzf; then
   source <(fzf --zsh)

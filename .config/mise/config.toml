@@ -1,0 +1,7 @@
+[tools]
+bun = "latest"
+deno = "latest"
+python = ["3.11.9", "3.14.2"]
+usage = "latest"
+uv = "latest"
+zig = "latest"

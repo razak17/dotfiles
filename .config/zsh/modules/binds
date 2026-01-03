@@ -62,6 +62,7 @@ bindkey '^b' backward-char
 bindkey '^f' forward-char
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
+bindkey -s '^Xgc' 'git commit -m ""\C-b'
 
 # Edit the current command line in $EDITOR
 autoload -Uz edit-command-line
