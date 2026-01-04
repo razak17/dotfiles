@@ -26,12 +26,6 @@ install_luarocks() {
   cd - >/dev/null || return 1
   rm -rf /tmp/luarocks-"${ROCKS_VERSION#v}" >/dev/null
 
-  ROCKS_BIN=$(which luarocks)
-  if [ "$ROCKS_BIN" != "$HOME/.local/bin/luarocks" ]; then
-    log "info" "luarocks is now installed in $HOME/.local/bin/. Renaming old luarocks shim."
-    [ "$ROCKS_BIN" == "$HOME/.asdf/shims/luarocks" ] && mv "$HOME/.asdf/shims/luarocks" "$HOME/.asdf/shims/luarocks-old"
-  fi
-
   log "success" "LuaRocks installed."
 }
 
