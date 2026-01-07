@@ -2,11 +2,11 @@
 # https://codeberg.org/newsraft/newsraft
 
 bind ? exec man newsraft
-bind m exec setsid mpv --ytdl-format="best[height<=480]" --terminal=no "%l" &
-bind H exec setsid mpv --ytdl-format="best[height<=720]" --terminal=no "%l" &
-bind E exec setsid mpv --ytdl-format="best[height<=1080]" --terminal=no "%l" &
-bind M exec setsid mpv --terminal=no "%l" &
-bind a exec setsid mpv --ytdl-format="bestaudio" --terminal=no "%l" &
+bind m exec setsid mpv --pause --volume=60 --ytdl-format="best[height<=480]" --terminal=no "%l" &
+bind H exec setsid mpv --pause --volume=60 --ytdl-format="best[height<=720]" --terminal=no "%l" &
+bind E exec setsid mpv --pause --volume=60 --ytdl-format="best[height<=1080]" --terminal=no "%l" &
+bind M exec setsid mpv --pause --volume=60 --terminal=no "%l" &
+bind a exec setsid mpv --pause --volume=60 --ytdl-format="bestaudio" --terminal=no "%l" &
 bind f exec setsid nsxiv "%l"
 bind y copy-to-clipboard
 bind I mark-important

@@ -8,7 +8,7 @@ if [ -z "$url" ]; then
 fi
 
 if [ ! -z "$url" ]; then
-  nohup mpv --ytdl-format="best[height<=480]" "$url" > /dev/null 2>&1 &
+  nohup mpv --pause --volume=60 --ytdl-format="best[height<=480]" "$url" > /dev/null 2>&1 &
   disown
   notify-send -t 2000 "Video will start playing shortly."
 fi
