@@ -76,10 +76,10 @@ function gL() {
 }
 
 buildnvim() {
-  NEOVIM_DIR="$HOME/.DOTS/NEOVIM"
+  neovim_dir="$HOME/.dots/neovim"
   bin_dir="$HOME/.local/bin"
   [ ! -d $neovim_dir ] && git clone https://github.com/neovim/neovim $neovim_dir
-  pushd $neovim_dir
+  cd $neovim_dir || exit
   git checkout master
   # git pull upstream master
   git pull
