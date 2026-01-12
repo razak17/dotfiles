@@ -1,11 +1,8 @@
 [flavor]
-dark = "onedark"
-light = "onedark"
+dark = "catppuccin-frappe"
 
 # : Manager {{{
 [mgr]
-
-# Border
 border_symbol = ''
 border_style = { fg = "#1E2031" } # border style.
 # : }}}
@@ -22,6 +19,25 @@ unset_alt = { fg = "#E06C75", bg = "#282C34", bold = true }
 
 # : Status {{{
 [status]
-separator_open = ""
-separator_close = ""
+sep_left = { open = "", close = "" }
+sep_right = { open = "", close = "" }
+# : }}}
+
+# : Filetype {{{
+[filetype]
+rules = [
+	# Image
+	{ mime = "image/*", fg = "#E5C07B" },
+	# Media
+	{ mime = "{audio,video}/*", fg = "#E06C75" },
+	# Archive
+	{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#C678DD" },
+	# Document
+	{ mime = "application/{pdf,doc,rtf}", fg = "#98C379" },
+	# Virtual file system
+	{ mime = "vfs/{absent,stale}", fg = "#949CBB" },
+	# Fallback
+	{ url = "*", fg = "#ABB2BF" },
+	{ url = "*/", fg = "#61AFEF" },
+]
 # : }}}

@@ -3,3 +3,5 @@
 	email = moabdulrazak17@gmail.com
 [include]
 	path = /home/razak/.config/git/gitconfig
+[init]
+	defaultBranch = main

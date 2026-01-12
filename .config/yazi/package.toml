@@ -3,5 +3,12 @@ use = "wylie102/duckdb"
 rev = "3f8c863"
 hash = "87b9233a74325e95011670ed20bbd0d4"
 
-[flavor]
-deps = []
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "68f7d48"
+hash = "56fdabc96fc1f4d53c96eb884b02a5be"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-frappe"
+rev = "4a1802a"
+hash = "6f261f00e5235001b8d6bcd7464d3077"
