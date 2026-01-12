@@ -29,6 +29,7 @@ DOT_MANAGER_COMPLETE_PROGRAMS=(
   "stripe"
   "suckless"
   "tmux"
+  "yazi"
   "zsh"
 )
 
@@ -163,6 +164,14 @@ do_command() {
   "init") install_complete ;;
   "update") update_all ;;
   "docker") install_docker ;;
+  "program")
+    shift
+    if [ "$1" == "all" ]; then
+      __install_program_list "${DOT_MANAGER_COMPLETE_PROGRAMS[@]}"
+    else
+      __install_program "$@"
+    fi
+    ;;
   "fonts")
     shift
     source "$DOT_MANAGER_DIR/install/fonts.sh" "$@"
