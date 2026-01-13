@@ -28,10 +28,8 @@ yazi_setup() {
   log "info" "Creating flavors directory at $FLAVORS_DIR..."
   mkdir -p "$FLAVORS_DIR"
 
-  log "info" "Downloading catppuccin-mocha theme..."
-  if [ ! -d "$FLAVORS_DIR/catppuccin-mocha.yazi" ]; then
-    ya pkg add yazi-rs/flavors:catppuccin-mocha
-  fi
+  log "info" "Installing yazi plugins..."
+  ya pkg install
 
   log "success" "yazi setup completed."
 }
