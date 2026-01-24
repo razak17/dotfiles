@@ -111,7 +111,19 @@ function venv() {
 }
 
 zen_installer() {
+  # stable  / twilight
   bash <(curl https://updates.zen-browser.app/appimage.sh) "$1"
+
+  if [[ "$1" == "twilight" ]]; then
+    [ -e "$HOME/.local/bin/zen-tw" ] && rm "$HOME/.local/bin/zen-tw"
+    ln -s "$HOME/.local/share/AppImage/ZenTwilight.AppImage" "$HOME/.local/bin/zen-tw"
+    return
+  fi
+
+  if [ -e "$HOME/.local/share/AppImage/ZenBrowser.AppImage" ] ; then
+    [ -e "$HOME/.local/bin/zen" ] && rm "$HOME/.local/bin/zen"
+    ln -s  "$HOME/.local/share/AppImage/ZenBrowser.AppImage" "$HOME/.local/bin/zen"
+  fi
 }
 
 zen_del() {
@@ -125,20 +137,6 @@ zen_del() {
 }
 
 zen_update() {
-  dd=$(date +%F_%H%M%S_%N)
-
-  if [[ "$1" == "twilight" ]]; then
-    oldzen="zen-tw-$dd"
-    [ -e "$HOME/.local/bin/zen-tw" ] && mv "$HOME/.local/bin/zen-tw" "$HOME/.local/bin/$oldzen"
-    cp "$HOME/.local/share/AppImage/ZenTwilight.AppImage" "$HOME/.local/bin/zen-tw"
-    return
-  fi
-
-  if [ -e "$HOME/.local/share/AppImage/ZenBrowser.AppImage" ] ; then
-    oldzen="zen-$dd"
-    [ -e "$HOME/.local/bin/zen" ] && mv "$HOME/.local/bin/zen" "$HOME/.local/bin/$oldzen"
-    cp "$HOME/.local/share/AppImage/ZenBrowser.AppImage" "$HOME/.local/bin/zen"
-  fi
 }
 
 zip_ext() {
