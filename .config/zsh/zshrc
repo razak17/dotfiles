@@ -2,7 +2,7 @@
 
 zmodload zsh/datetime
 
-_comp_options+=(globdots)   # Include hidden files.
+_comp_options+=(globdots) # Include hidden files.
 
 # profiling
 zmodload zsh/zprof
@@ -54,6 +54,12 @@ add_plugin 'npm'
 #-------------------------------------------------------------------------------
 #   PATH
 #-------------------------------------------------------------------------------
+# aws completions. see: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+if exists aws; then
+  autoload -Uz bashcompinit && bashcompinit
+  complete -C "$HOME/.local/bin/aws_completer" aws
+fi
+
 # mise
 if exists mise; then
   eval "$(/home/razak/.local/bin/mise activate zsh)"
