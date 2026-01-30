@@ -55,7 +55,7 @@ add_plugin 'npm'
 #   PATH
 #-------------------------------------------------------------------------------
 # aws completions. see: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
-if exists aws; then
+if [ -f "$HOME/.local/bin/aws_completer" ]; then
   autoload -Uz bashcompinit && bashcompinit
   complete -C "$HOME/.local/bin/aws_completer" aws
 fi
