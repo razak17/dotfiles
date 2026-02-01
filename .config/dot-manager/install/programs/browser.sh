@@ -20,25 +20,65 @@ install_browsers() {
   log "success" "Browsers installed."
 }
 
-install_zen() {
-  log "info" "Installing Zen browser..."
+install_binary() {
+  if ! __is_program_installed "curl"; then
+    log "error" "curl is required to download AWS CLI."
+    return
+  fi
 
-  ZEN_BIN="zen"
   ZEN_APP_IMAGE="ZenBrowser"
+  ZEN_APP_IMAGE_DIR="$HOME/.local/share/AppImage"
+  ZEN_BIN="zen"
 
   if [[ "$1" == "twilight" ]]; then
     ZEN_BIN="zen-tw"
     ZEN_APP_IMAGE="ZenTwilight"
   fi
 
-  if [ ! -e "$HOME/.local/share/AppImage/$ZEN_APP_IMAGE.AppImage" ]; then
-    bash <(curl https://updates.zen-browser.app/appimage.sh) "$1"
+  if [ ! -e "$ZEN_APP_IMAGE_DIR/$ZEN_APP_IMAGE.AppImage" ]; then
+    printf "1\n" | bash <(curl https://updates.zen-browser.app/appimage.sh) "$1"
   fi
 
   [ -e "$HOME/.local/bin/$ZEN_BIN" ] && mv "$HOME/.local/bin/$ZEN_BIN" "$HOME/.local/bin/$ZEN_BIN-$(date +%F_%H%M%S_%N)"
   ln -s "$HOME/.local/share/AppImage/$ZEN_APP_IMAGE.AppImage" "$HOME/.local/bin/$ZEN_BIN"
+}
+
+install_zen() {
+  ZEN_BIN="zen"
+
+  if [[ "$1" == "twilight" ]]; then
+    ZEN_BIN="zen-tw"
+  fi
+
+  if [ -e "$HOME/.local/bin/$ZEN_BIN" ]; then
+    log "info" "Zen browser already installed. Skipping installation."
+    return
+  fi
+
+  log "info" "Installing Zen browser..."
+
+  install_binary "$1"
 
   log "success" "Zen browser installed"
+}
+
+reinstall_zen() {
+  ZEN_BIN="zen"
+
+  if [[ "$1" == "twilight" ]]; then
+    ZEN_BIN="zen-tw"
+  fi
+
+  if [ ! -e "$HOME/.local/bin/$ZEN_BIN" ]; then
+    log "error" "Zen browser is not installed. Cannot reinstall."
+    return
+  fi
+
+  log "info" "Reinstalling Zen browser..."
+
+  install_binary "$1"
+
+  log "success" "Zen browser reinstalled."
 }
 
 firefox_userjs() {
@@ -64,6 +104,53 @@ firefox_userjs() {
   log "success" "Firefox user.js setup completed."
 }
 
-install_browsers "$@"
-install_zen "stable" # stable | twilight
-firefox_userjs
+do_program_install() {
+  case "$1" in
+  install)
+    install_browsers "$@"
+    install_zen "stable" # stable | twilight
+    ;;
+  zen)
+    shift
+    if [ "$1" == "install" ]; then
+      shift
+      if [ $# -eq 0 ]; then
+        install_zen "stable"
+        return
+      fi
+      if [ "$1" == "twilight" ] || [ "$1" == "stable" ]; then
+        install_zen "$1"
+      else
+        log "error" "Unknown zen version: $1"
+      fi
+    elif [ "$1" == "reinstall" ]; then
+      shift
+      if [ $# -eq 0 ]; then
+        reinstall_zen "stable"
+        return
+      fi
+      if [ "$1" == "twilight" ] || [ "$1" == "stable" ]; then
+        reinstall_zen "$1"
+      else
+        log "error" "Unknown zen version: $1"
+      fi
+    else
+      log "error" "Unknown action for zen: $1. Use 'install' or 'reinstall'."
+    fi
+    ;;
+  # zen-twilight) install_zen "twilight" ;;
+  userjs) firefox_userjs ;;
+  *)
+    log "error" "Unknown action: $1"
+    return
+    ;;
+  esac
+}
+
+if [ $# -eq 0 ]; then
+  install_browsers "$@"
+  install_zen "stable" # stable | twilight
+  firefox_userjs
+else
+  do_program_install "$@"
+fi
