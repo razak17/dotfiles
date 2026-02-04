@@ -30,16 +30,22 @@ install_binary() {
   ZEN_APP_IMAGE_DIR="$HOME/.local/share/AppImage"
   ZEN_BIN="zen"
 
-  if [[ "$1" == "twilight" ]]; then
+  if [[ "$2" == "twilight" ]]; then
     ZEN_BIN="zen-tw"
     ZEN_APP_IMAGE="ZenTwilight"
   fi
 
-  if [ ! -e "$ZEN_APP_IMAGE_DIR/$ZEN_APP_IMAGE.AppImage" ]; then
-    printf "1\n" | bash <(curl https://updates.zen-browser.app/appimage.sh) "$1"
+  if [ "$1" == "reinstall" ]; then
+    log "info" "Re-downloading Zen browser AppImage..."
+    rm "$ZEN_APP_IMAGE_DIR/$ZEN_APP_IMAGE.AppImage"
+    printf "1\n" | bash <(curl https://updates.zen-browser.app/appimage.sh) "$3"
   fi
 
-  [ -e "$HOME/.local/bin/$ZEN_BIN" ] && mv "$HOME/.local/bin/$ZEN_BIN" "$HOME/.local/bin/$ZEN_BIN-$(date +%F_%H%M%S_%N)"
+  if [ ! -e "$ZEN_APP_IMAGE_DIR/$ZEN_APP_IMAGE.AppImage" ]; then
+    printf "1\n" | bash <(curl https://updates.zen-browser.app/appimage.sh) "$2"
+  fi
+
+  [ -e "$HOME/.local/bin/$ZEN_BIN" ] && rm "$HOME/.local/bin/$ZEN_BIN"
   ln -s "$HOME/.local/share/AppImage/$ZEN_APP_IMAGE.AppImage" "$HOME/.local/bin/$ZEN_BIN"
 }
 
@@ -57,7 +63,7 @@ install_zen() {
 
   log "info" "Installing Zen browser..."
 
-  install_binary "$1"
+  install_binary "install" "$1"
 
   log "success" "Zen browser installed"
 }
@@ -76,7 +82,7 @@ reinstall_zen() {
 
   log "info" "Reinstalling Zen browser..."
 
-  install_binary "$1"
+  install_binary "reinstall" "$1"
 
   log "success" "Zen browser reinstalled."
 }
