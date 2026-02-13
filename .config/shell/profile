@@ -46,6 +46,12 @@ path+=(
 "$PNPM_HOME"
 )
 
+# bun
+export BUN_HOME="$HOME/.cache/.bun/bin"
+path+=(
+"$BUN_HOME"
+)
+
 
 # Fly
 if [ -e "$HOME/.fly/bin/fly" ]; then
