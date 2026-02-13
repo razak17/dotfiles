@@ -17,10 +17,21 @@ unset_main = { fg = "#282C34", bg = "#E06C75", bold = true }
 unset_alt = { fg = "#E06C75", bg = "#282C34", bold = true }
 # : }}}
 
+# : Indicator {{{
+[indicator]
+padding = { open = "", close = "" }
+# : }}}
+
+# : Tabs {{{
+[tabs]
+sep_inner = { open = "", close = "" }
+sep_outer = { open = "", close = "" }
+# : }}}
+
 # : Status {{{
 [status]
-sep_left = { open = "", close = "" }
-sep_right = { open = "", close = "" }
+sep_left = { open = "", close = "" }
+sep_right = { open = "", close = "" }
 # : }}}
 
 # : Filetype {{{
