@@ -11,7 +11,7 @@ install_yazi() {
   fi
 
   log "info" "Installing yazi dependencies via pacman..."
-  __install_package_arch yazi ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick
+  __install_package_arch yazi ffmpeg 7zip jq poppler fd ripgrep zoxide imagemagick
 
   log "success" "yazi installed."
 }
