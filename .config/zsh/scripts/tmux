@@ -32,12 +32,12 @@ xrv() {
 	# Get first window
 	firstWindow=$(ftmux --session-win-id "$session" 0)
 	firstPane=$(ftmux --window-pane-id "$firstWindow" 0)
-	ftmux --split-pane -v -c "$HOME/docs" -t "$firstPane"
+	ftmux --split-pane -v -l 50% -c "$HOME/docs" -t "$firstPane"
 
 	# Get second window
 	secondWindow=$(ftmux --session-win-id "$session" 1)
 	firstPane=$(ftmux --window-pane-id "$secondWindow" 0)
-	ftmux --split-pane -v -c "$HOME/Sync" -t "$firstPane"
+	ftmux --split-pane -v -l 50% -c "$HOME/Sync" -t "$firstPane"
 
 	attachSession "$session"
 }
