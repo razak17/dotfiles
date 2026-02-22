@@ -120,6 +120,9 @@ zstyle ':chpwd:*' recent-dirs-file $ZSH_CACHE_DIR/.chpwd-recent-dirs-${WINDOWID#
 zstyle ':completion:*' recent-dirs-insert always
 zstyle ':chpwd:*' recent-dirs-default yes
 
+#-------------------------------------------------------------------------------
+#   pnpm
+#-------------------------------------------------------------------------------
 zstyle ':empresslabs:pnpm:completion' legacy-completion yes
 
 #-------------------------------------------------------------------------------
