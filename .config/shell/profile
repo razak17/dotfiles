@@ -2,6 +2,10 @@
 
 typeset -U PATH path
 
+# ssh
+# eval "$(ssh-agent -s)"
+# ssh-add ~/.ssh/id_rsa_razak17
+
 LOCAL="$HOME/.local/bin"
 path+=(
   "$LOCAL"
