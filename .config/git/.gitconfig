@@ -44,6 +44,12 @@
   cp = cherry-pick
   review = "!git fetch origin && git difftool -d origin/HEAD...HEAD"
   mt = mergetool
+  wt = worktree
+  wtl = worktree list
+  wtc = worktree prune
+  wtb = "!f() { root=$(git rev-parse --show-toplevel); name=$(basename \"$root\"); dir=$(dirname \"$root\"); git worktree add \"$dir/${name}-$1\" \"$1\"; }; f"
+  wtp = "!f() { root=$(git rev-parse --show-toplevel); name=$(basename \"$root\"); dir=$(dirname \"$root\"); git fetch origin pull/$1/head:pr/$1 && git worktree add \"$dir/${name}-pr-$1\" pr/$1; }; f"
+  wtr = "!f() { root=$(git rev-parse --show-toplevel); name=$(basename \"$root\"); dir=$(dirname \"$root\"); git worktree remove \"$dir/${name}-$1\" && rm -rf \"$dir/${name}-$1\"; }; f"
 # Branch cleanup
 [submodule]
 	recurse = true
