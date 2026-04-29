@@ -42,6 +42,9 @@
   amend = commit -a --amend --no-edit
   ciam = commit -a --amend --no-edit
   cp = cherry-pick
+  review = "!git fetch origin && git difftool -d origin/HEAD...HEAD"
+  mt = mergetool
+# Branch cleanup
 [submodule]
 	recurse = true
 [url "https://"]
@@ -50,3 +53,10 @@
 	insteadOf = git@github.com:
 [credential "github.com"]
 	useHttpPath = true
+[merge]
+  log = true
+  tool = nvimdiff1
+[mergetool]
+  prompt = true
+  trustExitCode = true
+  hideResolved = true
