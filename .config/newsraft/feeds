@@ -29,7 +29,6 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCHnyfMqiRRG1u-2MsSQLbXA # V
 https://www.youtube.com/feeds/videos.xml?channel_id=UC27eC_usQzXTj9dK8JLDLwQ # SciencePetr
 
 # Football
-# https://www.reddit.com/r/neovim/.rss # Neovim Subreddit
 # https://www.youtube.com/feeds/videos.xml?channel_id=UCLzKhsxrExAC6yAdtZ-BOWw # Juve
 # https://www.youtube.com/feeds/videos.xml?channel_id=UCU2PacFf99vhb3hNiYDmxww # Chelsea
 # https://www.youtube.com/feeds/videos.xml?channel_id=UCt9a_qP9CqHCNwilf-iULag # PSG
@@ -95,3 +94,7 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UC-mP1nlk0qOutA08zuQHORA # P
 https://www.youtube.com/feeds/videos.xml?channel_id=UCLqH-U2TXzj1h7lyYQZLNQQ # Greg Doucette
 https://www.youtube.com/feeds/videos.xml?channel_id=UC4dEj0ve-br8qPA_n-kOxhQ # Jason Wilson
 # https://www.youtube.com/feeds/videos.xml?channel_id=UCiKH0VdBW0d-Dcjw93wzXgw # Jason Whitlock
+
+
+# https://www.reddit.com/r/neovim/.rss # Neovim Subreddit
+https://dotfyle.com/neovim/plugins/rss.xml # New Neovim Plugins
