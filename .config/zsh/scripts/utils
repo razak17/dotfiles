@@ -59,6 +59,14 @@ mc() {
   mkdir -p "$@" && cd "$@"
 }
 
+scr() {
+	pushd "$HOME/Pictures/screenshots" >/dev/null || return
+	if exists yazi; then
+		yazi
+	fi
+	cd - || return
+}
+
 usb1() {
   if [ ! -d "/mnt/usb1/TV" ]; then
     sudo mkdir -p /mnt/usb1

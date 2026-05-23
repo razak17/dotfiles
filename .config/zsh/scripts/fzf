@@ -106,16 +106,6 @@ envs() {
 	printenv | fzf
 }
 
-scr() {
-	pushd "$HOME/Pictures/screenshots" >/dev/null || return
-	if exists lfub; then
-		lfub
-	elif exists lf; then
-		lf
-	fi
-	cd - || return
-}
-
 # https://www.reddit.com/r/neovim/comments/1e33h69/is_there_a_way_to_access_oldfiles_from_outside_of/
 nvim_oldfiles() {
 	if exists nvim; then
