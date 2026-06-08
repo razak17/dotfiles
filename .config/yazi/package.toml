@@ -5,10 +5,10 @@ hash = "87b9233a74325e95011670ed20bbd0d4"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "68f7d48"
-hash = "56fdabc96fc1f4d53c96eb884b02a5be"
+rev = "598cdb6"
+hash = "187cc58ba7ac3befd49c342129e6f1b6"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
-rev = "4a1802a"
-hash = "b951d27afe197d154f6da9683b46c5f8"
+rev = "0f9204b"
+hash = "7dfe41c9c3d9be76da8a844263d0bbed"
