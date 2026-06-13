@@ -43,7 +43,6 @@ safe_alias vsc "vscodium ." vscodium
 safe_alias wl 'iwctl station list' iwctl
 alias vm="rvim -no-cmp --no-git"
 alias vmc="rvim --coding"
-alias vmts="rvim"
 alias vmai="rvim --coding --ai"
 alias vmls="rvim --coding --lsp"
 alias vma="rvim --coding --lsp --ai"
