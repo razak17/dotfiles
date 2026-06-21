@@ -59,8 +59,8 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCOJGu0azewcaOt35SvfYH5A # Z
 https://www.youtube.com/feeds/videos.xml?channel_id=UCAxhhKx1ean1Zz26p_GKn0Q # Faysal
 https://www.youtube.com/feeds/videos.xml?channel_id=UCBNBd0ETZU8VoLugsJbmZuA # FayzXtra
 https://www.youtube.com/feeds/videos.xml?channel_id=UCrMBj7sGZzchChh1dDpsJgg # Rabona TV
-# https://www.youtube.com/feeds/videos.xml?channel_id=UCxGsqtUUdGvWsm20EVVTd_A # Real Vikingos Channel
 https://www.youtube.com/feeds/videos.xml?channel_id=UC4SUUloEcrgjsxbmy_rQQXA # 442oons
+# https://www.youtube.com/feeds/videos.xml?channel_id=UCxGsqtUUdGvWsm20EVVTd_A # Real Vikingos Channel
 
 # Lakers
 https://www.youtube.com/feeds/videos.xml?channel_id=UCbNWe0snu7U9H2qioNH2nvg # Lakers Nation
@@ -71,9 +71,9 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCw8h_jH2gB20wcZTJiaQNCA # H
 
 # Basketball
 https://www.youtube.com/feeds/videos.xml?channel_id=UCFvV4xHrpAdNdwp_KhYitRg # Basketball Bulletin
+https://www.youtube.com/feeds/videos.xml?channel_id=UC-bJU7MdQ4NW7zUbKChPp6Q # NBA Front Office
 # https://www.youtube.com/feeds/videos.xml?channel_id=UCSpvjDk06HLxBaw8sZw7SkA # BBALLBREAKDOWN
 # https://www.youtube.com/feeds/videos.xml?channel_id=UC3HPbvB6f58X_7SMIp6OPYw # Thinking Basketball
-https://www.youtube.com/feeds/videos.xml?channel_id=UC-bJU7MdQ4NW7zUbKChPp6Q # NBA Front Office
 # https://www.youtube.com/feeds/videos.xml?channel_id=UCE1FN3sPMeDo253rgZJZd2A # Players Choice
 # https://www.youtube.com/feeds/videos.xml?channel_id=UCR8s3egas481EMmOxr5fBmg # Sporting Logically
 # https://www.youtube.com/feeds/videos.xml?channel_id=UC8xZt-P1j-G7ckm0LM2p6eQ # Kenny For Real
@@ -92,19 +92,21 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UC-bJU7MdQ4NW7zUbKChPp6Q # N
 # https://www.youtube.com/feeds/videos.xml?channel_id=UCBA9vGt5839HKRgvlIinO2g # ZH Highlights
 
 # Media & Stuff
-https://www.youtube.com/feeds/videos.xml?channel_id=UC0Kuf_g_RvJBvybexqIeLrg # MIKEY & WYATT
 https://www.youtube.com/feeds/videos.xml?channel_id=UCGt7X90Au6BV8rf49BiM6Dg # Ray William Johnson
 https://www.youtube.com/feeds/videos.xml?channel_id=UCZbPLZcwiPab9TBj7-4DZBQ # Willie D Live
+https://www.youtube.com/feeds/videos.xml?channel_id=UCLqH-U2TXzj1h7lyYQZLNQQ # Greg Doucette
+https://www.youtube.com/feeds/videos.xml?channel_id=UC4dEj0ve-br8qPA_n-kOxhQ # Jason Wilson
 # https://www.youtube.com/feeds/videos.xml?channel_id=UC62oKTWLypC5ZczOXRFPtpA # MTR
 # https://www.youtube.com/feeds/videos.xml?channel_id=UCueWAuV35HS-pkoKt0rmhbA # Oshay Duke Jackson
 # https://www.youtube.com/feeds/videos.xml?channel_id=UC3aG23nmjhatbl-16hGZB3g # Jay De Black
 # https://www.youtube.com/feeds/videos.xml?channel_id=UCMhMHJ4XMIgrq0Bp8Xn06Dw # The Poor Mans Podcast Reacts
+# https://www.youtube.com/feeds/videos.xml?channel_id=UCKnodHJpZd8UbSvAufDd3_g # Nightcap
+# https://www.youtube.com/feeds/videos.xml?channel_id=UCiKH0VdBW0d-Dcjw93wzXgw # Jason Whitlock
+
+# Comedy
+https://www.youtube.com/feeds/videos.xml?channel_id=UC0Kuf_g_RvJBvybexqIeLrg # MIKEY & WYATT
 https://www.youtube.com/feeds/videos.xml?channel_id=UCQmZ9BIYOBSkxL-eqqg5z-g # Mark Angel Comedy
 https://www.youtube.com/feeds/videos.xml?channel_id=UCIlxpbeL-5zJ2MU4gAof8aA # Mark Angel TV
-# https://www.youtube.com/feeds/videos.xml?channel_id=UCKnodHJpZd8UbSvAufDd3_g # Nightcap
-https://www.youtube.com/feeds/videos.xml?channel_id=UCLqH-U2TXzj1h7lyYQZLNQQ # Greg Doucette
-https://www.youtube.com/feeds/videos.xml?channel_id=UC4dEj0ve-br8qPA_n-kOxhQ # Jason Wilson
-# https://www.youtube.com/feeds/videos.xml?channel_id=UCiKH0VdBW0d-Dcjw93wzXgw # Jason Whitlock
 
 # https://www.reddit.com/r/neovim/.rss # Neovim Subreddit
 https://dotfyle.com/neovim/plugins/rss.xml # New Neovim Plugins
