@@ -1,12 +1,19 @@
 # https://newsraft.codeberg.page/#ACTIONS
 # https://codeberg.org/newsraft/newsraft
 
+# auto reload period in minutes
+# reload-period 30
+
+# disable binding
+unbind o
+
+# bindings
 bind ? exec man newsraft
 bind m exec setsid mpv --pause --volume=60 --ytdl-format="best[height<=480]" --terminal=no "%l" &
 bind H exec setsid mpv --pause --volume=60 --ytdl-format="best[height<=720]" --terminal=no "%l" &
 bind E exec setsid mpv --pause --volume=60 --ytdl-format="best[height<=1080]" --terminal=no "%l" &
 bind M exec setsid mpv --pause --volume=60 --terminal=no "%l" &
-bind a exec setsid mpv --pause --volume=60 --ytdl-format="bestaudio" --terminal=no "%l" &
+bind A exec setsid mpv --pause --volume=60 --ytdl-format="bestaudio" --terminal=no "%l" &
 bind f exec setsid nsxiv "%l"
 bind O exec xdg-open "%l" &
 bind y copy-to-clipboard
