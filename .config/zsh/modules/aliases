@@ -22,7 +22,8 @@ safe_edit() {
   if [[ "$TEXT_EDITOR" == "rvim" ]]; then
     editor="rvim --coding"
   fi
-  alias "$lhs"="$editor $rhs"
+  eval "$lhs() { $editor \"$rhs\"; }"
+  # alias "$lhs=$editor \"$rhs\""
 }
 
 alias -g ...='../..'
