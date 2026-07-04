@@ -226,7 +226,7 @@ safe_edit sec "$HOME/.dots/sensitive/secrets"
 safe_edit clip "$HOME/.dots/clip/clip_hist.txt"
 safe_edit gct "$HOME/.dots/clip/github_razak17.txt"
 safe_edit links "$HOME/Sync/Backup/MacroDroid/Text/Links.txt"
-safe_edit mods "$HOME/Sync/Backup/MacroDroid/Text/Mods.txt"
+safe_edit mods "$HOME/Sync/Notes/obsidian/04 - Permanent/Zettelkasten/Android Mod Apks.md"
 safe_edit text "$HOME/Sync/Backup/MacroDroid/Text/Text.txt"
 safe_edit apps "$HOME/Sync/Backup/MacroDroid/Text/TopAndroidApps.txt"
 
