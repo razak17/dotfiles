@@ -58,6 +58,8 @@ alias vf="rvim -no-min --coding --lsp --ai -nice"
 alias vn="rvim -no-min -nice"
 alias vL="rvim leetcode.nvim"
 alias vd="rvim --neovide"
+alias vnn="rvim --none"
+alias vnp="rvim --no-plugins"
 alias nn="NVIM_APPNAME=nativevim nvim"
 alias rsha="rm -f ~/.local/state/rvim/shada/main.shada.tmp.x"
 
