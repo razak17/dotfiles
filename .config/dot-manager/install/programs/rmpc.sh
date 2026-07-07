@@ -10,11 +10,11 @@ install_rmpc() {
     return
   fi
 
-  if ! command -v cargo &>/dev/null; then
+  if ! command -v cargo >>"$DOT_MANAGER_LOG" 2>&1; then
     source "$DOT_MANAGER_DIR/install/programs/cargo.sh"
   fi
 
-  if command -v rmpc >/dev/null 2>&1; then
+  if command -v rmpc >>"$DOT_MANAGER_LOG" 2>&1; then
     log "info" "rmpc is already installed. Skipping installation."
     return
   fi

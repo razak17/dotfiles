@@ -15,7 +15,7 @@ install_binary() {
   trap 'rm -rf "$tmp_dir"' EXIT
 
   log "download" "Downloading T3-Code"
-  wget -nv -q -O "$tmp_dir/t3code.AppImage" "$url" >/dev/null && log "success" "Downloaded T3-Code." || return 1
+  wget -nv -q -O "$tmp_dir/t3code.AppImage" "$url" >>"$DOT_MANAGER_LOG" 2>&1 && log "success" "Downloaded T3-Code." || return 1
   chmod +x "$tmp_dir/t3code.AppImage"
   mv "$tmp_dir/t3code.AppImage" "$HOME/.local/bin/t3code"
 }

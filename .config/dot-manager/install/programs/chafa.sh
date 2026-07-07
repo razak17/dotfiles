@@ -5,7 +5,7 @@ source "$DOT_MANAGER_DIR/helper.sh"
 install_chafa() {
   print_step "Installing Chafa..."
 
-  if command -v chafa >/dev/null 2>&1; then
+  if command -v chafa >>"$DOT_MANAGER_LOG" 2>&1; then
     log "info" "Chafa is already installed."
     return
   fi
@@ -14,20 +14,20 @@ install_chafa() {
   trap 'rm -rf "$tmp_dir"' EXIT
 
   log "download" "Cloning Chafa repository"
-  git clone --depth 1 https://github.com/hpjansson/chafa.git "$tmp_dir/chafa" >/dev/null && log "success" "Cloned Chafa repository." || return 1
+  git clone --depth 1 https://github.com/hpjansson/chafa.git "$tmp_dir/chafa" >>"$DOT_MANAGER_LOG" 2>&1 && log "success" "Cloned Chafa repository." || return 1
 
   log "info" "Building Chafa"
   cd "$tmp_dir/chafa" || return 1
-  ./autogen.sh >/dev/null && log "success" "Generated build files." || return 1
-  make >/dev/null && log "success" "Built Chafa." || return 1
-  sudo make install >/dev/null && log "success" "Installed Chafa." || return 1
+  ./autogen.sh >>"$DOT_MANAGER_LOG" 2>&1 && log "success" "Generated build files." || return 1
+  make >>"$DOT_MANAGER_LOG" 2>&1 && log "success" "Built Chafa." || return 1
+  sudo make install >>"$DOT_MANAGER_LOG" 2>&1 && log "success" "Installed Chafa." || return 1
 }
 
 do_program_install() {
   case "$1" in
   install) install_chafa ;;
   reinstall)
-    if ! command -v chafa >/dev/null 2>&1; then
+    if ! command -v chafa >>"$DOT_MANAGER_LOG" 2>&1; then
       log "error" "Chafa is not installed. Cannot reinstall."
       return 1
     fi

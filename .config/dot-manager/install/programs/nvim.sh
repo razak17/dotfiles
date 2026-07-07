@@ -5,7 +5,7 @@ source "$DOT_MANAGER_DIR/helper.sh"
 install_luarocks() {
   print_step "Installing LuaRocks..."
 
-  if command -v luarocks >/dev/null 2>&1; then
+  if command -v luarocks >>"$DOT_MANAGER_LOG" 2>&1; then
     log "info" "LuaRocks is already installed."
     return
   fi
@@ -15,16 +15,16 @@ install_luarocks() {
 
   log "download" "Downloading LuaRocks"
   cd /tmp || return 1
-  wget -nv -q "$url" >/dev/null && log "success" "Downloaded LuaRocks." || return 1
+  wget -nv -q "$url" >>"$DOT_MANAGER_LOG" 2>&1 && log "success" "Downloaded LuaRocks." || return 1
 
   tar zxpf /tmp/luarocks-"${ROCKS_VERSION#v}".tar.gz && log "success" "Extracted LuaRocks." || return 1
   rm /tmp/luarocks-"${ROCKS_VERSION#v}".tar.gz
   cd /tmp/luarocks-"${ROCKS_VERSION#v}" || return 1
-  ./configure --prefix="$HOME/.local" >/dev/null
-  make build >/dev/null
-  make install >/dev/null
-  cd - >/dev/null || return 1
-  rm -rf /tmp/luarocks-"${ROCKS_VERSION#v}" >/dev/null
+  ./configure --prefix="$HOME/.local" >>"$DOT_MANAGER_LOG" 2>&1
+  make build >>"$DOT_MANAGER_LOG" 2>&1
+  make install >>"$DOT_MANAGER_LOG" 2>&1
+  cd - >>"$DOT_MANAGER_LOG" 2>&1 || return 1
+  rm -rf /tmp/luarocks-"${ROCKS_VERSION#v}" >>"$DOT_MANAGER_LOG" 2>&1
 
   log "success" "LuaRocks installed."
 }
@@ -32,7 +32,7 @@ install_luarocks() {
 install_treesitter() {
   print_step "Installing treesitter..."
 
-  if command -v tree-sitter >/dev/null 2>&1; then
+  if command -v tree-sitter >>"$DOT_MANAGER_LOG" 2>&1 2>&1; then
     log "info" "treesitter is already installed."
     return
   fi
@@ -55,7 +55,7 @@ install_neovide() {
 install_nvim() {
   print_step "Installing Neovim..."
 
-  if command -v nvim >/dev/null 2>&1; then
+  if command -v nvim >>"$DOT_MANAGER_LOG" 2>&1; then
     log "info" "Neovim is already installed."
     return
   fi
@@ -74,7 +74,7 @@ install_nvim() {
 
   [ -e "$HOME/.local/bin/nvim" ] && mv "$HOME/.local/bin/nvim" "$HOME/.local/bin/nvim-$(date +%F_%H%M%S_%N)"
   ln -s "$HOME/neovim/bin/nvim" "$HOME/.local/bin/nvim"
-  cd - >/dev/null || return 1
+  cd - >>"$DOT_MANAGER_LOG" 2>&1 || return 1
 
   log "success" "Neovim installed."
 }
@@ -82,7 +82,7 @@ install_nvim() {
 install_rvim() {
   print_step "Installing rVim.."
 
-  if command -v rvim >/dev/null 2>&1; then
+  if command -v rvim >>"$DOT_MANAGER_LOG" 2>&1; then
     log "info" "rVim is already installed."
     return
   fi
@@ -105,7 +105,7 @@ install_rvim() {
 update_plugins() {
   print_step "Updating Neovim plugins..."
 
-  nvim --headless "+Lazy! sync" "+qall" >/dev/null
+  nvim --headless "+Lazy! sync" "+qall" >>"$DOT_MANAGER_LOG" 2>&1
   log "success" "Neovim plugins updated."
 
   rvim -no-min -ts-extra --coding --lsp --ai -nice --headless "+Lazy! sync" "+qall" >/dev/null

@@ -10,7 +10,11 @@ install_uv() {
     return
   fi
 
-  curl -LsSf https://astral.sh/uv/install.sh | sh
+  if ! curl -LsSf https://astral.sh/uv/install.sh | sh >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "Failed to install uv."
+    return 1
+  fi
+
   # uv self update
 
   log "success" "uv installed."

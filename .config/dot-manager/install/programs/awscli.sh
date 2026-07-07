@@ -19,7 +19,12 @@ install_or_update_binary() {
   trap 'rm -rf "$tmp_dir"' EXIT
 
   log "download" "Downloading AWS CLI..."
-  curl -fL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "$tmp_dir/awscliv2.zip"
+
+  if ! curl -fL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "$tmp_dir/awscliv2.zip" >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "awscli installation failed"
+    return 1
+  fi
+
   unzip -q "$tmp_dir/awscliv2.zip" -d "$tmp_dir"
 
   if [ "$1" = "update" ]; then

@@ -28,7 +28,7 @@ install_jackett() {
   sudo rc-update add jackett default
   sudo rc-service jackett start
 
-  cd - >/dev/null || return 1
+  cd - >>"$DOT_MANAGER_LOG" 2>&1 || return 1
   echo -e "\nVisit http://127.0.0.1:9117"
 
   log "success" "Jackett installed."

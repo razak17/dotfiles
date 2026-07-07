@@ -1,18 +1,11 @@
 #!/bin/env bash
 
-__detect_distro() {
-  if grep -qi 'arch' /etc/os-release; then
-    echo "arch"
-  elif grep -qi 'ubuntu' /etc/os-release; then
-    echo "ubuntu"
-  else
-    echo "unknown"
-  fi
-}
-
 if [ -n "$__HELPER_ALREADY_LOADED" ]; then
   return 0
 fi
+
+DOT_MANAGER_LOG="${DOT_MANAGER_CACHE_DIR:-$HOME/.cache/dot-manager}/last-run.log"
+mkdir -p "$(dirname "$DOT_MANAGER_LOG")"
 
 show_spinner() {
   local pid=$1
@@ -32,7 +25,7 @@ show_spinner() {
 print_step() {
   local message="$1"
   echo
-  echo -e "${COLORS[blue]}${ICON_GEAR} ${COLORS[bold]}$message${COLORS[reset]}"
+  echo -e "${COLORS[blue]}${ICON_GEAR}${DOT_STEP_PREFIX:+$DOT_STEP_PREFIX }${COLORS[bold]}$message${COLORS[reset]}"
 }
 
 print_separator() {
@@ -40,68 +33,26 @@ print_separator() {
   echo -e "\n${COLORS[dim]}${line}${COLORS[reset]}\n"
 }
 
-print_header() {
-  local title="$1"
-  local width=60
-  local title_length=${#title}
-
-  # Calculate padding for centering
-  local padding_left=$(((width - title_length) / 2))
-  local padding_right=$((width - title_length - padding_left))
-
-  # Create the repeated characters
-  local horizontal_line
-  horizontal_line=$(printf '─%.0s' $(seq 1 $width))
-  local padding_spaces_left
-  padding_spaces_left=$(printf ' %.0s' $(seq 1 $padding_left))
-  local padding_spaces_right
-  padding_spaces_right=$(printf ' %.0s' $(seq 1 $padding_right))
-
-  # Build the box
-  local top_border="${COLORS[cyan]}╭${horizontal_line}╮${COLORS[reset]}"
-  local middle_line="${COLORS[cyan]}│${COLORS[reset]}${padding_spaces_left}${COLORS[bold]}${title}${COLORS[reset]}${padding_spaces_right}${COLORS[cyan]}│${COLORS[reset]}"
-  local bottom_border="${COLORS[cyan]}╰${horizontal_line}╯${COLORS[reset]}"
-
-  # Print the header box
-  echo
-  echo -e "$top_border"
-  echo -e "$middle_line"
-  echo -e "$bottom_border"
-  echo
-}
-
 declare -A COLORS=(
   ["reset"]="\033[0m"
   ["bold"]="\033[1m"
   ["dim"]="\033[2m"
-  ["italic"]="\033[3m"
-  ["underline"]="\033[4m"
 
-  ["black"]="\033[30m"
   ["red"]="\033[31m"
   ["green"]="\033[32m"
   ["yellow"]="\033[33m"
   ["blue"]="\033[34m"
   ["magenta"]="\033[35m"
-  ["cyan"]="\033[36m"
-  ["white"]="\033[37m"
-
-  ["bg_black"]="\033[40m"
-  ["bg_red"]="\033[41m"
-  ["bg_green"]="\033[42m"
-  ["bg_yellow"]="\033[43m"
-  ["bg_blue"]="\033[44m"
-  ["bg_magenta"]="\033[45m"
-  ["bg_cyan"]="\033[46m"
-  ["bg_white"]="\033[47m"
 )
 
 ICON_SUCCESS="✓"
 ICON_ERROR="✗"
-ICON_WARNING="⚠"
-ICON_INFO=""
 ICON_DOWNLOAD="↓"
 ICON_GEAR="⚙ "
+
+if [ ! -t 1 ]; then
+  for k in "${!COLORS[@]}"; do COLORS[$k]=""; done
+fi
 
 log() {
   local level="$1"
@@ -116,16 +67,12 @@ log() {
     icon="${ICON_SUCCESS}"
     color="${COLORS[green]}"
     ;;
-  "warning")
-    icon="${ICON_WARNING}"
-    color="${COLORS[yellow]}"
-    ;;
   "error")
     icon="${ICON_ERROR}"
     color="${COLORS[red]}"
     ;;
   "info")
-    icon="${ICON_INFO}"
+    icon="•"
     color="${COLORS[blue]}"
     ;;
   "download")
@@ -150,7 +97,8 @@ __need_sudo() {
 }
 
 __get_latest_release() {
-  curl -s "https://api.github.com/repos/$1/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'
+  # ponytail: redirect follow instead of api.github.com, avoids the 60 req/hr unauthenticated limit
+  basename "$(curl -sI -o /dev/null -w '%{redirect_url}' "https://github.com/$1/releases/latest")"
 }
 
 __is_pkg_installed() {
@@ -198,7 +146,10 @@ __install_package_release() {
     rm "/tmp/$filename"
   fi
 
-  wget -nv -q "$url" >/dev/null && log "success" "'$filename' downloaded." || return 1
+  if ! wget -nv "$url" >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "Failed to download $filename"
+    return 1
+  fi
 
   if [[ "$filename" == *.tar.gz ]]; then
     tar -xf "$filename" && log "success" "$filename extracted." || return 1
@@ -227,18 +178,6 @@ __install_package_release() {
 
   chmod +x "$name"
   mv "$name" "$HOME/.local/bin/$name" && log "success" "'$name' moved in $HOME/.local/bin/" || return 1
-}
-
-__install_zsh_plugin() {
-  local url=$1
-  local folder
-  folder=$(echo "$url" | sed -r 's|.*/(.*)\.git$|\1|')
-
-  local installation_folder="$HOME/.oh-my-zsh/custom/plugins/$folder"
-
-  [ -d "$installation_folder" ] && rm -rf "$installation_folder"
-
-  git clone "$url" "$installation_folder" && log "success" "$folder installed." || return 1
 }
 
 __install_package_arch() {

@@ -8,7 +8,12 @@ install_binary() {
     return 1
   fi
 
-  curl -f https://zed.dev/install.sh | ZED_CHANNEL=preview sh
+  if ! curl -f https://zed.dev/install.sh | ZED_CHANNEL=preview sh >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "Failed to install zed."
+    return 1
+  fi
+
+  log "success" "zed installed."
 }
 
 install_zed() {

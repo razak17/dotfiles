@@ -15,7 +15,11 @@ install_yt_dlp() {
     rm "$HOME/.local/bin/yt-dlp"
   fi
 
-  curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o ~/.local/bin/yt-dlp
+  if ! curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o ~/.local/bin/yt-dlp >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "Failed to download yt-dlp."
+    return 1
+  fi
+
   chmod a+rx ~/.local/bin/yt-dlp # Make executable
 
   log "success" "yt-dlp installed."

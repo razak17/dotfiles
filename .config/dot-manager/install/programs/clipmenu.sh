@@ -7,9 +7,9 @@ install_binary() {
   trap 'rm -rf "$tmp_dir"' EXIT
 
   log "download" "Downloading Clipmenu..."
-  git clone https://github.com/cdown/clipmenu "$tmp_dir/clipmenu" >/dev/null
+  git clone https://github.com/cdown/clipmenu "$tmp_dir/clipmenu" >>"$DOT_MANAGER_LOG" 2>&1
   cd "$tmp_dir/clipmenu" || return
-  make PREFIX="$HOME/.local" install >/dev/null
+  make PREFIX="$HOME/.local" install >>"$DOT_MANAGER_LOG" 2>&1
 }
 
 install_clipmenu() {

@@ -20,7 +20,10 @@ install_duckdb() {
     rm "$HOME/.duckdb/cli/latest/duckdb"
   fi
 
-  curl https://install.duckdb.org | sh
+  if ! curl https://install.duckdb.org | sh >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "Failed to install DuckDB."
+    return 1
+  fi
 
   if [ ! -f "$HOME/.duckdb/cli/latest/duckdb" ]; then
     ln -s "$HOME/.local/bin/duckdb" "$HOME/.duckdb/cli/latest/duckdb"

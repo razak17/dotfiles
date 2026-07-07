@@ -13,7 +13,10 @@ install_binary() {
     rm "$HOME/.opencode/bin/opencode"
   fi
 
-  curl -fsSL https://opencode.ai/install | bash
+  if ! curl -fsSL https://opencode.ai/install | bash >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "Failed to install OpenCode."
+    return 1
+  fi
 }
 
 install_opencode() {

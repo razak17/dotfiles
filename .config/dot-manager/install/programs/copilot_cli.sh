@@ -28,13 +28,13 @@ install_copilot_cli() {
   fi
 
   cd "$HOME" || return 1
-  git clone https://github.com/razak17/copilot-cli /tmp/copilot-cli >/dev/null && log "success" "Cloned copilot-cli repository." || return 1
+  git clone https://github.com/razak17/copilot-cli /tmp/copilot-cli >>"$DOT_MANAGER_LOG" 2>&1 && log "success" "Cloned copilot-cli repository." || return 1
   cd /tmp/copilot-cli || return 1
 
   log "info" "Installing copilot-cli dependencies..."
-  $PIP_BIN install . >/dev/null
+  $PIP_BIN install . >>"$DOT_MANAGER_LOG" 2>&1
 
-  cd - >/dev/null || return 1
+  cd - >>"$DOT_MANAGER_LOG" 2>&1 || return 1
   rm -rf /tmp/copilot-cli
 
   log "success" "copilot-cli installed."

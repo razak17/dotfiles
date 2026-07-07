@@ -15,7 +15,7 @@ install_binary() {
   trap 'rm -rf "$tmp_dir"' EXIT
 
   log "download" "Downloading RustDesk"
-  wget -nv -q -O "$tmp_dir/rustdesk.AppImage" "$url" >/dev/null && log "success" "Downloaded RustDesk." || return 1
+  wget -nv -q -O "$tmp_dir/rustdesk.AppImage" "$url" >>"$DOT_MANAGER_LOG" 2>&1 && log "success" "Downloaded RustDesk." || return 1
   chmod +x "$tmp_dir/rustdesk.AppImage"
   mv "$tmp_dir/rustdesk.AppImage" "$HOME/.local/bin/rustdesk"
 }

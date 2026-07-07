@@ -23,7 +23,7 @@ install_asdf() {
 install_lua() {
   log "info" "Installing lua plugin for asdf..."
 
-  if ! command -v asdf &>/dev/null; then
+  if ! command -v asdf >>"$DOT_MANAGER_LOG" 2>&1; then
     log "error" "asdf is not installed. Please install asdf first."
     return 1
   fi

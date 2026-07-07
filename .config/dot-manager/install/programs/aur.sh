@@ -5,7 +5,7 @@ source "$DOT_MANAGER_DIR/helper.sh"
 install_paru() {
   print_step "Installing paru..."
 
-  if command -v paru &>/dev/null; then
+  if command -v paru >>"$DOT_MANAGER_LOG" 2>&1; then
     log "info" "paru is already installed."
     return
   fi

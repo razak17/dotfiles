@@ -10,7 +10,12 @@ install_mise() {
     return
   fi
 
-  curl https://mise.run | sh
+  if ! curl https://mise.run | sh >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "Failed to install mise."
+    return 1
+  fi
+
+  log "success" "mise installed."
 }
 
 mise_completion() {
@@ -114,7 +119,7 @@ install_zig() {
 
 install_mise "$@"
 
-if ! command -v mise &>/dev/null; then
+if ! command -v mise >>"$DOT_MANAGER_LOG" 2>&1; then
   log "error" "mise is not installed. Please install mise first."
   return 1
 fi

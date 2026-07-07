@@ -52,22 +52,10 @@ install_dotfiles() {
 prepare_dotfiles() {
   __echo_info "Preparing dotfiles"
 
-  if [ ! -d "$HOME/.local/bin" ]; then
-    __echo_info "Creating $HOME/.local/bin"
-    mkdir -p "$HOME/.local/bin"
-  fi
+  __echo_info "Creating $HOME/.local/bin"
+  mkdir -p "$HOME/.local/bin"
 
-  dot_script_path="$HOME/.config/dot-manager/dot.sh"
-  dot_script_link="$HOME/.local/bin/dot"
-
-  if [ -L "$dot_script_link" ]; then
-    __echo_info "Removing old dot symlink"
-    rm "$dot_script_link"
-  fi
-
-  if [ ! -L "$dot_script_link" ] || [ ! -e "$dot_script_link" ]; then
-    ln -s "$dot_script_path" "$dot_script_link"
-  fi
+  ln -sf "$HOME/.config/dot-manager/dot.sh" "$HOME/.local/bin/dot"
 }
 
 install_essentials

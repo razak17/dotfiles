@@ -15,7 +15,10 @@ install_fnm() {
     rm "$HOME/.local/share/fnm/fnm"
   fi
 
-  curl -fsSL https://fnm.vercel.app/install | bash
+  if ! curl -fsSL https://fnm.vercel.app/install | bash >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "Failed to install fnm."
+    return 1
+  fi
 
   log "success" "fnm installed."
 }
@@ -23,7 +26,7 @@ install_fnm() {
 fnm_complete_setup() {
   log "info" "Setting up fnm completions..."
 
-  if ! command -v fnm &>/dev/null; then
+  if ! command -v fnm >>"$DOT_MANAGER_LOG" 2>&1; then
     log "error" "fnm is not installed. Please install fnm first."
     return 1
   fi

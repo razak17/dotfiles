@@ -10,7 +10,10 @@ install_numi() {
     return
   fi
 
-  printf "y\n" | curl -sSL https://s.numi.app/cli | sh
+  if ! printf "y\n" | curl -sSL https://s.numi.app/cli | sh >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "Failed to install Numi."
+    return 1
+  fi
 
   log "success" "Numi installed."
 }

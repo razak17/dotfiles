@@ -38,9 +38,8 @@ DOT_MANAGER_DIR="$HOME/.config/dot-manager"
 DOT_MANAGER_CACHE_DIR="$HOME/.cache/dot-manager"
 source "$DOT_MANAGER_DIR/helper.sh"
 
-if [ ! -d "$DOT_MANAGER_CACHE_DIR" ]; then
-  mkdir -p "$DOT_MANAGER_CACHE_DIR"
-fi
+mkdir -p "$DOT_MANAGER_CACHE_DIR"
+: >"$DOT_MANAGER_LOG"
 
 __install_program() {
   local program_name="$1"
@@ -49,36 +48,52 @@ __install_program() {
   if [ -f "$install_script" ]; then
     shift
     if ! source "$install_script" "$@"; then
-      log "error" "Failed to source '$program_name' script."
+      log "error" "Failed to source '$program_name' script. (details: $DOT_MANAGER_LOG)"
       return 1
     fi
   else
-    log "error" "'$program_name' unknown."
+    log "error" "'$program_name' unknown. Run 'dot list' to see available programs."
     return 1
   fi
 }
 
 __install_program_list() {
-  local program_list=("$@")
+  local failed=()
+  local total=$#
+  local i=0
 
-  for program in "${program_list[@]}"; do
-    __install_program "$program" || return 1
+  sudo -v
+  SECONDS=0
+
+  for program in "$@"; do
+    i=$((i + 1))
+    DOT_STEP_PREFIX="[$i/$total]"
+    __install_program "$program" || failed+=("$program")
   done
+  unset DOT_STEP_PREFIX
+
+  log "success" "$((total - ${#failed[@]}))/$total programs installed in $((SECONDS / 60))m$((SECONDS % 60))s"
+
+  if [ ${#failed[@]} -gt 0 ]; then
+    log "error" "Failed: ${failed[*]} (rerun with: dot reinstall <name>, details: $DOT_MANAGER_LOG)"
+    return 1
+  fi
 }
 
 install_packages() {
   print_step "Installing Base Packages"
+  sudo -v
 
-  if [ "$TERM" = "wezterm" ]; then
-    print_step "Setting up wezterm terminfo"
+  local terminfo_url=""
+  case "$TERM" in
+  "wezterm") terminfo_url="https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo" ;;
+  "ghostty" | "xterm-ghostty") terminfo_url="https://raw.githubusercontent.com/rachartier/dotfiles/refs/heads/main/.config/ghostty/terminfo/ghostty.terminfo" ;;
+  esac
+
+  if [ -n "$terminfo_url" ]; then
+    print_step "Setting up $TERM terminfo"
     tempfile=$(mktemp) &&
-      curl -sS -o "$tempfile" https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo &&
-      tic -x -o "$HOME/.terminfo" "$tempfile" &&
-      rm "$tempfile"
-  elif [ "$TERM" = "ghostty" ] || [ "$TERM" = "xterm-ghostty" ]; then
-    print_step "Setting up ghostty terminfo"
-    tempfile=$(mktemp) &&
-      curl -sS -o "$tempfile" https://raw.githubusercontent.com/rachartier/dotfiles/refs/heads/main/.config/ghostty/terminfo/ghostty.terminfo &&
+      curl -sS -o "$tempfile" "$terminfo_url" &&
       tic -x -o "$HOME/.terminfo" "$tempfile" &&
       rm "$tempfile"
   fi
@@ -99,7 +114,7 @@ install_packages() {
 }
 
 install_complete() {
-  print_header "Installing Complete Configuration"
+  print_step "Installing Complete Configuration"
   sudo -v
   install_packages
 
@@ -115,6 +130,13 @@ do_reinstall_all() {
 
 do_reinstall() {
   local tool_name="$1"
+
+  if [ -z "$tool_name" ] && command -v fzf >/dev/null; then
+    tool_name=$(basename -s .sh "$DOT_MANAGER_DIR"/install/programs/*.sh | fzf --prompt='reinstall> ')
+    [ -z "$tool_name" ] && return 0
+    __install_program "$tool_name"
+    return
+  fi
 
   if [ -z "$tool_name" ]; then
     log "error" "No tool name provided."
@@ -145,6 +167,24 @@ show_programs_list() {
   done
 }
 
+show_help() {
+  cat <<EOF
+Usage: dot <command> [args]
+
+Commands:
+  list                     List default programs
+  init                     Install the complete configuration
+  update                   Update nvim and tmux plugins
+  program <name|all>       Install a program (or all default programs)
+  reinstall <name|all>     Reinstall a program (or everything)
+  fonts update             Install Nerd Fonts
+  tool <name>              Run a tool script (e.g. dotnet)
+  help                     Show this help
+
+Any other command is passed to git on the dotfiles repository.
+EOF
+}
+
 do_tool() {
   local tool_name="$1"
   local tool_path="$DOT_MANAGER_DIR/install/tools/$tool_name.sh"
@@ -161,9 +201,9 @@ do_tool() {
 do_command() {
   case "$1" in
   "list") show_programs_list ;;
+  "help" | "-h" | "--help") show_help ;;
   "init") install_complete ;;
   "update") update_all ;;
-  "docker") install_docker ;;
   "program")
     shift
     if [ "$1" == "all" ]; then
@@ -171,6 +211,10 @@ do_command() {
     else
       __install_program "$@"
     fi
+    ;;
+  "terminal")
+    shift
+    source "$DOT_MANAGER_DIR/install/terminal.sh" "$@"
     ;;
   "fonts")
     shift
@@ -183,10 +227,6 @@ do_command() {
   "tool")
     shift
     do_tool "$@"
-    ;;
-  "migrate")
-    shift
-    source "$DOT_MANAGER_DIR/migrate.sh" "$@"
     ;;
   *) __git_dot "$@" ;;
   esac

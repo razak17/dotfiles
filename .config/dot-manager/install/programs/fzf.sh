@@ -15,8 +15,8 @@ install_fzf() {
     rm -rf "$HOME/.fzf"
   fi
 
-  git clone --depth 1 https://github.com/junegunn/fzf.git /tmp/fzf >/dev/null
-  /tmp/fzf/install --bin >/dev/null
+  git clone --depth 1 https://github.com/junegunn/fzf.git /tmp/fzf >>"$DOT_MANAGER_LOG" 2>&1
+  /tmp/fzf/install --bin >>"$DOT_MANAGER_LOG" 2>&1
   mv /tmp/fzf "$HOME/.fzf"
 
   log "success" "fzf installed."

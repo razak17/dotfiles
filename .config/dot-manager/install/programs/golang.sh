@@ -10,7 +10,10 @@ install_golang() {
     rm "$HOME/go/bin/g"
   fi
 
-  curl -sSL https://git.io/g-install | sh -s
+  if ! curl -sSL https://git.io/g-install | sh -s >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "Failed to install GoLang."
+    return 1
+  fi
 
   log "success" "GoLang installed."
 }

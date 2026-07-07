@@ -15,7 +15,10 @@ install_bun() {
     rm "$HOME/.bun/bin/bun"
   fi
 
-  curl -fsSL https://bun.sh/install | bash
+  if ! curl -fsSL https://bun.sh/install | bash >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "Failed to install Bun."
+    return 1
+  fi
 
   log "success" "Bun installed."
 }
