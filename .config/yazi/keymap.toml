@@ -1,3 +1,30 @@
+# Custom bookmarks
+[[mgr.prepend_keymap]]
+on   = [ "g", "b" ]
+run  = "cd ~/.local/bin"
+desc = "Cd to ~/.local/bin"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "d" ]
+run  = "cd ~/Downloads"
+desc = "Cd to ~/Downloads"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "p" ]
+run  = "cd ~/Pictures"
+desc = "Cd to ~/Pictures"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "s" ]
+run  = "cd ~/Sync"
+desc = "Cd to ~/Sync"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "w" ]
+run  = "cd ~/personal/workspace"
+desc = "Cd to ~/personal/workspace"
+
+# Plugin keymaps
 [[mgr.prepend_keymap]]
 on = "l"
 run = "plugin smart-enter"
