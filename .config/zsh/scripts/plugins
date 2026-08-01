@@ -25,13 +25,13 @@ function add_completion() {
   if [ -d "$ZDOTDIR/plugins/$1" ]; then
     dir="plugins"
     if [ ! -z "$2" ]; then
-     file_path=$(ls $ZDOTDIR/$dir/$1/$2/_*)
+     file_path=$(command ls $ZDOTDIR/$dir/$1/$2/_*)
     else
-      file_path=$(ls $ZDOTDIR/$dir/$1/_*)
+     file_path=$(command ls $ZDOTDIR/$dir/$1/_*)
     fi
   elif [ -d "$ZDOTDIR/completion/$1" ]; then
     dir="completion"
-    file_path=$(ls $ZDOTDIR/$dir/$1/_*)
+     file_path=$(command ls $ZDOTDIR/$dir/$1/_*)
   else
     return
   fi
