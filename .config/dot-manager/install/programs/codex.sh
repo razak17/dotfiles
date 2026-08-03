@@ -8,11 +8,6 @@ install_binary() {
     return
   fi
 
-  if [ -f "$HOME/.codex/bin/codex" ]; then
-    log "info" "Removing old Codex symlink."
-    rm "$HOME/.codex/bin/codex"
-  fi
-
   if ! curl -fsSL https://chatgpt.com/codex/install.sh | bash >>"$DOT_MANAGER_LOG" 2>&1; then
     log "error" "Failed to install Codex."
     return 1

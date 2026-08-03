@@ -8,11 +8,6 @@ install_binary() {
     return
   fi
 
-  if [ -f "$HOME/.claude/bin/claude" ]; then
-    log "info" "Removing old Claude symlink."
-    rm "$HOME/.claude/bin/claude"
-  fi
-
   if ! curl -fsSL https://claude.ai/install.sh | bash >>"$DOT_MANAGER_LOG" 2>&1; then
     log "error" "Failed to install Claude."
     return 1

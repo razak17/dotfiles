@@ -5,7 +5,7 @@ source "$DOT_MANAGER_DIR/helper.sh"
 install_fnm() {
   print_step "Installing fnm..."
 
-  if __is_program_installed "bun"; then
+  if __is_program_installed "fnm"; then
     log "info" "fnm is already installed. Skipping installation."
     return
   fi
