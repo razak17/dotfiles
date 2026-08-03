@@ -27,8 +27,10 @@ export TEXT_EDITOR="vi"
 
 if [[ $+commands[rvim] ]]; then
   export TEXT_EDITOR="rvim"
+  export DIFFPROG='rvim -d'
 elif [[ $+commands[nvim] ]]; then
   export TEXT_EDITOR="nvim"
+  export DIFFPROG='nvim -d'
 elif [[ $+commands[vim] ]]; then
   export TEXT_EDITOR="vim"
 fi
