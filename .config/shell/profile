@@ -27,7 +27,7 @@ if [ -f $HOME/.fzf/bin/fzf ]; then
 fi
 
 # java
-export JAVA_HOME="/usr/lib/jvm/java-24-openjdk";
+export JAVA_HOME="/usr/lib/jvm/java-26-openjdk";
 
 # g - go version manager
 export GOPATH="$HOME/go";
