@@ -97,4 +97,13 @@ if [ -e "$HOME/.opencode/bin/opencode" ]; then
   )
 fi
 
+# Pi
+if [ -e "$HOME/.opencode/bin/opencode" ]; then
+  VERSION="v25.0.0"
+  export FNM_BIN="$FNMDIR/node-versions/$VERSION/installation"
+  path+=(
+  "$OPENCODE_PATH/bin"
+  )
+fi
+
 export PATH
