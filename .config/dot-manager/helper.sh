@@ -252,27 +252,54 @@ __install_package_release() {
 }
 
 __install_package_arch() {
+  local failed=()
+  local pkg
+
   for pkg in "$@"; do
     if __is_pkg_installed "$pkg"; then
       log "info" "$pkg already installed."
     else
-      __as_root pacman -S --noconfirm --needed "$pkg" && log "success" "$pkg installed."
+      if __as_root pacman -S --noconfirm --needed "$pkg"; then
+        log "success" "$pkg installed."
+      else
+        log "error" "Failed to install $pkg."
+        failed+=("$pkg")
+      fi
     fi
   done
+
+  if [ ${#failed[@]} -gt 0 ]; then
+    log "error" "Package installation failed: ${failed[*]}"
+    return 1
+  fi
 }
 
 __install_package_aur() {
+  local failed=()
+  local pkg
+
   if ! command -v paru &>/dev/null; then
-    source "$DOT_MANAGER_DIR/install/programs/aur.sh"
+    log "error" "paru is required to install AUR packages."
+    return 1
   fi
 
   for pkg in "$@"; do
     if __is_pkg_installed "$pkg"; then
       log "info" "$pkg already installed."
     else
-      paru -S --noconfirm --needed "$pkg" && log "success" "$pkg installed."
+      if paru -S --noconfirm --needed "$pkg"; then
+        log "success" "$pkg installed."
+      else
+        log "error" "Failed to install $pkg."
+        failed+=("$pkg")
+      fi
     fi
   done
+
+  if [ ${#failed[@]} -gt 0 ]; then
+    log "error" "AUR package installation failed: ${failed[*]}"
+    return 1
+  fi
 }
 
 __install_package_apt() {
@@ -301,4 +328,4 @@ __git_dot() {
   /usr/bin/git --git-dir="$HOME/.cfg/" --work-tree="$HOME" "$@"
 }
 
-_HELPER_ALREADY_LOADED=1
+__HELPER_ALREADY_LOADED=1
