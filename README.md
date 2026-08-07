@@ -20,3 +20,23 @@ Old files are stored in `~/.config-backup`
 The installer prefers `doas` when available and falls back to `sudo`. Override
 the selection for one run with `DOT_PRIVILEGE_CMD=doas` or
 `DOT_PRIVILEGE_CMD=sudo`.
+
+## Uninstall
+
+Preview the tracked files that would be removed:
+
+```bash
+~/.local/bin/dot uninstall --dry-run
+```
+
+Then run the guarded uninstall:
+
+```bash
+~/.local/bin/dot uninstall
+```
+
+The command refuses to run when tracked changes exist and requires an exact
+confirmation phrase. It removes only tracked files; untracked files and
+non-empty directories are preserved. The bare repository at
+`~/.dots/dotfiles` and the `~/.local/bin/dot` launcher are retained, and the
+command prints recovery instructions when it finishes.
