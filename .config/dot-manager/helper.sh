@@ -88,12 +88,83 @@ log() {
   echo -e "$color$icon${COLORS[reset]} ${COLORS[dim]}[$timestamp]${COLORS[reset]} $message"
 }
 
-__need_sudo() {
-  if [ "${EUID:-$(id -u)}" -eq 0 ]; then
-    log "error" "Please run as root: sudo -E dot"
-    exit
+__DOT_PRIVILEGE_RESOLVED=0
+__DOT_PRIVILEGE_BIN=""
+__DOT_PRIVILEGE_KIND=""
+
+__effective_uid() {
+  printf '%s\n' "${DOT_MANAGER_TEST_EUID:-${EUID:-$(id -u)}}"
+}
+
+__resolve_privilege_command() {
+  local requested="${DOT_PRIVILEGE_CMD:-}"
+
+  [ "$__DOT_PRIVILEGE_RESOLVED" -eq 0 ] || return 0
+
+  if [ "$(__effective_uid)" -eq 0 ]; then
+    __DOT_PRIVILEGE_RESOLVED=1
+    return 0
   fi
-  eval "$@"
+
+  if [ -n "$requested" ]; then
+    case "$requested" in
+    doas | sudo) ;;
+    *)
+      log "error" "DOT_PRIVILEGE_CMD must be 'doas' or 'sudo'."
+      return 1
+      ;;
+    esac
+
+    if ! command -v "$requested" >/dev/null 2>&1; then
+      log "error" "DOT_PRIVILEGE_CMD '$requested' is not available."
+      return 1
+    fi
+
+    __DOT_PRIVILEGE_BIN=$(command -v "$requested")
+    __DOT_PRIVILEGE_KIND="$requested"
+  elif command -v doas >/dev/null 2>&1; then
+    __DOT_PRIVILEGE_BIN=$(command -v doas)
+    __DOT_PRIVILEGE_KIND=doas
+  elif command -v sudo >/dev/null 2>&1; then
+    __DOT_PRIVILEGE_BIN=$(command -v sudo)
+    __DOT_PRIVILEGE_KIND=sudo
+  else
+    log "error" "Neither doas nor sudo is available for privileged commands."
+    return 1
+  fi
+
+  __DOT_PRIVILEGE_RESOLVED=1
+}
+
+__as_root() {
+  if [ "$(__effective_uid)" -eq 0 ]; then
+    "$@"
+    return
+  fi
+
+  __resolve_privilege_command || return 1
+  "$__DOT_PRIVILEGE_BIN" "$@"
+}
+
+__as_user() {
+  local username="$1"
+  shift
+
+  if [ "$(__effective_uid)" -eq 0 ]; then
+    runuser -u "$username" -- "$@"
+    return
+  fi
+
+  __resolve_privilege_command || return 1
+  if [ "$__DOT_PRIVILEGE_KIND" = doas ]; then
+    "$__DOT_PRIVILEGE_BIN" -u "$username" "$@"
+  else
+    "$__DOT_PRIVILEGE_BIN" -u "$username" -- "$@"
+  fi
+}
+
+__authenticate() {
+  __as_root true
 }
 
 __get_latest_release() {
@@ -185,7 +256,7 @@ __install_package_arch() {
     if __is_pkg_installed "$pkg"; then
       log "info" "$pkg already installed."
     else
-      sudo pacman -S --noconfirm --needed "$pkg" && log "success" "$pkg installed."
+      __as_root pacman -S --noconfirm --needed "$pkg" && log "success" "$pkg installed."
     fi
   done
 }
@@ -209,7 +280,7 @@ __install_package_apt() {
     if __is_pkg_installed "$pkg"; then
       log "info" "$pkg already installed."
     else
-      sudo apt-get install -y -qq -o=Dpkg::Use-Pty=0 "$pkg" && log "success" "$pkg installed."
+      __as_root apt-get install -y -qq -o=Dpkg::Use-Pty=0 "$pkg" && log "success" "$pkg installed."
     fi
   done
 }

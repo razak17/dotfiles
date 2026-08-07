@@ -8,19 +8,18 @@ install_postgres() {
   log "info" "Installing postgres via pacman..."
   __install_package_arch postgresql postgresql-openrc
 
-  sudo mkdir -p /var/lib/postgres
-  sudo chmod 775 /var/lib/postgres
-  sudo chown postgres /var/lib/postgres
+  __as_root mkdir -p /var/lib/postgres
+  __as_root chmod 775 /var/lib/postgres
+  __as_root chown postgres /var/lib/postgres
 
-  sudo -iu postgres
-  initdb --locale=en_US.UTF-8 -E UTF8 -D /var/lib/postgres/data
-  sudo touch /var/lib/postgres/.psql_history
-  createuser --interactive
-  createdb myDatabaseName
+  __as_user postgres initdb --locale=en_US.UTF-8 -E UTF8 -D /var/lib/postgres/data
+  __as_root touch /var/lib/postgres/.psql_history
+  __as_user postgres createuser --interactive
+  __as_user postgres createdb myDatabaseName
 
   log "info" "Enabling postgresql service..."
-  sudo rc-update add postgresql default
-  sudo rc-service postgresql start
+  __as_root rc-update add postgresql default
+  __as_root rc-service postgresql start
 
   log "success" "Postgres installed."
 }

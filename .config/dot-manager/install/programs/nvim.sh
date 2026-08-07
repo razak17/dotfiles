@@ -68,9 +68,9 @@ install_nvim() {
   git checkout master
   git pull
 
-  [ -d "$NEOVIM_DIR/build/" ] && sudo rm -r ./build/ # clear the CMake cache
-  sudo make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim"
-  sudo make install
+  [ -d "$NEOVIM_DIR/build/" ] && __as_root rm -r ./build/ # clear the CMake cache
+  __as_root make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim"
+  __as_root make install
 
   [ -e "$HOME/.local/bin/nvim" ] && mv "$HOME/.local/bin/nvim" "$HOME/.local/bin/nvim-$(date +%F_%H%M%S_%N)"
   ln -s "$HOME/neovim/bin/nvim" "$HOME/.local/bin/nvim"

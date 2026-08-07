@@ -16,17 +16,17 @@ install_jackett() {
       log "error" "Failed to change directory to /opt"
       return 1
     }
-  sudo rm -rf Jackett*
+  __as_root rm -rf Jackett*
 
   f=Jackett.Binaries.LinuxAMDx64.tar.gz
-  sudo wget -Nc https://github.com/Jackett/Jackett/releases/latest/download/"$f"
-  sudo tar -xzf "$f" && sudo rm -f "$f"
+  __as_root wget -Nc https://github.com/Jackett/Jackett/releases/latest/download/"$f"
+  __as_root tar -xzf "$f" && __as_root rm -f "$f"
   cd Jackett* || return
-  sudo chown $(whoami):$(id -g) -R "/opt/Jackett"
+  __as_root chown "$(whoami):$(id -g)" -R "/opt/Jackett"
 
   log "info" "Enabling jackett service..."
-  sudo rc-update add jackett default
-  sudo rc-service jackett start
+  __as_root rc-update add jackett default
+  __as_root rc-service jackett start
 
   cd - >>"$DOT_MANAGER_LOG" 2>&1 || return 1
   echo -e "\nVisit http://127.0.0.1:9117"

@@ -20,7 +20,7 @@ install_chafa() {
   cd "$tmp_dir/chafa" || return 1
   ./autogen.sh >>"$DOT_MANAGER_LOG" 2>&1 && log "success" "Generated build files." || return 1
   make >>"$DOT_MANAGER_LOG" 2>&1 && log "success" "Built Chafa." || return 1
-  sudo make install >>"$DOT_MANAGER_LOG" 2>&1 && log "success" "Installed Chafa." || return 1
+  __as_root make install >>"$DOT_MANAGER_LOG" 2>&1 && log "success" "Installed Chafa." || return 1
 }
 
 do_program_install() {
