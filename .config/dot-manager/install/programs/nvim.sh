@@ -117,4 +117,4 @@ install_treesitter
 install_neovide
 install_nvim "$@"
 install_rvim "$@"
-update_plugins "$@"
+# update_plugins "$@"
