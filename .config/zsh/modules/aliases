@@ -90,6 +90,7 @@ alias e="touch"
 alias mk="mkdir"
 alias loc="locate"
 alias cmd='command -V'
+alias dotm='~/.local/bin/dot'
 
 # confirm before overwriting something
 alias cp="cp -i"
