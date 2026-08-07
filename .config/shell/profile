@@ -21,8 +21,10 @@ path+=(
 [ -f "$HOME/.local/share/../bin/env" ] && . "$HOME/.local/share/../bin/env"
 
 # fzf
-if [ -f $HOME/.fzf/bin/fzf ]; then
-  source $HOME/.fzf.zsh
+if [[ -x "$HOME/.fzf/bin/fzf" ]]; then
+  path+=("$HOME/.fzf/bin")
+  source <("$HOME/.fzf/bin/fzf" --zsh)
+elif (( $+commands[fzf] )); then
   source <(fzf --zsh)
 fi
 
