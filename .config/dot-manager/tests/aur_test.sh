@@ -201,4 +201,9 @@ run_failed_build
 run_missing_package_list
 run_successful_build
 
+if grep -Eq '(^|[[:space:]])toilet([[:space:]\\]|$)' "$AUR_PATH"; then
+  printf 'Unavailable toilet package remains in AUR essentials\n' >&2
+  exit 1
+fi
+
 printf 'AUR tests passed\n'

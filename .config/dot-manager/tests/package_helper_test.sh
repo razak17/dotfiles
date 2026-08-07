@@ -47,18 +47,43 @@ __resolve_privilege_command() {
 }
 
 paru() {
-  if [ "${1:-}" != "--sudo" ] || [ "${2:-}" != "/mock/doas" ]; then
+  PARU_CALL_COUNT=$((PARU_CALL_COUNT + 1))
+  PARU_LAST_ARGS="$*"
+  if [ "${1:-}" != "--sudo" ] ||
+    [ "${2:-}" != "/mock/doas" ] ||
+    [ "${3:-}" != "--sudoloop=/usr/bin/true" ]; then
     return 98
   fi
-  [ "${*: -1}" != "broken-package" ]
+  case " $* " in
+  *" broken-package "*) return 1 ;;
+  esac
+  return 0
 }
 
+PARU_CALL_COUNT=0
+PARU_LAST_ARGS=""
 if __install_package_aur broken-package healthy-package; then
   printf 'AUR package helper swallowed an earlier package failure\n' >&2
   exit 1
 fi
-if ! __install_package_aur healthy-package; then
+if [ "$PARU_CALL_COUNT" -ne 1 ]; then
+  printf 'AUR package helper used %s Paru calls for one package batch\n' "$PARU_CALL_COUNT" >&2
+  exit 1
+fi
+
+PARU_CALL_COUNT=0
+PARU_LAST_ARGS=""
+if ! __install_package_aur healthy-one healthy-two; then
   printf 'AUR package helper failed after successful installations\n' >&2
+  exit 1
+fi
+if [ "$PARU_CALL_COUNT" -ne 1 ]; then
+  printf 'AUR package helper used %s Paru calls for one package batch\n' "$PARU_CALL_COUNT" >&2
+  exit 1
+fi
+expected='--sudo /mock/doas --sudoloop=/usr/bin/true -S --noconfirm --needed healthy-one healthy-two'
+if [ "$PARU_LAST_ARGS" != "$expected" ]; then
+  printf 'Unexpected Paru arguments: %s\n' "$PARU_LAST_ARGS" >&2
   exit 1
 fi
 
