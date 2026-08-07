@@ -33,8 +33,7 @@ install_arch_extras() {
   # You need to enable the artix-archlinux-support repo in /etc/pacman.conf to install these packages
   # see: https://wiki.artixlinux.org/Main/Repositories
 
-  __install_package_arch ttf-times-new-roman glow tokei screenkey git-delta \
-    bottom zsync direnv global pngquant
+  __install_package_arch glow tokei screenkey git-delta bottom zsync direnv global pngquant
 
   log "success" "Arch extras installed."
 

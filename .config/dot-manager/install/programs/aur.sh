@@ -72,7 +72,7 @@ install_paru() (
 install_aur_essentials() {
   print_step "Installing AUR essentials"
 
-  if ! __install_package_aur fastfetch freeze \
+  if ! __install_package_aur fastfetch freeze ttf-times-new-roman \
     toilet linux-wifi-hotspot ttf-joypixels ttf-ancient-fonts \
     rmtrash localsend-bin stpv-git w3m newsraft yazi obsidian dysk \
     lrcget-bin autorandr; then
