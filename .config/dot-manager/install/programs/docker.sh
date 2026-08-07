@@ -11,12 +11,12 @@ install_docker() {
   log "info" "Installing docker-buildx via aur..."
   __install_package_aur docker-buildx
 
-  sudo groupadd docker
-  sudo usermod -aG docker "$USER"
+  __as_root groupadd docker
+  __as_root usermod -aG docker "$USER"
 
   log "info" "Enabling docker service..."
-  sudo rc-update add docker default
-  sudo rc-service docker start
+  __as_root rc-update add docker default
+  __as_root rc-service docker start
 
   log "success" "Docker installed."
 }

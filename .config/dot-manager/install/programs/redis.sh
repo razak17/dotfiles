@@ -9,9 +9,9 @@ install_valkey() {
   __install_package_arch redis valkey-openrc
 
   log "info" "Enabling valkey service..."
-  sudo rc-update add valkey-sentinel default
-  sudo rc-update add valkey default
-  sudo rc-service valkey start
+  __as_root rc-update add valkey-sentinel default
+  __as_root rc-update add valkey default
+  __as_root rc-service valkey start
 
   log "success" "Redis installed."
 }

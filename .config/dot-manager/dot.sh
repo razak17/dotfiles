@@ -62,7 +62,7 @@ __install_program_list() {
   local total=$#
   local i=0
 
-  sudo -v
+  __authenticate
   SECONDS=0
 
   for program in "$@"; do
@@ -82,7 +82,7 @@ __install_program_list() {
 
 install_packages() {
   print_step "Installing Base Packages"
-  sudo -v
+  __authenticate
 
   local terminfo_url=""
   case "$TERM" in
@@ -115,13 +115,13 @@ install_packages() {
 
 install_complete() {
   print_step "Installing Complete Configuration"
-  sudo -v
+  __authenticate
   install_packages
 
   __install_program_list "${DOT_MANAGER_COMPLETE_PROGRAMS[@]}"
 
   git config --global include.path "$HOME/.config/git/gitconfig"
-  sudo ldconfig
+  __as_root ldconfig
 }
 
 do_reinstall_all() {

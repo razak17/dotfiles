@@ -10,7 +10,7 @@ install_suckless_utils() {
   fi
 
   log "info" "Installing dwm"
-  sudo make -C "$HOME/.dots/dwm" install
+  __as_root make -C "$HOME/.dots/dwm" install
 
   DIR="$HOME/.dots/suckless"
 
@@ -20,13 +20,13 @@ install_suckless_utils() {
   fi
 
   log "info" "Installing dmenu"
-  sudo make -C "$DIR/dmenu" install
+  __as_root make -C "$DIR/dmenu" install
 
   log "info" "Installing st"
-  sudo make -C "$DIR/st" install
+  __as_root make -C "$DIR/st" install
 
   log "info" "Installing dwmblocks"
-  sudo make -C "$DIR/dwmblocks" install
+  __as_root make -C "$DIR/dwmblocks" install
 }
 
 install_suckless_utils "$@"

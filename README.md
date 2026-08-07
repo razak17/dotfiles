@@ -12,7 +12,11 @@ Run the install script. Files are cloned to `~/.dots/dotfiles` by default.
 NOTE: Installation is done using a bare repo.
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/razak17/dotfiles/refs/heads/main/.config/dot-manager/first_install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/razak17/dotfiles/refs/heads/doas/.config/dot-manager/first_install.sh)"
 
 ```
 Old files are stored in `~/.config-backup`
+
+The installer prefers `doas` when available and falls back to `sudo`. Override
+the selection for one run with `DOT_PRIVILEGE_CMD=doas` or
+`DOT_PRIVILEGE_CMD=sudo`.

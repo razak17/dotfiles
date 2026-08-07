@@ -2,13 +2,52 @@
 
 mkdir -p "$HOME"/.dots
 
+__BOOTSTRAP_PRIVILEGE_RESOLVED=0
+__BOOTSTRAP_PRIVILEGE_BIN=""
+
+__bootstrap_as_root() {
+  local requested="${DOT_PRIVILEGE_CMD:-}"
+
+  if [ "${EUID:-$(id -u)}" -eq 0 ]; then
+    "$@"
+    return
+  fi
+
+  if [ "$__BOOTSTRAP_PRIVILEGE_RESOLVED" -eq 0 ]; then
+    if [ -n "$requested" ]; then
+      case "$requested" in
+      doas | sudo) ;;
+      *)
+        echo "[ERROR] DOT_PRIVILEGE_CMD must be 'doas' or 'sudo'." >&2
+        return 1
+        ;;
+      esac
+      command -v "$requested" >/dev/null 2>&1 || {
+        echo "[ERROR] DOT_PRIVILEGE_CMD '$requested' is not available." >&2
+        return 1
+      }
+      __BOOTSTRAP_PRIVILEGE_BIN=$(command -v "$requested")
+    elif command -v doas >/dev/null 2>&1; then
+      __BOOTSTRAP_PRIVILEGE_BIN=$(command -v doas)
+    elif command -v sudo >/dev/null 2>&1; then
+      __BOOTSTRAP_PRIVILEGE_BIN=$(command -v sudo)
+    else
+      echo "[ERROR] Neither doas nor sudo is available for privileged commands." >&2
+      return 1
+    fi
+    __BOOTSTRAP_PRIVILEGE_RESOLVED=1
+  fi
+
+  "$__BOOTSTRAP_PRIVILEGE_BIN" "$@"
+}
+
 __echo_info() {
   echo "[INFO] $(tput setaf 6)$1"
   tput sgr 0
 }
 
 install_essentials() {
-  sudo pacman -S --noconfirm --needed \
+  __bootstrap_as_root pacman -S --noconfirm --needed \
     git \
     wget \
     zsh \
@@ -16,7 +55,7 @@ install_essentials() {
     curl \
     jq
 
-  sudo pacman -S --noconfirm --needed \
+  __bootstrap_as_root pacman -S --noconfirm --needed \
     automake \
     autoconf \
     cmake
@@ -38,10 +77,10 @@ install_dotfiles() {
 
   if [ "$GIT_CLONE_METHOD" = "ssh" ]; then
     echo "Using SSH to clone dotfiles"
-    git clone --bare git@github.com:razak17/dotfiles.git "$HOME"/.dots/dotfiles
+    git clone --bare --branch doas git@github.com:razak17/dotfiles.git "$HOME"/.dots/dotfiles
   else
     echo "Using HTTPS to clone dotfiles"
-    git clone --bare https://github.com/razak17/dotfiles.git "$HOME"/.dots/dotfiles
+    git clone --bare --branch doas https://github.com/razak17/dotfiles.git "$HOME"/.dots/dotfiles
   fi
 
   conf checkout -f

@@ -9,13 +9,13 @@ install_jellyfin() {
 
   if [ ! -e "/etc/init.d/jellyfind" ]; then
     log "info" "Downloading jellyfin openrc service file..."
-    sudo wget -O /etc/init.d/jellyfind https://raw.githubusercontent.com/razak17/jellyfinopenrc/refs/heads/main/jellyfind
-    sudo chmod +x /etc/init.d/jellyfind
+    __as_root wget -O /etc/init.d/jellyfind https://raw.githubusercontent.com/razak17/jellyfinopenrc/refs/heads/main/jellyfind
+    __as_root chmod +x /etc/init.d/jellyfind
   fi
 
   log "info" "Enabling jellyfin service..."
-  sudo rc-update add jellyfind default
-  sudo rc-service jellyfind start
+  __as_root rc-update add jellyfind default
+  __as_root rc-service jellyfind start
 
   log "success" "Jellyfin installed."
 }
