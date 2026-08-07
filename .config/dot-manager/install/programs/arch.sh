@@ -18,7 +18,7 @@ install_arch_essentials() {
     thunderbird syncthing lazygit slock gparted baobab \
     plocate rsync reflector gvfs gvfs-mtp ntfs-3g \
     ctags libnotify strace mtools expac dosfstools elinks \
-    entr libconfig pamixer
+    entr libconfig pamixer xwallpaper
 
   log "success" "Arch essentials installed."
 }
