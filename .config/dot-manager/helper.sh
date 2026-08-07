@@ -4,6 +4,8 @@ if [ -n "$__HELPER_ALREADY_LOADED" ]; then
   return 0
 fi
 
+DOT_MANAGER_GIT_DIR="${DOT_MANAGER_GIT_DIR:-$HOME/.dots/dotfiles}"
+DOT_MANAGER_WORK_TREE="${DOT_MANAGER_WORK_TREE:-$HOME}"
 DOT_MANAGER_LOG="${DOT_MANAGER_CACHE_DIR:-$HOME/.cache/dot-manager}/last-run.log"
 mkdir -p "$(dirname "$DOT_MANAGER_LOG")"
 
@@ -325,7 +327,43 @@ __make_symlink() {
 }
 
 __git_dot() {
-  /usr/bin/git --git-dir="$HOME/.cfg/" --work-tree="$HOME" "$@"
+  /usr/bin/git \
+    --git-dir="$DOT_MANAGER_GIT_DIR" \
+    --work-tree="$DOT_MANAGER_WORK_TREE" \
+    "$@"
+}
+
+__init_dot_submodules() {
+  if [ ! -d "$DOT_MANAGER_GIT_DIR" ]; then
+    log "error" "Dotfiles repository not found at $DOT_MANAGER_GIT_DIR."
+    return 1
+  fi
+
+  if ! __git_dot show HEAD:.gitmodules >/dev/null 2>&1; then
+    return 0
+  fi
+
+  log "info" "Synchronizing dotfiles submodules..."
+  if ! /usr/bin/git \
+    -C "$DOT_MANAGER_WORK_TREE" \
+    --git-dir="$DOT_MANAGER_GIT_DIR" \
+    --work-tree="$DOT_MANAGER_WORK_TREE" \
+    -c core.bare=false \
+    submodule sync --recursive >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "Failed to synchronize dotfiles submodules. (details: $DOT_MANAGER_LOG)"
+    return 1
+  fi
+
+  log "info" "Installing dotfiles submodules..."
+  if ! /usr/bin/git \
+    -C "$DOT_MANAGER_WORK_TREE" \
+    --git-dir="$DOT_MANAGER_GIT_DIR" \
+    --work-tree="$DOT_MANAGER_WORK_TREE" \
+    -c core.bare=false \
+    submodule update --init --recursive >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "Failed to install dotfiles submodules. (details: $DOT_MANAGER_LOG)"
+    return 1
+  fi
 }
 
 __HELPER_ALREADY_LOADED=1

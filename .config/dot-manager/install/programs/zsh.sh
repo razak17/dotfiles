@@ -5,6 +5,8 @@ source "$DOT_MANAGER_DIR/helper.sh"
 zsh_setup() {
   print_step "Setting up Zsh..."
 
+  __init_dot_submodules || return 1
+
   OH_MY_ZSH="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins"
   PLUGINS="$HOME/.config/zsh/plugins"
 

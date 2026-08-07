@@ -8,6 +8,7 @@ DOT_MANAGER_ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 "$DOT_MANAGER_ROOT/tests/package_helper_test.sh"
 "$DOT_MANAGER_ROOT/tests/privilege_test.sh"
 "$DOT_MANAGER_ROOT/tests/shell_test.sh"
+"$DOT_MANAGER_ROOT/tests/submodule_test.sh"
 "$DOT_MANAGER_ROOT/tests/uninstall_test.sh"
 
 while IFS= read -r -d '' script; do

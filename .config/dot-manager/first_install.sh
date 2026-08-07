@@ -86,6 +86,11 @@ install_dotfiles() {
   conf checkout -f
   conf reset --hard HEAD
   conf config --local status.showUntrackedFiles no
+
+  DOT_MANAGER_GIT_DIR="$HOME/.dots/dotfiles"
+  DOT_MANAGER_WORK_TREE="$HOME"
+  source "$HOME/.config/dot-manager/helper.sh"
+  __init_dot_submodules
 }
 
 prepare_dotfiles() {
