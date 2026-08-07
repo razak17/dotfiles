@@ -15,7 +15,7 @@ repository through the `dot` command.
 Run the bootstrap script from the `doas` branch:
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/razak17/dotfiles/refs/heads/doas/.config/dot-manager/first_install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/razak17/dotfiles/refs/heads/main/.config/dot-manager/first_install.sh)"
 ```
 
 The script installs its base dependencies, clones the bare repository into
