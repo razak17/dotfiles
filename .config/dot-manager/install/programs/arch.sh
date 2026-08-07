@@ -8,7 +8,7 @@ install_arch_essentials() {
   __install_package_arch artix-archlinux-support pacman-contrib fd gcc lf \
     xorg-server xorg-xinit xorg-xkill xorg-xsetroot xorg-xbacklight \
     xorg-xprop xorg-xinput xorg-xdpyinfo arc-gtk-theme grub-customizer \
-    wireless_tools imagemagick bluez bluez-utils blueman openvpn btop \
+    wireless_tools imagemagick openvpn btop \
     xf86-input-libinput android-tools android-file-transfer ninja \
     zathura zathura-ps zathura-pdf-poppler zathura-djvu zathura-cb \
     brightnessctl sxiv nsxiv maim hwinfo ueberzug lolcat eza \

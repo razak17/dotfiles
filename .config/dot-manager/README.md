@@ -61,6 +61,19 @@ dot diff
 dot log --oneline
 ```
 
+## Optional Bluetooth support
+
+Bluetooth is not installed by `dot init` or `dot program all`. Install and
+enable it explicitly on machines that need it:
+
+```bash
+dot program bluetooth
+```
+
+This installs the BlueZ OpenRC service and utilities, OBEX file-transfer
+support, and Plasma's Bluetooth integration. It enables and starts
+`bluetoothd` immediately.
+
 ## Login shell
 
 Changing the login shell is opt-in and is not part of `dot init`. After Zsh is
