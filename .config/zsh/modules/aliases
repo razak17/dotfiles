@@ -26,6 +26,12 @@ safe_edit() {
   # alias "$lhs=$editor \"$rhs\""
 }
 
+if (( ! $+commands[doas] && $+commands[sudo] )); then
+  doas() {
+    command sudo "$@"
+  }
+fi
+
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
@@ -103,9 +109,9 @@ alias ccat='cat'
 # system
 alias obd="objdump -d"
 alias wsc="iwlist scanning"
-alias iws="sudo vi /etc/wpa_supplicant/wpa_supplicant.conf"
+alias iws="doas vi /etc/wpa_supplicant/wpa_supplicant.conf"
 alias cswap="cat /proc/sys/vm/swappiness"
-alias swap="sudo sysctl vm.swappiness=95"
+alias swap="doas sysctl vm.swappiness=95"
 alias brx='xrandr --output eDP --brightness'
 alias br='brightnessctl -'
 # easier to read disk
@@ -125,8 +131,8 @@ alias microcode='grep . /sys/devices/system/cpu/vulnerabilities/*'
 #hardware info --short
 alias hw="hwinfo --short"
 #switch between bash and zsh
-alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
-alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
+alias tobash="chsh -s /bin/bash && echo 'Now log out.'"
+alias tozsh="chsh -s /bin/zsh && echo 'Now log out.'"
 alias ulist="cut -d: -f1 /etc/passwd"
 #merge new settings
 alias merge="xrdb -merge ~/.Xresources"
@@ -143,68 +149,74 @@ alias yta-vorbis="youtube-dl --extract-audio --audio-format vorbis "
 alias yta-wav="youtube-dl --extract-audio --audio-format wav "
 alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 
-# sudo
-alias i='sudo'
-alias ir='sudo rm -r'
-alias ic="sudo cp -r"
-alias im="sudo mv"
-if [[ $+commands[sudoedit] ]]; then
-  alias ie='sudoedit'
-else
-  alias ie='sudo vi'
-fi
-alias iv='sudo -v'
-alias imi="sudo make install"
-alias imci="sudo make install && sudo make clean install"
-alias crole='sudo -iu'
-alias uadd='sudo usermod -aG'
+# doas
+alias i='doas'
+alias ir='doas rm -r'
+alias ic="doas cp -r"
+alias im="doas mv"
+alias ie='doas vi'
+alias iv='doas true'
+alias imi="doas make install"
+alias imci="doas make install && doas make clean install"
+alias uadd='doas usermod -aG'
+
+crole() {
+  if (( $# == 0 )); then
+    doas -s
+  elif (( $# == 1 )); then
+    doas -u "$1" -s
+  else
+    print 'Usage: crole [user]' >&2
+    return 2
+  fi
+}
 
 # Pacman
 alias Qi="pacman -Qi"
 alias Ql="pacman -Ql"
 alias wp='pacman -Qs'
-alias pac='sudo pacman -S'
-alias rpac='sudo pacman -Rs'
-alias Rpac='sudo pacman -Rcns'
-alias U='sudo pacman -Qdtq'
-alias upd="sudo pacman -Syu --noconfirm --overwrite '*' && paru -Syu"
-alias rcache="sudo pacman -Sc"
+alias pac='doas pacman -S'
+alias rpac='doas pacman -Rs'
+alias Rpac='doas pacman -Rcns'
+alias U='pacman -Qdtq'
+alias upd="doas pacman -Syu --noconfirm --overwrite '*' && paru -Syu"
+alias rcache="doas pacman -Sc"
 alias pkgs="pacman -Q | fzf"
 alias p='paru -S'
 
 pov () {
-  sudo paru -S "$1" --noconfirm --overwrite '*'
+  paru -S "$1" --noconfirm --overwrite '*'
 }
 
 pacov () {
-  sudo pacman -S "$1" --noconfirm --overwrite '*'
+  doas pacman -S "$1" --noconfirm --overwrite '*'
 }
 
 #maintenance
-alias clean='sudo pacman -Rns $(pacman -Qtdq)'
+alias clean='doas pacman -Rns $(pacman -Qtdq)'
 # get fastest mirrors
-alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
-alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
-alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
-alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
+alias mirror="doas reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
+alias mirrord="doas reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
+alias mirrors="doas reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
+alias mirrora="doas reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
 
 # sysact
 alias sx="startx"
 alias kx="killall xinit"
-alias reb="sudo -A openrc-shutdown -rq now"
-alias die="sudo -A openrc-shutdown -pq now"
+alias reb="doas openrc-shutdown -rq now"
+alias die="doas openrc-shutdown -pq now"
 
 # Programs
 alias grep="grep --color=auto"
-alias iredis="sudo /etc/init.d/redis_6379 start"
-alias codium="sudo vi /usr/share/vscodium-bin/resources/app/product.json"
+alias iredis="doas /etc/init.d/redis_6379 start"
+alias codium="doas vi /usr/share/vscodium-bin/resources/app/product.json"
 alias gvm="$GOPATH/bin/g"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
 
 # editor
 safe_edit a "$HOME/.config/zsh/modules/aliases"
 safe_edit icl "$HOME/.dots/clip/clip_hist.txt"
 safe_edit nvc "config.h"
-alias ivc="sudo vi /etc/xdg/nvim/sysinit.vim"
+alias ivc="doas vi /etc/xdg/nvim/sysinit.vim"
 safe_edit al "$HOME/.config/alacritty/alacritty.toml"
 safe_edit zc "$HOME/.config/zsh/.zshrc"
 alias zcdd="rm $HOME/.cache/zsh/zcompdump"
@@ -235,9 +247,9 @@ safe_edit apps "$HOME/Sync/Backup/MacroDroid/Text/TopAndroidApps.txt"
 
 # Docker and Docker Compose
 # alias idocker="systemctl start docker.service"
-alias udocker="sudo rc-update add docker default"
-# alias udocker="sudo rc-update del docker default"
-alias idocker="sudo rc-service docker start"
+alias udocker="doas rc-update add docker default"
+# alias udocker="doas rc-update del docker default"
+alias idocker="doas rc-service docker start"
 alias dc="docker-compose"
 alias dce="docker-compose exec"
 alias dci="docker-compose up"
