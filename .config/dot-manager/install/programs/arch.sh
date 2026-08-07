@@ -34,7 +34,7 @@ install_arch_extras() {
   # see: https://wiki.artixlinux.org/Main/Repositories
 
   __install_package_arch ttf-times-new-roman glow tokei screenkey git-delta \
-    bottom zsync direnv freeze global pngquant
+    bottom zsync direnv global pngquant
 
   log "success" "Arch extras installed."
 
