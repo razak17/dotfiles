@@ -5,14 +5,14 @@ source "$DOT_MANAGER_DIR/helper.sh"
 install_arch_essentials() {
   print_step "Installing Arch essentials"
 
-  __install_package_arch pacman-contrib fd gcc lf \
+  __install_package_arch artix-archlinux-support pacman-contrib fd gcc lf \
     xorg-server xorg-xinit xorg-xkill xorg-xsetroot xorg-xbacklight \
     xorg-xprop xorg-xinput xorg-xdpyinfo arc-gtk-theme grub-customizer \
     wireless_tools imagemagick bluez bluez-utils blueman openvpn btop \
     xf86-input-libinput android-tools android-file-transfer ninja \
     zathura zathura-ps zathura-pdf-poppler zathura-djvu zathura-cb \
     brightnessctl sxiv nsxiv maim hwinfo ueberzug lolcat eza \
-    ttf-times-new-roman pandoc aspell aspell-en dunst xclip hyperfine \
+    pandoc aspell aspell-en dunst xclip hyperfine \
     mediainfo mpv mpd mpc pipewire pipewire-pulse wireplumber picom \
     aria2 cowsay ranger ncmpcpp redshift zoxide cmatrix \
     thunderbird syncthing lazygit slock gparted baobab \
@@ -33,7 +33,8 @@ install_arch_extras() {
   # You need to enable the artix-archlinux-support repo in /etc/pacman.conf to install these packages
   # see: https://wiki.artixlinux.org/Main/Repositories
 
-  __install_package_arch glow tokei screenkey git-delta bottom zsync direnv freeze global pngquant
+  __install_package_arch ttf-times-new-roman glow tokei screenkey git-delta \
+    bottom zsync direnv freeze global pngquant
 
   log "success" "Arch extras installed."
 
