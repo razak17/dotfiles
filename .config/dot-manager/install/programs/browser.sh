@@ -104,8 +104,8 @@ firefox_userjs() {
 
   cd "$HOME/.dots/firefox-user.js" || return 1
 
-  sh ./setup.sh -all
-  sh ./setup.sh -zen-all
+  # sh ./setup.sh -all
+  # sh ./setup.sh -zen-all
 
   log "success" "Firefox user.js setup completed."
 }
