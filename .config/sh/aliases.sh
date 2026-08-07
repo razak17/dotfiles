@@ -26,12 +26,39 @@ alias r='sudo pacman -Rs'
 alias y='yay -S'
 alias update='sudo pacman -Syyu'
 
-# Tmux
-alias x="tmux"
+# git
+alias gcma="git commit -a -v"
+
+# git bare (nvim, dotfiles)
+alias conf='/usr/bin/git --git-dir=$HOME/.dots/dotfiles/ --work-tree=$HOME'
+alias ca="cconf -csa"
+alias ccms="cconf -ccoms"
+alias ccm="cconf -ccom"
+alias ccma="cconf -ccma"
+alias ccm="cconf -ccomall"
+alias cpl="cconf -ce"
+alias cps="cconf -cp"
+alias cst="cconf -cs"
+alias cstb="conf status -sb"
+alias ccv="conf commit -v"
+alias cadd="conf add"
+
+# ranger
+alias rr="ranger"
+alias f='yazi'
+# alias lf='lfub'
+alias yz='yazi'
+
+# tmux
+alias xsp="tmux display -p '#{socket_path}'"
 alias xls="tmux ls"
-alias nx='tmux new -s'
-alias ax='tmux attach -t'
-alias xc="nvim ~/.tmux.conf"
+alias fx="ftmux"
+alias fn="ftmux -n"
+alias fk="ftmux -kp"
+alias fkk="ftmux -k"
+alias fs="ftmux -s"
+alias dm='dmenumount'
+alias dum='dmenuumount'
 
 # Youtube DL
 alias dydl='youtube_dl'
