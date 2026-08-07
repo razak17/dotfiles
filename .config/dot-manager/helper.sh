@@ -278,6 +278,7 @@ __install_package_arch() {
 
 __install_package_aur() {
   local failed=()
+  local paru_command=(paru)
   local pkg
 
   if ! command -v paru &>/dev/null; then
@@ -285,11 +286,18 @@ __install_package_aur() {
     return 1
   fi
 
+  if ! __resolve_privilege_command; then
+    return 1
+  fi
+  if [ -n "$__DOT_PRIVILEGE_BIN" ]; then
+    paru_command+=(--sudo "$__DOT_PRIVILEGE_BIN")
+  fi
+
   for pkg in "$@"; do
     if __is_pkg_installed "$pkg"; then
       log "info" "$pkg already installed."
     else
-      if paru -S --noconfirm --needed "$pkg"; then
+      if "${paru_command[@]}" -S --noconfirm --needed "$pkg"; then
         log "success" "$pkg installed."
       else
         log "error" "Failed to install $pkg."
