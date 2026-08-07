@@ -44,6 +44,8 @@ dot program <name>          # Install one program
 dot program all             # Install all default programs
 dot reinstall <name>        # Reinstall one program
 dot reinstall all           # Reinstall the complete setup
+dot uninstall --dry-run     # Preview removal of tracked files
+dot uninstall               # Remove tracked files after confirmation
 dot update                  # Update Neovim and tmux plugins
 dot fonts update            # Install or update Nerd Fonts
 dot tool <name> [arguments] # Run a tool script
@@ -57,6 +59,22 @@ dot status
 dot diff
 dot log --oneline
 ```
+
+## Uninstall tracked files
+
+Preview the exact tracked-file manifest first:
+
+```bash
+dot uninstall --dry-run
+```
+
+`dot uninstall` refuses to run when tracked changes exist and requires an exact
+confirmation phrase. It removes only files tracked by the current branch,
+including tracked files in initialized submodules. Untracked files and non-empty
+directories are preserved.
+
+The bare repository at `~/.dots/dotfiles` and the `~/.local/bin/dot` launcher
+are retained. The command prints a recovery command after it finishes.
 
 ## Tests
 

@@ -177,6 +177,7 @@ Commands:
   update                   Update nvim and tmux plugins
   program <name|all>       Install a program (or all default programs)
   reinstall <name|all>     Reinstall a program (or everything)
+  uninstall [--dry-run]    Remove tracked files but keep repository and launcher
   fonts update             Install Nerd Fonts
   tool <name>              Run a tool script (e.g. dotnet)
   help                     Show this help
@@ -223,6 +224,11 @@ do_command() {
   "reinstall")
     shift
     do_reinstall "$@"
+    ;;
+  "uninstall")
+    shift
+    source "$DOT_MANAGER_DIR/uninstall.sh"
+    dot_uninstall "$@"
     ;;
   "tool")
     shift
