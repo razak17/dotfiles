@@ -44,6 +44,7 @@ dot program <name>          # Install one program
 dot program all             # Install all default programs
 dot reinstall <name>        # Reinstall one program
 dot reinstall all           # Reinstall the complete setup
+dot shell zsh               # Set Zsh as your login shell
 dot uninstall --dry-run     # Preview removal of tracked files
 dot uninstall               # Remove tracked files after confirmation
 dot update                  # Update Neovim and tmux plugins
@@ -59,6 +60,18 @@ dot status
 dot diff
 dot log --oneline
 ```
+
+## Login shell
+
+Changing the login shell is opt-in and is not part of `dot init`. After Zsh is
+installed, run the command as your normal user:
+
+```bash
+dot shell zsh
+```
+
+Do not run it with `sudo`; Dot Manager refuses root execution to avoid changing
+root's login shell. Log out and back in after a successful change.
 
 ## Uninstall tracked files
 

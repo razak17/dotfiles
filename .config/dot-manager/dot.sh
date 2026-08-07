@@ -177,6 +177,7 @@ Commands:
   update                   Update nvim and tmux plugins
   program <name|all>       Install a program (or all default programs)
   reinstall <name|all>     Reinstall a program (or everything)
+  shell zsh                Set Zsh as the current user's login shell
   uninstall [--dry-run]    Remove tracked files but keep repository and launcher
   fonts update             Install Nerd Fonts
   tool <name>              Run a tool script (e.g. dotnet)
@@ -220,6 +221,10 @@ do_command() {
   "fonts")
     shift
     source "$DOT_MANAGER_DIR/install/fonts.sh" "$@"
+    ;;
+  "shell")
+    shift
+    source "$DOT_MANAGER_DIR/install/shell.sh" "$@"
     ;;
   "reinstall")
     shift
