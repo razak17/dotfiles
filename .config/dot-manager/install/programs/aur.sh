@@ -3,6 +3,8 @@
 source "$DOT_MANAGER_DIR/helper.sh"
 
 install_paru() (
+  local package_path
+  local packages=()
   local paru_root
 
   print_step "Installing paru..."
@@ -30,13 +32,31 @@ install_paru() (
     return 1
   fi
 
-  log "info" "Building and installing paru..."
+  log "info" "Building paru..."
   if ! cd "$paru_root/paru"; then
     log "error" "Failed to enter the paru build directory."
     return 1
   fi
-  if ! makepkg -i --noconfirm; then
-    log "error" "Failed to build and install paru."
+  if ! makepkg --noconfirm; then
+    log "error" "Failed to build paru."
+    return 1
+  fi
+
+  mapfile -t packages < <(makepkg --packagelist)
+  if [ ${#packages[@]} -eq 0 ]; then
+    log "error" "paru build produced no installable packages."
+    return 1
+  fi
+  for package_path in "${packages[@]}"; do
+    if [ ! -f "$package_path" ]; then
+      log "error" "Built paru package not found: $package_path"
+      return 1
+    fi
+  done
+
+  log "info" "Installing paru..."
+  if ! __as_root pacman -U --noconfirm --needed "${packages[@]}"; then
+    log "error" "Failed to install the built paru package."
     return 1
   fi
 
