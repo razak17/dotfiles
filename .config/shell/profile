@@ -38,14 +38,6 @@ path+=(
   "$GOPATH/bin"
 )
 
-# fnm
-if [ -e "$HOME/.local/share/fnm/fnm" ]; then
-  export FNMDIR="$HOME/.local/share/fnm"
-  path+=(
-    "$FNMDIR"
-  )
-fi
-
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
 path+=(
@@ -94,15 +86,6 @@ fi
 # opencode
 if [ -e "$HOME/.opencode/bin/opencode" ]; then
   export OPENCODE_PATH="$HOME/.opencode/"
-  path+=(
-  "$OPENCODE_PATH/bin"
-  )
-fi
-
-# Pi
-if [ -e "$HOME/.opencode/bin/opencode" ]; then
-  VERSION="v25.0.0"
-  export FNM_BIN="$FNMDIR/node-versions/$VERSION/installation"
   path+=(
   "$OPENCODE_PATH/bin"
   )
