@@ -29,8 +29,9 @@ ftmux_setup() {
   if [ -f "$HOME/.local/bin/ftmux" ]; then
     log "info" "Removing old ftmux symlink."
     rm "$HOME/.local/bin/ftmux"
-    ln -s "$HOME"/.dots/ftmux/ftmux "$HOME/.local/bin/ftmux"
   fi
+
+  ln -s "$HOME"/.dots/ftmux/ftmux "$HOME/.local/bin/ftmux"
 
   log "success" "ftmux setup completed"
 }
