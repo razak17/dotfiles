@@ -36,6 +36,8 @@ fnm_complete_setup() {
     rm "$HOME/.config/zsh/plugins/fnm/_fnm"
   fi
 
+  mkdir -p "$HOME/.config/zsh/plugins/fnm"
+
   fnm completions --shell zsh >"$HOME/.config/zsh/plugins/fnm/_fnm"
 
   log "success" "fnm completions set up."
