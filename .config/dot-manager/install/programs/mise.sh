@@ -36,6 +36,28 @@ mise_completion() {
   log "success" "mise completions set up."
 }
 
+install_node() {
+  log "info" "Installing Node.js LTS via mise..."
+
+  if ! mise use -g node@lts; then
+    log "error" "Failed to install Node.js LTS via mise."
+    return 1
+  fi
+
+  log "success" "Node.js LTS installed."
+}
+
+install_pnpm() {
+  log "info" "Installing pnpm via mise..."
+
+  if ! mise use -g pnpm@latest; then
+    log "error" "Failed to install pnpm via mise."
+    return 1
+  fi
+
+  log "success" "pnpm installed."
+}
+
 install_bun() {
   log "info" "Installing Bun via mise..."
 
@@ -125,8 +147,7 @@ if ! command -v mise >>"$DOT_MANAGER_LOG" 2>&1; then
 fi
 
 mise_completion
-install_bun
-install_deno
+install_node
+install_pnpm
 install_python
 install_uv
-install_zig

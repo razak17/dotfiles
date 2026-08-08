@@ -38,7 +38,6 @@ autoload zmv # builtin zsh rename command
 add_completion 'bun'
 add_completion 'conda-zsh-completion' false
 add_completion 'deno'
-add_completion 'fnm'
 add_completion 'mise'
 add_completion 'poetry'
 add_completion 'pass'
@@ -63,19 +62,13 @@ fi
 # mise
 if exists mise; then
   eval "$(/home/razak/.local/bin/mise activate zsh)"
+  add_plugin 'pnpm'
 fi
 
 # fzf
 if exists fzf; then
   source <(fzf --zsh)
   add_plugin 'fzf-tab'
-fi
-
-# fnm
-if exists fnm; then
-  eval "$(fnm env --use-on-cd)"
-  mkdir -p $ZSH_CACHE_DIR/completions
-  add_plugin 'pnpm' # Needs to be loaded after fnm
 fi
 
 # ngrok

@@ -15,7 +15,6 @@ DOT_MANAGER_COMPLETE_PROGRAMS=(
   "dev"
   "docker"
   "duckdb"
-  "fnm"
   "fzf"
   "jackett"
   "jellyfin"
@@ -28,7 +27,6 @@ DOT_MANAGER_COMPLETE_PROGRAMS=(
   "stripe"
   "suckless"
   "tmux"
-  "uv"
   "yazi"
   "zsh"
 )
