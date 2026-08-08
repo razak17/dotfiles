@@ -8,6 +8,7 @@ DOT_MANAGER_ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 "$DOT_MANAGER_ROOT/tests/bluetooth_test.sh"
 "$DOT_MANAGER_ROOT/tests/environment_test.sh"
 "$DOT_MANAGER_ROOT/tests/package_helper_test.sh"
+"$DOT_MANAGER_ROOT/tests/postgres_test.sh"
 "$DOT_MANAGER_ROOT/tests/privilege_test.sh"
 "$DOT_MANAGER_ROOT/tests/shell_test.sh"
 "$DOT_MANAGER_ROOT/tests/submodule_test.sh"
