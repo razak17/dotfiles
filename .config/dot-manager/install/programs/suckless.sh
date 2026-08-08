@@ -3,7 +3,7 @@
 source "$DOT_MANAGER_DIR/helper.sh"
 
 install_suckless_utils() {
-  log "info" "Installing suckless utilities..."
+  print_step "Installing suckless utilities..."
 
   if [ ! -d "$HOME/.dots/dwm" ]; then
     git clone https://github.com/razak17/dwm "$HOME/.dots/dwm"

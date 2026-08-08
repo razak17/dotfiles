@@ -11,7 +11,6 @@ DOT_MANAGER_COMPLETE_PROGRAMS=(
   "browser"
   "cargo"
   "clipmenu"
-  "copilot_cli"
   "dev"
   "docker"
   "duckdb"
