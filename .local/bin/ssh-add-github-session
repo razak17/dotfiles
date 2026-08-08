@@ -1,6 +1,6 @@
 #!/bin/sh
 
-key="$HOME/.ssh/id_ed25519_github"
+key="$HOME/.ssh/id_rsa_p15v"
 
 [ -S "${SSH_AUTH_SOCK:-}" ] || exit 0
 [ -r "$key" ] || exit 0
