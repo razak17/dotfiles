@@ -7,7 +7,7 @@ install_dev_essentials() {
 
   __install_package_arch github-cli
 
-  __install_package_aur cloc mongodb-compass-bin slack-desktop bruno \
+  __install_package_aur cloc mongodb-compass-bin slack-desktop bruno-bin \
     dbeaver visual-studio-code-bin cloudflared
 
   log "success" "Dev essentials installed."
