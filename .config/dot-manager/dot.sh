@@ -17,7 +17,6 @@ DOT_MANAGER_COMPLETE_PROGRAMS=(
   "duckdb"
   "fnm"
   "fzf"
-  "golang"
   "jackett"
   "jellyfin"
   "mech"
