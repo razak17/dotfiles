@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Load GitHub SSH key
+Comment=Cache the GitHub key for this Plasma login
+Exec=ssh-add-github-session
+OnlyShowIn=KDE;
+NoDisplay=true
