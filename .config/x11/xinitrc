@@ -1,6 +1,16 @@
 #!/bin/sh
 
+# gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+# gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
+
+[ -r "$HOME/.Xresources" ] && xrdb -merge "$HOME/.Xresources"
+
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile" ] && . "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile"
+
+export QT_QPA_PLATFORMTHEME=kde
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
+export QT_SCALE_FACTOR=0.9
+
 
 while type dwm >/dev/null; do
 	dwm 2>~/.dwm.log && continue || break
