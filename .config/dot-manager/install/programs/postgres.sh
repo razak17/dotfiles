@@ -84,6 +84,8 @@ install_postgres() {
     return 1
   fi
 
+  log "info" " doas -u postgres psql -d postgres"
+
   log "success" "Postgres installed."
 }
 
