@@ -31,3 +31,5 @@ install_duckdb() {
 
   log "success" "DuckDB installed."
 }
+
+install_duckdb "$@"
