@@ -1,0 +1,22 @@
+#!/bin/sh
+
+key="$HOME/.ssh/id_ed25519_github"
+
+[ -S "${SSH_AUTH_SOCK:-}" ] || exit 0
+[ -r "$key" ] || exit 0
+
+fingerprint=$(/usr/bin/ssh-keygen -lf "$key.pub" 2>/dev/null | awk '{print $2}')
+if [ -n "$fingerprint" ] && \
+  /usr/bin/ssh-add -l 2>/dev/null | grep -Fq "$fingerprint"; then
+  exit 0
+fi
+
+askpass=$(command -v ksshaskpass 2>/dev/null || true)
+[ -n "$askpass" ] || exit 0
+
+SSH_ASKPASS=$askpass
+SSH_ASKPASS_REQUIRE=force
+export SSH_ASKPASS SSH_ASKPASS_REQUIRE
+
+exec </dev/null
+/usr/bin/ssh-add "$key"
