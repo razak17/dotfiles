@@ -11,6 +11,7 @@ DOT_MANAGER_COMPLETE_PROGRAMS=(
   "browser"
   "cargo"
   "clipmenu"
+  "codex"
   "dev"
   "docker"
   "duckdb"
@@ -28,6 +29,7 @@ DOT_MANAGER_COMPLETE_PROGRAMS=(
   "stripe"
   "suckless"
   "tmux"
+  "uv"
   "yazi"
   "zsh"
 )
