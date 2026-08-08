@@ -6,7 +6,7 @@ install_arch_essentials() {
   print_step "Installing Arch essentials"
 
   __install_package_arch artix-archlinux-support pacman-contrib fd gcc lf \
-    xorg-server xorg-xinit xorg-xkill xorg-xsetroot xorg-xbacklight \
+    xorg-server xorg-xinit xorg-xkill xorg-xset xorg-xsetroot xorg-xbacklight \
     xorg-xprop xorg-xinput xorg-xdpyinfo arc-gtk-theme grub-customizer \
     wireless_tools imagemagick openvpn btop \
     xf86-input-libinput android-tools android-file-transfer ninja \
