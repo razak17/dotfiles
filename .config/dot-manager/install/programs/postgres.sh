@@ -62,8 +62,15 @@ install_postgres() {
   fi
 
   if ! __as_user postgres pg_isready -q -d postgres; then
-    log "error" "PostgreSQL did not become ready."
-    return 1
+    log "info" "PostgreSQL is not ready; restarting the service..."
+    if ! __as_root rc-service postgresql restart; then
+      log "error" "Failed to restart the PostgreSQL service."
+      return 1
+    fi
+    if ! __as_user postgres pg_isready -q -d postgres; then
+      log "error" "PostgreSQL did not become ready after restart."
+      return 1
+    fi
   fi
   if ! __as_user postgres psql \
     -v ON_ERROR_STOP=1 \
