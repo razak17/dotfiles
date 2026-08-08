@@ -4,35 +4,55 @@
 # https://www.topbug.net/blog/2016/10/11/speed-test-check-the-existence-of-a-command-in-bash-and-zsh/
 exists() { (( $+commands[$1] )); }
 
+# Run a command with elevated privileges. Prefer doas, but keep these
+# dotfiles usable on systems where only sudo is installed.
+as_root() {
+  if exists doas; then
+    command doas "$@"
+  elif exists sudo; then
+    command sudo "$@"
+  else
+    print -u2 "as_root: install doas or sudo"
+    return 127
+  fi
+}
+
 # Default to using `bat` https://github.com/sharkdp/bat#installation if it has been installed
 cat() {
   if hash bat 2>/dev/null; then
     bat "$@"
   else
-    cat "$@"
+    command cat "$@"
   fi
 }
 
 # chmod a directory
 ch() {
-  sudo chmod -R 777 "$@"
+  if (( $# < 2 )); then
+    print -u2 "Usage: ch MODE PATH..."
+    return 2
+  fi
+
+  local mode="$1"
+  shift
+  as_root chmod -R -- "$mode" "$@"
 }
 
 # chmod executable
 cx() {
-  sudo chmod +x "$@"
+  chmod +x -- "$@"
 }
 
 rcs() {
-  sudo rc-service "$1" "$2"
+  as_root rc-service "$1" "$2"
 }
 
 rcadd() {
-  sudo rc-update add "$1" default
+  as_root rc-update add "$1" default
 }
 
 rcdel() {
-  sudo rc-update del "$1" default
+  as_root rc-update del "$1" default
 }
 
 zshcomp() {
@@ -43,20 +63,20 @@ zshcomp() {
 }
 
 pacov() {
-  sudo pacman -S "$@" --overwrite '*'
+  as_root pacman -S "$@" --overwrite '*'
 }
 
 scrdim() {
   xdpyinfo | awk '/dimensions/{print $2}'
 }
 
- ivpn() {
+ivpn() {
   if (( $# != 1 )); then
     echo "Usage: vpn FILE.ovpn" >&2
     return 2
   fi
 
-  sudo openvpn \
+  as_root openvpn \
     --config "$1" \
     --auth-user-pass "$HOME/docs/STUFF/vpn.txt"
 }
@@ -75,8 +95,8 @@ scr() {
 
 usb1() {
   if [ ! -d "/mnt/usb1/TV" ]; then
-    sudo mkdir -p /mnt/usb1
-    sudo mount /dev/sda1 /mnt/usb1
+    as_root mkdir -p /mnt/usb1 || return
+    as_root mount /dev/sda1 /mnt/usb1 || return
   fi
   cd /mnt/usb1/
 }
@@ -90,25 +110,46 @@ function gL() {
 }
 
 buildnvim() {
-  neovim_dir="$HOME/.dots/neovim"
-  bin_dir="$HOME/.local/bin"
-  [ ! -d $neovim_dir ] && git clone https://github.com/neovim/neovim $neovim_dir
-  cd $neovim_dir || exit
-  git checkout master
+  local neovim_dir="$HOME/.dots/neovim"
+  local bin_dir="$HOME/.local/bin"
+  local oldfile
+
+  if [[ ! -d "$neovim_dir" ]]; then
+    git clone https://github.com/neovim/neovim "$neovim_dir" || return
+  fi
+
+  pushd "$neovim_dir" >/dev/null || return
+  git checkout master || { popd >/dev/null; return 1; }
   # git pull upstream master
-  git pull
-  [ -d "$neovim_dir/build/" ] && sudo rm -r ./build/  # clear the CMake cache
-  sudo make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim"
-  sudo make install
+  git pull || { popd >/dev/null; return 1; }
+
+  if [[ -d "$neovim_dir/build" ]]; then
+    if [[ -w "$neovim_dir/build" ]]; then
+      rm -rf -- "$neovim_dir/build"
+    else
+      # Clean up build files created by older versions of this function.
+      as_root rm -rf -- "$neovim_dir/build" || { popd >/dev/null; return 1; }
+    fi
+  fi
+
+  make CMAKE_BUILD_TYPE=Release \
+    CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim" || {
+      popd >/dev/null
+      return 1
+    }
+  make install || { popd >/dev/null; return 1; }
 
   # Save old binary
-  dd=$(date +%F_%H%M%S_%N)
-  oldfile="nvim-$dd"
-  echo $oldfile
-  [ -e "$bin_dir/nvim" ] && mv $bin_dir/nvim $bin_dir/$oldfile
-  cp $HOME/neovim/bin/nvim $bin_dir
+  oldfile="nvim-$(date +%F_%H%M%S_%N)"
+  print -r -- "$oldfile"
+  mkdir -p "$bin_dir" || { popd >/dev/null; return 1; }
+  [[ -e "$bin_dir/nvim" ]] && mv -- "$bin_dir/nvim" "$bin_dir/$oldfile"
+  cp -- "$HOME/neovim/bin/nvim" "$bin_dir/" || {
+    popd >/dev/null
+    return 1
+  }
 
-  popd
+  popd >/dev/null
 }
 
 function venv() {
@@ -179,35 +220,67 @@ copilot_models() {
 }
 
 upgrade_pg() {
-  new=$1 # Just the number eg. 18
-  old=$2 # Just the number eg. 17
+  if (( $# != 2 )) || [[ "$1" != <-> || "$2" != <-> ]] || (( $1 <= $2 )); then
+    print -u2 "Usage: upgrade_pg NEW_VERSION OLD_VERSION"
+    return 2
+  fi
 
-  new_version="/var/lib/postgres/data-$new"
-  old_version="/var/lib/postgres/data-$old"
+  local new="$1" # Just the number eg. 18
+  local old="$2" # Just the number eg. 17
+  local current_version="/var/lib/postgres/data"
+  local new_version="/var/lib/postgres/data-$new"
+  local backup_version="/var/lib/postgres/data-$old-backup"
+  local old_bin="/opt/pgsql-$old/bin"
+  local cluster_version
 
-  # 1. Install the old PostgreSQL 17 binaries (needed for pg_upgrade)
-  sudo pacman -S --noconfirm postgresql-old-upgrade
+  if [[ ! -d "$current_version" ]]; then
+    print -u2 "upgrade_pg: current data directory not found: $current_version"
+    return 1
+  fi
+  if [[ ! -r "$current_version/PG_VERSION" ]]; then
+    print -u2 "upgrade_pg: cannot read $current_version/PG_VERSION"
+    return 1
+  fi
+  cluster_version="$(<"$current_version/PG_VERSION")"
+  if [[ "$cluster_version" != "$old" ]]; then
+    print -u2 "upgrade_pg: data directory is version $cluster_version, not $old"
+    return 1
+  fi
+  if [[ -e "$new_version" || -e "$backup_version" ]]; then
+    print -u2 "upgrade_pg: target or backup directory already exists"
+    return 1
+  fi
+  # 1. Install the old PostgreSQL binaries (needed for pg_upgrade)
+  as_root pacman -S --noconfirm postgresql-old-upgrade || return
+  if [[ ! -d "$old_bin" ]]; then
+    print -u2 "upgrade_pg: old PostgreSQL binaries not found after installation: $old_bin"
+    return 1
+  fi
 
-  # 2. Create a new data directory for PostgreSQL 18
-  sudo mkdir -p "$new_version"
-  sudo chown postgres:postgres "$new_version"
+  # 2. Create a new data directory for the new PostgreSQL version
+  as_root mkdir -p "$new_version" || return
+  as_root chown postgres:postgres "$new_version" || return
 
-  # 3. Initialize new data directory with PostgreSQL 18
-  sudo -u postgres initdb -D "$new_version"
+  # 3. Initialize the new data directory
+  as_root -u postgres initdb -D "$new_version" || return
 
   # 4. Run pg_upgrade
-  sudo -u postgres pg_upgrade \
-    --old-datadir=/var/lib/postgres/data \
+  as_root -u postgres pg_upgrade \
+    --old-datadir="$current_version" \
     --new-datadir="$new_version" \
-    --old-bindir="/opt/pgsql-$old/bin" \  # adjust path to where pg17 binaries are
-    --new-bindir=/usr/bin
+    --old-bindir="$old_bin" \
+    --new-bindir=/usr/bin || return
 
   # 5. If successful, swap directories
-  sudo mv /var/lib/postgres/data "$old_version-backup"
-  sudo mv "$new_version" /var/lib/postgres/data
+  as_root mv -- "$current_version" "$backup_version" || return
+  if ! as_root mv -- "$new_version" "$current_version"; then
+    print -u2 "upgrade_pg: swap failed; restoring the original data directory"
+    as_root mv -- "$backup_version" "$current_version"
+    return 1
+  fi
 
   # 6. Start PostgreSQL
-  sudo rc-service postgresql start
+  as_root rc-service postgresql start
 
   # NOTE: The data directory was initialized by PostgreSQL version issue
   # https://wiki.archlinux.org/title/PostgreSQL#Upgrading_PostgreSQL
