@@ -154,11 +154,23 @@ alias i='doas'
 alias ir='doas rm -r'
 alias ic="doas cp -r"
 alias im="doas mv"
-alias ie='doas vi'
 alias iv='doas true'
 alias imi="doas make install"
 alias imci="doas make install && doas make clean install"
 alias uadd='doas usermod -aG'
+
+ie() {
+  lhs=$1
+  rhs=$2
+  cmd=$3
+  if [[ $+commands["doas"] ]]; then
+    doas nvim
+  elif [[ $+commands["doas"] ]]; then
+    sudoedit
+  else
+    sudo nvim
+  fi
+}
 
 crole() {
   if (( $# == 0 )); then
