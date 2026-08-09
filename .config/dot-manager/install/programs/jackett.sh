@@ -100,4 +100,15 @@ install_jackett() {
   log "success" "Jackett installed."
 }
 
+# https://github.com/qbittorrent/search-plugins/wiki/How-to-configure-Jackett-plugin#qbittorrent-plugin
+
+install_qbittorrent() {
+  print_step "Installing qbittorrent"
+
+  __install_package_arch qbittorrent
+
+  log "success" "qbittorrent installed."
+}
+
 install_jackett "$@"
+install_qbittorrent "&@"
