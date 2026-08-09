@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ "$(command -v dolphin)" ] ; then
+  dolphin &
+elif [ "$(command -v thunar)" ] ; then
+  thunar &
+else
+	notify-send -u critical -t 2000 "Explorer" "please install either dolphin or thunar"
+fi
