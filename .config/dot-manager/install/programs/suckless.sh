@@ -5,13 +5,6 @@ source "$DOT_MANAGER_DIR/helper.sh"
 install_suckless_utils() {
   print_step "Installing suckless utilities..."
 
-  if [ ! -d "$HOME/.dots/dwm" ]; then
-    git clone https://github.com/razak17/dwm "$HOME/.dots/dwm"
-  fi
-
-  log "info" "Installing dwm"
-  __as_root make -C "$HOME/.dots/dwm" install
-
   DIR="$HOME/.dots/suckless"
 
   if [ ! -d "$DIR" ]; then
@@ -19,14 +12,19 @@ install_suckless_utils() {
     git clone https://github.com/razak17/suckless "$DIR"
   fi
 
-  log "info" "Installing dmenu"
+  print_step "Installing dwm"
+  __as_root make -C "$DIR/dwm" install
+
+  print_step "Installing dmenu"
   __as_root make -C "$DIR/dmenu" install
 
-  log "info" "Installing st"
+  print_step "Installing st"
   __as_root make -C "$DIR/st" install
 
-  log "info" "Installing dwmblocks"
+  print_step "Installing dwmblocks"
   __as_root make -C "$DIR/dwmblocks" install
+
+  log "success" "Suckless utilities installed."
 }
 
 install_suckless_utils "$@"
