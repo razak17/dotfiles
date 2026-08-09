@@ -9,7 +9,6 @@ DIRS=(
 "$ws/coding"
 "$ws/rgt"
 "$ws/coding/code"
-"$ws/coding/me"
 "$HOME/.dots"
 "$HOME/.dots/dots"
 "$HOME/.config"
