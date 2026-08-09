@@ -3,6 +3,14 @@
 # gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 # gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
 
+export XDG_CURRENT_DESKTOP=dwm
+export XDG_SESSION_TYPE=x11
+
+dbus-update-activation-environment \
+	DISPLAY \
+	XDG_CURRENT_DESKTOP \
+	XDG_SESSION_TYPE
+
 [ -r "$HOME/.Xresources" ] && xrdb -merge "$HOME/.Xresources"
 
 ssh_agent_env="${XDG_CONFIG_HOME:-$HOME/.config}/ssh/session/agent-env.sh"
