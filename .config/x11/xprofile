@@ -25,7 +25,7 @@ clipmenud &
 ~/.local/bin/startup/ikeyboard &
 ~/.local/bin/startup/ibrightness &
 ~/.local/bin/startup/ibattery-notify &
-~/.local/bin/startup/imem-notify &
+/.local/bin/startup/imem-notify &
 ~/.local/bin/startup/ipipewire &
 picom &
 ~/.local/bin/startup/isyncthing &

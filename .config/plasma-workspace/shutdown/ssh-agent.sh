@@ -1,6 +1,5 @@
 #!/bin/sh
 
-if [ -n "${DOTFILES_SSH_AGENT_PID:-}" ] && \
-  [ "${SSH_AGENT_PID:-}" = "$DOTFILES_SSH_AGENT_PID" ]; then
-  /usr/bin/ssh-agent -k >/dev/null 2>&1 || true
-fi
+ssh_agent_shutdown="${XDG_CONFIG_HOME:-$HOME/.config}/ssh/session/agent-shutdown.sh"
+[ -r "$ssh_agent_shutdown" ] && . "$ssh_agent_shutdown"
+unset ssh_agent_shutdown

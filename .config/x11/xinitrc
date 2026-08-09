@@ -5,12 +5,23 @@
 
 [ -r "$HOME/.Xresources" ] && xrdb -merge "$HOME/.Xresources"
 
+ssh_agent_env="${XDG_CONFIG_HOME:-$HOME/.config}/ssh/session/agent-env.sh"
+[ -r "$ssh_agent_env" ] && . "$ssh_agent_env"
+unset ssh_agent_env
+
+cleanup_ssh_agent() {
+	ssh_agent_shutdown="${XDG_CONFIG_HOME:-$HOME/.config}/ssh/session/agent-shutdown.sh"
+	[ -r "$ssh_agent_shutdown" ] && . "$ssh_agent_shutdown"
+}
+trap cleanup_ssh_agent 0
+
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile" ] && . "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile"
 
 export QT_QPA_PLATFORMTHEME=kde
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 export QT_SCALE_FACTOR=0.9
 
+command -v ssh-add-github-session >/dev/null 2>&1 && ssh-add-github-session &
 
 while type dwm >/dev/null; do
 	dwm 2>~/.dwm.log && continue || break
