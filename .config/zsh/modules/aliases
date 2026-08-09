@@ -164,11 +164,11 @@ ie() {
   rhs=$2
   cmd=$3
   if [[ $+commands["doas"] ]]; then
-    doas nvim
+    doas nvim "$@"
   elif [[ $+commands["doas"] ]]; then
-    sudoedit
+    sudoedit "$@"
   else
-    sudo nvim
+    sudo nvim "$@"
   fi
 }
 
