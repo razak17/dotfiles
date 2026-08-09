@@ -9,13 +9,18 @@ unmountusb() {
 	chosen="$(echo "$drives" | dmenu -i -p "Unmount which drive?")" || exit 1
 	chosen="$(echo "$chosen" | awk '{print $1}')"
 	[ -z "$chosen" ] && exit
-	sudo -A umount "$chosen" && notify-send "💻 USB unmounting" "$chosen unmounted."
+	if output=$(udisksctl unmount -b "$chosen" 2>&1); then
+		notify-send "💻 USB unmounting" "$output"
+	else
+		notify-send -u critical "USB unmount failed" "$output"
+		exit 1
+	fi
 	}
 
 unmountandroid() { \
 	chosen="$(awk '/simple-mtpfs/ {print $2}' /etc/mtab | dmenu -i -p "Unmount which device?")" || exit 1
 	[ -z "$chosen" ] && exit
-	sudo -A umount -l "$chosen" && notify-send "🤖 Android unmounting" "$chosen unmounted."
+	fusermount3 -u "$chosen" && notify-send "🤖 Android unmounting" "$chosen unmounted."
 	}
 
 asktype() { \
@@ -26,7 +31,7 @@ asktype() { \
 	esac
 	}
 
-drives=$(lsblk -nrpo "name,type,size,mountpoint" | awk '$4!~/\/boot|\/home$|SWAP/&&length($4)>1{printf "%s (%s)\n",$4,$3}')
+drives=$(lsblk -nrpo "name,type,size,mountpoint" | awk '$4!~/\/boot|\/home$|SWAP/&&length($4)>1{printf "%s (%s at %s)\n",$1,$3,$4}')
 
 if ! grep simple-mtpfs /etc/mtab; then
 	[ -z "$drives" ] && echo "No drives to unmount." &&  exit

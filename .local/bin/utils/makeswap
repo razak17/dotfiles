@@ -3,26 +3,37 @@
 read -rp "Enter swapfile name (default: swapfile): " NAME
 read -rp "Enter swap size (in GB): " SIZE
 
-size="${SIZE}GB"
-
 if [ -z "$NAME" ]; then
 	NAME="swapfile"
 fi
 
-if [ -z "$SIZE" ] || [ "$SIZE" -lt 0 ] || [ "$SIZE" == 0 ]; then
+if [[ ! $NAME =~ ^[[:alnum:]_.-]+$ ]]; then
+	echo "Please enter a filename without slashes."
+	exit 1
+fi
+
+if [[ ! $SIZE =~ ^[1-9][0-9]*$ ]]; then
 	echo "Please enter valid swap size."
 	exit 1
 fi
 
-sudo fallocate -l "$size" /"$NAME"
-sudo chmod 600 /"$NAME"
-sudo mkswap /"$NAME"
-sudo swapon /"$NAME"
+size="${SIZE}GB"
+swap_path="/$NAME"
+
+if [[ -e $swap_path ]]; then
+	echo "$swap_path already exists; refusing to overwrite it."
+	exit 1
+fi
+
+as-root fallocate -l "$size" "$swap_path" || exit 1
+as-root chmod 600 "$swap_path" || exit 1
+as-root mkswap "$swap_path" || exit 1
+as-root swapon "$swap_path" || exit 1
 
 # sudo sysctl vm.swappiness=80
 # echo 'vm.swappiness=70' >/etc/sysctl.d/99-swappiness.conf
 
 echo Append the following line /etc/fstab to make change permanent:
-echo /"$NAME" swap swap defaults 0 0
+echo "$swap_path" swap swap defaults 0 0
 echo
 echo To verify that the swap is active, run swapon --show

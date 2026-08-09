@@ -39,7 +39,7 @@ network_manager() {
     read -r ssid
   fi
 
-  sudo nmcli connection "${action}" "$ssid" || exit
+  as-root nmcli connection "${action}" "$ssid" || exit
   nmcli device wifi list || exit
 }
 
@@ -48,13 +48,13 @@ wpa_supplicant() {
   local network_id="$2"
 
   if [[ -z "$network_id" ]]; then
-    sudo wpa_cli list_networks
+    as-root wpa_cli list_networks
     printf "Enter network id to %s: " "$action"
     read -r network_id
   fi
 
-  sudo wpa_cli "${action}_network" "$network_id" || exit
-  sudo wpa_cli list_networks || exit
+  as-root wpa_cli "${action}_network" "$network_id" || exit
+  as-root wpa_cli list_networks || exit
 }
 
 # Check if we have at least one argument
@@ -120,7 +120,7 @@ while [ "$#" -gt 0 ]; do
       nmcli device wifi list || exit
       exit
     fi
-    sudo wpa_cli list_networks
+    as-root wpa_cli list_networks
     ;;
   *)
     echo "Error: Unknown option '$curr'"

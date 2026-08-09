@@ -2,5 +2,5 @@
 
 read -rp "Enter drive name: " name
 if [ -n "$name" ]; then
-  sudo mount -t ntfs /dev/$name /mnt/Seagate
+  as-root mount -t ntfs "/dev/$name" /mnt/Seagate
 fi

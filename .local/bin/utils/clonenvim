@@ -27,8 +27,8 @@ clone_config() {
 		branch="master"
 	fi
 
-	[ ! -d "$dir" ] && git clone $upstream "$dir"
-	[ -d "$nvim_local" ] && sudo rm -r "$nvim_local"
+	[ ! -d "$dir" ] && git clone "$upstream" "$dir"
+	[ -d "$nvim_local" ] && rm -rf -- "$nvim_local"
 	pushd "$dir" || exit
 	git checkout "$branch"
 	git pull

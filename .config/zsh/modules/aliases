@@ -160,15 +160,11 @@ alias imci="doas make install && doas make clean install"
 alias uadd='doas usermod -aG'
 
 ie() {
-  lhs=$1
-  rhs=$2
-  cmd=$3
-  if [[ $+commands["doas"] ]]; then
+  if (( $+commands[doas] || $+functions[doas] )); then
     doas nvim "$@"
-  elif [[ $+commands["doas"] ]]; then
-    sudoedit "$@"
   else
-    sudo nvim "$@"
+    print 'ie: doas or sudo is required' >&2
+    return 127
   fi
 }
 

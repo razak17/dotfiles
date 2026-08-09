@@ -13,13 +13,21 @@ paru=~/.cache/paru/clone
 ## npm cache clean --force
 
 deleteDir() {
-	dir=$1
-	if [[ -d $dir ]]; then
-		sudo rm -r "$dir"
-		echo "${dir} has been removed."
-	else
-		echo "${dir} deos not exist."
-	fi
+	needs_root=$1
+	shift
+
+	for dir in "$@"; do
+		if [[ -d $dir ]]; then
+			if [[ $needs_root == root ]]; then
+				as-root rm -rf -- "$dir" || return 1
+			else
+				rm -rf -- "$dir" || return 1
+			fi
+			echo "${dir} has been removed."
+		else
+			echo "${dir} does not exist."
+		fi
+	done
 }
 
 while [[ "$#" -gt 0 ]]; do
@@ -31,27 +39,27 @@ while [[ "$#" -gt 0 ]]; do
 		echo "help"
 		;;
 	"-a")
-		deleteDir $brave/*
-		deleteDir $conda/*
-		deleteDir $moz/*
-		deleteDir $pip/*
-		deleteDir $yarn/*
-		deleteDir $yay/*
-		deleteDir $pkg/*
-		deleteDir $npm/*
-		deleteDir $paru/*
+		deleteDir user "$brave"/*
+		deleteDir user "$conda"/*
+		deleteDir user "$moz"/*
+		deleteDir user "$pip"/*
+		deleteDir user "$yarn"/*
+		deleteDir user "$yay"/*
+		deleteDir root "$pkg"/*
+		deleteDir user "$npm"/*
+		deleteDir user "$paru"/*
 		;;
 	"-b")
-		deleteDir $brave/*
+		deleteDir user "$brave"/*
 		;;
 	"-c")
-		deleteDir $conda/*
+		deleteDir user "$conda"/*
 		;;
 	"-m")
-		deleteDir $moz/*
+		deleteDir user "$moz"/*
 		;;
 	"-y")
-		deleteDir $yarn/*
+		deleteDir user "$yarn"/*
 		;;
 	*) echo "Unavailable command... $curr" ;;
 	esac

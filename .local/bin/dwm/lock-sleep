@@ -2,5 +2,5 @@
 
 slock -s &
 sleep 1
-sudo sh -c 'echo mem >| /sys/power/state'
+loginctl suspend
 wait
