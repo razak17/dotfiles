@@ -2,7 +2,7 @@
 
 source "$DOT_MANAGER_DIR/helper.sh"
 
-install_luarocks() {
+install_luarocks() (
   print_step "Installing LuaRocks..."
 
   if command -v luarocks >>"$DOT_MANAGER_LOG" 2>&1; then
@@ -10,36 +10,85 @@ install_luarocks() {
     return
   fi
 
-  ROCKS_VERSION=$(__get_latest_release "luarocks/luarocks")
-  url="https://github.com/luarocks/luarocks/releases/download/$ROCKS_VERSION/luarocks-${ROCKS_VERSION#v}.tar.gz"
+  local rocks_version version archive_url tmp_dir archive source_dir
+
+  rocks_version=$(__get_latest_release "luarocks/luarocks")
+  if [ -z "$rocks_version" ]; then
+    log "error" "Failed to determine the latest LuaRocks release."
+    return 1
+  fi
+
+  version=${rocks_version#v}
+  archive_url="https://luarocks.github.io/luarocks/releases/luarocks-$version.tar.gz"
+  tmp_dir=$(mktemp -d /tmp/dot-manager-luarocks.XXXXXX) || {
+    log "error" "Failed to create a temporary directory for LuaRocks."
+    return 1
+  }
+  trap 'rm -rf -- "$tmp_dir"' EXIT
+  archive="$tmp_dir/luarocks-$version.tar.gz"
+  source_dir="$tmp_dir/luarocks-$version"
 
   log "download" "Downloading LuaRocks"
-  cd /tmp || return 1
-  wget -nv -q "$url" >>"$DOT_MANAGER_LOG" 2>&1 && log "success" "Downloaded LuaRocks." || return 1
+  if ! wget -nv -O "$archive" "$archive_url" >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "Failed to download LuaRocks $version."
+    return 1
+  fi
+  log "success" "Downloaded LuaRocks."
 
-  tar zxpf /tmp/luarocks-"${ROCKS_VERSION#v}".tar.gz && log "success" "Extracted LuaRocks." || return 1
-  rm /tmp/luarocks-"${ROCKS_VERSION#v}".tar.gz
-  cd /tmp/luarocks-"${ROCKS_VERSION#v}" || return 1
-  ./configure --prefix="$HOME/.local" >>"$DOT_MANAGER_LOG" 2>&1
-  make build >>"$DOT_MANAGER_LOG" 2>&1
-  make install >>"$DOT_MANAGER_LOG" 2>&1
-  cd - >>"$DOT_MANAGER_LOG" 2>&1 || return 1
-  rm -rf /tmp/luarocks-"${ROCKS_VERSION#v}" >>"$DOT_MANAGER_LOG" 2>&1
+  if ! tar -xzf "$archive" -C "$tmp_dir" >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "Failed to extract LuaRocks $version."
+    return 1
+  fi
+  log "success" "Extracted LuaRocks."
+
+  if ! cd "$source_dir"; then
+    log "error" "LuaRocks source directory is missing after extraction."
+    return 1
+  fi
+
+  if ! ./configure --prefix="$HOME/.local" >>"$DOT_MANAGER_LOG" 2>&1 ||
+    ! make build >>"$DOT_MANAGER_LOG" 2>&1 ||
+    ! make install >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "Failed to build or install LuaRocks. (details: $DOT_MANAGER_LOG)"
+    return 1
+  fi
+
+  if [ ! -x "$HOME/.local/bin/luarocks" ]; then
+    log "error" "LuaRocks installation completed without creating the executable."
+    return 1
+  fi
 
   log "success" "LuaRocks installed."
-}
+)
 
 install_treesitter() {
   print_step "Installing treesitter..."
 
-  if command -v tree-sitter >>"$DOT_MANAGER_LOG" 2>&1 2>&1; then
+  if command -v tree-sitter >>"$DOT_MANAGER_LOG" 2>&1; then
     log "info" "treesitter is already installed."
     return
   fi
 
-  TS_VERSION=$(__get_latest_release "tree-sitter/tree-sitter")
+  local ts_version asset_arch
+  ts_version=$(__get_latest_release "tree-sitter/tree-sitter")
+  if [ -z "$ts_version" ]; then
+    log "error" "Failed to determine the latest tree-sitter release."
+    return 1
+  fi
 
-  __install_package_release "https://github.com/tree-sitter/tree-sitter/releases/download/$TS_VERSION/tree-sitter-linux-x64.gz" "tree-sitter"
+  case $(uname -m) in
+  x86_64) asset_arch=x64 ;;
+  aarch64 | arm64) asset_arch=arm64 ;;
+  *)
+    log "error" "Unsupported architecture for tree-sitter: $(uname -m)"
+    return 1
+    ;;
+  esac
+
+  if ! __install_package_release "https://github.com/tree-sitter/tree-sitter/releases/download/$ts_version/tree-sitter-linux-$asset_arch.gz" "tree-sitter"; then
+    log "error" "Failed to install treesitter."
+    return 1
+  fi
 
   log "success" "treesitter installed."
 }
@@ -47,12 +96,15 @@ install_treesitter() {
 install_neovide() {
   print_step "Installing Neovide..."
 
-  __install_package_arch neovide
+  if ! __install_package_arch neovide; then
+    log "error" "Failed to install Neovide."
+    return 1
+  fi
 
   log "success" "Neovide installed."
 }
 
-install_nvim() {
+install_nvim() (
   print_step "Installing Neovim..."
 
   if command -v nvim >>"$DOT_MANAGER_LOG" 2>&1; then
@@ -60,24 +112,52 @@ install_nvim() {
     return
   fi
 
-  NEOVIM_DIR="$HOME/.dots/neovim"
+  local neovim_dir old_nvim
+  neovim_dir="$HOME/.dots/neovim"
 
-  [ ! -d "$NEOVIM_DIR" ] && git clone https://github.com/neovim/neovim "$NEOVIM_DIR"
-  cd "$NEOVIM_DIR" || return 1
+  if [ ! -d "$neovim_dir/.git" ]; then
+    if [ -e "$neovim_dir" ]; then
+      log "error" "$neovim_dir exists but is not a Git repository."
+      return 1
+    fi
+    if ! git clone https://github.com/neovim/neovim "$neovim_dir" >>"$DOT_MANAGER_LOG" 2>&1; then
+      log "error" "Failed to clone Neovim."
+      return 1
+    fi
+  fi
+  cd "$neovim_dir" || return 1
 
-  git checkout master
-  git pull
+  if ! git checkout master >>"$DOT_MANAGER_LOG" 2>&1 ||
+    ! git pull --ff-only >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "Failed to update the Neovim source tree."
+    return 1
+  fi
 
-  [ -d "$NEOVIM_DIR/build/" ] && __as_root rm -r ./build/ # clear the CMake cache
-  __as_root make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim"
-  __as_root make install
+  if [ -d "$neovim_dir/build" ] && ! rm -rf -- "$neovim_dir/build"; then
+    log "info" "Removing a privileged Neovim build directory."
+    __as_root rm -rf -- "$neovim_dir/build" || return 1
+  fi
+  if ! make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim" >>"$DOT_MANAGER_LOG" 2>&1 ||
+    ! make install >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "Failed to build or install Neovim. (details: $DOT_MANAGER_LOG)"
+    return 1
+  fi
 
-  [ -e "$HOME/.local/bin/nvim" ] && mv "$HOME/.local/bin/nvim" "$HOME/.local/bin/nvim-$(date +%F_%H%M%S_%N)"
-  ln -s "$HOME/neovim/bin/nvim" "$HOME/.local/bin/nvim"
+  if [ ! -x "$HOME/neovim/bin/nvim" ]; then
+    log "error" "Neovim installation completed without creating the executable."
+    return 1
+  fi
+
+  mkdir -p "$HOME/.local/bin" || return 1
+  if [ -e "$HOME/.local/bin/nvim" ] || [ -L "$HOME/.local/bin/nvim" ]; then
+    old_nvim="$HOME/.local/bin/nvim-$(date +%F_%H%M%S_%N)"
+    mv -- "$HOME/.local/bin/nvim" "$old_nvim" || return 1
+  fi
+  ln -s "$HOME/neovim/bin/nvim" "$HOME/.local/bin/nvim" || return 1
   cd - >>"$DOT_MANAGER_LOG" 2>&1 || return 1
 
   log "success" "Neovim installed."
-}
+)
 
 install_rvim() {
   print_step "Installing rVim.."
@@ -88,16 +168,25 @@ install_rvim() {
   fi
 
   if [ ! -d "$HOME/.config/rvim" ]; then
-    git clone https://github.com/razak17/nvim "$HOME/.config/rvim"
+    if ! git clone https://github.com/razak17/nvim "$HOME/.config/rvim" >>"$DOT_MANAGER_LOG" 2>&1; then
+      log "error" "Failed to clone rVim."
+      return 1
+    fi
   fi
 
-  if [ -f "$HOME/.local/bin/rvim" ]; then
+  if [ ! -x "$HOME/.config/rvim/bin/rvim" ]; then
+    log "error" "The rVim launcher is missing or is not executable."
+    return 1
+  fi
+
+  mkdir -p "$HOME/.local/bin" || return 1
+  if [ -e "$HOME/.local/bin/rvim" ] || [ -L "$HOME/.local/bin/rvim" ]; then
     log "Removing old rVim symlink."
-    rm "$HOME/.local/bin/rvim"
+    rm -- "$HOME/.local/bin/rvim" || return 1
   fi
 
   log "info" "Creating rVim symlink."
-  ln -s "$HOME/.config/rvim/bin/rvim" "$HOME/.local/bin/rvim"
+  ln -s "$HOME/.config/rvim/bin/rvim" "$HOME/.local/bin/rvim" || return 1
 
   log "success" "rVim installed."
 }
@@ -105,16 +194,26 @@ install_rvim() {
 update_plugins() {
   print_step "Updating Neovim plugins..."
 
-  nvim --headless "+Lazy! sync" "+qall" >>"$DOT_MANAGER_LOG" 2>&1
+  if ! nvim --headless "+Lazy! sync" "+qall" >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "Failed to update Neovim plugins."
+    return 1
+  fi
   log "success" "Neovim plugins updated."
 
-  rvim -no-min -ts-extra --coding --lsp --ai -nice --headless "+Lazy! sync" "+qall" >/dev/null
+  if ! rvim -no-min -ts-extra --coding --lsp --ai -nice --headless "+Lazy! sync" "+qall" >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "Failed to update rVim plugins."
+    return 1
+  fi
   log "success" "rVim plugins updated."
 }
 
-install_luarocks
-install_treesitter
-install_neovide
-install_nvim "$@"
-install_rvim "$@"
-# update_plugins "$@"
+main() {
+  install_luarocks || return 1
+  install_treesitter || return 1
+  install_neovide || return 1
+  install_nvim || return 1
+  install_rvim || return 1
+  # update_plugins || return 1
+}
+
+main "$@"
