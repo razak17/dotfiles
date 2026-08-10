@@ -2,6 +2,10 @@
 
 source "$DOT_MANAGER_DIR/helper.sh"
 
+# Retired: DuckDB is now managed by install/programs/mise.sh. The legacy
+# implementation below is retained for reference, but this script no longer
+# invokes it.
+
 install_duckdb() {
   print_step "Installing DuckDB..."
 
@@ -32,4 +36,6 @@ install_duckdb() {
   log "success" "DuckDB installed."
 }
 
-install_duckdb "$@"
+print_step "DuckDB installer (retired)"
+log "error" "The DuckDB installer is retired. DuckDB is managed by mise; run 'dot program mise'."
+return 1 2>/dev/null || exit 1

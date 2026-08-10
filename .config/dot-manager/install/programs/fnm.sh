@@ -2,6 +2,10 @@
 
 source "$DOT_MANAGER_DIR/helper.sh"
 
+# Retired: Node.js is now managed by install/programs/mise.sh. The legacy fnm
+# implementation below is retained for reference, but this script no longer
+# invokes it.
+
 install_fnm() {
   print_step "Installing fnm..."
 
@@ -51,6 +55,6 @@ install_versions() {
   fnm default v25.0.0
 }
 
-install_fnm "$@"
-fnm_complete_setup
-install_versions
+print_step "fnm installer (retired)"
+log "error" "The fnm installer is retired. Node.js is managed by mise; run 'dot program mise'."
+return 1 2>/dev/null || exit 1

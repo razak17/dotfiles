@@ -2,6 +2,10 @@
 
 source "$DOT_MANAGER_DIR/helper.sh"
 
+# Retired: Deno is now managed by install/programs/mise.sh. The legacy
+# implementation below is retained for reference, but this script no longer
+# invokes it.
+
 install_binary() {
   if ! __is_program_installed "curl"; then
     log "error" "curl is required to download Deno."
@@ -51,8 +55,6 @@ do_program_install() {
   esac
 }
 
-if [ $# -eq 0 ]; then
-  install_deno "$@"
-else
-  do_program_install "$@"
-fi
+print_step "Deno installer (retired)"
+log "error" "The Deno installer is retired. Deno is managed by mise; run 'dot program mise'."
+return 1 2>/dev/null || exit 1

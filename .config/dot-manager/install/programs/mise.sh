@@ -100,12 +100,16 @@ install_bun() {
   fi
 
   log "info" "Setting up Bun completions..."
+  mkdir -p "$HOME/.config/zsh/plugins/bun"
   if [ -f "$HOME/.config/zsh/plugins/bun/_bun" ]; then
     log "info" "Removing old Bun completions."
     rm "$HOME/.config/zsh/plugins/bun/_bun"
   fi
 
-  bun completions zsh >"$HOME/.config/zsh/plugins/bun/_bun"
+  if ! mise exec -- bun completions zsh >"$HOME/.config/zsh/plugins/bun/_bun"; then
+    log "error" "Failed to generate Bun completions."
+    return 1
+  fi
 
   [ -f "$HOME/.cache/zsh/zcompdump" ] && rm "$HOME/.cache/zsh/zcompdump"
 
@@ -115,15 +119,22 @@ install_bun() {
 install_deno() {
   log "info" "Installing Deno via mise..."
 
-  mise use -g deno@latest
+  if ! mise use -g deno@latest; then
+    log "error" "Failed to install Deno via mise."
+    return 1
+  fi
 
   log "info" "Setting up Deno completions..."
+  mkdir -p "$HOME/.config/zsh/plugins/deno"
   if [ -f "$HOME/.config/zsh/plugins/deno/_deno" ]; then
     log "info" "Removing old Deno completions."
     rm "$HOME/.config/zsh/plugins/deno/_deno"
   fi
 
-  deno completions zsh >"$HOME/.config/zsh/plugins/deno/_deno"
+  if ! mise exec -- deno completions zsh >"$HOME/.config/zsh/plugins/deno/_deno"; then
+    log "error" "Failed to generate Deno completions."
+    return 1
+  fi
 
   [ -f "$HOME/.cache/zsh/zcompdump" ] && rm "$HOME/.cache/zsh/zcompdump"
 
@@ -141,34 +152,68 @@ install_python() {
 install_uv() {
   log "info" "Installing uv plugin for mise..."
 
-  mise use -g uv@latest
+  if ! mise use -g uv@latest; then
+    log "error" "Failed to install uv via mise."
+    return 1
+  fi
 
   log "info" "Seting up uv completions..."
+  mkdir -p "$HOME/.config/zsh/plugins/uv"
   if [ -f "$HOME/.config/zsh/plugins/uv/_uv" ]; then
     log "info" "Removing old uv completions."
     rm "$HOME/.config/zsh/plugins/uv/_uv"
   fi
 
-  uv generate-shell-completion zsh >"$HOME/.config/zsh/plugins/uv/_uv"
+  if ! mise exec -- uv generate-shell-completion zsh >"$HOME/.config/zsh/plugins/uv/_uv"; then
+    log "error" "Failed to generate uv completions."
+    return 1
+  fi
 
   [ -f "$HOME/.cache/zsh/zcompdump" ] && rm "$HOME/.cache/zsh/zcompdump"
 
   log success "uv installed."
 }
 
+install_cli_tools() {
+  local tools=(
+    aws-cli@latest
+    duckdb@latest
+    stripe@latest
+    fzf@latest
+    opencode@latest
+    yt-dlp@latest
+  )
+
+  log "info" "Installing CLI tools via mise..."
+
+  if ! mise use -g "${tools[@]}"; then
+    log "error" "Failed to install one or more CLI tools via mise."
+    return 1
+  fi
+
+  log "success" "CLI tools installed."
+}
+
 install_zig() {
   log "info" "Installing Zig via mise..."
 
-  mise use -g zig@latest
+  if ! mise use -g zig@latest; then
+    log "error" "Failed to install Zig via mise."
+    return 1
+  fi
 
   log "info" "Setting up Zig completions..."
+  mkdir -p "$HOME/.config/zsh/plugins/zig"
   if [ -f "$HOME/.config/zsh/plugins/zig/_zig" ]; then
     log "info" "Removing old Zig completions."
     rm "$HOME/.config/zsh/plugins/zig/_zig"
   fi
 
-  curl -LO "https://codeberg.org/ziglang/shell-completions/raw/branch/master/_zig"
-  mv "_zig" "$HOME/.config/zsh/plugins/zig/_zig"
+  if ! curl -fsSL "https://codeberg.org/ziglang/shell-completions/raw/branch/master/_zig" \
+    -o "$HOME/.config/zsh/plugins/zig/_zig"; then
+    log "error" "Failed to download Zig completions."
+    return 1
+  fi
 
   [ -f "$HOME/.cache/zsh/zcompdump" ] && rm "$HOME/.cache/zsh/zcompdump"
 
@@ -189,5 +234,8 @@ install_go
 install_lua
 install_rust
 install_bun
+install_deno
 install_python
 install_uv
+install_zig
+install_cli_tools

@@ -2,6 +2,10 @@
 
 source "$DOT_MANAGER_DIR/helper.sh"
 
+# Retired: AWS CLI is now managed by install/programs/mise.sh. The legacy
+# implementation below is retained for reference, but this script no longer
+# invokes it.
+
 # see: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 
 install_or_update_binary() {
@@ -86,8 +90,6 @@ do_program_install() {
   esac
 }
 
-if [ $# -eq 0 ]; then
-  install_awscli "$@"
-else
-  do_program_install "$@"
-fi
+print_step "AWS CLI installer (retired)"
+log "error" "The AWS CLI installer is retired. AWS CLI is managed by mise; run 'dot program mise'."
+return 1 2>/dev/null || exit 1

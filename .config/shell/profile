@@ -17,11 +17,6 @@ path+=(
   "$LOCAL/utils"
 )
 
-# fzf
-if [[ -x "$HOME/.fzf/bin/fzf" ]]; then
-  path+=("$HOME/.fzf/bin")
-fi
-
 # java
 export JAVA_HOME="/usr/lib/jvm/java-26-openjdk";
 
@@ -51,22 +46,6 @@ fi
 if [ -e "$HOME/.cargo" ]; then
   path+=(
   "$HOME/.cargo/bin"
-  )
-fi
-
-# duckdb
-if [ -f "$HOME/.duckdb/cli/latest/duckdb" ]; then
-  export DUCK_DB="$HOME/.duckdb/"
-  path+=(
-  "$DUCK_DB/cli/latest"
-  )
-fi
-
-# opencode
-if [ -e "$HOME/.opencode/bin/opencode" ]; then
-  export OPENCODE_PATH="$HOME/.opencode/"
-  path+=(
-  "$OPENCODE_PATH/bin"
   )
 fi
 

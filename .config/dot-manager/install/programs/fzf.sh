@@ -2,6 +2,10 @@
 
 source "$DOT_MANAGER_DIR/helper.sh"
 
+# Retired: fzf is now managed by install/programs/mise.sh. The legacy
+# implementation below is retained for reference, but this script no longer
+# invokes it.
+
 install_fzf() {
   print_step "Installing fzf..."
 
@@ -22,4 +26,6 @@ install_fzf() {
   log "success" "fzf installed."
 }
 
-install_fzf "$@"
+print_step "fzf installer (retired)"
+log "error" "The fzf installer is retired. fzf is managed by mise; run 'dot program mise'."
+return 1 2>/dev/null || exit 1

@@ -53,16 +53,16 @@ add_plugin 'npm'
 #-------------------------------------------------------------------------------
 #   PATH
 #-------------------------------------------------------------------------------
-# aws completions. see: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
-if [ -f "$HOME/.local/bin/aws_completer" ]; then
-  autoload -Uz bashcompinit && bashcompinit
-  complete -C "$HOME/.local/bin/aws_completer" aws
-fi
-
 # mise
 if exists mise; then
   eval "$(/home/razak/.local/bin/mise activate zsh)"
   add_plugin 'pnpm'
+fi
+
+# aws completions
+if exists aws_completer; then
+  autoload -Uz bashcompinit && bashcompinit
+  complete -C "$(command -v aws_completer)" aws
 fi
 
 # fzf
@@ -82,8 +82,9 @@ if exists zoxide; then
 fi
 
 # Azure cli
-if exists az; then
-  source $HOME/lib/azure-cli/az.completion
+if exists az && [[ -f /opt/azure-cli/bin/az.completion.sh ]]; then
+  autoload -Uz bashcompinit && bashcompinit
+  source /opt/azure-cli/bin/az.completion.sh
 fi
 
 # Cargo

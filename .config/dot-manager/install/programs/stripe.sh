@@ -2,6 +2,10 @@
 
 source "$DOT_MANAGER_DIR/helper.sh"
 
+# Retired: Stripe CLI is now managed by install/programs/mise.sh. The legacy
+# implementation below is retained for reference, but this script no longer
+# invokes it.
+
 install_binary() {
 
   VERSION=$(__get_latest_release "stripe/stripe-cli")
@@ -46,8 +50,6 @@ do_program_install() {
   esac
 }
 
-if [ $# -eq 0 ]; then
-  install_stripe "$@"
-else
-  do_program_install "$@"
-fi
+print_step "Stripe CLI installer (retired)"
+log "error" "The Stripe CLI installer is retired. Stripe CLI is managed by mise; run 'dot program mise'."
+return 1 2>/dev/null || exit 1
