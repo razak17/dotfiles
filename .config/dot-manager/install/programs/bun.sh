@@ -2,6 +2,10 @@
 
 source "$DOT_MANAGER_DIR/helper.sh"
 
+# Retired: Bun is now managed by install/programs/mise.sh. The legacy
+# implementation below is intentionally retained for reference, but this script
+# no longer invokes it.
+
 install_bun() {
   print_step "Installing Bun..."
 
@@ -23,4 +27,6 @@ install_bun() {
   log "success" "Bun installed."
 }
 
-install_bun "$@"
+print_step "Bun installer (retired)"
+log "error" "The Bun installer is retired. Bun is managed by mise; run 'dot install mise'."
+return 1 2>/dev/null || exit 1

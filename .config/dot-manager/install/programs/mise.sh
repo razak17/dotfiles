@@ -80,10 +80,24 @@ install_lua() {
   log "success" "Lua 5.1 installed."
 }
 
+install_rust() {
+  log "info" "Installing stable Rust via mise..."
+
+  if ! mise use -g rust@latest; then
+    log "error" "Failed to install stable Rust via mise."
+    return 1
+  fi
+
+  log "success" "Stable Rust installed."
+}
+
 install_bun() {
   log "info" "Installing Bun via mise..."
 
-  mise use -g bun@latest
+  if ! mise use -g bun@latest; then
+    log "error" "Failed to install Bun via mise."
+    return 1
+  fi
 
   log "info" "Setting up Bun completions..."
   if [ -f "$HOME/.config/zsh/plugins/bun/_bun" ]; then
@@ -173,5 +187,7 @@ install_node
 install_pnpm
 install_go
 install_lua
+install_rust
+install_bun
 install_python
 install_uv

@@ -9,7 +9,6 @@ DOT_MANAGER_COMPLETE_PROGRAMS=(
   "awscli"
   "bat"
   "browser"
-  "cargo"
   "clipmenu"
   "codex"
   "dev"

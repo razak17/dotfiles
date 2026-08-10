@@ -2,6 +2,10 @@
 
 source "$DOT_MANAGER_DIR/helper.sh"
 
+# Retired: Rust and Cargo are now managed by install/programs/mise.sh. The
+# legacy implementation below is intentionally retained for reference, but this
+# script no longer invokes it.
+
 install_cargo() {
   print_step "Installing Cargo..."
 
@@ -20,4 +24,6 @@ install_cargo() {
   log "success" "Cargo installed."
 }
 
-install_cargo "$@"
+print_step "Cargo installer (retired)"
+log "error" "The Cargo installer is retired. Rust and Cargo are managed by mise; run 'dot install mise'."
+return 1 2>/dev/null || exit 1
