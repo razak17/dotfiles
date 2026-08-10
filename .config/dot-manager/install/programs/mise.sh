@@ -58,6 +58,17 @@ install_pnpm() {
   log "success" "pnpm installed."
 }
 
+install_go() {
+  log "info" "Installing Go 1.26 via mise..."
+
+  if ! mise use -g go@1.26; then
+    log "error" "Failed to install Go 1.26 via mise."
+    return 1
+  fi
+
+  log "success" "Go 1.26 installed."
+}
+
 install_bun() {
   log "info" "Installing Bun via mise..."
 
@@ -149,5 +160,6 @@ fi
 mise_completion
 install_node
 install_pnpm
+install_go
 install_python
 install_uv

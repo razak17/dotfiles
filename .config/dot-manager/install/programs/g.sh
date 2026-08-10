@@ -2,6 +2,10 @@
 
 source "$DOT_MANAGER_DIR/helper.sh"
 
+# Retired: Go versions are now managed by install/programs/mise.sh. The legacy
+# implementation below is intentionally retained for reference, but this script
+# no longer invokes it.
+
 install_binary() {
   if ! __is_program_installed "curl"; then
     log "error" "curl is required to download g."
@@ -42,19 +46,6 @@ reinstall_g() {
   log "success" "g reinstalled."
 }
 
-do_program_install() {
-  case "$1" in
-  install) install_g "$@" ;;
-  reinstall) reinstall_g "$@" ;;
-  *)
-    log "error" "Unknown action: $1"
-    return 1
-    ;;
-  esac
-}
-
-if [ $# -eq 0 ]; then
-  install_g "$@"
-else
-  do_program_install "$@"
-fi
+print_step "g (retired)"
+log "error" "g is retired. Go versions are managed by mise; run 'dot install mise'."
+return 1 2>/dev/null || exit 1
