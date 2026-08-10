@@ -218,8 +218,6 @@ alias die="doas openrc-shutdown -pq now"
 alias grep="grep --color=auto"
 alias iredis="doas /etc/init.d/redis_6379 start"
 alias codium="doas vi /usr/share/vscodium-bin/resources/app/product.json"
-alias gvm="$GOPATH/bin/g"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
-
 # editor
 safe_edit a "$HOME/.config/zsh/modules/aliases"
 safe_edit icl "$HOME/.dots/clip/clip_hist.txt"
