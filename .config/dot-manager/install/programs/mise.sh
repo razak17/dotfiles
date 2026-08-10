@@ -69,6 +69,17 @@ install_go() {
   log "success" "Go 1.26 installed."
 }
 
+install_lua() {
+  log "info" "Installing Lua 5.1 via mise..."
+
+  if ! mise use -g lua@5.1; then
+    log "error" "Failed to install Lua 5.1 via mise."
+    return 1
+  fi
+
+  log "success" "Lua 5.1 installed."
+}
+
 install_bun() {
   log "info" "Installing Bun via mise..."
 
@@ -161,5 +172,6 @@ mise_completion
 install_node
 install_pnpm
 install_go
+install_lua
 install_python
 install_uv

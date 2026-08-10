@@ -2,6 +2,10 @@
 
 source "$DOT_MANAGER_DIR/helper.sh"
 
+# Retired: runtimes are now managed by install/programs/mise.sh. The legacy
+# implementation below is intentionally retained for reference, but this script
+# no longer invokes it.
+
 install_asdf() {
   print_step "Installing asdf..."
 
@@ -50,6 +54,6 @@ install_python() {
   asdf set -u python 3.11.9
 }
 
-install_asdf "$@"
-install_lua
-install_python
+print_step "asdf (retired)"
+log "error" "asdf is retired. Runtimes are managed by mise; run 'dot install mise'."
+return 1 2>/dev/null || exit 1
