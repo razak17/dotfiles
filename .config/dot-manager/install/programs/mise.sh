@@ -179,7 +179,6 @@ install_cli_tools() {
     aws-cli@latest
     duckdb@latest
     stripe@latest
-    fzf@latest
     opencode@latest
     yt-dlp@latest
   )

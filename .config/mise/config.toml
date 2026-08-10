@@ -3,7 +3,6 @@ aws-cli = { version = "latest", symlink_bins = "true" }
 bun = "latest"
 deno = "latest"
 duckdb = "latest"
-fzf = "latest"
 go = "1.26"
 lua = "5.1"
 node = "lts"

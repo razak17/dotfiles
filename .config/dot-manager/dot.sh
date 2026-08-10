@@ -13,6 +13,7 @@ DOT_MANAGER_COMPLETE_PROGRAMS=(
   "codex"
   "dev"
   "docker"
+  "fzf"
   "jackett"
   "jellyfin"
   "mech"
