@@ -178,6 +178,7 @@ install_cli_tools() {
   local tools=(
     aws-cli@latest
     duckdb@latest
+    npm:skills@latest
     stripe@latest
     opencode@latest
     yt-dlp@latest
@@ -191,6 +192,76 @@ install_cli_tools() {
   fi
 
   log "success" "CLI tools installed."
+}
+
+restore_agent_skills() {
+  local lock_file="$HOME/.agents/.skill-lock.json"
+  local source
+  local -a agents
+  local -a skill_names
+  local -a sources
+
+  if [ -n "${XDG_STATE_HOME:-}" ]; then
+    lock_file="$XDG_STATE_HOME/skills/.skill-lock.json"
+  fi
+
+  if [ ! -f "$lock_file" ]; then
+    log "info" "No global skills lockfile found. Skipping agent skill restore."
+    return
+  fi
+
+  if ! command -v jq >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "jq is required to restore agent skills from $lock_file."
+    return 1
+  fi
+
+  if ! jq -e '
+    .version == 3 and
+    (.skills | type == "object") and
+    (.lastSelectedAgents | type == "array") and
+    ((.skills | length) == 0 or (.lastSelectedAgents | length) > 0) and
+    all(.lastSelectedAgents[]; type == "string" and length > 0) and
+    all(.skills | to_entries[];
+      (.key | type == "string" and length > 0) and
+      ((.value.sourceUrl // .value.source) | type == "string" and length > 0)
+    )
+  ' "$lock_file" >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "Global skills lockfile is invalid: $lock_file"
+    return 1
+  fi
+
+  mapfile -t sources < <(
+    jq -r '.skills | to_entries | map(.value.sourceUrl // .value.source) | unique[]' "$lock_file"
+  )
+
+  if [ "${#sources[@]}" -eq 0 ]; then
+    log "info" "No global agent skills are recorded in $lock_file."
+    return
+  fi
+
+  mapfile -t agents < <(jq -r '.lastSelectedAgents[]' "$lock_file")
+
+  log "info" "Restoring global agent skills from $lock_file..."
+
+  for source in "${sources[@]}"; do
+    mapfile -t skill_names < <(
+      jq -r --arg source "$source" '
+        .skills | to_entries[] |
+        select((.value.sourceUrl // .value.source) == $source) |
+        .key
+      ' "$lock_file"
+    )
+
+    if ! mise exec -- skills add "$source" \
+      --skill "${skill_names[@]}" \
+      --agent "${agents[@]}" \
+      --global --yes --full-depth; then
+      log "error" "Failed to restore agent skills from $source."
+      return 1
+    fi
+  done
+
+  log "success" "Global agent skills restored."
 }
 
 install_zig() {
@@ -238,3 +309,4 @@ install_python
 install_uv
 install_zig
 install_cli_tools
+restore_agent_skills
