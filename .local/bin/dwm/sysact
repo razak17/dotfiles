@@ -1,36 +1,85 @@
 #!/bin/sh
 
 # A dmenu wrapper script for system functions.
-export WM="dwm"
+WM=${WM:-dwm}
+
 case "$(readlink -f /sbin/init)" in
-	*systemd*) ctl='systemctl' ;;
-	*) ctl='loginctl' ;;
+	*systemd*) ctl=systemctl ;;
+	*) ctl=loginctl ;;
 esac
 
-wmpid(){ # This function is needed if there are multiple instances of the window manager.
-	tree="$(pstree -ps $$)"
-	tree="${tree#*$WM(}"
-	echo "${tree%%)*}"
+wmpid() {
+	pid=$PPID
+	while [ "$pid" -gt 1 ] 2>/dev/null; do
+		[ "$(cat "/proc/$pid/comm" 2>/dev/null)" = "$WM" ] && {
+			printf '%s\n' "$pid"
+			return 0
+		}
+		pid=$(awk '/^PPid:/ { print $2 }' "/proc/$pid/status" 2>/dev/null)
+	done
+	return 1
 }
 
-lock(){
-    mpc pause
-    pauseallmpv
-    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-    kill -44 $(pidof dwmblocks)
-    slock
-    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-    kill -44 $(pidof dwmblocks)
+refresh_bar() {
+	for pid in $(pidof dwmblocks 2>/dev/null); do
+		kill -44 "$pid"
+	done
 }
 
-case "$(printf "🔒 lock\n🚪 leave $WM\n♻️ renew $WM\n🐻 hibernate\n🔃 reboot\n🖥️ shutdown\n💤 sleep\n📺 display off" | dmenu -l 10 -p 'Choose: ')" in
+pause_media() {
+	command -v mpc >/dev/null 2>&1 && mpc pause >/dev/null 2>&1
+	command -v pauseallmpv >/dev/null 2>&1 && pauseallmpv
+}
+
+lock() {
+	pause_media
+	restore_audio=false
+
+	if command -v wpctl >/dev/null 2>&1; then
+		case $(wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null) in
+			*"[MUTED]"*) ;;
+			*)
+				if wpctl set-mute @DEFAULT_AUDIO_SINK@ 1 >/dev/null 2>&1; then
+					restore_audio=true
+					refresh_bar
+				fi
+				;;
+		esac
+	fi
+
+	slock "$@"
+	status=$?
+
+	if $restore_audio; then
+		wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 >/dev/null 2>&1
+		refresh_bar
+	fi
+
+	return "$status"
+}
+
+signal_wm() {
+	wm_pid=$(wmpid) || return 1
+	kill "-$1" "$wm_pid"
+}
+
+case $(printf '%s\n' \
+	"🔒 lock" \
+	"🚪 leave $WM" \
+	"♻️ renew $WM" \
+	"🐻 hibernate" \
+	"🔃 reboot" \
+	"🖥️ shutdown" \
+	"💤 sleep" \
+	"📺 display off" |
+	dmenu -l 8 -p 'Choose: ') in
 	'🔒 lock') lock ;;
-	"🚪 leave $WM") kill -TERM "$(wmpid)" ;;
-	"♻️ renew $WM") kill -HUP "$(wmpid)" ;;
-	'🐻 hibernate') slock $ctl hibernate -i ;;
-	'💤 sleep') slock $ctl suspend -i ;;
-	'🔃 reboot') $ctl reboot -i ;;
-	'🖥️shutdown') $ctl poweroff -i ;;
+	"🚪 leave $WM") signal_wm TERM ;;
+	"♻️ renew $WM") signal_wm HUP ;;
+	'🐻 hibernate') lock "$ctl" hibernate -i ;;
+	'💤 sleep') lock "$ctl" suspend -i ;;
+	'🔃 reboot') "$ctl" reboot -i ;;
+	'🖥️ shutdown') "$ctl" poweroff -i ;;
 	'📺 display off') xset dpms force off ;;
-	*) exit 1 ;;
+	*) exit 0 ;;
 esac

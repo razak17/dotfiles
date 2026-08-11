@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# Pause every MPV instance exposing a socket created by session-ipc.lua.
+[ -n "${XDG_RUNTIME_DIR:-}" ] || exit 0
+command -v socat >/dev/null 2>&1 || exit 0
+
+socket_dir=$XDG_RUNTIME_DIR/mpvSockets
+[ -d "$socket_dir" ] || exit 0
+
+for socket in "$socket_dir"/*; do
+	[ -S "$socket" ] || continue
+	pid=${socket##*/}
+	if [ ! -r "/proc/$pid/comm" ] ||
+		[ "$(cat "/proc/$pid/comm" 2>/dev/null)" != mpv ]; then
+		unlink "$socket"
+		continue
+	fi
+	printf '%s\n' '{"command":["set_property","pause",true]}' |
+		socat - "$socket" >/dev/null 2>&1 || :
+done
