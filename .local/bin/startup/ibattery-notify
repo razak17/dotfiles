@@ -1,26 +1,60 @@
 #!/bin/sh
 
-while true; do
-	export DISPLAY=:0.0
-	battery_level=$(acpi -b | grep -P -o '[0-9]+(?=%)')
-	power_connected=false
+power_supply_root=${POWER_SUPPLY_ROOT:-/sys/class/power_supply}
+battery=
 
-	# Loop through all attached batteries and check battery level
-	for battery in /sys/class/power_supply/BAT?*; do
-		case "$(cat "$battery/status")" in
-		"Charging") power_connected=true ;;
-		esac
-	done
+for candidate in "$power_supply_root"/BAT?*; do
+	[ -d "$candidate" ] || continue
+	battery=$candidate
+	break
+done
 
-	if [ $power_connected = 'false' ]; then
-		if [ "$battery_level" -lt 20 ]; then
-			notify-send -u critical "You may want to connect your charger" "Battery level is below $((battery_level + 1))%" -i battery-low -t 2000
-		fi
-	elif [ $power_connected = 'true' ]; then
-		if [ "$battery_level" -gt 99 ]; then
-			notify-send -u normal "You may want to disconnect your charger" "Battery is fully charged" -t 2000
-		fi
+[ -n "$battery" ] || exit 0
+
+send_notification() {
+	command -v notify-send >/dev/null 2>&1 || return 0
+	notify-send "$@" || :
+}
+
+while :; do
+	if ! IFS= read -r battery_level <"$battery/capacity" 2>/dev/null; then
+		sleep 60
+		continue
 	fi
+
+	case $battery_level in
+	'' | *[!0-9]*)
+		sleep 60
+		continue
+		;;
+	esac
+
+	if ! IFS= read -r battery_status <"$battery/status" 2>/dev/null; then
+		battery_status=Unknown
+	fi
+
+	case $battery_status in
+	Charging | Full)
+		if [ "$battery_level" -ge 100 ]; then
+			send_notification \
+				-u normal \
+				"You may want to disconnect your charger" \
+				"Battery is fully charged" \
+				-i battery-full \
+				-t 2000
+		fi
+		;;
+	*)
+		if [ "$battery_level" -lt 20 ]; then
+			send_notification \
+				-u critical \
+				"You may want to connect your charger" \
+				"Battery level is ${battery_level}%" \
+				-i battery-low \
+				-t 2000
+		fi
+		;;
+	esac
 
 	if [ "$battery_level" -lt 15 ]; then
 		sleep 50
