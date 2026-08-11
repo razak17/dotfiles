@@ -12,7 +12,7 @@ fi
 
 [ -r "$HOME/.config/shell/environment.sh" ] && . "$HOME/.config/shell/environment.sh"
 
-[ ! -s ~/.config/mpd/pid ] && mpd
+pgrep -xu "$USER" mpd >/dev/null || mpd
 
 # Steam fix 🤞
 # exec /usr/lib/xdg-desktop-portal-gtk
