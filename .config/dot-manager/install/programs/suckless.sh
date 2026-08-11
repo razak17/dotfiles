@@ -2,6 +2,18 @@
 
 source "$DOT_MANAGER_DIR/helper.sh"
 
+install_bc() {
+  # for spcalc
+  print_step "Installing bc..."
+
+  if ! __install_package_arch bc; then
+    log "error" "Failed to install bc."
+    return 1
+  fi
+
+  log "success" "bc installed."
+}
+
 install_suckless_utils() {
   print_step "Installing suckless utilities..."
 
@@ -27,4 +39,5 @@ install_suckless_utils() {
   log "success" "Suckless utilities installed."
 }
 
+install_bc "$@"
 install_suckless_utils "$@"
