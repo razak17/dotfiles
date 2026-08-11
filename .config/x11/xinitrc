@@ -31,6 +31,4 @@ export QT_SCALE_FACTOR=0.9
 
 command -v ssh-add-github-session >/dev/null 2>&1 && ssh-add-github-session &
 
-while type dwm >/dev/null; do
-	dwm 2>~/.dwm.log && continue || break
-done
+exec dwm 2>"$HOME/.dwm.log"
