@@ -35,7 +35,6 @@ xprofile_start_once picom picom
 xprofile_start_once syncthing "$HOME/.local/bin/startup/isyncthing"
 
 xprofile_run "$HOME/.local/bin/dwm/setbg" --fav
-xprofile_run "$HOME/.local/bin/startup/itouch"
 xprofile_run "$HOME/.local/bin/startup/ikeyboard"
 
 unset process_name
