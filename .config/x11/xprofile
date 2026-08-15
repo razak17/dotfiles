@@ -29,13 +29,13 @@ xprofile_run() {
 xprofile_start_once mpd mpd
 xprofile_start_once clipmenud clipmenud
 xprofile_start_once dunst dunst
-xprofile_start_once redshift "$HOME/.local/bin/startup/ibrightness"
-xprofile_start_once ibattery-notify "$HOME/.local/bin/startup/ibattery-notify"
+xprofile_start_once redshift "$HOME/.local/bin/startup/st-brightness"
+xprofile_start_once ibattery-notify "$HOME/.local/bin/startup/st-battery-notify"
 xprofile_start_once picom picom
-xprofile_start_once syncthing "$HOME/.local/bin/startup/isyncthing"
+xprofile_start_once syncthing "$HOME/.local/bin/startup/st-syncthing"
 
-xprofile_run "$HOME/.local/bin/dwm/setbg" --fav
-xprofile_run "$HOME/.local/bin/startup/ikeyboard"
+xprofile_run "$HOME/.local/bin/startup/st-setbg" --fav
+xprofile_run "$HOME/.local/bin/startup/st-keyboard"
 
 unset process_name
 unset -f xprofile_start_once xprofile_run
