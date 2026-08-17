@@ -27,6 +27,7 @@ xprofile_run() {
 }
 
 xprofile_start_once mpd mpd
+xprofile_start_once xsettingsd xsettingsd
 xprofile_start_once clipmenud clipmenud
 xprofile_start_once dunst dunst
 xprofile_start_once redshift "$HOME/.local/bin/startup/st-brightness"
