@@ -33,14 +33,14 @@ set autoquit true
 # set cleaner '~/.config/lf/ueberzug/cleaner'
 
 # Uncomment to use kitty for file previewer,
-set previewer '~/.config/lf/kitty/previewer'
-set cleaner '~/.config/lf/kitty/cleaner'
+# set previewer '~/.config/lf/kitty/previewer'
+# set cleaner '~/.config/lf/kitty/cleaner'
 
 # Uncomment to use stpv for file previewer,
-# set previewer stpv
-# set cleaner stpvimgclr
-# &stpvimg --listen $id
-# cmd on-quit $stpvimg --end $id
+set previewer stpv
+set cleaner stpvimgclr
+&stpvimg --listen $id 2>/dev/null
+cmd on-quit $stpvimg --end $id
 
 # cmds/functions
 cmd open ${{
