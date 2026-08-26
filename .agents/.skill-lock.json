@@ -9,7 +9,7 @@
       "skillFolderHash": "0d5b74a14bdf3ebcd64f352d06376a2ef05ed296",
       "pluginName": "example-skills",
       "installedAt": "2026-03-06T13:47:34.472Z",
-      "updatedAt": "2026-08-11T20:23:06.069Z"
+      "updatedAt": "2026-08-28T00:42:23.328Z"
     },
     "find-skills": {
       "source": "vercel-labs/skills",
@@ -18,25 +18,25 @@
       "skillPath": "skills/find-skills/SKILL.md",
       "skillFolderHash": "76a98a285cb0434f3d39e1a873823556330e398b",
       "installedAt": "2026-03-06T13:47:38.591Z",
-      "updatedAt": "2026-08-11T20:23:33.022Z"
+      "updatedAt": "2026-08-28T00:43:08.262Z"
     },
     "brainstorming": {
       "source": "obra/superpowers",
       "sourceType": "github",
       "sourceUrl": "https://github.com/obra/superpowers.git",
       "skillPath": "skills/brainstorming/SKILL.md",
-      "skillFolderHash": "a24cbf66c526b88d26cb9c816a843df9e50d0fc7",
+      "skillFolderHash": "881fc4ac82a25e61a58d332426b5673efe060da0",
       "installedAt": "2026-03-06T13:49:04.128Z",
-      "updatedAt": "2026-08-11T20:23:30.641Z"
+      "updatedAt": "2026-08-28T00:43:05.067Z"
     },
     "writing-skills": {
       "source": "obra/superpowers",
       "sourceType": "github",
       "sourceUrl": "https://github.com/obra/superpowers.git",
       "skillPath": "skills/writing-skills/SKILL.md",
-      "skillFolderHash": "611ae23b2390aef2d90463b79dbcef3997adc5f4",
+      "skillFolderHash": "1768f7552ec98fc6b06aeea747a0c4ef6bde0473",
       "installedAt": "2026-03-06T13:49:45.896Z",
-      "updatedAt": "2026-08-11T20:23:30.642Z"
+      "updatedAt": "2026-08-28T00:43:05.068Z"
     },
     "python-performance-optimization": {
       "source": "wshobson/agents",
@@ -45,7 +45,7 @@
       "skillPath": "plugins/python-development/skills/python-performance-optimization/SKILL.md",
       "skillFolderHash": "08c2e271829ec9131a5a0b5d484d1a6a332c8a30",
       "installedAt": "2026-03-06T13:54:03.829Z",
-      "updatedAt": "2026-08-11T20:23:38.007Z"
+      "updatedAt": "2026-08-28T00:43:15.198Z"
     },
     "python-testing-patterns": {
       "source": "wshobson/agents",
@@ -54,7 +54,7 @@
       "skillPath": "plugins/python-development/skills/python-testing-patterns/SKILL.md",
       "skillFolderHash": "639d303a1187fe64e2538522ea25c5b8d3321763",
       "installedAt": "2026-03-06T13:54:35.472Z",
-      "updatedAt": "2026-08-11T20:23:38.009Z"
+      "updatedAt": "2026-08-28T00:43:15.200Z"
     },
     "refactor": {
       "source": "github/awesome-copilot",
@@ -63,7 +63,7 @@
       "skillPath": "skills/refactor/SKILL.md",
       "skillFolderHash": "01cfb6a412faf9d680880cc3f631c419121a9916",
       "installedAt": "2026-04-16T11:00:29.554Z",
-      "updatedAt": "2026-08-11T20:23:27.443Z"
+      "updatedAt": "2026-08-28T00:43:01.076Z"
     },
     "unslop": {
       "source": "cursor/plugins",
@@ -72,7 +72,7 @@
       "skillPath": "pstack/skills/unslop/SKILL.md",
       "skillFolderHash": "6161508c5c7959b156ff0e4e10b510863b51f9cc",
       "installedAt": "2026-08-20T16:53:48.859Z",
-      "updatedAt": "2026-08-20T16:53:48.859Z"
+      "updatedAt": "2026-08-28T00:42:28.662Z"
     }
   },
   "dismissed": {
