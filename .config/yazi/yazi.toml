@@ -15,22 +15,22 @@ cache_dir  = ""
 
 [opener]
 edit = [
-	{ run = '$EDITOR "$@"', block = true, for = "unix" },
+	{ run = '$EDITOR %s', block = true, for = "unix" },
 ]
 play = [
-	{ run = 'mpv "$@"', orphan = true, for = "unix" },
+	{ run = 'mpv %s', orphan = true, for = "unix" },
 ]
 pdf = [
-	{ run = 'zathura "$@"', orphan = true, for = "unix" },
+	{ run = 'zathura %s', orphan = true, for = "unix" },
 ]
 image = [
-	{ run = 'sxiv "$@" &', orphan = true, for = "unix" },
+	{ run = 'sxiv %s', orphan = true, for = "unix" },
 ]
 explorer = [
-	{ run = 'thunar "$@" &', orphan = true, for = "unix" },
+	{ run = 'thunar %s', orphan = true, for = "unix" },
 ]
 fallback = [
-	{ run = 'xdg-open "$@"', orphan = true, for = "unix" },
+	{ run = 'xdg-open %s1', orphan = true, for = "unix" },
 ]
 
 [open]
