@@ -151,6 +151,10 @@ buildnvim() {
     fi
   fi
 
+  # Save old binary
+  oldfile="nvim-$(date +%F_%H%M%S_%N)"
+  [[ -e "$HOME/neovim/bin/nvim" ]] && mv -- "$HOME/neovim/bin/nvim" "$HOME/neovim/bin/$oldfile"
+
   make CMAKE_BUILD_TYPE=Release \
     CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim" || {
       popd >/dev/null
@@ -158,16 +162,14 @@ buildnvim() {
     }
   make install || { popd >/dev/null; return 1; }
 
-  # Save old binary
-  oldfile="nvim-$(date +%F_%H%M%S_%N)"
   print -r -- "$oldfile"
   mkdir -p "$bin_dir" || { popd >/dev/null; return 1; }
-  [[ -e "$bin_dir/nvim" ]] && mv -- "$bin_dir/nvim" "$bin_dir/$oldfile"
-  cp -- "$HOME/neovim/bin/nvim" "$bin_dir/" || {
+  [[ -e "$bin_dir/nvim" ]] && rm -f "$bin_dir/nvim"
+  [[ -e "$HOME/neovim/bin/$oldfile" ]] && ln -s "$HOME/neovim/bin/$oldfile" "$bin_dir/$oldfile"
+  ln -s "$HOME/neovim/bin/nvim" "$bin_dir/nvim" || {
     popd >/dev/null
     return 1
   }
-
   popd >/dev/null
 }
 
