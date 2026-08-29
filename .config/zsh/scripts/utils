@@ -109,6 +109,25 @@ function gL() {
   fi
 }
 
+nvimuse() {
+  case "${1:-}" in
+  stable)
+    nvim() {
+      nvim-stable "$@"
+    }
+    print 'nvim now uses the mise-managed stable release in this shell'
+    ;;
+  master)
+    unfunction nvim 2>/dev/null
+    print 'nvim now uses the source-built master release in this shell'
+    ;;
+  *)
+    print 'usage: nvimuse <master|stable>' >&2
+    return 2
+    ;;
+  esac
+}
+
 buildnvim() {
   local neovim_dir="$HOME/.dots/neovim"
   local bin_dir="$HOME/.local/bin"

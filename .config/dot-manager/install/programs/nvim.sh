@@ -104,6 +104,37 @@ install_neovide() {
   log "success" "Neovide installed."
 }
 
+install_stable_nvim_launcher() {
+  print_step "Setting up stable Neovim..."
+
+  local launcher="$DOT_MANAGER_DIR/bin/nvim-stable"
+  local installed_launcher="$HOME/.local/bin/nvim-stable"
+
+  if ! command -v mise >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "mise is required for the stable Neovim installation."
+    return 1
+  fi
+
+  if ! mise where neovim@stable >>"$DOT_MANAGER_LOG" 2>&1 &&
+    ! mise install neovim@stable >>"$DOT_MANAGER_LOG" 2>&1; then
+    log "error" "Failed to install stable Neovim via mise."
+    return 1
+  fi
+
+  if [ ! -x "$launcher" ]; then
+    log "error" "The stable Neovim launcher is missing or is not executable."
+    return 1
+  fi
+
+  mkdir -p "$HOME/.local/bin" || return 1
+  if [ -e "$installed_launcher" ] || [ -L "$installed_launcher" ]; then
+    rm -- "$installed_launcher" || return 1
+  fi
+  ln -s "$launcher" "$installed_launcher" || return 1
+
+  log "success" "Stable Neovim launcher installed."
+}
+
 install_nvim() (
   print_step "Installing Neovim..."
 
@@ -212,6 +243,7 @@ main() {
   install_treesitter || return 1
   install_neovide || return 1
   install_nvim || return 1
+  install_stable_nvim_launcher || return 1
   install_rvim || return 1
   # update_plugins || return 1
 }

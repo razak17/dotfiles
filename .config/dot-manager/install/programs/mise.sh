@@ -80,6 +80,19 @@ install_lua() {
   log "success" "Lua 5.1 installed."
 }
 
+install_neovim_stable() {
+  log "info" "Installing stable Neovim via mise..."
+
+  # stable is a rolling release alias. Force the install so a newly published
+  # stable release replaces the old one even when mise sees the same alias.
+  if ! mise install --force neovim@stable; then
+    log "error" "Failed to install stable Neovim via mise."
+    return 1
+  fi
+
+  log "success" "Stable Neovim installed."
+}
+
 install_rust() {
   log "info" "Installing stable Rust via mise..."
 
@@ -302,6 +315,7 @@ install_node
 install_pnpm
 install_go
 install_lua
+install_neovim_stable
 install_rust
 install_bun
 install_deno
