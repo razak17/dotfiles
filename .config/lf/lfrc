@@ -225,3 +225,7 @@ map T $nsxiv -t "$(pwd)" # opens thumbnail mode
 map <c-l> unselect
 
 map C edit-config
+
+
+cmd select-all :unselect; invert
+map <c-a> select-all
