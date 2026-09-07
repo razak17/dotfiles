@@ -73,6 +73,33 @@
       "skillFolderHash": "6161508c5c7959b156ff0e4e10b510863b51f9cc",
       "installedAt": "2026-08-20T16:53:48.859Z",
       "updatedAt": "2026-08-28T00:42:28.662Z"
+    },
+    "minimalist-ui": {
+      "source": "leonxlnx/taste-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/leonxlnx/taste-skill.git",
+      "skillPath": "skills/minimalist-skill/SKILL.md",
+      "skillFolderHash": "5509c012862cda27e2ed7efae89ed940ecc53add",
+      "installedAt": "2026-09-06T18:37:01.720Z",
+      "updatedAt": "2026-09-06T18:37:01.720Z"
+    },
+    "gpt-taste": {
+      "source": "leonxlnx/taste-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/leonxlnx/taste-skill.git",
+      "skillPath": "skills/gpt-tasteskill/SKILL.md",
+      "skillFolderHash": "c87d529ad945cd35985b19475bf53f41682d4f69",
+      "installedAt": "2026-09-06T18:37:51.128Z",
+      "updatedAt": "2026-09-06T18:37:51.128Z"
+    },
+    "expo-native-ui": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/expo-native-ui/SKILL.md",
+      "skillFolderHash": "f650b3aaf8d03c5a683ef311bcaa457c7f44b483",
+      "installedAt": "2026-09-06T18:39:28.603Z",
+      "updatedAt": "2026-09-06T18:39:28.603Z"
     }
   },
   "dismissed": {
