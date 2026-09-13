@@ -14,6 +14,7 @@ bind H exec setsid mpv --pause --volume=60 --ytdl-format="best[height<=720]" --t
 bind E exec setsid mpv --pause --volume=60 --ytdl-format="best[height<=1080]" --terminal=no "%l" &
 bind M exec setsid mpv --pause --volume=60 --terminal=no "%l" &
 bind A exec setsid mpv --pause --volume=60 --ytdl-format="bestaudio" --terminal=no "%l" &
+bind V exec format="$(yt-dlp --list-formats "%l" | sed -n '/^ID[[:space:]]/,$p' | sed '1,2d' | fzf --prompt='format> ' | awk '{ print $1 }')" && test -n "$format" && setsid -f mpv --pause --volume=60 --ytdl-format="$format" --terminal=no "%l"
 bind f exec setsid nsxiv "%l"
 bind O exec xdg-open "%l" &
 bind y copy-to-clipboard
