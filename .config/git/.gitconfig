@@ -1,10 +1,10 @@
-[credential]
-	helper = store
 [user]
 	email = moabdulrazak17@gmail.com
 	name = Abdul Razak
+
 [init]
 	defaultBranch = main
+
 [core]
   commentChar = ";"
 	pager = delta
@@ -17,13 +17,29 @@
 	navigate = true
 
 [merge]
+  log = true
+  tool = nvimdiff1
 	conflictStyle = zdiff3
 
+[mergetool]
+  prompt = true
+  trustExitCode = true
+  hideResolved = true
+
+[rerere]
+	enabled = true
+
 [diff]
+	algorithm = histogram
   colorMoved = default
+  mnemonicPrefix = true
 
 [pull]
   autoSetupRemote = true
+	rebase = true
+
+[push]
+	autoSetupRemote = true
 
 [alias]
   st = status -s
@@ -50,19 +66,17 @@
   wtb = "!f() { root=$(git rev-parse --show-toplevel); name=$(basename \"$root\"); dir=$(dirname \"$root\"); git worktree add \"$dir/${name}-$1\" \"$1\"; }; f"
   wtp = "!f() { root=$(git rev-parse --show-toplevel); name=$(basename \"$root\"); dir=$(dirname \"$root\"); git fetch origin pull/$1/head:pr/$1 && git worktree add \"$dir/${name}-pr-$1\" pr/$1; }; f"
   wtr = "!f() { root=$(git rev-parse --show-toplevel); name=$(basename \"$root\"); dir=$(dirname \"$root\"); git worktree remove \"$dir/${name}-$1\" && rm -rf \"$dir/${name}-$1\"; }; f"
+
 # Branch cleanup
+
 [submodule]
 	recurse = true
-[url "https://"]
-	insteadOf = git://
-[url "https://github.com/"]
-	insteadOf = git@github.com:
-[credential "github.com"]
-	useHttpPath = true
-[merge]
-  log = true
-  tool = nvimdiff1
-[mergetool]
-  prompt = true
-  trustExitCode = true
-  hideResolved = true
+
+; [url "https://"]
+; 	insteadOf = git://
+
+; [url "https://github.com/"]
+; 	insteadOf = git@github.com:
+
+; [credential "github.com"]
+; 	useHttpPath = true

@@ -1,11 +1,11 @@
 [user]
 	name = Abdul Razak
 	email = moabdulrazak17@gmail.com
-[include]
-	path = /home/razak/.config/git/gitconfig
 [init]
 	defaultBranch = main
 [pull]
 	rebase = true
 [push]
 	autoSetupRemote = true
+[include]
+	path = /home/razak/.config/git/.gitconfig
