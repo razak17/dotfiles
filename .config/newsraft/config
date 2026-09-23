@@ -9,6 +9,7 @@ unbind o
 
 # bindings
 bind ? exec man newsraft
+bind e exec setsid mpv --pause --volume=60 --ytdl-format="best[height<=360]" --terminal=no "%l" &
 bind m exec setsid mpv --pause --volume=60 --ytdl-format="best[height<=480]" --terminal=no "%l" &
 bind H exec setsid mpv --pause --volume=60 --ytdl-format="best[height<=720]" --terminal=no "%l" &
 bind E exec setsid mpv --pause --volume=60 --ytdl-format="best[height<=1080]" --terminal=no "%l" &
