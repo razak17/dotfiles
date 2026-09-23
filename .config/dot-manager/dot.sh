@@ -23,6 +23,7 @@ DOT_MANAGER_COMPLETE_PROGRAMS=(
   "rmpc"
   "suckless"
   "tmux"
+  "vimv"
   "yazi"
   "zsh"
 )
