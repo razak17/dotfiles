@@ -14,6 +14,9 @@ max_height = 900
 cache_dir  = ""
 
 [opener]
+nvim = [
+	{ run = '$EDITOR %s', block = true, for = "unix" },
+]
 edit = [
 	{ run = '$EDITOR %s', block = true, for = "unix" },
 ]
@@ -35,6 +38,7 @@ fallback = [
 
 [open]
 rules = [
+	{ url = "*.[sS][rR][tT]", use = "nvim" },
 	{ mime = "text/*", use = "edit" },
 	{ mime = "image/*", use = "image" },
 	{ mime = "video/*", use = "play" },
