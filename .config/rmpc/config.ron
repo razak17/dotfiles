@@ -3,7 +3,7 @@
 #![enable(unwrap_variant_newtypes)]
 (
     cache_dir: Some("/tmp/rmpc/cache"),
-    lyrics_dir: Some("~/Sync/Music/Lyrics"),
+    lyrics_dir: Some("~/Sync/Music"),
     password: None,
     theme: "catppuccin_mocha",
     on_song_change: ["~/.config/rmpc/increment_play_count"],
