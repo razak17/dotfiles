@@ -49,4 +49,9 @@ if [ -e "$HOME/.cargo" ]; then
   )
 fi
 
+# pnpm tools
+path+=(
+"$HOME/.local/share/pnpm/bin"
+)
+
 export PATH
