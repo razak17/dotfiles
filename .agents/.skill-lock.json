@@ -100,6 +100,15 @@
       "skillFolderHash": "f650b3aaf8d03c5a683ef311bcaa457c7f44b483",
       "installedAt": "2026-09-06T18:39:28.603Z",
       "updatedAt": "2026-09-06T18:39:28.603Z"
+    },
+    "writing-plans": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/obra/superpowers.git",
+      "skillPath": "skills/writing-plans/SKILL.md",
+      "skillFolderHash": "cc97fa00eb2ccd4f283e34eb2ba06a48e1e679f7",
+      "installedAt": "2026-10-04T19:22:50.925Z",
+      "updatedAt": "2026-10-04T19:22:50.925Z"
     }
   },
   "dismissed": {
@@ -107,14 +116,13 @@
   },
   "lastSelectedAgents": [
     "amp",
-    "antigravity",
-    "antigravity-cli",
     "cline",
     "codex",
     "cursor",
-    "deepagents",
+    "droid",
     "gemini-cli",
     "github-copilot",
+    "kilo",
     "kimi-code-cli",
     "opencode",
     "warp",
