@@ -49,6 +49,15 @@ if [ -e "$HOME/.cargo" ]; then
   )
 fi
 
+# Android SDK (used by Android Studio, Expo, adb, and the emulator).
+if [ -e "$HOME/Android/Sdk" ]; then
+  export ANDROID_HOME="$HOME/Android/Sdk"
+  path+=(
+  "$ANDROID_HOME/emulator"
+  "$ANDROID_HOME/platform-tools"
+  )
+fi
+
 # pnpm tools
 path+=(
 "$HOME/.local/share/pnpm/bin"
