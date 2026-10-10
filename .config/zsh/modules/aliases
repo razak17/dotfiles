@@ -150,11 +150,11 @@ alias yta-wav="youtube-dl --extract-audio --audio-format wav "
 alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 
 # doas
-alias i='doas'
-alias ir='doas rm -r'
-alias ic="doas cp -r"
-alias im="doas mv"
-alias iv='doas true'
+# alias i='doas'
+# alias ir='doas rm -r'
+# alias ic="doas cp -r"
+# alias im="doas mv"
+# alias iv='doas true'
 alias imi="doas make install"
 alias imci="doas make install && doas make clean install"
 alias uadd='doas usermod -aG'
