@@ -63,4 +63,7 @@ path+=(
 "$HOME/.local/share/pnpm/bin"
 )
 
+# prioritize ~/.local/bin
+path=("$HOME/.local/bin" $path)
+
 export PATH
