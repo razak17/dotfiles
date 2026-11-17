@@ -38,7 +38,8 @@ fallback = [
 
 [open]
 rules = [
-	{ url = "*.[sS][rR][tT]", use = "nvim" },
+	{ url = "*.[sS][rR][tT]", use = "edit" },
+	{ url = "*.[mM][dD]", use = "edit" },
 	{ mime = "text/*", use = "edit" },
 	{ mime = "image/*", use = "image" },
 	{ mime = "video/*", use = "play" },
