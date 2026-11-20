@@ -35,6 +35,11 @@ xprofile_start_once ibattery-notify "$HOME/.local/bin/startup/st-battery-notify"
 xprofile_start_once picom picom
 xprofile_start_once syncthing "$HOME/.local/bin/startup/st-syncthing"
 
+if [ -x /usr/lib/polkit-kde-authentication-agent-1 ] &&
+	! pgrep -u "$(id -u)" -f '^/usr/lib/polkit-kde-authentication-agent-1([[:space:]]|$)' >/dev/null 2>&1; then
+	/usr/lib/polkit-kde-authentication-agent-1 &
+fi
+
 xprofile_run "$HOME/.local/bin/startup/st-setbg" --fav
 xprofile_run "$HOME/.local/bin/startup/st-keyboard"
 
