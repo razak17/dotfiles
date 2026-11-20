@@ -157,7 +157,7 @@ install_deno() {
 install_python() {
   log "info" "Installing Python via mise..."
 
-  MISE_PYTHON_GITHUB_ATTESTATIONS=false mise use -g python@3.11.9 python@3.14.2
+  MISE_PYTHON_GITHUB_ATTESTATIONS=false mise use -g python@latest python@3.11.9 python@3.14.2
 
   log success "Python installed."
 }
