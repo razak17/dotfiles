@@ -12,6 +12,8 @@ fi
 
 [ -r "$HOME/.config/shell/environment.sh" ] && . "$HOME/.config/shell/environment.sh"
 
+export QT_QPA_PLATFORMTHEME=kde
+
 xprofile_start_once() {
 	process_name=$1
 	shift

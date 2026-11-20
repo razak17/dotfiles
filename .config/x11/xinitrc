@@ -25,8 +25,6 @@ xrandr --dpi 125
 
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile" ] && . "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile"
 
-export QT_QPA_PLATFORMTHEME=kde
-
 command -v ssh-add-github-session >/dev/null 2>&1 && ssh-add-github-session &
 
 exec dwm 2>"$HOME/.dwm.log"
