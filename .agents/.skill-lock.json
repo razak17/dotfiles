@@ -5,110 +5,112 @@
       "source": "anthropics/skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/anthropics/skills.git",
+      "commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
       "skillPath": "skills/frontend-design/SKILL.md",
-      "skillFolderHash": "0d5b74a14bdf3ebcd64f352d06376a2ef05ed296",
+      "skillFolderHash": "d79e2a5bb4df4a386c2adcdd9ab8709bba28c3f6",
       "pluginName": "example-skills",
       "installedAt": "2026-03-06T13:47:34.472Z",
-      "updatedAt": "2026-08-28T00:42:23.328Z"
+      "updatedAt": "2026-11-20T02:26:31.479Z"
     },
     "find-skills": {
       "source": "vercel-labs/skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/vercel-labs/skills.git",
+      "commit": "57217cf86ba38148a57af9e90d14a4c049558330",
       "skillPath": "skills/find-skills/SKILL.md",
       "skillFolderHash": "76a98a285cb0434f3d39e1a873823556330e398b",
       "installedAt": "2026-03-06T13:47:38.591Z",
-      "updatedAt": "2026-08-28T00:43:08.262Z"
+      "updatedAt": "2026-11-20T02:27:34.986Z"
     },
     "brainstorming": {
       "source": "obra/superpowers",
       "sourceType": "github",
       "sourceUrl": "https://github.com/obra/superpowers.git",
+      "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
       "skillPath": "skills/brainstorming/SKILL.md",
-      "skillFolderHash": "881fc4ac82a25e61a58d332426b5673efe060da0",
+      "skillFolderHash": "ebd5b1afb600976b12a4c07fedd9c408c1e82f97",
       "installedAt": "2026-03-06T13:49:04.128Z",
-      "updatedAt": "2026-08-28T00:43:05.067Z"
+      "updatedAt": "2026-11-20T02:27:31.573Z"
     },
     "writing-skills": {
       "source": "obra/superpowers",
       "sourceType": "github",
       "sourceUrl": "https://github.com/obra/superpowers.git",
+      "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
       "skillPath": "skills/writing-skills/SKILL.md",
-      "skillFolderHash": "1768f7552ec98fc6b06aeea747a0c4ef6bde0473",
+      "skillFolderHash": "660ede63b84ce5d07ef28cccc2973165e2ca06e2",
       "installedAt": "2026-03-06T13:49:45.896Z",
-      "updatedAt": "2026-08-28T00:43:05.068Z"
+      "updatedAt": "2026-11-20T02:27:31.578Z"
     },
     "python-performance-optimization": {
       "source": "wshobson/agents",
       "sourceType": "github",
       "sourceUrl": "https://github.com/wshobson/agents.git",
+      "commit": "42203085cfc5736204bf0f6d436dff7e1da0bf3f",
       "skillPath": "plugins/python-development/skills/python-performance-optimization/SKILL.md",
-      "skillFolderHash": "08c2e271829ec9131a5a0b5d484d1a6a332c8a30",
+      "skillFolderHash": "e1a8f5cc94595ef2ff185c69e6e3d39f5a01f966",
       "installedAt": "2026-03-06T13:54:03.829Z",
-      "updatedAt": "2026-08-28T00:43:15.198Z"
+      "updatedAt": "2026-11-20T02:27:42.489Z"
     },
     "python-testing-patterns": {
       "source": "wshobson/agents",
       "sourceType": "github",
       "sourceUrl": "https://github.com/wshobson/agents.git",
+      "commit": "42203085cfc5736204bf0f6d436dff7e1da0bf3f",
       "skillPath": "plugins/python-development/skills/python-testing-patterns/SKILL.md",
-      "skillFolderHash": "639d303a1187fe64e2538522ea25c5b8d3321763",
+      "skillFolderHash": "9bfe15c2253de7c8b6f95ed20bf02d116d8ddcd6",
       "installedAt": "2026-03-06T13:54:35.472Z",
-      "updatedAt": "2026-08-28T00:43:15.200Z"
+      "updatedAt": "2026-11-20T02:27:42.491Z"
     },
     "refactor": {
       "source": "github/awesome-copilot",
       "sourceType": "github",
       "sourceUrl": "https://github.com/github/awesome-copilot.git",
+      "commit": "b0b0948ece4c25a83fe1243c400f57ae28afefaf",
       "skillPath": "skills/refactor/SKILL.md",
       "skillFolderHash": "01cfb6a412faf9d680880cc3f631c419121a9916",
       "installedAt": "2026-04-16T11:00:29.554Z",
-      "updatedAt": "2026-08-28T00:43:01.076Z"
+      "updatedAt": "2026-11-20T02:27:28.452Z"
     },
     "unslop": {
       "source": "cursor/plugins",
       "sourceType": "github",
       "sourceUrl": "https://github.com/cursor/plugins.git",
-      "skillPath": "pstack/skills/unslop/SKILL.md",
-      "skillFolderHash": "6161508c5c7959b156ff0e4e10b510863b51f9cc",
+      "commit": "fbb86c09bbb4a25e490aaed136899ced1e9140e4",
+      "skillPath": "harness/pstack/claude-code/skills/unslop/SKILL.md",
+      "skillFolderHash": "3319d5baa095167501a128703a008446dd099d0c",
       "installedAt": "2026-08-20T16:53:48.859Z",
-      "updatedAt": "2026-08-28T00:42:28.662Z"
+      "updatedAt": "2026-11-20T02:26:40.073Z"
     },
     "minimalist-ui": {
-      "source": "leonxlnx/taste-skill",
+      "source": "Leonxlnx/taste-skill-classics",
       "sourceType": "github",
-      "sourceUrl": "https://github.com/leonxlnx/taste-skill.git",
+      "sourceUrl": "https://github.com/Leonxlnx/taste-skill-classics.git",
+      "commit": "5e08c9383dc4ad7fc0df70e1ac8cfa09ec356305",
       "skillPath": "skills/minimalist-skill/SKILL.md",
-      "skillFolderHash": "5509c012862cda27e2ed7efae89ed940ecc53add",
+      "skillFolderHash": "2e92dab6e17ddd1f4aa8895f9a5aab815fac3fbe",
       "installedAt": "2026-09-06T18:37:01.720Z",
-      "updatedAt": "2026-09-06T18:37:01.720Z"
-    },
-    "gpt-taste": {
-      "source": "leonxlnx/taste-skill",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/leonxlnx/taste-skill.git",
-      "skillPath": "skills/gpt-tasteskill/SKILL.md",
-      "skillFolderHash": "c87d529ad945cd35985b19475bf53f41682d4f69",
-      "installedAt": "2026-09-06T18:37:51.128Z",
-      "updatedAt": "2026-09-06T18:37:51.128Z"
+      "updatedAt": "2026-11-20T02:26:11.804Z"
     },
     "expo-native-ui": {
       "source": "expo/skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/expo/skills.git",
+      "commit": "88d9bd79f3fa8452a778fbac65bae162c0b32ce4",
       "skillPath": "plugins/expo/skills/expo-native-ui/SKILL.md",
-      "skillFolderHash": "f650b3aaf8d03c5a683ef311bcaa457c7f44b483",
+      "skillFolderHash": "7eaa433dd8233347df3bac4006a155c919775592",
       "installedAt": "2026-09-06T18:39:28.603Z",
-      "updatedAt": "2026-09-06T18:39:28.603Z"
+      "updatedAt": "2026-11-20T02:26:50.877Z"
     },
     "writing-plans": {
       "source": "obra/superpowers",
       "sourceType": "github",
       "sourceUrl": "https://github.com/obra/superpowers.git",
+      "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
       "skillPath": "skills/writing-plans/SKILL.md",
       "skillFolderHash": "cc97fa00eb2ccd4f283e34eb2ba06a48e1e679f7",
       "installedAt": "2026-10-04T19:22:50.925Z",
-      "updatedAt": "2026-10-04T19:22:50.925Z"
+      "updatedAt": "2026-11-20T02:27:31.575Z"
     },
     "modern-web-guidance": {
       "source": "GoogleChrome/modern-web-guidance",
@@ -118,7 +120,18 @@
       "skillPath": "skills/modern-web-guidance/SKILL.md",
       "skillFolderHash": "7c7d6612af788857352d452ebe263ad462351658",
       "installedAt": "2026-11-17T20:15:17.440Z",
-      "updatedAt": "2026-11-17T20:15:17.440Z"
+      "updatedAt": "2026-11-20T02:26:09.555Z"
+    },
+    "design-taste-frontend": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/Leonxlnx/taste-skill.git",
+      "commit": "f6b76575f949707b4e3c37cd86cb44b0b98643e8",
+      "skillPath": "skills/taste-skill/SKILL.md",
+      "skillFolderHash": "90f92ba7a3ce514cf85a2809583712dbd14106ea",
+      "pluginName": "taste-skill",
+      "installedAt": "2026-11-20T02:16:27.838Z",
+      "updatedAt": "2026-11-20T02:26:26.713Z"
     }
   },
   "dismissed": {
